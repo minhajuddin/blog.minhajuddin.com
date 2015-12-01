@@ -3,16 +3,16 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Simple
 subtitle:
-description:
-author: John Doe
-language:
-timezone:
+description: Some thoughts on writing simple code and other random ramblings.
+author: Khaja Minhajuddin
+language: English
+timezone: Asia/Calcutta
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://code.minhajuddin.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
