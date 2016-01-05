@@ -1,6 +1,9 @@
 title: Elastic objects in ruby
 date: 2015-12-09 13:08:30
-tags: elastic object, ruby, metaprogramming
+tags:
+ - elastic object
+ - ruby
+ - metaprogramming
 ---
 
 Here is an example of an elastic object wrapper in ruby
