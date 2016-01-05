@@ -1,6 +1,8 @@
 title: Default user for coreos on Digital Ocean
 date: 2015-12-05 13:28:51
-tags: docker, coreos
+tags:
+ - docker
+ - coreos
 ---
 
 I just started playing with [Coreos](https://coreos.com) to run my docker containers.
