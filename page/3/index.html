@@ -62,10 +62,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-how-to-install-command-t-for-vim-using-rvm-on-linux" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-markdown-viewer-script-for-your-markdown-documents" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2013/01/08/how-to-install-command-t-for-vim-using-rvm-on-linux/" class="article-date">
-  <time datetime="2013-01-08T18:30:00.000Z" itemprop="datePublished">2013-01-09</time>
+    <a href="/2012/03/15/markdown-viewer-script-for-your-markdown-documents/" class="article-date">
+  <time datetime="2012-03-15T18:30:00.000Z" itemprop="datePublished">2012-03-16</time>
 </a>
     
   </div>
@@ -76,7 +76,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2013/01/08/how-to-install-command-t-for-vim-using-rvm-on-linux/">How to install Command T for vim using rvm on linux</a>
+      <a class="article-title" href="/2012/03/15/markdown-viewer-script-for-your-markdown-documents/">markdown viewer script for your markdown documents</a>
     </h1>
   
 
@@ -84,16 +84,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Use the <code>vba</code> package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#download the code</span></span><br><span class="line"><span class="built_in">cd</span> ~/.vim/bundle</span><br><span class="line">git <span class="built_in">clone</span> git://git.wincent.com/<span class="built_in">command</span>-t.git bundle/<span class="built_in">command</span>-t</span><br><span class="line"><span class="comment"># or if you manage your dotfiles using git</span></span><br><span class="line"><span class="comment"># git submodule add git://git.wincent.com/command-t.git bundle/command-t</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># unset your CFLAGS if you have any, may not be necessary, but just in case</span></span><br><span class="line"><span class="built_in">unset</span> CFLAGS</span><br><span class="line"><span class="comment"># change your ruby version to the version used by vim</span></span><br><span class="line"><span class="comment"># you can check the version with which vim was compiled using</span></span><br><span class="line"><span class="comment"># by running the following from the vim command prompt</span></span><br><span class="line"><span class="comment"># :ruby puts RUBY_VERSION</span></span><br><span class="line">rvm use ruby-<span class="number">1.8</span>.<span class="number">7</span>-p357</span><br><span class="line"><span class="built_in">cd</span> ~/.vim/ruby/<span class="built_in">command</span>-t</span><br><span class="line">ruby extconf.rb</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+        <h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>Made the script more awesome by adding code highlighting using pygments. Download the pygments file from <a href="https://substancehq.s3.amazonaws.com/assets/pygments-18ba01c79ccfbe022848bccbb4413b59.css" target="_blank" rel="external">https://substancehq.s3.amazonaws.com/assets/pygments-18ba01c79ccfbe022848bccbb4413b59.css</a> , and the markdown stylesheet from <a href="https://substancehq.s3.amazonaws.com/static_asset/4fbd972603b04d30730006da/markdown.css" target="_blank" rel="external">https://substancehq.s3.amazonaws.com/static_asset/4fbd972603b04d30730006da/markdown.css</a></p>
+<hr>
+<p>Here is a script which I use for reading my markdown documents in the browser. It uses css from <a href="https://github.com/clownfart/Markdown-CSS" target="_blank" rel="external">https://github.com/clownfart/Markdown-CSS</a>. Here is a sample page with that css <a href="http://planetzxy.com/markdown/" target="_blank" rel="external">http://planetzxy.com/markdown/</a>. And here is the script:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#~/.scripts/markdown-viewer</span><br><span class="line"></span><br><span class="line">#!/usr/bin/env ruby</span><br><span class="line">require 'rubygems'</span><br><span class="line">require 'redcarpet'</span><br><span class="line">require 'erb'</span><br><span class="line">require 'pygments'</span><br><span class="line"></span><br><span class="line">class CustomHtmlRenderer &lt; Redcarpet::Render::HTML</span><br><span class="line">  def block_code(code, lang)</span><br><span class="line">    Pygments.highlight code, :lexer =&gt; lang</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">#@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink =&gt; true)</span><br><span class="line">@markdown = Redcarpet::Markdown.new(CustomHtmlRenderer, autolink: true, fenced_code_blocks: true, tables: true, no_intra_emphasis: true, strikethrough: true, superscript: true)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@template = ERB.new(&lt;&lt;EOF</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;&lt;%= title %&gt;&lt;/title&gt;</span><br><span class="line">    &lt;link href="https://raw.github.com/clownfart/Markdown-CSS/master/markdown.css" rel="stylesheet"&gt;&lt;/link&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;%= body %&gt;</span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">EOF</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">def view_markdown(filename)</span><br><span class="line"></span><br><span class="line">  if !File.exists?(filename)</span><br><span class="line">    puts "#&#123;filename&#125; does not exist."</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  opfilename = "/home/minhajuddin/tmp/mdrendered/#&#123;File.basename(filename)&#125;.html"</span><br><span class="line">  File.open(opfilename, 'w') do |f|</span><br><span class="line">    file_content = File.read(filename)</span><br><span class="line">    title = file_content.lines.first.chomp</span><br><span class="line">    body = @markdown.render(file_content)</span><br><span class="line">    f.write @template.result(binding)</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">  system("gnome-open #&#123;opfilename&#125;")</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">ARGV.each do |arg|</span><br><span class="line">  view_markdown(arg)</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2013/01/08/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cij8rz6tt005a11nvgdl0vk9i" class="article-share-link">Share</a>
+      <a data-url="http://code.minhajuddin.com/2012/03/15/markdown-viewer-script-for-your-markdown-documents/" data-id="cij8s5vzd003r11ni0cr69c8t" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/command-t/">command-t</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">rvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/util/">util</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/viewer/">viewer</a></li></ul>
 
     </footer>
   </div>
@@ -102,10 +104,10 @@
 
 
   
-    <article id="post-execute-and-view-the-output-your-go-code-from-vim" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-how-to-convert-html-or-erb-to-haml-in-vim" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2012/12/31/execute-and-view-the-output-your-go-code-from-vim/" class="article-date">
-  <time datetime="2012-12-31T18:30:00.000Z" itemprop="datePublished">2013-01-01</time>
+    <a href="/2012/03/14/how-to-convert-html-or-erb-to-haml-in-vim/" class="article-date">
+  <time datetime="2012-03-14T18:30:00.000Z" itemprop="datePublished">2012-03-15</time>
 </a>
     
   </div>
@@ -116,7 +118,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/31/execute-and-view-the-output-your-go-code-from-vim/">Execute and view the output of your go code from vim</a>
+      <a class="article-title" href="/2012/03/14/how-to-convert-html-or-erb-to-haml-in-vim/">how to convert html or erb to haml in vim</a>
     </h1>
   
 
@@ -124,20 +126,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Here is a small script which I created while trying to make my feedback process faster. It runs the current go file using <code>go run &lt;current filename&gt;</code> and appends its output as a bunch of comments at the bottom of the file whenever you hit <code>&lt;Ctrl&gt;d</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function! RunHandler()</span><br><span class="line">  " to save the cursor position</span><br><span class="line">  let l:winview = winsaveview()</span><br><span class="line">  if &amp;ft == "go"</span><br><span class="line">    :silent!$r!go run % 2&gt;&amp;1 | sed 's/^/\/\//g'</span><br><span class="line">    redraw!</span><br><span class="line">    echo "triggered go run " expand("%")</span><br><span class="line">  endif</span><br><span class="line">  call winrestview(l:winview)</span><br><span class="line">endfunction</span><br><span class="line">nnoremap &lt;C-d&gt; :call RunHandler()&lt;cr&gt;</span><br></pre></td></tr></table></figure>
-<p>You can use this with slight changes with other file types. Here is a screenshot:</p>
-<p><img src="https://substancehq.s3.amazonaws.com/static_asset/50e3354203b04d3567000398/vim-shot.png" alt="vim screenshot"></p>
-<p>###TODO<br>Make it overwrite the old output or insert before the previous output</p>
+        <p>I use HAML a lot, it’s a very nice templating language. And I copy a lot of<br>html/erb snippets to my haml views. Here is how you can configure vim to convert<br>your html to haml.</p>
+<p> 1) Install the html2haml gem. If you are using rvm, generate a wrapper using the<br> code below.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">rvm wrapper ruby-<span class="number">1.9</span>.<span class="number">2</span>-p290 vim html2haml</span><br></pre></td></tr></table></figure>
+<p>   2) Add the following mapping to your <code>~/.vimrc</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">" html2haml</span><br><span class="line">:vmap &lt;leader&gt;h :!/home/minhajuddin/.rvm/bin/vim_html2haml&lt;cr&gt;</span><br></pre></td></tr></table></figure>
+<p> That’s it, now you can select a block of text and hit the <code>&lt;leader&gt;h</code> command<br> to convert your html/erb to haml. You need to make sure that the paths and the<br> rvm strings correspond to your machine settings to get this working, also<br> html2haml needs a few more gems. Check <a href="http://haml-lang.com/docs/yardoc/Haml/Exec/HTML2Haml.html" target="_blank" rel="external">html2haml</a> for more info </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2012/12/31/execute-and-view-the-output-your-go-code-from-vim/" data-id="cij8rz6uv006c11nvd8zqyzrd" class="article-share-link">Share</a>
+      <a data-url="http://code.minhajuddin.com/2012/03/14/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="cij8s5w1h005q11nib5zj3pnr" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
-
     </footer>
   </div>
   
@@ -145,10 +146,10 @@
 
 
   
-    <article id="post-simple-ci-with-git-hooks-for-your-rails-projects" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-login-to-your-remote-server-using-cd-and-rvmrc" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2012/12/24/simple-ci-with-git-hooks-for-your-rails-projects/" class="article-date">
-  <time datetime="2012-12-24T18:30:00.000Z" itemprop="datePublished">2012-12-25</time>
+    <a href="/2012/02/07/login-to-your-remote-server-using-cd-and-rvmrc/" class="article-date">
+  <time datetime="2012-02-07T18:30:00.000Z" itemprop="datePublished">2012-02-08</time>
 </a>
     
   </div>
@@ -159,7 +160,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/24/simple-ci-with-git-hooks-for-your-rails-projects/">Simple CI with git hooks for your rails projects</a>
+      <a class="article-title" href="/2012/02/07/login-to-your-remote-server-using-cd-and-rvmrc/">login to your remote server using cd and rvmrc</a>
     </h1>
   
 
@@ -167,310 +168,343 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>In the past I have used jenkins for CI in my projects with little success. I think it was mainly because of my own sloppy setup.</p>
-<p>However this time I wanted to do CI in the most simple way. I did some research and found this good post <a href="http://blog.javabien.net/2009/12/01/serverless-ci-with-git/" target="_blank" rel="external">http://blog.javabien.net/2009/12/01/serverless-ci-with-git/</a>. The following setup is different that the one in the above blog post, but the idea is the same, have your CI run on your local machine rather than have a server for it.</p>
-<p>I have used <code>pre-commit</code> hooks in the past. It sounds nice till you want to do a quick commit and you use <code>--no-verify</code> and once you do that you start doing the same for subsequent commits. </p>
-<p>For this I use a <code>post-commit</code> hook which triggers our CI build in the background logging all the info to <code>/tmp/ci.log</code>. This avoids unnecessary friction. So, when I commit it doesn’t take forever, it happens instantly. The commit gets recorded. And then, in a background process my <code>railsci</code> script runs all the tests.</p>
-<p>This is the <code>post-commit</code> hook. I tried to keep it minimal so as to make the setup easy and maintainable across different projects.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#.git/hooks/post-commit</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#run our ci script with the right info</span></span><br><span class="line">railsci <span class="string">"<span class="variable">$(git log -1 HEAD --format=%H)</span>"</span> <span class="string">"<span class="variable">$(pwd)</span>"</span> <span class="number">1</span>&gt;&gt; /tmp/ci.log <span class="number">2</span>&gt;&amp;<span class="number">1</span>  &amp;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"TRIGGERED ci build in the background, check /tmp/ci.log"</span></span><br></pre></td></tr></table></figure>
-<p>The <code>railsci</code> script too is pretty straightforward, </p>
+        <p>Here is a fun trick which you can use, to simulate that a remote server is on one of<br>your directories.</p>
+<p>Create a folder call ~/m/example.com and in that folder create a file called<br>.rvmrc with the following command</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh awesomeuser@example.com -p <span class="number">2302</span> -i ~/.ssh/awesomekey_rsa</span><br><span class="line"><span class="comment">#or whatever ssh command you use</span></span><br></pre></td></tr></table></figure>
+<p>Now whenever you run <code>cd ~/m/example.com</code> you will automagically be logged into<br>your remote computer.</p>
+<p>Obviously, this is a fun trick. All this can be done in a much nicer way using the <code>~/.ssh/config</code><br>file.</p>
+<p>Here are a few resources to make your ssh config more useful, allowing you to<br>login to servers using a command like <code>ssh myserver</code></p>
+<ul>
+<li><a href="http://linux.die.net/man/5/ssh_config" target="_blank" rel="external">http://linux.die.net/man/5/ssh_config</a></li>
+<li><a href="http://www.evilsoft.org/2009/10/23/stupid-ssh-config-tricks" target="_blank" rel="external">http://www.evilsoft.org/2009/10/23/stupid-ssh-config-tricks</a></li>
+<li><a href="http://www.linuxjournal.com/article/6602" target="_blank" rel="external">http://www.linuxjournal.com/article/6602</a></li>
+<li><a href="http://www.howtogeek.com/75007/stupid-geek-tricks-use-your-ssh-config-file-to-create-aliases-for-hosts/" target="_blank" rel="external">http://www.howtogeek.com/75007/stupid-geek-tricks-use-your-ssh-config-file-to-create-aliases-for-hosts/</a></li>
+</ul>
+<p>I wonder what other stuff could be done using rvmrc.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/02/07/login-to-your-remote-server-using-cd-and-rvmrc/" data-id="cij8s5vzk003z11niv4yu6nq4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-throttle-or-de-duplicate-beanstalk-tasks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/01/05/throttle-or-de-duplicate-beanstalk-tasks/" class="article-date">
+  <time datetime="2012-01-05T18:30:00.000Z" itemprop="datePublished">2012-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/01/05/throttle-or-de-duplicate-beanstalk-tasks/">throttle or de-duplicate beanstalk tasks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://kr.github.com/beanstalkd/" target="_blank" rel="external">Beanstalkd</a> is an awesome queue. One of the<br>problems we ran into while we were building <a href="http://webw.in" target="_blank" rel="external">http://webw.in</a> was the duplication<br>of site rendering.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/01/05/throttle-or-de-duplicate-beanstalk-tasks/" data-id="cij8s5vwh001011nibwcn71jz" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-make-evil-monkey-nag-you-back-to-work" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/12/15/make-evil-monkey-nag-you-back-to-work/" class="article-date">
+  <time datetime="2011-12-15T18:30:00.000Z" itemprop="datePublished">2011-12-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/12/15/make-evil-monkey-nag-you-back-to-work/">make evil monkey nag you back to work</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###Update: fixed the cron entry</p>
+<p>I’ve read a very interesting article about <a href="http://swizec.com/blog/why-programmers-work-at-night/swizec/3198" target="_blank" rel="external">“Why programmers work at night”</a>.<br>One of the points the author talks about is “how we get engrossed in<br>twitter/hacker news/reddit”. I’ve felt the same. I think one of the reasons why<br>we(programmers/developers) spend a lot of our time on twitter/hacker news/reddit<br>is, because, we don’t have any idea of the time. Time just flies by. So, I<br>created a small ruby script which nags you to get back to work :)</p>
+<p>##~/.scripts/nagger</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'time'</span></span><br><span class="line"></span><br><span class="line">exit <span class="keyword">if</span> <span class="constant">File</span>.exists?(<span class="string">"/tmp/stop-nagging"</span>)</span><br><span class="line"><span class="comment">#see what I did here ;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#run the below command to find your display</span></span><br><span class="line"><span class="comment">#env | grep DISPLAY</span></span><br><span class="line"><span class="constant">ENV</span>[<span class="string">'DISPLAY'</span>] = <span class="string">':0.0'</span></span><br><span class="line"></span><br><span class="line">last_line = <span class="string">`tail -2 ~/.gtimelog/timelog.txt`</span>.lines.map&#123;|x| x.chomp&#125;.reject&#123;|x| x.empty?&#125;.reverse.first</span><br><span class="line">minutes = ((<span class="constant">Time</span>.now - <span class="constant">Time</span>.parse(last_line[<span class="number">11</span>, <span class="number">5</span>])) / <span class="number">60</span>).round</span><br><span class="line">evil_monkey = <span class="constant">File</span>.expand_path <span class="constant">File</span>.join(<span class="constant">File</span>.dirname(__FILE_<span class="number">_</span>), <span class="string">'evil-monkey.gif'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> minutes &gt; <span class="number">30</span></span><br><span class="line">  <span class="string">`notify-send -i '<span class="subst">#&#123;evil_monkey&#125;</span>' "It's been <span class="subst">#&#123;minutes&#125;</span> minutes since your last log"`</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>##cron entry</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">0</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">20</span>,<span class="number">25</span>,<span class="number">30</span>,<span class="number">35</span>,<span class="number">40</span>,<span class="number">45</span>,<span class="number">50</span>,<span class="number">55</span> * * * * /bin/bash <span class="operator">-l</span> -c <span class="string">'/home/minhajuddin/.scripts/nagger'</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd1003b04d2e0300003f/evil-monkey-nagger.png" alt="Evil monkey nagging me to get back to work"></p>
+<p>Hope it helps you get back to work too :). By the way, I use the awesome<br><a href="http://mg.pov.lt/gtimelog/" target="_blank" rel="external">gtimelog</a> app to log my time.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/12/15/make-evil-monkey-nag-you-back-to-work/" data-id="cij8s5vzi003y11nibw4i1t1z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-script-to-do-a-global-search-and-replace-in-a-git-repository" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/12/12/script-to-do-a-global-search-and-replace-in-a-git-repository/" class="article-date">
+  <time datetime="2011-12-12T18:30:00.000Z" itemprop="datePublished">2011-12-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/12/12/script-to-do-a-global-search-and-replace-in-a-git-repository/">script to do a global search and replace in a git repository</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There are many instances where I had to replace some variable name in all my files.<br>I use a small script to do this, Hope it helps you too.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#~/.scripts/git-sub</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin &lt;minhajuddin@cosmicvent.com&gt;</span></span><br><span class="line"><span class="comment">#script which does a global search and replace in the git repository</span></span><br><span class="line"><span class="comment">#it takes two arguments</span></span><br><span class="line"><span class="comment">#e.g. git sub OLD NEW</span></span><br><span class="line"></span><br><span class="line">old=<span class="variable">$1</span></span><br><span class="line">new=<span class="variable">$2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> $(git grep <span class="variable">$old</span> | cut <span class="operator">-d</span><span class="string">':'</span>  <span class="operator">-f</span> <span class="number">1</span> | uniq)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"replacing '<span class="variable">$old</span>' with '<span class="variable">$new</span>' in '<span class="variable">$file</span>'"</span></span><br><span class="line">  sed -i <span class="operator">-e</span> <span class="string">"s/<span class="variable">$old</span>/<span class="variable">$new</span>/g"</span> <span class="variable">$file</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>Just remember to add it to a directory which is in the <code>$PATH</code>. I have it in my<br><code>~/.scripts</code> directory which is included in the <code>$PATH</code>. Name it <code>git-sub</code> and give it<br>executable permissions using <code>chmod +x ~/.scripts/git-sub</code>. Now, you can just call <code>git sub old_var new_var</code><br>on terminal and it will do a global search and replace of all the files in the repository.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/12/12/script-to-do-a-global-search-and-replace-in-a-git-repository/" data-id="cij8s5vxh002111ni7wm7s8ju" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-elegance-of-functional-programming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/12/11/elegance-of-functional-programming/" class="article-date">
+  <time datetime="2011-12-11T18:30:00.000Z" itemprop="datePublished">2011-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/12/11/elegance-of-functional-programming/">elegance of functional programming</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Functional programming allows you to write concise and elegant code. Mainstream<br>languages like Ruby and C# support a lot of functional programming paradigms,<br>and learning them makes you a better programmer. Below is a small example which<br>demonstrates that:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#6 lines of ugly code</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line">tasks = list.tasks</span><br><span class="line"><span class="keyword">while</span>(i &lt; tasks.length - <span class="number">2</span>)</span><br><span class="line">  tasks[i].priority.should &gt;= tasks[i + <span class="number">1</span>].priority</span><br><span class="line">  i += <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#3 lines of elegant functional code</span></span><br><span class="line">list.tasks.each_cons(<span class="number">2</span>).each <span class="keyword">do</span> |t1, t2|</span><br><span class="line">  t1.priority.should &gt;= t2.priority</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/12/11/elegance-of-functional-programming/" data-id="cij8s5w2e006g11niujbzn0u6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-gc-your-git-repositories-automatically-with-a-cron-task" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/12/08/gc-your-git-repositories-automatically-with-a-cron-task/" class="article-date">
+  <time datetime="2011-12-08T18:30:00.000Z" itemprop="datePublished">2011-12-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/12/08/gc-your-git-repositories-automatically-with-a-cron-task/">gc your git repositories automatically with a cron task</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I have a lot of git code repositories, and I usually <a href="http://linux.die.net/man/1/git-gc" target="_blank" rel="external"><em>gc</em> (garbage collect)</a> them<br>manually by running the <code>git gc</code> command every now and then. Tasks like these<br>are prime candidates for automating with <em>cron</em>. Below is a cron entry and the<br>script which <code>gc</code>s my repositories. Hope you guys find it useful.</p>
+<p>###the script</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#email: minhajuddin.k@gmail.com</span></span><br><span class="line"><span class="comment">#path /home/minhajuddin/.cron/reboot.sh</span></span><br><span class="line"><span class="comment">#description: script which is executed everytime computer starts</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#git gc repos</span></span><br><span class="line">REPO_DIRS=$(cat &lt;&lt;EOS</span><br><span class="line"><span class="variable">$HOME</span>/repos</span><br><span class="line"><span class="variable">$HOME</span>/repos/core</span><br><span class="line">EOS</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> repo_dir <span class="keyword">in</span> <span class="variable">$REPO_DIRS</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"checking for git repos in <span class="variable">$repo_dir</span>"</span></span><br><span class="line">  <span class="keyword">for</span> repo <span class="keyword">in</span> $(ls <span class="variable">$repo_dir</span>)</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">$repo_dir</span>/<span class="variable">$repo</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="operator">-d</span> .git ]]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">"garbage collecting <span class="variable">$repo</span>"</span></span><br><span class="line">      git gc</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>###the crontab entry</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ crontab <span class="operator">-e</span></span><br><span class="line"><span class="comment">#add the line below into the editor and save it</span></span><br><span class="line">@reboot   <span class="variable">$HOME</span>/.cron/reboot.sh</span><br></pre></td></tr></table></figure>
+<p>Bonus tip: If you have a gitosis server, put the following script at <code>~git/.cron/reboot.sh</code> and<br>perform the above step for your <em>git user</em>.</p>
+<p>###the gitosis git user script</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line"><span class="keyword">for</span> repo <span class="keyword">in</span> $(ls ~/repositories)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">cd</span> ~/repositories/<span class="variable">$repo</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"garbage collecting <span class="variable">$repo</span>"</span></span><br><span class="line">  git gc</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/12/08/gc-your-git-repositories-automatically-with-a-cron-task/" data-id="cij8s5w25006611nix8ao6apy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-automatically-push-your-git-repo-to-a-server-on-shutdown" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/11/21/automatically-push-your-git-repo-to-a-server-on-shutdown/" class="article-date">
+  <time datetime="2011-11-21T18:30:00.000Z" itemprop="datePublished">2011-11-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/11/21/automatically-push-your-git-repo-to-a-server-on-shutdown/">automatically push your git repo to a server on shutdown</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Sometimes, I forget to push my git commits to our git server at the end of the day.<br>This causes inconvenience to others as they can’t review my code or build upon<br>it. So, today I wrote a small script which syncs all my git repositories with a<br>remote server. Hope it helps you too :)</p>
+<p>The setup consists of three files:</p>
+<p>###core syncing script at ~/.scripts/sync-repos###</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'yaml'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#replace google.com with your git servers domain</span></span><br><span class="line"><span class="string">`ping -c 1 google.com`</span></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$?</span>.exitstatus != <span class="number">0</span></span><br><span class="line">  puts <span class="string">'UNABLE TO SYNC REPOS AS NW IS DOWN'</span></span><br><span class="line">  exit <span class="variable">$?</span>.exitstatus</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">'syncing repositories'</span></span><br><span class="line"></span><br><span class="line"><span class="variable">@repos</span> = <span class="constant">YAML::</span>load_file <span class="constant">File</span>.expand_path( <span class="string">'~/.sync-repos'</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable">@repos</span>.each <span class="keyword">do</span> |repo|</span><br><span class="line">  path = <span class="constant">File</span>.expand_path repo[<span class="symbol">:path</span>]</span><br><span class="line">  remotes = repo[<span class="symbol">:remotes</span>].is_a?(<span class="constant">String</span>) ? [repo[<span class="symbol">:remotes</span>]] <span class="symbol">:</span> repo[<span class="symbol">:remotes</span>]</span><br><span class="line">  <span class="keyword">unless</span> <span class="constant">File</span>.exist? path</span><br><span class="line">    puts <span class="string">"skipping <span class="subst">#&#123;path&#125;</span> as directory not found"</span></span><br><span class="line">    <span class="keyword">next</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  remotes.each <span class="keyword">do</span> |remote|</span><br><span class="line">    cmd = <span class="string">"cd <span class="subst">#&#123;path&#125;</span> &amp;&amp; git push <span class="subst">#&#123;remote&#125;</span>"</span></span><br><span class="line">    puts <span class="string">"executing: '<span class="subst">#&#123;cmd&#125;</span>'"</span></span><br><span class="line">    system(cmd)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">'done syncing repositories'</span></span><br></pre></td></tr></table></figure>
+<p>###config file pointing to all the repos at ~/.sync-repos###</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;---&#10;- :path: ~/repos/search&#10;  :remotes:&#10;  - origin&#10;- :path: ~/repos/logbin&#10;  :remotes:&#10;  - origin&#10;  - local</span><br></pre></td></tr></table></figure>
+<p>###upstart shutdown trigger script at /etc/init/syncrepos.conf###</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">start on runlevel [<span class="number">06</span>]</span><br><span class="line"></span><br><span class="line">/bin/bash <span class="operator">-l</span> -c /home/minhajuddin/.scripts/sync-repos</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/11/21/automatically-push-your-git-repo-to-a-server-on-shutdown/" data-id="cij8s5w3h007h11ni5e75t2fy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-how-to-setup-solr-and-sunspot-on-a-rails-production-server" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/11/09/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" class="article-date">
+  <time datetime="2011-11-09T18:30:00.000Z" itemprop="datePublished">2011-11-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/11/09/how-to-setup-solr-and-sunspot-on-a-rails-production-server/">how to setup solr and sunspot on a rails production server</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Solr is an awesome app built on top of Lucene for fulltext search. However, setting<br>it up can be a pain if you don’t find the right guide, or if you miss some small<br>detail. So, here is my attempt to document the process of setting up solr in<br>development and production using a rails app as an example.</p>
+<p>Solr and Lucene are java apps, so you need java to get this stuff working,<br>I installed sun-jdk just to play it safe, as far as I know it works well<br>even with openjdk.</p>
+<p>Steps to setup solr on production</p>
 <ol>
-<li>It tags your commit as <code>processing-#{buildid}</code>, where buildid is a random hex id.</li>
-<li>Creates a folder called <code>/tmp/#{buildid}</code>, and clones your git repo there.</li>
-<li>Creates a new unique test database with a name <code>app_name_test_#{buildid}</code>.</li>
-<li>Runs all your tests and tags your commit as <code>failed-#{buildid}</code> if the tests fail.</li>
-<li>Removes the <code>processing..</code> tag</li>
+<li>Install Sun JDK:</li>
 </ol>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Date: 2012 Dec 24</span></span><br><span class="line"><span class="comment">#Script to run a ci build on the local computer after a commit is made</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'securerandom'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fileutils'</span></span><br><span class="line"></span><br><span class="line"><span class="constant">CommitHash</span> = <span class="constant">ARGV</span>.shift</span><br><span class="line"><span class="constant">Repodir</span>    = <span class="constant">ARGV</span>.shift</span><br><span class="line"><span class="constant">Buildid</span>    = <span class="constant">SecureRandom</span>.hex</span><br><span class="line"><span class="constant">DbConfig</span>   = <span class="string">"config/database.yml"</span></span><br><span class="line"><span class="constant">Tmpdir</span>     = <span class="constant">File</span>.join(<span class="string">'/tmp'</span>, <span class="constant">Buildid</span>)</span><br><span class="line"></span><br><span class="line"><span class="constant">FileUtils</span>.mkdir(<span class="constant">Tmpdir</span>)</span><br><span class="line"></span><br><span class="line">puts <span class="string">"started build for repo:<span class="subst">#&#123;<span class="constant">Repodir</span>&#125;</span> commit:<span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span> buildid:<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span></span><br><span class="line"><span class="comment">#helper functions</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(arg)</span></span></span><br><span class="line">  puts <span class="string">"RUNNING <span class="subst">#&#123;arg&#125;</span>"</span></span><br><span class="line">  system(<span class="string">"<span class="subst">#&#123;arg&#125;</span> 2&gt;&amp;1"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">untag</span><span class="params">(tag)</span></span></span><br><span class="line">  <span class="constant">Dir</span>.chdir <span class="constant">Repodir</span></span><br><span class="line">  run(<span class="string">"git tag -d '<span class="subst">#&#123;tag&#125;</span>'"</span>)</span><br><span class="line">  <span class="constant">Dir</span>.chdir <span class="constant">Tmpdir</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tag</span><span class="params">(tag, msg)</span></span></span><br><span class="line">  <span class="constant">Dir</span>.chdir <span class="constant">Repodir</span></span><br><span class="line">  run(<span class="string">"git tag -a '<span class="subst">#&#123;tag&#125;</span>' -m '<span class="subst">#&#123;msg&#125;</span>'"</span>)</span><br><span class="line">  <span class="constant">Dir</span>.chdir <span class="constant">Tmpdir</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#checkout a shallow version in a tmp directory</span></span><br><span class="line">tag <span class="string">"processing-<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span>, <span class="string">"Running tests for build"</span></span><br><span class="line">run(<span class="string">"git clone <span class="subst">#&#123;<span class="constant">Repodir</span>&#125;</span> <span class="subst">#&#123;<span class="constant">Tmpdir</span>&#125;</span>"</span>)</span><br><span class="line"><span class="comment">#cd to this directory</span></span><br><span class="line"><span class="constant">Dir</span>.chdir(<span class="constant">Tmpdir</span>)</span><br><span class="line"><span class="comment">#trust rvmrc</span></span><br><span class="line">run(<span class="string">"rvm rvmrc trust <span class="subst">#&#123;<span class="constant">Tmpdir</span>&#125;</span>"</span>)</span><br><span class="line"><span class="comment">#checkout the right commit</span></span><br><span class="line">run(<span class="string">"git checkout <span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span> -b <span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span>)</span><br><span class="line">run(<span class="string">"bundle install"</span>)</span><br><span class="line"><span class="comment">#tweak database.yml</span></span><br><span class="line"><span class="constant">File</span>.write(<span class="constant">DbConfig</span>, <span class="constant">File</span>.readlines(<span class="constant">DbConfig</span>).map &#123;|x| x =~ <span class="regexp">/database:/</span> ? x.gsub(<span class="string">'test'</span>, <span class="string">"test_<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span>) <span class="symbol">:x</span> &#125;.join)</span><br><span class="line"><span class="comment">#migrate db</span></span><br><span class="line">run(<span class="string">"RAILS_ENV=test bundle exec rake db:create db:migrate"</span>)</span><br><span class="line"><span class="comment">#run specs</span></span><br><span class="line">puts <span class="string">"Running tests"</span></span><br><span class="line"><span class="keyword">if</span> run(<span class="string">"RAILS_ENV=test bundle exec rspec spec"</span>)</span><br><span class="line">  system(<span class="string">"notify-send --urgency=low -i 'terminal' 'Tests passed for the commit - <span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span>'"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="comment">#tag the commit as a failure</span></span><br><span class="line">  tag <span class="string">"failed-<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span> , <span class="string">"Failed build"</span></span><br><span class="line">  system(<span class="string">"notify-send --urgency=low -i 'error' 'Tests failed for - <span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span>'"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">untag <span class="string">"processing-<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span></span><br><span class="line"><span class="comment">#drop database</span></span><br><span class="line">run(<span class="string">"RAILS_ENV=test bundle exec rake db:drop"</span>)</span><br><span class="line"><span class="comment">#add a pass fail tag to the original repo</span></span><br><span class="line">puts <span class="string">"Finished build for repo:<span class="subst">#&#123;<span class="constant">Repodir</span>&#125;</span> commit:<span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span> buildid:<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span></span><br></pre></td></tr></table></figure>
-<p>All of this runs behind the scenes without you even noticing it, if everything is good. You would find a <code>failed-#{buildid}</code> tag only if the tests fail. It’s working great for me. Hope it helps you guys :)</p>
-<p>Update: Fixed redirection in git hook and added a way to notify when the tests are executed</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2012/12/24/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cij8rz6pb001m11nv9pwccedg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/12/24/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
-  <time datetime="2012-12-24T18:30:00.000Z" itemprop="datePublished">2012-12-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/24/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
-<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
-<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
-<p>The setup contains two parts.</p>
-<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#~/.scripts/runinbg</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to run a command in background redirecting the</span></span><br><span class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</span><br><span class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> <span class="number">1</span>&gt;&gt; /tmp/runinbg.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></span><br><span class="line"><span class="comment">#when the test is complete</span></span><br><span class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></span><br></pre></td></tr></table></figure>
-<p>###2. Vim function to call this script with the current filename<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function! RunSpecs()</span><br><span class="line">  :silent!!runinbg bundle exec rspec % "you can tweak this to your liking</span><br><span class="line">  redraw! "without this the screen goes blank</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">nnoremap &lt;C-d&gt; :call RunSpecs()&lt;cr&gt;</span><br></pre></td></tr></table></figure></p>
-<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
-<p>Update: Added a version with notification</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2012/12/24/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cij8rz6pq002711nv5629obr9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-the-island-of-barefooters" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/12/07/the-island-of-barefooters/" class="article-date">
-  <time datetime="2012-12-07T18:30:00.000Z" itemprop="datePublished">2012-12-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/07/the-island-of-barefooters/">The island of barefooters</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I started a freelancing/consulting business about 4 years ago. And over the last<br>4 years I have built a small company which provides software development services<br>in ASP.NET MVC and Ruby on Rails. I consider myself a good developer (who doesn’t :) ).<br>However, I think I have created a cocoon around myself, where I am comfortable doing<br>stuff which I understand.  </p>
-<p>About a month ago, I saw this thought shared by <a href="https://twitter.com/dcurtis/status/220347986948009984" target="_blank" rel="external">@dcurtis</a></p>
-<blockquote>
-<p>Moderate success is the worst place for a startup. It’s worse than failure. There’s<br>some validation, but no growth. Endless paralysis.</p>
-</blockquote>
-<p>It hit me like a ton of bricks. I have been moderately successful, I make more<br>money than my colleagues who work for the big companies. I have a nice office I<br>have a few guys working with me. And this has made me comfortable. The last<br>exciting/dangerous/risky thing I have done was quitting my job to start freelancing/consulting with just 2<br>years of experience. Since then, I haven’t done anything major. This is<br>definitely not a good place to be. Mind you, I <em>am very comfortable</em>, but career<br>wise / growth wise, this is not a good place to be.</p>
-<p>In the past while discussing software products, I always used to say that India doesn’t have<br>any takers for software products. I used to say that the general public<br>isn’t aware of the latest technologies and don’t want to use them, which is<br>true even today. I have talked to a few schools and their interest in technology<br>is non-existent. However, this reminded me of a story my uncle used to<br>say (I am not sure where he heard it):</p>
-<blockquote>
-<p>There were two salesmen who worked for a footwear company. They were asked<br>to go to a specific island and analyse the market for footwear.</p>
-<p>One of them reported that the people on the Island did not know about<br>footwear. So, there was zero potential for the company.<br>He said that the company could not sell any of their products. </p>
-<p>The other guy came to a different conclusion<br>He said that this Island was full of people who didn’t have any footwear!<br>And that there was a huge market for them to sell footwear and make money.<br>They could get 100% of the market.</p>
-</blockquote>
-<p>Obviously, it’s not a black and white situation. There is truth in both their<br>conclusions. Since the Islanders didn’t know what footwear was, they wouldn’t<br>really buy them (Why fix something which is not broken). But, if people were<br>shown how comfortable footwear makes your life, there would be a huge market for<br>footwear. And <em>that</em> is difficult, creating awareness among people, <em>changing<br>their perceptions</em> is difficult.</p>
-<p><strong>For software products, India is like the island of barefooters</strong>. There is a huge<br>opportunity for people like us, but it’s not easy! Awareness has to be created<br>among customers about the benefits of technology. It is a challenging job. </p>
-<p>Hopefully this time I will get out of my cocoon and actually build and sell a<br>software product.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2012/12/07/the-island-of-barefooters/" data-id="cij8rz6op001211nv4phf9blk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/barefooters/">barefooters</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/india/">india</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">software</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-automatically-start-a-local-godoc-web-server" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/11/29/automatically-start-a-local-godoc-web-server/" class="article-date">
-  <time datetime="2012-11-29T18:30:00.000Z" itemprop="datePublished">2012-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/11/29/automatically-start-a-local-godoc-web-server/">Automatically start a local godoc web server </a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Godoc is awesome, It allows you to browse all the documentation on your local machine by running the following command</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">godoc -http=:<span class="number">8090</span></span><br></pre></td></tr></table></figure>
-<p>Once you do this you can happily browse through all the documentation offline. However, you can start this process as an upstart daemon and let it run in the background. All you have to do is create a file called <code>/etc/init/godoc.conf</code> with the following content</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Upstart script to start godoc server</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#*This obviously works on machines with upstart*</span></span><br><span class="line">start on runlevel [<span class="number">2345</span>]</span><br><span class="line">stop on runlevel [<span class="number">06</span>]</span><br><span class="line"></span><br><span class="line">script</span><br><span class="line">  <span class="built_in">export</span> HOME=/home/minhajuddin</span><br><span class="line">  <span class="built_in">export</span> GOROOT=<span class="variable">$HOME</span>/go</span><br><span class="line">  <span class="built_in">export</span> GOBIN=<span class="variable">$GOROOT</span>/bin</span><br><span class="line">  <span class="built_in">export</span> GOPATH=<span class="variable">$HOME</span>/gocode</span><br><span class="line">  <span class="variable">$GOBIN</span>/godoc -http=:<span class="number">8090</span> -index=<span class="literal">true</span></span><br><span class="line">end script</span><br></pre></td></tr></table></figure>
-<p>You just need to make sure that the env vars are adjusted to your setup. Also, using <code>-index=true</code> runs a full text search on all your documentation (which is simply awesome). Now, you will have your godoc server at <a href="http://localhost:8090/" target="_blank" rel="external">http://localhost:8090/</a> all the time.</p>
-<p>On a related note, godoc can be used from the command line like:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#godoc &lt;pkg name&gt; Type/Func</span></span><br><span class="line">godoc net Listener</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2012/11/29/automatically-start-a-local-godoc-web-server/" data-id="cij8rz6w8007b11nviausni5b" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/godoc/">godoc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/upstart/">upstart</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/11/29/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
-  <time datetime="2012-11-29T18:30:00.000Z" itemprop="datePublished">2012-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/11/29/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2012/11/29/implementing-a-basic-redis-client-in-go-part-1/" data-id="cij8rz6t4004a11nvrf1hvqfb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-using-inotify-to-make-speedup-your-learning-and-experimenting" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/11/07/using-inotify-to-make-speedup-your-learning-and-experimenting/" class="article-date">
-  <time datetime="2012-11-07T18:30:00.000Z" itemprop="datePublished">2012-11-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/11/07/using-inotify-to-make-speedup-your-learning-and-experimenting/">Using inotify to speedup your learning and experimenting</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Recently I have started learning <a href="http://golang.org" target="_blank" rel="external">go</a>. It is fun to learn something new, However this time just to make the feedback loop faster, I wrote a small bash script (by collecting fragments from all over the internet) using inotify. Here it is:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Wait for go files to be modified and then execute them</span></span><br><span class="line"><span class="comment">#Dependency: inotify-tools</span></span><br><span class="line"><span class="comment">#Install on ubuntu using: apt-get install inotify-tools</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#the command before the pipe is a blocking command, i.e. it doesn't end</span></span><br><span class="line">inotifywait -mrq --format <span class="string">'%f'</span> <span class="operator">-e</span> close_write <span class="variable">$1</span> | <span class="keyword">while</span> <span class="built_in">read</span> file</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment">#here we filter any changes to files other than go files</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">echo</span> <span class="variable">$file</span> | grep -E <span class="string">'^.*\.go$'</span>)</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="comment">#once we know that a go file has been written to we run it</span></span><br><span class="line">    clear</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"executing 'go run <span class="variable">$file</span>'"</span></span><br><span class="line">    go run <span class="variable">$file</span> </span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<p>The script itself is pretty self explanatory, We run inotifywait in <code>monitor</code> mode so that it blocks the current process, after that we pipe whatever output comes out of inotifywait which is just the filename to the while loop which doesn’t end because of the previous stream. Now, we just filter it to <em>go</em> source files and execute them.</p>
-<p>This can be used with any other programming language too, you just have to change the filter and the execute command.</p>
-<p>###Update:<br>I started playing with go web apps recently, and the following script has been helping me with recompile and reload. Hope it helps you guys too:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to restart the go webserver by building and restarting the binary whenever html or go files change</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">__restart_goserver</span></span>()&#123;</span><br><span class="line">  binary=<span class="string">"<span class="variable">$(basename $(pwd)</span>)"</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"building <span class="variable">$binary</span>"</span></span><br><span class="line">  <span class="keyword">if</span> go build</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"killing old process"</span></span><br><span class="line">    <span class="built_in">kill</span> -<span class="number">9</span> $(pidof <span class="string">"<span class="variable">$binary</span>"</span>) &gt; /dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"starting '<span class="variable">$binary</span>'"</span></span><br><span class="line">    ./<span class="variable">$binary</span> &amp; <span class="comment">#run it in background</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"started with pid: $!"</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"server restart failed"</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#cd to the right directory</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$1</span></span><br><span class="line">__restart_goserver</span><br><span class="line"><span class="comment">#the command before the pipe is a blocking command, i.e. it doesn't end</span></span><br><span class="line">inotifywait -mrq --exclude=<span class="string">"<span class="variable">$(basename $(pwd)</span>)"</span> --format <span class="string">'%f'</span> <span class="operator">-e</span> close_write <span class="variable">$1</span> | <span class="keyword">while</span> <span class="built_in">read</span> file</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">echo</span> <span class="variable">$file</span> | grep -E <span class="string">'^(.*\.go)|(.*\.html)$'</span>)</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"--------------------"</span></span><br><span class="line">    <span class="comment">#once we know that a go file has been written to we run it</span></span><br><span class="line">    __restart_goserver</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<p>Screenshot:<br><img src="https://substancehq.s3.amazonaws.com/static_asset/50a3474b03b04d4c12000fc7/Selection_004.png" alt="screenshot"></p>
-<p>###Update 2<br>You need <code>inotify-tools</code> to get this to work. You can install it on ubuntu by running <code>sudo apt-get install inotify-tools</code></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2012/11/07/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cij8rz6o3000h11nvbqfxymei" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inotify/">inotify</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/watch/">watch</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/10/28/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" class="article-date">
-  <time datetime="2012-10-28T18:30:00.000Z" itemprop="datePublished">2012-10-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/10/28/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/">How to run rails console as an authenticated devise user without knowing the password</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I maintain a few rails apps for my clients (running in production). And sometimes certain bugs occur only for specific users. There are two ways to debug these issues:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#install and setup sun jdk</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://archive.canonical.com/ <span class="variable">$(lsb_release -cs)</span> partner"</span>| sudo tee <span class="operator">-a</span> /etc/apt/sources.list &gt; /dev/null</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sun-java6-jre sun-java6-bin sun-java6-jdk -y</span><br><span class="line">sudo update-alternatives --config java</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export JAVA_HOME=/usr/lib/jvm/java-6-sun/'</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
 <ol>
-<li>Get the user to show you how the bug occurs</li>
-<li>Try it out by signing into the site as that user</li>
+<li><p>Download and setup tomcat: you’ll need to setup tomcat version 6.0 for your production server. Download the latest V6 tomcat files from <a href="http://tomcat.apache.org/download-60.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-60.cgi</a>. Now, extract them into <code>~/apps</code>.</p>
+</li>
+<li><p>Download or build the solr war files and copy them to <code>/apps/solr</code>. You can find the links at: <a href="http://lucene.apache.org/solr/" target="_blank" rel="external">http://lucene.apache.org/solr/</a> or <a href="http://www.apache.org/dyn/closer.cgi/lucene/solr/" target="_blank" rel="external">http://www.apache.org/dyn/closer.cgi/lucene/solr/</a>. The war file is usually in a folder called <code>dist</code> and has a filename like <code>apache-solr-3.4.0.war</code></p>
+</li>
+<li><p>Create a file  ~/apps/tomcat/conf/Catalina/localhost/solr-appname.xml<br>with the following content</p>
+</li>
 </ol>
-<p>Now option 2 isn’t practical as your users don’t want to share their passwords with you. What I do to get around this fact is test the user interface through <code>rails console</code> in production. Now, we use devise for authentication so it wasn’t so hard to sign in as the desired user. All you need to run in your production rails console is:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">validate_password?</span><span class="params">(pwd)</span></span></span><br><span class="line">    <span class="keyword">true</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>where <code>User</code> is your devise model. Now to signin as the desired user (foo@mailinator.com) from the console you run</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#to sign in</span></span><br><span class="line">app.post <span class="string">'/users/sign_in'</span>,  <span class="symbol">user:</span> &#123;<span class="symbol">email:</span> <span class="string">'foo@mailinator.com'</span>, <span class="symbol">password:</span> <span class="string">"&lt;doesn't matter&gt;"</span>&#125;</span><br><span class="line"><span class="comment">#to test it out</span></span><br><span class="line">app.get <span class="string">'/desired-url'</span></span><br><span class="line">puts app.response</span><br></pre></td></tr></table></figure>
-<p>Hope that helps</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- I usually create this file in the rails app config/ directory and symlink</span><br><span class="line">it to the ~/tomcat/conf/Catalina/localhost/ directory--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- the docBase path should point to your solr.war file --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">Context</span> <span class="attribute">docBase</span>=<span class="value">"/home/minhajuddin/apps/solr/solr.war"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- the value string should point to your apps solr directory --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">Environment</span> <span class="attribute">name</span>=<span class="value">"solr/home"</span> <span class="attribute">type</span>=<span class="value">"java.lang.String"</span> <span class="attribute">value</span>=<span class="value">"/home/minhajuddin/spikes/solr-blog/solr"</span> <span class="attribute">override</span>=<span class="value">"true"</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- value= app-name/solr --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><em>Steps till this point are the same for any kind of solr installation, be it for a rails or any other app.</em></p>
+<ol>
+<li>I use the sunspot_rails gem in my rails application, when using this, you can run <code>rails g sunspot_rails:install</code> to create a <code>config/sunspot.yml</code> file. Once you have the config file, change the production config values to point to the right port and path, e.g:</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;..&#10;production:&#10;  solr:&#10;    hostname: localhost&#10;    port: 8080&#10;    path: &#39;/solr-odir/&#39;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Run the <code>bundle exec rake sunspot:solr:start</code> command once, on the development machine, to generate the solr configuration files. And push this code to the production server.</li>
+</ol>
+<p>That’s all. Setting solr is not very straightforward, but once you have it set<br>up, it’s very easy to setup additional apps with the same solr server.</p>
+<p>On a development machine, all you need to get solr working is: install java (check step 1) and setup sunspot (check step 5), and start the solr server with <code>bundle exec rake sunspot:solr:start</code></p>
+<p>###Resources###</p>
+<ul>
+<li><a href="https://help.ubuntu.com/community/Java" target="_blank" rel="external">https://help.ubuntu.com/community/Java</a></li>
+<li><a href="http://wiki.apache.org/solr/SolrInstall" target="_blank" rel="external">http://wiki.apache.org/solr/SolrInstall</a></li>
+<li><a href="http://www.tc.umn.edu/~brams006/solr_ubuntu.html" target="_blank" rel="external">http://www.tc.umn.edu/~brams006/solr_ubuntu.html</a></li>
+<li><a href="http://railscasts.com/episodes/278-search-with-sunspot" target="_blank" rel="external">http://railscasts.com/episodes/278-search-with-sunspot</a></li>
+<li><a href="https://github.com/outoftime/sunspot" target="_blank" rel="external">https://github.com/outoftime/sunspot</a></li>
+<li><a href="https://github.com/sunspot/sunspot/wiki" target="_blank" rel="external">https://github.com/sunspot/sunspot/wiki</a></li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2012/10/28/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cij8rz6ti004r11nv1c9izzie" class="article-share-link">Share</a>
+      <a data-url="http://code.minhajuddin.com/2011/11/09/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" data-id="cij8s5w0n004q11nidsmkwff1" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/authenticate/">authenticate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/console/">console</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devise/">devise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/production/">production</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li></ul>
-
     </footer>
   </div>
   
@@ -478,10 +512,10 @@
 
 
   
-    <article id="post-nifty-script-to-keep-your-local-git-repositories-up-to-date" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-simple-log-management-and-viewing-for-your-servers" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2012/10/28/nifty-script-to-keep-your-local-git-repositories-up-to-date/" class="article-date">
-  <time datetime="2012-10-28T18:30:00.000Z" itemprop="datePublished">2012-10-29</time>
+    <a href="/2011/11/07/simple-log-management-and-viewing-for-your-servers/" class="article-date">
+  <time datetime="2011-11-07T18:30:00.000Z" itemprop="datePublished">2011-11-08</time>
 </a>
     
   </div>
@@ -492,7 +526,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2012/10/28/nifty-script-to-keep-your-local-git-repositories-up-to-date/">Nifty script to keep your local git repositories up to date</a>
+      <a class="article-title" href="/2011/11/07/simple-log-management-and-viewing-for-your-servers/">simple log management and viewing for your servers</a>
     </h1>
   
 
@@ -500,19 +534,399 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A lot of times when I try to hack on my code, I find that my git repository doesn’t have the latest commits. And in a lot of these instances I don’t have an internet connection (either because I am  at a client’s location or because there is a power cut). Here is a little script which I use to keep all my local repos up to date automatically.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#location: $HOME/.scripts/git-update</span></span><br><span class="line">ROOT_DIR=<span class="string">"<span class="variable">$HOME</span>/r"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> repo <span class="keyword">in</span> $(ls <span class="variable">$ROOT_DIR</span>)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">cd</span> <span class="string">"<span class="variable">$ROOT_DIR</span>/<span class="variable">$repo</span>"</span></span><br><span class="line">  <span class="keyword">for</span> remote <span class="keyword">in</span> $(git remote)</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"fetching <span class="variable">$repo</span> <span class="variable">$remote</span>"</span></span><br><span class="line">    git fetch <span class="variable">$remote</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#crontab entry</span></span><br><span class="line">@reboot /bin/bash <span class="operator">-l</span> -c <span class="string">'cd /home/minhajuddin/ &amp;&amp; $HOME/.scripts/git-update'</span></span><br></pre></td></tr></table></figure>
-<p>The git-update script should be pretty self explantory. I am looking at all the dirs under my “repos root dir” and for each of those I am finding the remotes and fetching them one at a time. The crontab entry on the other hand makes sure that every time I start my computer this script is executed. Also, I can run <code>git update</code> whenever I am online to get fetch all the new commits for my repos.</p>
+        <p>As a guy who develops, deploys and maintains webapps, I had to login to my servers<br>and <em>tail the logs to see issues</em> too many times. It’s a real pain, And anybody who maintains<br>any servers knows this.</p>
+<p>I’ve recently found a bunch of very good apps, which make this job very pleasant: <a href="https://papertrailapp.com/" target="_blank" rel="external"> PaperTrail </a> is<br>an awesome app which makes it very simple to setup a logging daemon and view<br>all your logs (from all your servers) on their website, It’s a very neat<br>implementation. But, you might not want to send your logs to other apps as they usually have sensitive information.<br><img src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0d03b04d2e03000037/2v721l.png" alt="PaperTrail"></p>
+<p><a href="http://logstash.net/" target="_blank" rel="external">logstash</a> is another awesome open source implementation for<br>log management. With logstash, you can setup a small central server which collects all your logs<br>and allows you to access them through a <a href="http://logstash.net/docs/1.0.17/" target="_blank" rel="external">variety of interfaces</a>. Another advantage of logstash<br>is that the logs stay on <em>your</em> server under <em>your</em> control, plus it’s open source. The only downside is the one time setup, which, is not that hard.<br>It is very <a href="http://logstash.net/docs/1.0.17/" target="_blank" rel="external">versatile in ways it allows you access to your logs</a>.<br><img src="http://i.imgur.com/HklrW.png" alt="LogStash"></p>
+<p>If none of them seem to be your thing, here is a small script which I use to tail<br>remote log files. It runs <code>tail -f</code> over an ssh connection.<br>It’s very simple to setup and use. Once you set it up, you can just <code>cd</code> into<br>your application directory and run <code>rt</code> and it will start tailing your log files<br>instantly. If you have any improvements you can <a href="https://gist.github.com/1348074" target="_blank" rel="external">fork this gist and update it</a>.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#~/.scripts/rt</span></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'yaml'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'erb'</span></span><br><span class="line"></span><br><span class="line"><span class="constant">ConfigFilePath</span> = <span class="constant">File</span>.expand_path(<span class="string">"~/.remote-tail.yml"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#will be written out to ConfigFilePath if not present</span></span><br><span class="line"><span class="constant">SampleConfig</span>=&lt;&lt;<span class="constant">EOS</span></span><br><span class="line">---</span><br><span class="line"><span class="symbol">defaults:</span> &amp;defaults</span><br><span class="line">  <span class="symbol">host:</span> c3</span><br><span class="line"><span class="symbol">foonginx:</span></span><br><span class="line">  <span class="symbol">file:</span> /var/log/nginx/*.log</span><br><span class="line"><span class="symbol">barapp:</span></span><br><span class="line">  <span class="symbol">host:</span> foo<span class="variable">@bar</span>.com</span><br><span class="line">  <span class="symbol">file:</span> /var/www/apps/railsfooapp/shared/log/*.log</span><br><span class="line"><span class="constant">EOS</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Usage</span>=&lt;&lt;<span class="constant">EOS</span></span><br><span class="line"><span class="constant">Usage</span><span class="symbol">:</span></span><br><span class="line">  <span class="number">1</span>. cd to into the directory whose name is the same as the name of the config <span class="keyword">and</span> run</span><br><span class="line">     rt</span><br><span class="line"></span><br><span class="line">  <span class="number">2</span>. rt &lt;name of the app&gt;</span><br><span class="line"></span><br><span class="line">  <span class="number">3</span>. rt &lt;host&gt; &lt;file&gt;</span><br><span class="line"><span class="constant">EOS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tail</span><span class="params">(opts)</span></span></span><br><span class="line">  cmd = <span class="string">"ssh <span class="subst">#&#123;opts[<span class="string">'host'</span>]&#125;</span> 'tail -f <span class="subst">#&#123;opts[<span class="string">'file'</span>]&#125;</span>'"</span></span><br><span class="line">  puts <span class="string">"running: '<span class="subst">#&#123;cmd&#125;</span>'"</span></span><br><span class="line">  system(cmd)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">config</span><span class="params">(app)</span></span></span><br><span class="line">  puts <span class="string">"using app:<span class="subst">#&#123;app&#125;</span>"</span></span><br><span class="line">  config = <span class="constant">YAML::</span>load_file <span class="constant">ConfigFilePath</span></span><br><span class="line">  <span class="keyword">return</span> config[app] <span class="keyword">if</span> config[app]</span><br><span class="line">  puts <span class="string">"app:<span class="subst">#&#123;app&#125;</span> not found in <span class="subst">#&#123;<span class="constant">ConfigFilePath</span>&#125;</span>"</span></span><br><span class="line">  puts <span class="constant">Usage</span></span><br><span class="line">  exit <span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setup</span></span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">if</span> <span class="constant">File</span>.exist? <span class="constant">ConfigFilePath</span></span><br><span class="line">  puts <span class="string">"creating a sample config at: <span class="subst">#&#123;<span class="constant">ConfigFilePath</span>&#125;</span>"</span></span><br><span class="line">  <span class="constant">File</span>.open(<span class="constant">ConfigFilePath</span>, <span class="string">'w'</span>) <span class="keyword">do</span> |f|</span><br><span class="line">    f.print <span class="constant">SampleConfig</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span></span></span><br><span class="line">  setup</span><br><span class="line">  <span class="keyword">case</span> <span class="constant">ARGV</span>.length</span><br><span class="line">  <span class="keyword">when</span> <span class="number">0</span></span><br><span class="line">    <span class="comment">#usage:</span></span><br><span class="line">    <span class="comment">#cd to the app root directory, usually this would be the name with which you</span></span><br><span class="line">    <span class="comment">#setup the configuration and run</span></span><br><span class="line">    <span class="comment">#$ rt</span></span><br><span class="line">    tail config(<span class="constant">File</span>.basename(<span class="constant">Dir</span>.pwd))</span><br><span class="line">  <span class="keyword">when</span> <span class="number">1</span></span><br><span class="line">    <span class="comment">#usage:</span></span><br><span class="line">    <span class="comment">#from any directory</span></span><br><span class="line">    <span class="comment">#$ rt &lt;name of the app&gt;</span></span><br><span class="line">    tail config(<span class="constant">ARGV</span>.first)</span><br><span class="line">  <span class="keyword">when</span> <span class="number">2</span></span><br><span class="line">    <span class="comment">#usage:</span></span><br><span class="line">    <span class="comment">#from any directory</span></span><br><span class="line">    <span class="comment">#$ rt &lt;host&gt; &lt;file&gt;</span></span><br><span class="line">    tail <span class="symbol">:host</span> =&gt; <span class="constant">ARGV</span>.first, <span class="symbol">:file</span> =&gt; <span class="constant">ARGV</span>.last</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    puts <span class="string">"Invalid number of arguments"</span></span><br><span class="line">    puts <span class="constant">Usage</span></span><br><span class="line">    exit <span class="number">1</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">init</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2012/10/28/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cij8rz6qw003e11nvvzy5xigt" class="article-share-link">Share</a>
+      <a data-url="http://code.minhajuddin.com/2011/11/07/simple-log-management-and-viewing-for-your-servers/" data-id="cij8s5vx4001l11nik435vd24" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automatic/">automatic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
+    </footer>
+  </div>
+  
+</article>
 
+
+  
+    <article id="post-how-to-change-the-rails-root-url-based-on-the-user-or-role" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/10/23/how-to-change-the-rails-root-url-based-on-the-user-or-role/" class="article-date">
+  <time datetime="2011-10-23T18:30:00.000Z" itemprop="datePublished">2011-10-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/10/23/how-to-change-the-rails-root-url-based-on-the-user-or-role/">how to change the rails root url based on the current user or role</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In my latest rails app, I needed the root url to be different based on the logged in user, i.e. if the user was logged in I wanted to show one page, if not I wanted to show a generic page. Rails 3 makes this very easy.</p>
+<p>While drawing routes, rails gives you ability to <a href="http://edgeguides.rubyonrails.org/routing.html#advanced-constraints" target="_blank" rel="external"><em>constrain</em></a> the route based on <em>anything</em> in the incoming request. As it happens, I was using <a href="https://github.com/plataformatec/devise" target="_blank" rel="external">devise</a> for my authentication needs and devise uses <a href="https://github.com/hassox/warden" target="_blank" rel="external">warden</a> which fills up the request’s <strong>env</strong> with the current user, Once I had the current user it was a simple conditional statement was all that was needed to get my routes working. Checkout the below implementation to see how it’s done:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#lib/role_constraint.rb</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoleConstraint</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(*roles)</span></span></span><br><span class="line">    <span class="variable">@roles</span> = roles</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">matches?</span><span class="params">(request)</span></span></span><br><span class="line">    <span class="variable">@roles</span>.<span class="keyword">include</span>? request.env[<span class="string">'warden'</span>].user.try(<span class="symbol">:role</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#config/routes.rb</span></span><br><span class="line">root <span class="symbol">:to</span> =&gt; <span class="string">'admin#index'</span>, <span class="symbol">:constraints</span> =&gt; <span class="constant">RoleConstraint</span>.new(<span class="symbol">:admin</span>) <span class="comment">#matches this route when the current user is an admin</span></span><br><span class="line">root <span class="symbol">:to</span> =&gt; <span class="string">'sites#index'</span>, <span class="symbol">:constraints</span> =&gt; <span class="constant">RoleConstraint</span>.new(<span class="symbol">:user</span>) <span class="comment">#matches this route when the current user is an user</span></span><br><span class="line">root <span class="symbol">:to</span> =&gt; <span class="string">'home#index'</span> <span class="comment">#matches this route when the above two matches don't pass</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/10/23/how-to-change-the-rails-root-url-based-on-the-user-or-role/" data-id="cij8s5w1k005r11nir0zc4t0z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-mind-stack-a-stack-of-your-thoughts-and-tasks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/10/02/mind-stack-a-stack-of-your-thoughts-and-tasks/" class="article-date">
+  <time datetime="2011-10-02T18:30:00.000Z" itemprop="datePublished">2011-10-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/10/02/mind-stack-a-stack-of-your-thoughts-and-tasks/">mind stack, a stack of your thoughts and tasks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>As a developers, we are always bombarded with information/tasks/thoughts/ideas. And at times, it’s very difficult<br>to remember these things. On a lot of occasions, I start doing<br>task X and in the middle of it, I remember that I need to “fix something urgently”,<br>so I stop doing X and move to the Urgent task Y, when I am done with Y<br>I have difficulty remembering what I was doing before that. This is just when I have two tasks, but the level of <em>nesting</em> can sometimes go a lot <em>deeper</em>.</p>
+<p>That’s when I read a blog post(can’t remember where), which talked<br>about <em>saving</em> your <em>state of mind</em>(on post-it notes or notebooks or whatever). And, it has<br>helped me a lot. I also created a little bash script which helps me <em>save my state of mind</em>.<br>I’ve been using it for a long time and it has<br>served me well. I am posting it on github hoping that others may find it<br>useful. You can check it out at <a href="https://github.com/minhajuddin/mindstack" target="_blank" rel="external"> Mind::Stack </a>.</p>
+<p>I also have the following line in my <code>.xmobarrc</code> so that I can see the top 3<br>tasks in my status bar.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">, Run Com <span class="string">"/home/minhajuddin/.scripts/s"</span> [<span class="string">"top"</span>] <span class="string">"slotter"</span> <span class="number">600</span></span><br></pre></td></tr></table></figure>
+<p>Screenshot of my xmobar</p>
+<p><img src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0c03b04d2e03000034/mindstack-screenshot.png" alt="Mindstack xmobar screenshot"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/10/02/mind-stack-a-stack-of-your-thoughts-and-tasks/" data-id="cij8s5vz9003p11nio7akcnh5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-backup-mongodb-databases-to-s3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/08/01/backup-mongodb-databases-to-s3/" class="article-date">
+  <time datetime="2011-08-01T18:30:00.000Z" itemprop="datePublished">2011-08-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/08/01/backup-mongodb-databases-to-s3/">backup mongodb databases to s3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Here are a bunch of scripts which can be used to backup your mongodb database files to S3.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#mongodbbak</span></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'aws/s3'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'pony'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#run export</span></span><br><span class="line"><span class="constant">Dir</span>.chdir(<span class="string">"<span class="subst">#&#123;<span class="constant">ENV</span>[<span class="string">'HOME'</span>]&#125;</span>/archives/mongodb/"</span>)</span><br><span class="line">puts <span class="string">'dumping..'</span></span><br><span class="line"><span class="string">`mongodump`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#zip</span></span><br><span class="line">puts <span class="string">'compressing..'</span></span><br><span class="line">hostname = <span class="string">`hostname`</span>.chomp</span><br><span class="line">file = <span class="string">"mongodb.<span class="subst">#&#123;hostname&#125;</span>.<span class="subst">#&#123;<span class="constant">Time</span>.now.strftime <span class="string">"%Y%m%d%H%M%S"</span>&#125;</span>.tar.gz"</span></span><br><span class="line">md5file = <span class="string">"<span class="subst">#&#123;file&#125;</span>.md5sum"</span></span><br><span class="line"><span class="string">`tar cf - dump --remove-files| gzip &gt; <span class="subst">#&#123;file&#125;</span>`</span></span><br><span class="line"><span class="string">`md5sum <span class="subst">#&#123;file&#125;</span> &gt; <span class="subst">#&#123;md5file&#125;</span>`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#copy</span></span><br><span class="line">puts <span class="string">"copying to <span class="subst">#&#123;file&#125;</span> s3.."</span></span><br><span class="line"><span class="constant">AWS::S3::Base</span>.establish_connection!(</span><br><span class="line">    <span class="symbol">:access_key_id</span>     =&gt; <span class="constant">ENV</span>[<span class="string">'AMAZON_ACCESS_KEY_ID'</span>],</span><br><span class="line">    <span class="symbol">:secret_access_key</span> =&gt; <span class="constant">ENV</span>[<span class="string">'AMAZON_SECRET_ACCESS_KEY'</span>]</span><br><span class="line">  )</span><br><span class="line"><span class="constant">AWS::S3::S3Object</span>.store(file, open(file), <span class="string">'cvbak'</span>)</span><br><span class="line">puts <span class="string">"<span class="subst">#&#123;file&#125;</span> uploaded"</span></span><br><span class="line"><span class="comment">#create md5checksum</span></span><br><span class="line"><span class="constant">AWS::S3::S3Object</span>.store(md5file, open(md5file), <span class="string">'cvbak'</span>)</span><br><span class="line">puts <span class="string">"<span class="subst">#&#123;md5file&#125;</span> uploaded"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message</span></span><br><span class="line"><span class="constant">Pony</span>.mail(<span class="symbol">:to</span> =&gt; <span class="string">'min@mailinator.com'</span>, <span class="symbol">:from</span> =&gt; <span class="string">'sysadmin@mailinator.com.com'</span>, <span class="symbol">:subject</span> =&gt; <span class="string">"[sys] db on <span class="subst">#&#123;hostname&#125;</span> backed up to <span class="subst">#&#123;file&#125;</span>"</span>, <span class="symbol">:body</span> =&gt; <span class="string">"mongodb database on <span class="subst">#&#123;hostname&#125;</span> has been successfully backed up to <span class="subst">#&#123;file&#125;</span>"</span>)</span><br><span class="line">puts <span class="string">'done'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#crontab -l </span></span><br><span class="line">@daily /bin/bash -i <span class="operator">-l</span> -c <span class="string">'/home/ubuntu/repos/server_config/scripts/mongodbbak'</span> &gt;&gt; /tmp/mongobak.log <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#~/.bashrc</span></span><br><span class="line"><span class="built_in">export</span> AMAZON_ACCESS_KEY_ID=<span class="string">'mykey'</span></span><br><span class="line"><span class="built_in">export</span> AMAZON_SECRET_ACCESS_KEY=<span class="string">'mysecret'</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/08/01/backup-mongodb-databases-to-s3/" data-id="cij8s5w38007a11nin96a6sgf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-easily-show-current-version-number-of-your-app-stackoverflow-style" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/07/24/easily-show-current-version-number-of-your-app-stackoverflow-style/" class="article-date">
+  <time datetime="2011-07-24T18:30:00.000Z" itemprop="datePublished">2011-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/07/24/easily-show-current-version-number-of-your-app-stackoverflow-style/">easily show current version number of your app, stackoverflow style</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>When your app is deployed in multiple environments (staging, production),<br>knowing the version number of your deployed app helps a lot, in debugging.<br><a href="http://stackoverflow.com" target="_blank" rel="external">Stackoverflow</a> does a great job of showing a<br>meaningful version in it’s footer. Currently it shows that it’s version number<br>as <code>rev 2011.7.22.2</code>. This tells us that the code running stackoverflow was last<br>updated on 2011.7.22, and that it was updated twice on that same day.</p>
+<p>You can set up a similar thing pretty easily if you are using git and rails (rails in<br>not really needed, but my example shows it using rails). All you need to do is<br>add the following line to your <code>config/application.rb</code></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#config/application.rb</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Khalid</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="inheritance">&lt; <span class="parent">Rails::Application</span></span></span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">    <span class="comment">#cache the version as long as the app is alive</span></span><br><span class="line">    <span class="comment">#2011.07.25.4c76f53</span></span><br><span class="line">    <span class="constant">VERSION</span> =<span class="string">`git --git-dir="<span class="subst">#&#123;<span class="constant">Rails</span>.root.join(<span class="string">".git"</span>)&#125;</span>" --work-tree="<span class="subst">#&#123;<span class="constant">Rails</span>.root&#125;</span>" log -1 --date=short --format="%ad-%h"|sed 's/-/./g'`</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>This gives you a constant called <code>Khalid::Application::VERSION</code> which will give you a nice version<br>number containing the commit sha id and the date like this: <code>2011.07.25.4c76f53</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/07/24/easily-show-current-version-number-of-your-app-stackoverflow-style/" data-id="cij8s5w2k006n11ni3bpjd205" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-joy-of-using-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/06/08/joy-of-using-linux/" class="article-date">
+  <time datetime="2011-06-08T18:30:00.000Z" itemprop="datePublished">2011-06-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/06/08/joy-of-using-linux/">joy of using linux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’ve been using <a href="http://en.wikipedia.org/wiki/Linux" target="_blank" rel="external"> linux </a> for a<br>long time now, and I have been loving it since the first day. However when<br>someone asks me <em>Why linux?</em> I find it difficult to explain. And then, I give up<br>and fallback to <em>Linux is free</em> (as in free beer). Well, I have had a series of<br>fortunate events yesterday, which (I hope) will explain my love for linux.</p>
+<p>So, yesterday was a special day for me, we launched a webapp specifically<br>designed to publish <em>results</em> of different exams (You can check it out at<br><a href="http://resultengine.net" title="Ramanujan Result Engine" target="_blank" rel="external">Ramanujan Result Engine</a>). To publish the results we<br>(me and my colleague Nagaraju) had to go the university at 08:30 in the morning to get the CDs which had the results’ data.<br>Now, we were given the format of the data (just the column names)<br>one day in advance. And we tested our data importing utility assuming that the<br>data would be a simple <a href="http://en.wikipedia.org/wiki/Comma-separated_values" title="Comma Seperated Value files" target="_blank" rel="external">CSV file</a>.<br>And as soon as the CDs were handed out we tried to extract the data, but it turned out that the zipped<br>files which had the data were password protected and that some minister<br>would release the password at 09:00. At this point I checked if I could unzip<br>the data through the command prompt (I was just thinking of creating a script<br>which would automate the unzipping and uploading once the password was given).<br>That’s when a good and a bad thing happened, when we entered the wrong password it didn’t<br>extract the files but it printed a messages telling us which files it was unable<br>to extract. We were happy that we atleast knew the directory structure and filenames and that we could<br>just write a script to automate everything, but to our horror we found out that<br>the university folks had given us the data as <a href="http://en.wikipedia.org/wiki/MDB" title="Microsoft Access Database files" target="_blank" rel="external">mdb files</a>.<br>I was stumped, I thought I had to get to a windows machine with <em>microsoft<br>access</em> on it and then export it to a csv file and then run it through our<br>uploader, this seemed like a long process which would atleast take a few hours.</p>
+<p>As a last resort, I googled for <em>mdb to csv conversion</em> to see if someone knew a way<br> to do it on linux, and voila I found <a href="http://manpages.ubuntu.com/manpages/hardy/man1/mdb-export.1.html" title="mdb-export man page" target="_blank" rel="external">an awesome page which documented the use of<br> mdb-export</a> which looked like it would do our job.<br> I was stoked with happiness. Here we were trying to be the first guys who could<br> get the results online, disillusioned by the format of data given to us and in<br> no time we found a way back into the game, thanks to the <em>awesome linux community</em>.</p>
+<p> I quickly ran <code>sudo apt-get install mdb-export</code> on the terminal,<br> I got a message <code>no package found</code>, Hmm, I<br> thought it might have already been installed (by the ubuntu default packages)<br> and ran <code>mdb-export</code> and ubuntu says please install <code>mdbtools</code>, Sweet :).<br> Ran <code>sudo apt-get install mdbtools</code>, read the manpages, found out that it<br> needed to know the name of the table to export. Googled again, found out that<br> mdb-tables (which is part of mdb-tools) would give me the table names. Now,<br> finally when the password was released by the minister, I did my mdb-export<br> dance, and uploaded the results to our servers. </p>
+<p> It is an experience I’ll cherish for a long time. I am sure we were the first guys<br> who published the EAMCET results (we did it within 5 minutes). Other linux users<br> may just give a big <em>meh</em> to this incident, but I am sure you have many such<br> small incidents where the <em>uber awesome linux community</em> helped you out.<br> One of the biggest things that I love about linux is it’s <em>community</em>.<br> Linux wouldn’t have been what it is without it’s community, and I am forever indebted to it.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/06/08/joy-of-using-linux/" data-id="cij8s5vzs004211nivhrn0imv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-painless-dotfiles-synchronization-and-versioning-using-git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/05/02/painless-dotfiles-synchronization-and-versioning-using-git/" class="article-date">
+  <time datetime="2011-05-02T18:30:00.000Z" itemprop="datePublished">2011-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/05/02/painless-dotfiles-synchronization-and-versioning-using-git/">painless dotfiles synchronization and versioning using git</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Synchronization of dotfiles has been documented to death in many blogs. But, I<br>just wanted to show how I do it:</p>
+<ol>
+<li>Initialize (<code>git init</code>) a repository called <em>dotfiles</em> anywhere on your filesystem (I do it in <code>~/repos/core/</code>).</li>
+<li>Copy your dotfiles to this directory, and arrange them in whatever order you<br>want and add them to your git repository.</li>
+<li>Now, tweak the line#2 in the following script to include your dotfiles or<br>folders and run it. </li>
+<li>Now, to sync your dotfiles seamlessly between your machines. You just need a remote git server (It can be your own using <a href="http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way" target="_blank" rel="external"> gitosis </a>, or you can put it on <a href="https://github.com/" target="_blank" rel="external"> github </a>). I use github to store <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="external">my dotfiles</a>. Just push your dotfiles to your remote server clone it on another machine run the <code>setup.rb</code> and bam, you’re in business.</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/bin/env ruby</span></span><br><span class="line">dirs = <span class="string">%w(bash/.bash_aliases bash/.inputrc git/.gitconfig vim/.vim vim/.vimrc .gemrc)</span></span><br><span class="line">current_dir = <span class="constant">File</span>.expand_path(<span class="constant">Dir</span>.pwd)</span><br><span class="line">home_dir = <span class="constant">File</span>.expand_path(<span class="string">"~"</span>)</span><br><span class="line"></span><br><span class="line">dirs.each <span class="keyword">do</span> |dir|</span><br><span class="line">  dir = <span class="constant">File</span>.join(current_dir, dir)</span><br><span class="line">  symlink = <span class="constant">File</span>.join(home_dir, <span class="constant">File</span>.basename(dir))</span><br><span class="line">  <span class="string">`ln -ns <span class="subst">#&#123;dir&#125;</span> <span class="subst">#&#123;symlink&#125;</span>`</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>This way you don’t have to copy/paste the files when you make changes to them.<br>Just change the file, commit and push, and pull it on the other machines.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/05/02/painless-dotfiles-synchronization-and-versioning-using-git/" data-id="cij8s5vyn003711nit6gupqey" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux-awesomeness" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/05/02/linux-awesomeness/" class="article-date">
+  <time datetime="2011-05-02T18:30:00.000Z" itemprop="datePublished">2011-05-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/05/02/linux-awesomeness/">linux awesomeness</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A few minutes ago I learnt that adding <em>linenos</em> to the end of the highlight tag<br>in jekyll adds line numbers to a code snippet. I wanted to add this to all the<br>hightlight blocks in my blog. I came up with this command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grep highlight _posts/*.* \</span><br><span class="line">| awk -F : <span class="string">' &#123; print $1&#125;'</span> \</span><br><span class="line">|  uniq \</span><br><span class="line">| xargs sed -i <span class="string">'s/% *highlight *\([a-z]*\) *%/% highlight \1 linenos %/'</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/05/02/linux-awesomeness/" data-id="cij8s5vzn004011ninm7awrmd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-how-to-get-vanity-urls-in-rails" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/16/how-to-get-vanity-urls-in-rails/" class="article-date">
+  <time datetime="2011-04-16T18:30:00.000Z" itemprop="datePublished">2011-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/16/how-to-get-vanity-urls-in-rails/">how to get vanity urls in rails</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Getting vanity urls to work in rails is very simple. Let’s say you want to allow<br>your users to expose their Profiles through a facebook like url<br><code>http://www.facebook.com/GreenDay</code>. This is what you need to change in your<br>routes file.</p>
+<p>The <code>except =&gt; :show</code> on line#5 makes the resources helper skip the show route.<br>And line#9 which should be at the end of the routes file, creates a route called<br>profile which will be used for all the profile <em>show</em> links automatically.<br>That’s it now your application has vanity urls, whenever someone clicks on a<br>profile#show link they will be taken to /:slug. Obviously in this case the slug<br>is assumed to be unique.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="constant">Funky::Application</span>.routes.draw <span class="keyword">do</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="comment">#at the end of the routes file</span></span><br><span class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>###Update###<br>One of the readers emailed me asking what the controller code would look like. Here it is:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#app/models/profile.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span></span><br><span class="line">  <span class="comment">#should have a column called "slug"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> <span class="inheritance">&lt; <span class="parent">ApplicationController</span></span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></span><br><span class="line">    <span class="variable">@profile</span> = <span class="constant">Profile</span>.find_by_slug(params[<span class="symbol">:slug</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>###References###</p>
+<ul>
+<li><a href="http://guides.rubyonrails.org/routing.html#naming-routes" target="_blank" rel="external">http://guides.rubyonrails.org/routing.html#naming-routes</a></li>
+<li><a href="http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/" target="_blank" rel="external">http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/04/16/how-to-get-vanity-urls-in-rails/" data-id="cij8s5w1b005j11nimbksly2x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-reminiscing-my-past" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/01/reminiscing-my-past/" class="article-date">
+  <time datetime="2011-04-01T18:30:00.000Z" itemprop="datePublished">2011-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/01/reminiscing-my-past/">reminiscing my past</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I consider myself a self-taught developer for the most part.<br>And, free screencasts where the next best thing to having a<br>trainer for me. The importance of screencasts gets lost once you get a grip on<br>programming and development. But, in the initial days when you don’t know anything<br>about programming, having a human voice guide you can make all the difference in<br>the world.</p>
+<p>Below is a list of screencasts/videos/books which helped me in my initial days of web development:</p>
+<ul>
+<li><a href="http://blogs.msdn.com/b/wsteele/archive/2005/11/07/489884.aspx" target="_blank" rel="external">ASP.NET Soup to Nuts</a> by <a href="http://blogs.msdn.com/b/wsteele/" target="_blank" rel="external">Bill Steele</a>. I learnt how things really worked on the world wide web here for the first time. The first couple of videos are relevant even for non-ASP.NET web devs.</li>
+<li><a href="http://blogs.msdn.com/b/wsteele/archive/2007/01/29/c-soup-to-nuts-webcast-links.aspx" target="_blank" rel="external">Visual C# Soup to Nuts</a> by the same Bill Steele. This is where I really learnt concepts about programming.</li>
+<li><a href="http://computerscience1.tv/2006/fall/" target="_blank" rel="external">Computer Science - E1 : Understanding Computers and the Internet</a> by <a href="http://www.cs.harvard.edu/malan/" target="_blank" rel="external">David Malan</a>. This course filled up a lot of gaps about computer science for me.</li>
+<li><a href="http://blog.wekeroad.com/2008/04/07/mvc-storefront-part-1" target="_blank" rel="external">ASP.NET MVC : Storefront series</a> by our very own <a href="http://wekeroad.com/" target="_blank" rel="external">Rob Conery</a>. This was the series of screencasts which made me truly understand what serious web-development was all about.</li>
+<li><a href="http://www.summerofnhibernate.com/" target="_blank" rel="external">Summer of NHibernate</a> by <a href="http://unhandled-exceptions.com/blog/index.php/about/" target="_blank" rel="external">Stephen Bohlen</a></li>
+<li><a href="http://www.dimecasts.net/" target="_blank" rel="external">Dimecasts</a> by <a href="http://devlicio.us/blogs/derik_whittaker/" target="_blank" rel="external">Derik Whittaker</a> and friends</li>
+<li><a href="http://railscasts.com/" target="_blank" rel="external">Railscasts</a> by <a href="http://workingwithrails.com/person/6491-ryan-bates" target="_blank" rel="external">Ryan Bates</a></li>
+<li><a href="http://headfirstlabs.com/books/hfooad/" target="_blank" rel="external">Head First OOA&amp;D</a> Although this book has examples in Java, it taught me a lot about the <a href="http://en.wikipedia.org/wiki/Solid_(object-oriented_design" target="_blank" rel="external">SOLID</a> OO principles and Object Oriented Design in general.</li>
+</ul>
+<p>I haven’t talked about my past on my blog. But, I had a secure and high paying job<br>at a big MNC called <a href="http://tcs.com" target="_blank" rel="external">TCS</a> from 2006 to 2008.<br>I used to work as an ETL developer, designing <em>jobs</em> using a tool called<br><a href="http://en.wikipedia.org/wiki/IBM_InfoSphere_DataStage" target="_blank" rel="external">Datastage</a>. It was a<br>niche skill and I was very good at it. The only problem was it didn’t give me an<br>opportunity to program. Designing high performance ETL jobs was interesting but<br>it never satisfied my hunger for <em>programming</em>. Anyway, I<br>decided to leave my secure job and start my own gig around Aug 2008.<br>My first programming job as a freelancer was fixing a <em>slow performing sql<br>query</em>(btw, the problem it had was that it was doing a cartesian join instead of<br>an inner join). I did it for $8(out of which I got $5, and the other $3 went to rentacoder.com),<br>but the satisfaction and confidence it gave me was priceless.<br>I have come a long way since then. I have developed atleast half a dozen high<br>quality web applications since then. And <em>I owe a lot of what I know to<br>the gentlemen who devoted their time in spreading knowledge through screencasts, blog posts and books.</em></p>
+<p>I am planning to do a series of screencasts to look at ruby on rails development<br>using ubuntu and post them on <a href="/vimeo">vimeo</a>, hoping to help beginners.<br>I’ll try and post atleast one video every week.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2011/04/01/reminiscing-my-past/" data-id="cij8s5vy1002p11nij530phq7" class="article-share-link">Share</a>
+      
+      
     </footer>
   </div>
   
@@ -522,7 +936,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </section>
