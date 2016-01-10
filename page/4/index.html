@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Simple</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Some thoughts on writing simple code and other random ramblings.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Simple">
+<meta property="og:url" content="http://code.minhajuddin.com/page/4/index.html">
+<meta property="og:site_name" content="Simple">
+<meta property="og:description" content="Some thoughts on writing simple code and other random ramblings.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Simple">
+<meta name="twitter:description" content="Some thoughts on writing simple code and other random ramblings.">
+<meta name="twitter:creator" content="@minhajuddin">
+  
+    <link rel="alternative" href="/atom.xml" title="Simple" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Simple</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://code.minhajuddin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-how-to-install-command-t-for-vim-using-rvm-on-linux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/01/08/how-to-install-command-t-for-vim-using-rvm-on-linux/" class="article-date">
+  <time datetime="2013-01-08T18:30:00.000Z" itemprop="datePublished">2013-01-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/01/08/how-to-install-command-t-for-vim-using-rvm-on-linux/">How to install Command T for vim using rvm on linux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Use the <code>vba</code> package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#download the code</span></span><br><span class="line"><span class="built_in">cd</span> ~/.vim/bundle</span><br><span class="line">git <span class="built_in">clone</span> git://git.wincent.com/<span class="built_in">command</span>-t.git bundle/<span class="built_in">command</span>-t</span><br><span class="line"><span class="comment"># or if you manage your dotfiles using git</span></span><br><span class="line"><span class="comment"># git submodule add git://git.wincent.com/command-t.git bundle/command-t</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># unset your CFLAGS if you have any, may not be necessary, but just in case</span></span><br><span class="line"><span class="built_in">unset</span> CFLAGS</span><br><span class="line"><span class="comment"># change your ruby version to the version used by vim</span></span><br><span class="line"><span class="comment"># you can check the version with which vim was compiled using</span></span><br><span class="line"><span class="comment"># by running the following from the vim command prompt</span></span><br><span class="line"><span class="comment"># :ruby puts RUBY_VERSION</span></span><br><span class="line">rvm use ruby-<span class="number">1.8</span>.<span class="number">7</span>-p357</span><br><span class="line"><span class="built_in">cd</span> ~/.vim/ruby/<span class="built_in">command</span>-t</span><br><span class="line">ruby extconf.rb</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2013/01/08/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cij8n10mx005u15nvyj1dh1zq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/command-t/">command-t</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">rvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-execute-and-view-the-output-your-go-code-from-vim" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/31/execute-and-view-the-output-your-go-code-from-vim/" class="article-date">
+  <time datetime="2012-12-31T18:30:00.000Z" itemprop="datePublished">2013-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/31/execute-and-view-the-output-your-go-code-from-vim/">Execute and view the output of your go code from vim</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Here is a small script which I created while trying to make my feedback process faster. It runs the current go file using <code>go run &lt;current filename&gt;</code> and appends its output as a bunch of comments at the bottom of the file whenever you hit <code>&lt;Ctrl&gt;d</code></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function! RunHandler()</span><br><span class="line">  " to save the cursor position</span><br><span class="line">  let l:winview = winsaveview()</span><br><span class="line">  if &amp;ft == "go"</span><br><span class="line">    :silent!$r!go run % 2&gt;&amp;1 | sed 's/^/\/\//g'</span><br><span class="line">    redraw!</span><br><span class="line">    echo "triggered go run " expand("%")</span><br><span class="line">  endif</span><br><span class="line">  call winrestview(l:winview)</span><br><span class="line">endfunction</span><br><span class="line">nnoremap &lt;C-d&gt; :call RunHandler()&lt;cr&gt;</span><br></pre></td></tr></table></figure>
+<p>You can use this with slight changes with other file types. Here is a screenshot:</p>
+<p><img src="https://substancehq.s3.amazonaws.com/static_asset/50e3354203b04d3567000398/vim-shot.png" alt="vim screenshot"></p>
+<p>###TODO<br>Make it overwrite the old output or insert before the previous output</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/12/31/execute-and-view-the-output-your-go-code-from-vim/" data-id="cij8n10nf006u15nv1asq438u" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-simple-ci-with-git-hooks-for-your-rails-projects" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/24/simple-ci-with-git-hooks-for-your-rails-projects/" class="article-date">
+  <time datetime="2012-12-24T18:30:00.000Z" itemprop="datePublished">2012-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/24/simple-ci-with-git-hooks-for-your-rails-projects/">Simple CI with git hooks for your rails projects</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In the past I have used jenkins for CI in my projects with little success. I think it was mainly because of my own sloppy setup.</p>
+<p>However this time I wanted to do CI in the most simple way. I did some research and found this good post <a href="http://blog.javabien.net/2009/12/01/serverless-ci-with-git/" target="_blank" rel="external">http://blog.javabien.net/2009/12/01/serverless-ci-with-git/</a>. The following setup is different that the one in the above blog post, but the idea is the same, have your CI run on your local machine rather than have a server for it.</p>
+<p>I have used <code>pre-commit</code> hooks in the past. It sounds nice till you want to do a quick commit and you use <code>--no-verify</code> and once you do that you start doing the same for subsequent commits. </p>
+<p>For this I use a <code>post-commit</code> hook which triggers our CI build in the background logging all the info to <code>/tmp/ci.log</code>. This avoids unnecessary friction. So, when I commit it doesn’t take forever, it happens instantly. The commit gets recorded. And then, in a background process my <code>railsci</code> script runs all the tests.</p>
+<p>This is the <code>post-commit</code> hook. I tried to keep it minimal so as to make the setup easy and maintainable across different projects.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#.git/hooks/post-commit</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#run our ci script with the right info</span></span><br><span class="line">railsci <span class="string">"<span class="variable">$(git log -1 HEAD --format=%H)</span>"</span> <span class="string">"<span class="variable">$(pwd)</span>"</span> <span class="number">1</span>&gt;&gt; /tmp/ci.log <span class="number">2</span>&gt;&amp;<span class="number">1</span>  &amp;</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"TRIGGERED ci build in the background, check /tmp/ci.log"</span></span><br></pre></td></tr></table></figure>
+<p>The <code>railsci</code> script too is pretty straightforward, </p>
+<ol>
+<li>It tags your commit as <code>processing-#{buildid}</code>, where buildid is a random hex id.</li>
+<li>Creates a folder called <code>/tmp/#{buildid}</code>, and clones your git repo there.</li>
+<li>Creates a new unique test database with a name <code>app_name_test_#{buildid}</code>.</li>
+<li>Runs all your tests and tags your commit as <code>failed-#{buildid}</code> if the tests fail.</li>
+<li>Removes the <code>processing..</code> tag</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Date: 2012 Dec 24</span></span><br><span class="line"><span class="comment">#Script to run a ci build on the local computer after a commit is made</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'securerandom'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fileutils'</span></span><br><span class="line"></span><br><span class="line"><span class="constant">CommitHash</span> = <span class="constant">ARGV</span>.shift</span><br><span class="line"><span class="constant">Repodir</span>    = <span class="constant">ARGV</span>.shift</span><br><span class="line"><span class="constant">Buildid</span>    = <span class="constant">SecureRandom</span>.hex</span><br><span class="line"><span class="constant">DbConfig</span>   = <span class="string">"config/database.yml"</span></span><br><span class="line"><span class="constant">Tmpdir</span>     = <span class="constant">File</span>.join(<span class="string">'/tmp'</span>, <span class="constant">Buildid</span>)</span><br><span class="line"></span><br><span class="line"><span class="constant">FileUtils</span>.mkdir(<span class="constant">Tmpdir</span>)</span><br><span class="line"></span><br><span class="line">puts <span class="string">"started build for repo:<span class="subst">#&#123;<span class="constant">Repodir</span>&#125;</span> commit:<span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span> buildid:<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span></span><br><span class="line"><span class="comment">#helper functions</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(arg)</span></span></span><br><span class="line">  puts <span class="string">"RUNNING <span class="subst">#&#123;arg&#125;</span>"</span></span><br><span class="line">  system(<span class="string">"<span class="subst">#&#123;arg&#125;</span> 2&gt;&amp;1"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">untag</span><span class="params">(tag)</span></span></span><br><span class="line">  <span class="constant">Dir</span>.chdir <span class="constant">Repodir</span></span><br><span class="line">  run(<span class="string">"git tag -d '<span class="subst">#&#123;tag&#125;</span>'"</span>)</span><br><span class="line">  <span class="constant">Dir</span>.chdir <span class="constant">Tmpdir</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tag</span><span class="params">(tag, msg)</span></span></span><br><span class="line">  <span class="constant">Dir</span>.chdir <span class="constant">Repodir</span></span><br><span class="line">  run(<span class="string">"git tag -a '<span class="subst">#&#123;tag&#125;</span>' -m '<span class="subst">#&#123;msg&#125;</span>'"</span>)</span><br><span class="line">  <span class="constant">Dir</span>.chdir <span class="constant">Tmpdir</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#checkout a shallow version in a tmp directory</span></span><br><span class="line">tag <span class="string">"processing-<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span>, <span class="string">"Running tests for build"</span></span><br><span class="line">run(<span class="string">"git clone <span class="subst">#&#123;<span class="constant">Repodir</span>&#125;</span> <span class="subst">#&#123;<span class="constant">Tmpdir</span>&#125;</span>"</span>)</span><br><span class="line"><span class="comment">#cd to this directory</span></span><br><span class="line"><span class="constant">Dir</span>.chdir(<span class="constant">Tmpdir</span>)</span><br><span class="line"><span class="comment">#trust rvmrc</span></span><br><span class="line">run(<span class="string">"rvm rvmrc trust <span class="subst">#&#123;<span class="constant">Tmpdir</span>&#125;</span>"</span>)</span><br><span class="line"><span class="comment">#checkout the right commit</span></span><br><span class="line">run(<span class="string">"git checkout <span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span> -b <span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span>)</span><br><span class="line">run(<span class="string">"bundle install"</span>)</span><br><span class="line"><span class="comment">#tweak database.yml</span></span><br><span class="line"><span class="constant">File</span>.write(<span class="constant">DbConfig</span>, <span class="constant">File</span>.readlines(<span class="constant">DbConfig</span>).map &#123;|x| x =~ <span class="regexp">/database:/</span> ? x.gsub(<span class="string">'test'</span>, <span class="string">"test_<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span>) <span class="symbol">:x</span> &#125;.join)</span><br><span class="line"><span class="comment">#migrate db</span></span><br><span class="line">run(<span class="string">"RAILS_ENV=test bundle exec rake db:create db:migrate"</span>)</span><br><span class="line"><span class="comment">#run specs</span></span><br><span class="line">puts <span class="string">"Running tests"</span></span><br><span class="line"><span class="keyword">if</span> run(<span class="string">"RAILS_ENV=test bundle exec rspec spec"</span>)</span><br><span class="line">  system(<span class="string">"notify-send --urgency=low -i 'terminal' 'Tests passed for the commit - <span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span>'"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="comment">#tag the commit as a failure</span></span><br><span class="line">  tag <span class="string">"failed-<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span> , <span class="string">"Failed build"</span></span><br><span class="line">  system(<span class="string">"notify-send --urgency=low -i 'error' 'Tests failed for - <span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span>'"</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">untag <span class="string">"processing-<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span></span><br><span class="line"><span class="comment">#drop database</span></span><br><span class="line">run(<span class="string">"RAILS_ENV=test bundle exec rake db:drop"</span>)</span><br><span class="line"><span class="comment">#add a pass fail tag to the original repo</span></span><br><span class="line">puts <span class="string">"Finished build for repo:<span class="subst">#&#123;<span class="constant">Repodir</span>&#125;</span> commit:<span class="subst">#&#123;<span class="constant">CommitHash</span>&#125;</span> buildid:<span class="subst">#&#123;<span class="constant">Buildid</span>&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p>All of this runs behind the scenes without you even noticing it, if everything is good. You would find a <code>failed-#{buildid}</code> tag only if the tests fail. It’s working great for me. Hope it helps you guys :)</p>
+<p>Update: Fixed redirection in git hook and added a way to notify when the tests are executed</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/12/24/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cij8n10kl001q15nvo5xfyzca" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/24/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
+  <time datetime="2012-12-24T18:30:00.000Z" itemprop="datePublished">2012-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/24/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
+<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
+<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
+<p>The setup contains two parts.</p>
+<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#~/.scripts/runinbg</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to run a command in background redirecting the</span></span><br><span class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</span><br><span class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> <span class="number">1</span>&gt;&gt; /tmp/runinbg.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></span><br><span class="line"><span class="comment">#when the test is complete</span></span><br><span class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></span><br></pre></td></tr></table></figure>
+<p>###2. Vim function to call this script with the current filename<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function! RunSpecs()</span><br><span class="line">  :silent!!runinbg bundle exec rspec % "you can tweak this to your liking</span><br><span class="line">  redraw! "without this the screen goes blank</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">nnoremap &lt;C-d&gt; :call RunSpecs()&lt;cr&gt;</span><br></pre></td></tr></table></figure></p>
+<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
+<p>Update: Added a version with notification</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/12/24/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cij8n10ku002f15nv71mhhr9a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-the-island-of-barefooters" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/07/the-island-of-barefooters/" class="article-date">
+  <time datetime="2012-12-07T18:30:00.000Z" itemprop="datePublished">2012-12-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/07/the-island-of-barefooters/">The island of barefooters</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I started a freelancing/consulting business about 4 years ago. And over the last<br>4 years I have built a small company which provides software development services<br>in ASP.NET MVC and Ruby on Rails. I consider myself a good developer (who doesn’t :) ).<br>However, I think I have created a cocoon around myself, where I am comfortable doing<br>stuff which I understand.  </p>
+<p>About a month ago, I saw this thought shared by <a href="https://twitter.com/dcurtis/status/220347986948009984" target="_blank" rel="external">@dcurtis</a></p>
+<blockquote>
+<p>Moderate success is the worst place for a startup. It’s worse than failure. There’s<br>some validation, but no growth. Endless paralysis.</p>
+</blockquote>
+<p>It hit me like a ton of bricks. I have been moderately successful, I make more<br>money than my colleagues who work for the big companies. I have a nice office I<br>have a few guys working with me. And this has made me comfortable. The last<br>exciting/dangerous/risky thing I have done was quitting my job to start freelancing/consulting with just 2<br>years of experience. Since then, I haven’t done anything major. This is<br>definitely not a good place to be. Mind you, I <em>am very comfortable</em>, but career<br>wise / growth wise, this is not a good place to be.</p>
+<p>In the past while discussing software products, I always used to say that India doesn’t have<br>any takers for software products. I used to say that the general public<br>isn’t aware of the latest technologies and don’t want to use them, which is<br>true even today. I have talked to a few schools and their interest in technology<br>is non-existent. However, this reminded me of a story my uncle used to<br>say (I am not sure where he heard it):</p>
+<blockquote>
+<p>There were two salesmen who worked for a footwear company. They were asked<br>to go to a specific island and analyse the market for footwear.</p>
+<p>One of them reported that the people on the Island did not know about<br>footwear. So, there was zero potential for the company.<br>He said that the company could not sell any of their products. </p>
+<p>The other guy came to a different conclusion<br>He said that this Island was full of people who didn’t have any footwear!<br>And that there was a huge market for them to sell footwear and make money.<br>They could get 100% of the market.</p>
+</blockquote>
+<p>Obviously, it’s not a black and white situation. There is truth in both their<br>conclusions. Since the Islanders didn’t know what footwear was, they wouldn’t<br>really buy them (Why fix something which is not broken). But, if people were<br>shown how comfortable footwear makes your life, there would be a huge market for<br>footwear. And <em>that</em> is difficult, creating awareness among people, <em>changing<br>their perceptions</em> is difficult.</p>
+<p><strong>For software products, India is like the island of barefooters</strong>. There is a huge<br>opportunity for people like us, but it’s not easy! Awareness has to be created<br>among customers about the benefits of technology. It is a challenging job. </p>
+<p>Hopefully this time I will get out of my cocoon and actually build and sell a<br>software product.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/12/07/the-island-of-barefooters/" data-id="cij8n10kb001415nvfb92dq2s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/barefooters/">barefooters</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/india/">india</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">software</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/11/29/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
+  <time datetime="2012-11-29T18:30:00.000Z" itemprop="datePublished">2012-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/29/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/11/29/implementing-a-basic-redis-client-in-go-part-1/" data-id="cij8n10mn004u15nvokbn2ubc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-automatically-start-a-local-godoc-web-server" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/11/29/automatically-start-a-local-godoc-web-server/" class="article-date">
+  <time datetime="2012-11-29T18:30:00.000Z" itemprop="datePublished">2012-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/29/automatically-start-a-local-godoc-web-server/">Automatically start a local godoc web server </a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Godoc is awesome, It allows you to browse all the documentation on your local machine by running the following command</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">godoc -http=:<span class="number">8090</span></span><br></pre></td></tr></table></figure>
+<p>Once you do this you can happily browse through all the documentation offline. However, you can start this process as an upstart daemon and let it run in the background. All you have to do is create a file called <code>/etc/init/godoc.conf</code> with the following content</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Upstart script to start godoc server</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#*This obviously works on machines with upstart*</span></span><br><span class="line">start on runlevel [<span class="number">2345</span>]</span><br><span class="line">stop on runlevel [<span class="number">06</span>]</span><br><span class="line"></span><br><span class="line">script</span><br><span class="line">  <span class="built_in">export</span> HOME=/home/minhajuddin</span><br><span class="line">  <span class="built_in">export</span> GOROOT=<span class="variable">$HOME</span>/go</span><br><span class="line">  <span class="built_in">export</span> GOBIN=<span class="variable">$GOROOT</span>/bin</span><br><span class="line">  <span class="built_in">export</span> GOPATH=<span class="variable">$HOME</span>/gocode</span><br><span class="line">  <span class="variable">$GOBIN</span>/godoc -http=:<span class="number">8090</span> -index=<span class="literal">true</span></span><br><span class="line">end script</span><br></pre></td></tr></table></figure>
+<p>You just need to make sure that the env vars are adjusted to your setup. Also, using <code>-index=true</code> runs a full text search on all your documentation (which is simply awesome). Now, you will have your godoc server at <a href="http://localhost:8090/" target="_blank" rel="external">http://localhost:8090/</a> all the time.</p>
+<p>On a related note, godoc can be used from the command line like:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#godoc &lt;pkg name&gt; Type/Func</span></span><br><span class="line">godoc net Listener</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/11/29/automatically-start-a-local-godoc-web-server/" data-id="cij8n10nv007z15nv1uokjviz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/godoc/">godoc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/upstart/">upstart</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-using-inotify-to-make-speedup-your-learning-and-experimenting" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/11/07/using-inotify-to-make-speedup-your-learning-and-experimenting/" class="article-date">
+  <time datetime="2012-11-07T18:30:00.000Z" itemprop="datePublished">2012-11-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/07/using-inotify-to-make-speedup-your-learning-and-experimenting/">Using inotify to speedup your learning and experimenting</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Recently I have started learning <a href="http://golang.org" target="_blank" rel="external">go</a>. It is fun to learn something new, However this time just to make the feedback loop faster, I wrote a small bash script (by collecting fragments from all over the internet) using inotify. Here it is:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Wait for go files to be modified and then execute them</span></span><br><span class="line"><span class="comment">#Dependency: inotify-tools</span></span><br><span class="line"><span class="comment">#Install on ubuntu using: apt-get install inotify-tools</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#the command before the pipe is a blocking command, i.e. it doesn't end</span></span><br><span class="line">inotifywait -mrq --format <span class="string">'%f'</span> <span class="operator">-e</span> close_write <span class="variable">$1</span> | <span class="keyword">while</span> <span class="built_in">read</span> file</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment">#here we filter any changes to files other than go files</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">echo</span> <span class="variable">$file</span> | grep -E <span class="string">'^.*\.go$'</span>)</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="comment">#once we know that a go file has been written to we run it</span></span><br><span class="line">    clear</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"executing 'go run <span class="variable">$file</span>'"</span></span><br><span class="line">    go run <span class="variable">$file</span> </span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>The script itself is pretty self explanatory, We run inotifywait in <code>monitor</code> mode so that it blocks the current process, after that we pipe whatever output comes out of inotifywait which is just the filename to the while loop which doesn’t end because of the previous stream. Now, we just filter it to <em>go</em> source files and execute them.</p>
+<p>This can be used with any other programming language too, you just have to change the filter and the execute command.</p>
+<p>###Update:<br>I started playing with go web apps recently, and the following script has been helping me with recompile and reload. Hope it helps you guys too:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to restart the go webserver by building and restarting the binary whenever html or go files change</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">__restart_goserver</span></span>()&#123;</span><br><span class="line">  binary=<span class="string">"<span class="variable">$(basename $(pwd)</span>)"</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"building <span class="variable">$binary</span>"</span></span><br><span class="line">  <span class="keyword">if</span> go build</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"killing old process"</span></span><br><span class="line">    <span class="built_in">kill</span> -<span class="number">9</span> $(pidof <span class="string">"<span class="variable">$binary</span>"</span>) &gt; /dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"starting '<span class="variable">$binary</span>'"</span></span><br><span class="line">    ./<span class="variable">$binary</span> &amp; <span class="comment">#run it in background</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"started with pid: $!"</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"server restart failed"</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#cd to the right directory</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$1</span></span><br><span class="line">__restart_goserver</span><br><span class="line"><span class="comment">#the command before the pipe is a blocking command, i.e. it doesn't end</span></span><br><span class="line">inotifywait -mrq --exclude=<span class="string">"<span class="variable">$(basename $(pwd)</span>)"</span> --format <span class="string">'%f'</span> <span class="operator">-e</span> close_write <span class="variable">$1</span> | <span class="keyword">while</span> <span class="built_in">read</span> file</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">echo</span> <span class="variable">$file</span> | grep -E <span class="string">'^(.*\.go)|(.*\.html)$'</span>)</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"--------------------"</span></span><br><span class="line">    <span class="comment">#once we know that a go file has been written to we run it</span></span><br><span class="line">    __restart_goserver</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p>Screenshot:<br><img src="https://substancehq.s3.amazonaws.com/static_asset/50a3474b03b04d4c12000fc7/Selection_004.png" alt="screenshot"></p>
+<p>###Update 2<br>You need <code>inotify-tools</code> to get this to work. You can install it on ubuntu by running <code>sudo apt-get install inotify-tools</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/11/07/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cij8n10k2000j15nvf1ribuk7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inotify/">inotify</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/watch/">watch</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/10/28/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" class="article-date">
+  <time datetime="2012-10-28T18:30:00.000Z" itemprop="datePublished">2012-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/10/28/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/">How to run rails console as an authenticated devise user without knowing the password</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I maintain a few rails apps for my clients (running in production). And sometimes certain bugs occur only for specific users. There are two ways to debug these issues:</p>
+<ol>
+<li>Get the user to show you how the bug occurs</li>
+<li>Try it out by signing into the site as that user</li>
+</ol>
+<p>Now option 2 isn’t practical as your users don’t want to share their passwords with you. What I do to get around this fact is test the user interface through <code>rails console</code> in production. Now, we use devise for authentication so it wasn’t so hard to sign in as the desired user. All you need to run in your production rails console is:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">validate_password?</span><span class="params">(pwd)</span></span></span><br><span class="line">    <span class="keyword">true</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>where <code>User</code> is your devise model. Now to signin as the desired user (foo@mailinator.com) from the console you run</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#to sign in</span></span><br><span class="line">app.post <span class="string">'/users/sign_in'</span>,  <span class="symbol">user:</span> &#123;<span class="symbol">email:</span> <span class="string">'foo@mailinator.com'</span>, <span class="symbol">password:</span> <span class="string">"&lt;doesn't matter&gt;"</span>&#125;</span><br><span class="line"><span class="comment">#to test it out</span></span><br><span class="line">app.get <span class="string">'/desired-url'</span></span><br><span class="line">puts app.response</span><br></pre></td></tr></table></figure>
+<p>Hope that helps</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/10/28/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cij8n10mt005b15nva3doubi4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/authenticate/">authenticate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/console/">console</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devise/">devise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/production/">production</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-nifty-script-to-keep-your-local-git-repositories-up-to-date" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/10/28/nifty-script-to-keep-your-local-git-repositories-up-to-date/" class="article-date">
+  <time datetime="2012-10-28T18:30:00.000Z" itemprop="datePublished">2012-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/10/28/nifty-script-to-keep-your-local-git-repositories-up-to-date/">Nifty script to keep your local git repositories up to date</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A lot of times when I try to hack on my code, I find that my git repository doesn’t have the latest commits. And in a lot of these instances I don’t have an internet connection (either because I am  at a client’s location or because there is a power cut). Here is a little script which I use to keep all my local repos up to date automatically.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#location: $HOME/.scripts/git-update</span></span><br><span class="line">ROOT_DIR=<span class="string">"<span class="variable">$HOME</span>/r"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> repo <span class="keyword">in</span> $(ls <span class="variable">$ROOT_DIR</span>)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">cd</span> <span class="string">"<span class="variable">$ROOT_DIR</span>/<span class="variable">$repo</span>"</span></span><br><span class="line">  <span class="keyword">for</span> remote <span class="keyword">in</span> $(git remote)</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"fetching <span class="variable">$repo</span> <span class="variable">$remote</span>"</span></span><br><span class="line">    git fetch <span class="variable">$remote</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#crontab entry</span></span><br><span class="line">@reboot /bin/bash <span class="operator">-l</span> -c <span class="string">'cd /home/minhajuddin/ &amp;&amp; $HOME/.scripts/git-update'</span></span><br></pre></td></tr></table></figure>
+<p>The git-update script should be pretty self explantory. I am looking at all the dirs under my “repos root dir” and for each of those I am finding the remotes and fetching them one at a time. The crontab entry on the other hand makes sure that every time I start my computer this script is executed. Also, I can run <code>git update</code> whenever I am online to get fetch all the new commits for my repos.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://code.minhajuddin.com/2012/10/28/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cij8n10lf003s15nvv5sogad9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automatic/">automatic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+    </nav>
+  
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bluetooth/">bluetooth</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hard-drives/">hard-drives</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/modem/">modem</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/router/">router</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/">wifi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/bluetooth/" style="font-size: 10px;">bluetooth</a> <a href="/tags/bookmarklet/" style="font-size: 12px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 20px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 16px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 16px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/hack/" style="font-size: 14px;">hack</a> <a href="/tags/hard-drives/" style="font-size: 10px;">hard-drives</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 14px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 14px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/modem/" style="font-size: 10px;">modem</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 18px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/router/" style="font-size: 10px;">router</a> <a href="/tags/rspec/" style="font-size: 12px;">rspec</a> <a href="/tags/ruby/" style="font-size: 14px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 10px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 14px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/wifi/" style="font-size: 10px;">wifi</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/01/10/modem/">Modem</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/10/server/">Server</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/10/ipv6/">IPV6</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/10/hard-drives/">Hard drives</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/10/router/">Router</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Khaja Minhajuddin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
