@@ -1,9 +1,11 @@
 title: How to get a git archive including submodules
 tags:
-- git
-- submodules
-- bash
+  - git
+  - submodules
+  - bash
+date: 2016-01-10 21:28:29
 ---
+
 
 Here is a small script I wrote to get a git archive of your repository containing all the submodules with the root repository.
 
