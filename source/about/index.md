@@ -31,17 +31,14 @@ processes as diverse as *Data Warehousing* and *Live Vehicle tracking*.
     - A simple persistent key value store: https://github.com/minhajuddin/gokv
     - A snippet sharing web app: https://github.com/minhajuddin/gosnip
 
-<h3 id=contact-me>Contact Me</h3>
-<form action="http://getsimpleform.com/messages?form_api_token=475339605245a246498c3b1d364a845b" method="post">
-  <input type='hidden' name='redirect_to' value='http://minhajuddin.com/thank-you' />
-  <input type='text' id='name' name='name' placeholder='Your Name' />
+### Contact Me
+<form action="http://getsimpleform.com/messages?form_api_token=475339605245a246498c3b1d364a845b" method="post"><input type='hidden' name='redirect_to' value='http://minhajuddin.com/thank-you' /><input type='text' id='name' name='name' placeholder='Your Name' />
   <input type='text' id='email' name='email' placeholder='Your Email' />
   <textarea id='message' name='message' placeholder='Message' rows='8' cols='50'></textarea>
   <input type='submit' value='Submit' />
 </form>
 
 ### Disclaimer
-
 The views expressed here are my own and do not necessarily reflect those of my organization, unless stated otherwise. Everything I post on this
 site is licensed under Creative Commons (Attribution-ShareAlike 3.0), if you’d like to read more [view the license here][].
 

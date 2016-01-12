@@ -82,7 +82,7 @@ feed:
 menu:
   Home: /
   About: /about/
-  Contact: /about/#contact
+  Contact: /about/#Contact_Me
   Archives: /archives
 #rss: /atom.xml
 
