@@ -8,7 +8,7 @@ subtitle:
 description: Some thoughts on writing simple code and other random ramblings.
 author: Khaja Minhajuddin
 language: English
-timezone: Asia/Calcutta
+timezone: UTC
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
