@@ -3,9 +3,9 @@
   <title><![CDATA[Simplicity]]></title>
   
   <link href="/atom.xml" rel="self"/>
-  <link href="http://code.minhajuddin.com/"/>
-  <updated>2016-01-12T13:44:09.000Z</updated>
-  <id>http://code.minhajuddin.com/</id>
+  <link href="http://minhajuddin.com/"/>
+  <updated>2016-01-12T14:06:49.000Z</updated>
+  <id>http://minhajuddin.com/</id>
   
   <author>
     <name><![CDATA[Khaja Minhajuddin]]></name>
@@ -16,10 +16,10 @@
   
   <entry>
     <title><![CDATA[How to get a git archive including submodules]]></title>
-    <link href="http://code.minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/"/>
-    <id>http://code.minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/</id>
+    <link href="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/"/>
+    <id>http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/</id>
     <published>2016-01-10T15:58:29.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>Here is a small script I wrote to get a git archive of your repository containing all the submodules with the root repository.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author Khaja Minhajuddin</span></span><br><span class="line"><span class="comment"># File name: git-archive-all</span></span><br><span class="line"><span class="comment"># cd root-git-repo; git-archive-all</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> <span class="operator">-e</span></span><br><span class="line"><span class="built_in">set</span> -C <span class="comment"># noclobber</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; creating root archive"</span></span><br><span class="line"><span class="built_in">export</span> ROOT_ARCHIVE_DIR=<span class="string">"<span class="variable">$(pwd)</span>"</span></span><br><span class="line"><span class="comment"># create root archive</span></span><br><span class="line">git archive --verbose --prefix <span class="string">"repo/"</span> --format <span class="string">"tar"</span> --output <span class="string">"<span class="variable">$ROOT_ARCHIVE_DIR</span>/repo-output.tar"</span> <span class="string">"master"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; appending submodule archives"</span></span><br><span class="line"><span class="comment"># for each of git submodules append to the root archive</span></span><br><span class="line">git submodule foreach --recursive <span class="string">'git archive --verbose --prefix=repo/$path/ --format tar master --output $ROOT_ARCHIVE_DIR/repo-output-sub-$sha1.tar'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ $(ls repo-output-sub*.tar | wc <span class="operator">-l</span>) != <span class="number">0</span>  ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="comment"># combine all archives into one tar</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"&gt; combining all tars"</span></span><br><span class="line">  tar --concatenate --file repo-output.tar repo-output-sub*.tar</span><br><span class="line"></span><br><span class="line">  <span class="comment"># remove sub tars</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"&gt; removing all sub tars"</span></span><br><span class="line">  rm -rf repo-output-sub*.tar</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># gzip the tar</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; gzipping final tar"</span></span><br><span class="line">gzip --force --verbose repo-output.tar</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; moving output file to <span class="variable">$OUTPUT_FILE</span>"</span></span><br><span class="line">mv repo-output.tar.gz <span class="variable">$OUTPUT_FILE</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; git-archive-all done"</span></span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -28,20 +28,20 @@
 <figur]]>
     </summary>
     
-      <category term="bash" scheme="http://code.minhajuddin.com/tags/bash/"/>
+      <category term="bash" scheme="http://minhajuddin.com/tags/bash/"/>
     
-      <category term="git" scheme="http://code.minhajuddin.com/tags/git/"/>
+      <category term="git" scheme="http://minhajuddin.com/tags/git/"/>
     
-      <category term="submodules" scheme="http://code.minhajuddin.com/tags/submodules/"/>
+      <category term="submodules" scheme="http://minhajuddin.com/tags/submodules/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Elastic objects in ruby]]></title>
-    <link href="http://code.minhajuddin.com/2015/12/09/elastic-objects-in-ruby/"/>
-    <id>http://code.minhajuddin.com/2015/12/09/elastic-objects-in-ruby/</id>
+    <link href="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/"/>
+    <id>http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/</id>
     <published>2015-12-09T07:38:30.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>Here is an example of an elastic object wrapper in ruby</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ElasticObject</span></span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">attr_reader</span> <span class="symbol">:object</span></span><br><span class="line">  alias_method <span class="symbol">:value</span>, <span class="symbol">:object</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(object)</span></span></span><br><span class="line">    <span class="variable">@object</span> = object</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">method_missing</span><span class="params">(method, *args, &amp;block)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="constant">ElasticObject</span>.new(object.send(method, *args, &amp;block)) <span class="keyword">if</span> object.respond_to?(method)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="constant">ElasticObject</span>.new(<span class="keyword">nil</span>) <span class="keyword">if</span> !object.is_a?(<span class="constant">Hash</span>)</span><br><span class="line"></span><br><span class="line">    result = [method] <span class="keyword">if</span> key?(method)</span><br><span class="line">    result = [method.to_s] <span class="keyword">if</span> key?(method.to_s)</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">ElasticObject</span>.new(result)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">emp = <span class="constant">ElasticObject</span>.new(&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"age"</span> =&gt; <span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">puts emp.dob.month <span class="comment"># =&gt; nil</span></span><br><span class="line">puts emp.name <span class="comment"># =&gt; "Mujju"</span></span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -50,20 +50,20 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class]]>
     </summary>
     
-      <category term="elastic object" scheme="http://code.minhajuddin.com/tags/elastic-object/"/>
+      <category term="elastic object" scheme="http://minhajuddin.com/tags/elastic-object/"/>
     
-      <category term="metaprogramming" scheme="http://code.minhajuddin.com/tags/metaprogramming/"/>
+      <category term="metaprogramming" scheme="http://minhajuddin.com/tags/metaprogramming/"/>
     
-      <category term="ruby" scheme="http://code.minhajuddin.com/tags/ruby/"/>
+      <category term="ruby" scheme="http://minhajuddin.com/tags/ruby/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Recursive/Deep open struct for hashes in ruby]]></title>
-    <link href="http://code.minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/"/>
-    <id>http://code.minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/</id>
+    <link href="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/"/>
+    <id>http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/</id>
     <published>2015-12-09T05:59:43.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>So, I had to convert a hash into an open struct to make accessing things easy. Here is the code.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'ostruct'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">DeepStruct</span></span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">to_ostruct</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">self</span></span><br><span class="line">    <span class="keyword">when</span> <span class="constant">Hash</span></span><br><span class="line">      root = <span class="constant">OpenStruct</span>.new(<span class="keyword">self</span>)</span><br><span class="line">      <span class="keyword">self</span>.each_with_object(root) <span class="keyword">do</span> |(k,v), o|</span><br><span class="line">        o.send(<span class="string">"<span class="subst">#&#123;k&#125;</span>="</span>, v.to_ostruct)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">      root</span><br><span class="line">    <span class="keyword">when</span> <span class="constant">Array</span></span><br><span class="line">      <span class="keyword">self</span>.map <span class="keyword">do</span> |v|</span><br><span class="line">        v.to_ostruct</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">self</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Object</span>.send(<span class="symbol">:include</span>, <span class="constant">DeepStruct</span>)</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -72,20 +72,20 @@
 <figure class="highlight ruby"><tabl]]>
     </summary>
     
-      <category term="hash" scheme="http://code.minhajuddin.com/tags/hash/"/>
+      <category term="hash" scheme="http://minhajuddin.com/tags/hash/"/>
     
-      <category term="open struct" scheme="http://code.minhajuddin.com/tags/open-struct/"/>
+      <category term="open struct" scheme="http://minhajuddin.com/tags/open-struct/"/>
     
-      <category term="ruby" scheme="http://code.minhajuddin.com/tags/ruby/"/>
+      <category term="ruby" scheme="http://minhajuddin.com/tags/ruby/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Default user for coreos on Digital Ocean]]></title>
-    <link href="http://code.minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/"/>
-    <id>http://code.minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/</id>
+    <link href="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/"/>
+    <id>http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/</id>
     <published>2015-12-05T07:58:51.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>I just started playing with <a href="https://coreos.com" target="_blank" rel="external">Coreos</a> to run my docker containers.<br>However, when I spun up an instance on Digital Ocean with my private key,<br>I wasn’t able to login using the root account. It turns out that Digital Ocean sets up the private key<br>for an account with the name <code>core</code>. So, the next time you are stuck doing this just try logging in with<br>  the <em>core</em> account.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh core@&lt;your-ip&gt;</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -93,18 +93,18 @@
     <![CDATA[<p>I just started playing with <a href="https://coreos.com" target="_blank" rel="external">Coreos</a> to run my docker containers.<br>Howeve]]>
     </summary>
     
-      <category term="coreos" scheme="http://code.minhajuddin.com/tags/coreos/"/>
+      <category term="coreos" scheme="http://minhajuddin.com/tags/coreos/"/>
     
-      <category term="docker" scheme="http://code.minhajuddin.com/tags/docker/"/>
+      <category term="docker" scheme="http://minhajuddin.com/tags/docker/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Show Rails Flash messages in jquery ajax requests]]></title>
-    <link href="http://code.minhajuddin.com/2014/03/11/show-rails-flash-messages-in-jquery-ajax-requests/"/>
-    <id>http://code.minhajuddin.com/2014/03/11/show-rails-flash-messages-in-jquery-ajax-requests/</id>
+    <link href="http://minhajuddin.com/2014/03/11/show-rails-flash-messages-in-jquery-ajax-requests/"/>
+    <id>http://minhajuddin.com/2014/03/11/show-rails-flash-messages-in-jquery-ajax-requests/</id>
     <published>2014-03-11T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>In the past I struggled with having a consistent strategy for showing error messages in javascript. In rails we usually put the error/success messages in the flash, However if the request is an ajax request the flash doesn’t get used and the message shows up on the next page load.</p>
 <p>The following code shows error/success messages using the flash properly</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#app/classes/ajax_flash.rb</span></span><br><span class="line"><span class="comment">#include this module in your Applicationcontroller</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">AjaxFlash</span></span></span><br><span class="line">  extend <span class="constant">ActiveSupport::Concern</span></span><br><span class="line"></span><br><span class="line">  included <span class="keyword">do</span></span><br><span class="line">    after_filter <span class="symbol">:add_flash_to_header</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add_flash_to_header</span></span></span><br><span class="line">    <span class="comment"># only run this in case it's an Ajax request.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">unless</span> request.xhr?</span><br><span class="line">    <span class="comment"># add flash to header</span></span><br><span class="line">    response.headers[<span class="string">'X-Flash'</span>] = flash.to_h.to_json</span><br><span class="line">    <span class="comment"># make sure flash does not appear on the next page</span></span><br><span class="line">    flash.discard</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
@@ -117,20 +117,20 @@
     <![CDATA[<p>In the past I struggled with having a consistent strategy for showing error messages in javascript. In rails we usually put the error/suc]]>
     </summary>
     
-      <category term="ajax," scheme="http://code.minhajuddin.com/tags/ajax/"/>
+      <category term="ajax," scheme="http://minhajuddin.com/tags/ajax/"/>
     
-      <category term="flash," scheme="http://code.minhajuddin.com/tags/flash/"/>
+      <category term="flash," scheme="http://minhajuddin.com/tags/flash/"/>
     
-      <category term="rails" scheme="http://code.minhajuddin.com/tags/rails/"/>
+      <category term="rails" scheme="http://minhajuddin.com/tags/rails/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[The impact of shiny looking design on user uptake]]></title>
-    <link href="http://code.minhajuddin.com/2014/02/25/the-impact-of-shiny-looking-design-on-user-uptake/"/>
-    <id>http://code.minhajuddin.com/2014/02/25/the-impact-of-shiny-looking-design-on-user-uptake/</id>
+    <link href="http://minhajuddin.com/2014/02/25/the-impact-of-shiny-looking-design-on-user-uptake/"/>
+    <id>http://minhajuddin.com/2014/02/25/the-impact-of-shiny-looking-design-on-user-uptake/</id>
     <published>2014-02-25T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>Today I saw a submission on HN about formspree.com which allows you to setup a form on your site similar to google forms / wufoo but without an iframe, so you can tweak it as much as you like. A quick whois lookup shows that this domain was created on 17 Feb 2014 which is just a few days ago. I had launched a similar service called <a href="http://getsimpleform.com/" target="_blank" rel="external">http://getsimpleform.com/</a> almost 2 years ago. It differs with formspree in a few aspects though. When I was thinking about creating simpleform, I didn’t want to expose the users email to the public by putting it in a form as formspree does, it is just a design choice I made. getsimpleform also has spam prevention using akismet and allows you to create forms with file uploads. So, it is a bit more feature rich then formspree. </p>
 <p>However, the point I am trying to make here is about the impact of a good looking visual design on how users perceive your product. Formspree has 209 upvotes (at the time of this post) and getsimpleform.com posts (5 submissions all of which were made by me) have a sum of 7 upvotes. Look at the difference in their screenshots.</p>
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/530deb968aef3a081d0081a6/Formspree___Functional_HTML_forms.png" alt="Formspree"><br><img src="https://substancehq.s3.amazonaws.com/static_asset/530deb968aef3a5e9d003197/Simple_Form___Build_simple_web_forms.png" alt="Simple Form"></p>
@@ -141,22 +141,22 @@
     <![CDATA[<p>Today I saw a submission on HN about formspree.com which allows you to setup a form on your site similar to google forms / wufoo but with]]>
     </summary>
     
-      <category term="getsimpleform" scheme="http://code.minhajuddin.com/tags/getsimpleform/"/>
+      <category term="getsimpleform" scheme="http://minhajuddin.com/tags/getsimpleform/"/>
     
-      <category term="perception," scheme="http://code.minhajuddin.com/tags/perception/"/>
+      <category term="perception," scheme="http://minhajuddin.com/tags/perception/"/>
     
-      <category term="shiny," scheme="http://code.minhajuddin.com/tags/shiny/"/>
+      <category term="shiny," scheme="http://minhajuddin.com/tags/shiny/"/>
     
-      <category term="usability," scheme="http://code.minhajuddin.com/tags/usability/"/>
+      <category term="usability," scheme="http://minhajuddin.com/tags/usability/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Script to cleanup your music one song at a time]]></title>
-    <link href="http://code.minhajuddin.com/2014/01/26/script-to-cleanup-your-music-one-song-at-a-time/"/>
-    <id>http://code.minhajuddin.com/2014/01/26/script-to-cleanup-your-music-one-song-at-a-time/</id>
+    <link href="http://minhajuddin.com/2014/01/26/script-to-cleanup-your-music-one-song-at-a-time/"/>
+    <id>http://minhajuddin.com/2014/01/26/script-to-cleanup-your-music-one-song-at-a-time/</id>
     <published>2014-01-26T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>I have a big library of music with a lot of songs I don’t like anymore or songs which were a part of an album from which there was one song which I liked. And whenever my music player starts playing these songs, I hit a keyboard combo which goes to the next song. But these songs would be in my library just waiting to annoy me again. Here is a little ruby script which I wrote from an idea by my friend <a href="/codingtales.com">Abdul Sattar</a>.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/home/minhajuddin/.rvm/rubies/ruby-1.9.3-p194/bin/ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'uri'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fileutils'</span></span><br><span class="line"></span><br><span class="line">song = <span class="string">`banshee --query-uri`</span>.chomp</span><br><span class="line">song = song.gsub(<span class="regexp">/uri:.*file:\/\//</span>,<span class="string">''</span>)</span><br><span class="line">song =  <span class="constant">URI</span>.decode(song)</span><br><span class="line"></span><br><span class="line"><span class="constant">FileUtils</span>.mv(song, <span class="string">'/home/minhajuddin/badmusic/'</span>)</span><br><span class="line">system(<span class="string">"/usr/bin/banshee --next"</span>)</span><br><span class="line">puts <span class="string">"Moved song '<span class="subst">#&#123;song&#125;</span>'"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#mv "$(ruby -e 'require "uri"; puts URI.decode(ARGV.join.gsub(/uri:file:\/\//,""))' $(banshee --query-uri))" /home/minhajuddin/badmusic/</span></span><br></pre></td></tr></table></figure>
 <p>I also have a keyboard shortcut bound to it which triggers it.</p>
@@ -167,18 +167,18 @@
     <![CDATA[<p>I have a big library of music with a lot of songs I don’t like anymore or songs which were a part of an album from which there was one so]]>
     </summary>
     
-      <category term="banshee," scheme="http://code.minhajuddin.com/tags/banshee/"/>
+      <category term="banshee," scheme="http://minhajuddin.com/tags/banshee/"/>
     
-      <category term="music" scheme="http://code.minhajuddin.com/tags/music/"/>
+      <category term="music" scheme="http://minhajuddin.com/tags/music/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[One line command to import prod data to development computer]]></title>
-    <link href="http://code.minhajuddin.com/2014/01/19/one-line-command-to-import-prod-data-to-development-computer/"/>
-    <id>http://code.minhajuddin.com/2014/01/19/one-line-command-to-import-prod-data-to-development-computer/</id>
+    <link href="http://minhajuddin.com/2014/01/19/one-line-command-to-import-prod-data-to-development-computer/"/>
+    <id>http://minhajuddin.com/2014/01/19/one-line-command-to-import-prod-data-to-development-computer/</id>
     <published>2014-01-19T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --no-acl --no-owner <span class="operator">-d</span> localdb</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -187,18 +187,18 @@
 <figure class="highlight sh"><]]>
     </summary>
     
-      <category term="import" scheme="http://code.minhajuddin.com/tags/import/"/>
+      <category term="import" scheme="http://minhajuddin.com/tags/import/"/>
     
-      <category term="postgresql," scheme="http://code.minhajuddin.com/tags/postgresql/"/>
+      <category term="postgresql," scheme="http://minhajuddin.com/tags/postgresql/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[HTTP]]></title>
-    <link href="http://code.minhajuddin.com/2013/05/18/http/"/>
-    <id>http://code.minhajuddin.com/2013/05/18/http/</id>
+    <link href="http://minhajuddin.com/2013/05/18/http/"/>
+    <id>http://minhajuddin.com/2013/05/18/http/</id>
     <published>2013-05-18T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>HTTP is a protocol used by computers to communicate with each other.<br>A protocol is just a series of rules/steps which need to be followed for communication.<br>e.g. If you want to buy a chocolate from the mall, you can go to the mall,<br>find the chocolate put it in a shopping cart, go to the checkout counter and pay the bill.<br>This can be thought of as a protocol, In this example, the steps are not very strict,<br>but in computer protocols there is no scope for ambiguity. </p>
 <p>HTTP is used whenever you visit a website. HTTP lays out the rules the<br>communication between your browser and the web server. Here is an example of<br>what happens when you open enter  cosmicvent.com in your browser and hit enter:</p>
 <p>1) The browser finds the IP address of cosmicvent.com (which at the moment is 176.9.113.5).<br>2) It sends it a text message using another protocol called TCP/IP. The message<br>    looks something like this:</p>
@@ -252,18 +252,18 @@ Connection: keep-alive
     <![CDATA[<p>HTTP is a protocol used by computers to communicate with each other.<br>A protocol is just a series of rules/steps which need to be follo]]>
     </summary>
     
-      <category term="for-sohel" scheme="http://code.minhajuddin.com/tags/for-sohel/"/>
+      <category term="for-sohel" scheme="http://minhajuddin.com/tags/for-sohel/"/>
     
-      <category term="http" scheme="http://code.minhajuddin.com/tags/http/"/>
+      <category term="http" scheme="http://minhajuddin.com/tags/http/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Cloud Computing / Virtualization]]></title>
-    <link href="http://code.minhajuddin.com/2013/05/18/cloud-computing/"/>
-    <id>http://code.minhajuddin.com/2013/05/18/cloud-computing/</id>
+    <link href="http://minhajuddin.com/2013/05/18/cloud-computing/"/>
+    <id>http://minhajuddin.com/2013/05/18/cloud-computing/</id>
     <published>2013-05-18T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>Cloud computing is mostly a buzzword. In the old days when people wanted a<br>server to put run their software on it (like a website), they used to order a<br>dedicated (also called bare metal) server with a hosting company (like<br>rackspace.com), these companies would setup a server with your configuration and<br>then give you access to it so that you could put your software and use it anyway<br>you want. This usually would take days and the server companies needed upfront<br>payments for setup and monthly fees for server costs. So, if you wanted to put a<br>website for a week for a small conference you would have to pay for the setup<br>and the fee for the minimum rent duration (which would typically be a month).</p>
 <p>With this kind of setup it used to be hard for website developers/maintainers to<br>scale their website. Scaling usually means adding more servers to your setup or<br>adding more resources (CPUs/RAM etc,.) to your existing servers, to be able to<br>handle an increase in traffic to your website or software.</p>
 <p>With the advancement of technologies, and with the inception of virtualization,<br>hosting providers have become more flexible. Virtualization technologies allow<br>you to have any number of ‘virtual servers’ running on any number of<br>‘real/physical servers’. So, you can have one real computer running two ‘virtual servers’, one<br>might be a linux operating system and another a windows operating system<br>simultaneously. Virtualization is useful because not all servers run at their<br>full capacity all the time. So, if there are two ‘virtual servers’ running on<br>one physical server, they share their resources (CPU, RAM etc,.) and since they<br>are not using all their resources all the time, the resources can be shared. The<br>important thing about virtualization is that you can create as many virtual<br>servers as you want (as long as your hardware can handle the load) very easily.<br>So, this has allowed hosting providers to setup huge clusters of hardware<br>running virtualized servers on top of them. So, now if you want a virtual<br>server, it will be ready at the click of a button. You can even create a virtual<br>server, increase its RAM size by running a simple command. This allows web<br>developers and administrators to automatically increase the number of servers<br>when their is an increase in traffic and shutdown servers when there is less<br>traffic. And since you only pay for the amount of time your servers are running<br>and not by months, you can have efficient setups without wasting your money. If<br>you had a supermarket wouldn’t it be awesome if you had 100 checkout lanes when<br>you had a huge amount of customers (on weekends) and only 1 when there are no<br>customers? Virtualization/Cloud computing allows web administrators to do this.</p>
@@ -277,20 +277,20 @@ Connection: keep-alive
     <![CDATA[<p>Cloud computing is mostly a buzzword. In the old days when people wanted a<br>server to put run their software on it (like a website), th]]>
     </summary>
     
-      <category term="cloud-computing" scheme="http://code.minhajuddin.com/tags/cloud-computing/"/>
+      <category term="cloud-computing" scheme="http://minhajuddin.com/tags/cloud-computing/"/>
     
-      <category term="for-sohel" scheme="http://code.minhajuddin.com/tags/for-sohel/"/>
+      <category term="for-sohel" scheme="http://minhajuddin.com/tags/for-sohel/"/>
     
-      <category term="virtualization" scheme="http://code.minhajuddin.com/tags/virtualization/"/>
+      <category term="virtualization" scheme="http://minhajuddin.com/tags/virtualization/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Angularjs templates and rails with eager loading]]></title>
-    <link href="http://code.minhajuddin.com/2013/04/27/angularjs-templates-and-rails-with-eager-loading/"/>
-    <id>http://code.minhajuddin.com/2013/04/27/angularjs-templates-and-rails-with-eager-loading/</id>
+    <link href="http://minhajuddin.com/2013/04/27/angularjs-templates-and-rails-with-eager-loading/"/>
+    <id>http://minhajuddin.com/2013/04/27/angularjs-templates-and-rails-with-eager-loading/</id>
     <published>2013-04-27T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>Angularjs loads the templates used through the [ng-include] (<a href="http://docs.angularjs.org/api/ng.directive:ngInclude" target="_blank" rel="external">http://docs.angularjs.org/api/ng.directive:ngInclude</a>) directive on the fly. This might cause a lot of requests to be made to your server which is not a good thing.</p>
 <p>This solution allows you to load all your templates in one go and it will actually shove all your templates into your final application.js file.</p>
 <p><strong><s>GOTCHA: If you use this approach you will have to change this file whenever a template changes in development, if you don’t it won’t recompile this file which will cause your app to use old templates. This happens only in development and it’s a pain, I don’t know how to solve it yet. Anyone who knows can help me out here :)</s></strong></p>
@@ -305,22 +305,22 @@ Connection: keep-alive
     <![CDATA[<p>Angularjs loads the templates used through the [ng-include] (<a href="http://docs.angularjs.org/api/ng.directive:ngInclude" target="_blan]]>
     </summary>
     
-      <category term="angularjs" scheme="http://code.minhajuddin.com/tags/angularjs/"/>
+      <category term="angularjs" scheme="http://minhajuddin.com/tags/angularjs/"/>
     
-      <category term="eager-load" scheme="http://code.minhajuddin.com/tags/eager-load/"/>
+      <category term="eager-load" scheme="http://minhajuddin.com/tags/eager-load/"/>
     
-      <category term="rails" scheme="http://code.minhajuddin.com/tags/rails/"/>
+      <category term="rails" scheme="http://minhajuddin.com/tags/rails/"/>
     
-      <category term="templates" scheme="http://code.minhajuddin.com/tags/templates/"/>
+      <category term="templates" scheme="http://minhajuddin.com/tags/templates/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Brute force]]></title>
-    <link href="http://code.minhajuddin.com/2013/02/18/brute-force/"/>
-    <id>http://code.minhajuddin.com/2013/02/18/brute-force/</id>
+    <link href="http://minhajuddin.com/2013/02/18/brute-force/"/>
+    <id>http://minhajuddin.com/2013/02/18/brute-force/</id>
     <published>2013-02-18T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>I am planning to participate in the Google Code Jam this year.<br>And I have been working on the <a href="https://code.google.com/codejam/contests.html" target="_blank" rel="external">practice problems</a>.<br>It’s been fun, It’s a great feeling when you are able to solve a challenging<br>problem after spending time on it.</p>
 <p>My strategy for solving problems is simple: First I try the brute force<br>approach, Once I have a solution, I start thinking of a more efficient way to do it. I have since realized that spending some time thinking  about the problem before butting your head against it is way more helpful. When I reached the <a href="https://code.google.com/codejam/contest/32016/dashboard" target="_blank" rel="external">Minimum Scalar Product</a> problem. </p>
 <blockquote>
@@ -338,20 +338,20 @@ Connection: keep-alive
     <![CDATA[<p>I am planning to participate in the Google Code Jam this year.<br>And I have been working on the <a href="https://code.google.com/codejam]]>
     </summary>
     
-      <category term="brute-force" scheme="http://code.minhajuddin.com/tags/brute-force/"/>
+      <category term="brute-force" scheme="http://minhajuddin.com/tags/brute-force/"/>
     
-      <category term="solving" scheme="http://code.minhajuddin.com/tags/solving/"/>
+      <category term="solving" scheme="http://minhajuddin.com/tags/solving/"/>
     
-      <category term="thinking" scheme="http://code.minhajuddin.com/tags/thinking/"/>
+      <category term="thinking" scheme="http://minhajuddin.com/tags/thinking/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Find if time slots overlap]]></title>
-    <link href="http://code.minhajuddin.com/2013/02/18/find-if-time-slots-overlap/"/>
-    <id>http://code.minhajuddin.com/2013/02/18/find-if-time-slots-overlap/</id>
+    <link href="http://minhajuddin.com/2013/02/18/find-if-time-slots-overlap/"/>
+    <id>http://minhajuddin.com/2013/02/18/find-if-time-slots-overlap/</id>
     <published>2013-02-18T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>I had to write some code to see if the input time slots on a given day overlapped.<br>I gave this problem to my sister, to come up with an algorithm. She came up with<br>a nice solution which hadn’t crossed my mind. See, if your solution is as good<br>as hers :)</p>
 <pre><code>#sample containing overlapping times
 [{:start_time=&gt;&apos;2013-02-20 00:00:00&apos;, :end_time=&gt;&apos;2013-02-20 01:00:00&apos;},
@@ -384,18 +384,18 @@ Connection: keep-alive
     <![CDATA[<p>I had to write some code to see if the input time slots on a given day overlapped.<br>I gave this problem to my sister, to come up with a]]>
     </summary>
     
-      <category term="algorithm" scheme="http://code.minhajuddin.com/tags/algorithm/"/>
+      <category term="algorithm" scheme="http://minhajuddin.com/tags/algorithm/"/>
     
-      <category term="time-overlap" scheme="http://code.minhajuddin.com/tags/time-overlap/"/>
+      <category term="time-overlap" scheme="http://minhajuddin.com/tags/time-overlap/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Raw communication and sugar coating]]></title>
-    <link href="http://code.minhajuddin.com/2013/02/08/raw-communication-and-sugar-coating/"/>
-    <id>http://code.minhajuddin.com/2013/02/08/raw-communication-and-sugar-coating/</id>
+    <link href="http://minhajuddin.com/2013/02/08/raw-communication-and-sugar-coating/"/>
+    <id>http://minhajuddin.com/2013/02/08/raw-communication-and-sugar-coating/</id>
     <published>2013-02-08T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>I have read <em><a href="http://www.amazon.com/gp/product/1439167346/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1439167346&amp;linkCode=as2&amp;tag=httpminhajuco-20" target="_blank" rel="external">How to Win Friends &amp; Influence People</a></em><br>a few years ago, It’s an amazing book filled with great advice on how to talk to people.<br>However, I have ended up using it on the wrong people, I’ve found myself sugar coating a lot of stuff when I communicate.</p>
 <p><strong>Sugar coating stuff is great when you are talking to strangers or people whom you<br>don’t communicate with a lot. But, when you do that with your family, the people<br>you work with, it increases the noise in your communication</strong>. For instance, if I<br>compliment my mother on the food, she just thinks I am trying to be nice, because<br>I always complement her. Nowadays, everyone is trying to peel of the layer of my bullshit sugar coating<br>to see what I mean. It has reached a point where, If I don’t talk to my folks for a day<br>they think I am mad at them, because of something they did. </p>
 <p>I read something about this a while ago, but I didn’t understand the full extent<br>of it. It’s like the story about the author who wrote: </p>
@@ -409,20 +409,20 @@ Connection: keep-alive
     <![CDATA[<p>I have read <em><a href="http://www.amazon.com/gp/product/1439167346/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&a]]>
     </summary>
     
-      <category term="communication" scheme="http://code.minhajuddin.com/tags/communication/"/>
+      <category term="communication" scheme="http://minhajuddin.com/tags/communication/"/>
     
-      <category term="raw" scheme="http://code.minhajuddin.com/tags/raw/"/>
+      <category term="raw" scheme="http://minhajuddin.com/tags/raw/"/>
     
-      <category term="sugar-coat" scheme="http://code.minhajuddin.com/tags/sugar-coat/"/>
+      <category term="sugar-coat" scheme="http://minhajuddin.com/tags/sugar-coat/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Review of the books I've read]]></title>
-    <link href="http://code.minhajuddin.com/2013/02/08/review-of-the-books-ive-read/"/>
-    <id>http://code.minhajuddin.com/2013/02/08/review-of-the-books-ive-read/</id>
+    <link href="http://minhajuddin.com/2013/02/08/review-of-the-books-ive-read/"/>
+    <id>http://minhajuddin.com/2013/02/08/review-of-the-books-ive-read/</id>
     <published>2013-02-08T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>Review</p>
 ]]></content>
     <summary type="html">
@@ -430,18 +430,18 @@ Connection: keep-alive
 ]]>
     </summary>
     
-      <category term="books" scheme="http://code.minhajuddin.com/tags/books/"/>
+      <category term="books" scheme="http://minhajuddin.com/tags/books/"/>
     
-      <category term="review" scheme="http://code.minhajuddin.com/tags/review/"/>
+      <category term="review" scheme="http://minhajuddin.com/tags/review/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Javascript bookmarklet to share a webpage]]></title>
-    <link href="http://code.minhajuddin.com/2013/02/05/javascript-bookmarklet-to-share-a-webpage-with-someone/"/>
-    <id>http://code.minhajuddin.com/2013/02/05/javascript-bookmarklet-to-share-a-webpage-with-someone/</id>
+    <link href="http://minhajuddin.com/2013/02/05/javascript-bookmarklet-to-share-a-webpage-with-someone/"/>
+    <id>http://minhajuddin.com/2013/02/05/javascript-bookmarklet-to-share-a-webpage-with-someone/</id>
     <published>2013-02-05T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>As a programmer, you should always thinking about automating your grunt work. My family has a private google group where we share/discuss stuff (I know what you are thinking, sharing through email ugh.. but that’s how it is). Whenever I wanted to share I used to copy the link, hit Ctrl+D to get the bookmark save box, copy the title from that and then use that as a subject to send an email, so, here is a script I wrote to automate that.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">window</span>.location.href = <span class="string">"mailto:fooxxxx@googlegroups.com?subject="</span>+<span class="built_in">document</span>.title+<span class="string">"&amp;body="</span>+<span class="built_in">window</span>.location.href;&#125;)()</span><br></pre></td></tr></table></figure>
 <p>Just change the email in the above script to be sent to the group you want and add it as a bookmarklet</p>
@@ -450,18 +450,18 @@ Connection: keep-alive
     <![CDATA[<p>As a programmer, you should always thinking about automating your grunt work. My family has a private google group where we share/discuss]]>
     </summary>
     
-      <category term="bookmarklet" scheme="http://code.minhajuddin.com/tags/bookmarklet/"/>
+      <category term="bookmarklet" scheme="http://minhajuddin.com/tags/bookmarklet/"/>
     
-      <category term="javascript" scheme="http://code.minhajuddin.com/tags/javascript/"/>
+      <category term="javascript" scheme="http://minhajuddin.com/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[A usable bash prompt]]></title>
-    <link href="http://code.minhajuddin.com/2013/01/31/a-usable-bash-prompt/"/>
-    <id>http://code.minhajuddin.com/2013/01/31/a-usable-bash-prompt/</id>
+    <link href="http://minhajuddin.com/2013/01/31/a-usable-bash-prompt/"/>
+    <id>http://minhajuddin.com/2013/01/31/a-usable-bash-prompt/</id>
     <published>2013-01-31T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="external">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#~/.bashrc</span></span><br><span class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></span><br></pre></td></tr></table></figure>
 <p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="external">excellent archlinux wiki</a></p>
@@ -471,20 +471,20 @@ Connection: keep-alive
     <![CDATA[<p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash script]]>
     </summary>
     
-      <category term="bash" scheme="http://code.minhajuddin.com/tags/bash/"/>
+      <category term="bash" scheme="http://minhajuddin.com/tags/bash/"/>
     
-      <category term="prompt" scheme="http://code.minhajuddin.com/tags/prompt/"/>
+      <category term="prompt" scheme="http://minhajuddin.com/tags/prompt/"/>
     
-      <category term="ps1" scheme="http://code.minhajuddin.com/tags/ps1/"/>
+      <category term="ps1" scheme="http://minhajuddin.com/tags/ps1/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Tossing a bottle]]></title>
-    <link href="http://code.minhajuddin.com/2013/01/31/tossing-a-bottle/"/>
-    <id>http://code.minhajuddin.com/2013/01/31/tossing-a-bottle/</id>
+    <link href="http://minhajuddin.com/2013/01/31/tossing-a-bottle/"/>
+    <id>http://minhajuddin.com/2013/01/31/tossing-a-bottle/</id>
     <published>2013-01-31T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<h4 id="Tossing_a_bottle"><a href="#Tossing_a_bottle" class="headerlink" title="Tossing a bottle"></a>Tossing a bottle</h4><p>Today while walking to my home from my office, I purchased a bottle of orange<br>juice. I was a bit bored and started tossing it in the air (if throwing it 15cm<br>in the air can be called tossing :) ). As I reached a stretch of road without<br>people, I started tossing it higher, maybe a few meters in the air. I<br>felt happy doing this. However, on the next turn, I saw a couple of guys<br>talking on the sidewalk, I stopped tossing. I thought I would resume once I was<br>past these guys. The reason I stopped was very obvious, I didn’t want these guys<br>to watch me toss the bottle and fail to catch it. Then I started thinking, I<br>always used to say ‘Do not be afraid’. Back in the day, I even had a poster stuck on<br>my wall which read ‘Do not be afraid’. And here I was, <strong>afraid</strong> of what<br>two strangers would think if I dropped the bottle (which is such a trivial thing<br>but that’s not the point). </p>
 <p>It is astounding how we are afraid to do simple<br>things even in complete anonymity. These guys really didn’t know me, and even if<br>I failed to catch the bottle, it had no real consequences, they were probably<br>not even looking or thinking about it.</p>
 <h4 id="Experimentation_and_fear"><a href="#Experimentation_and_fear" class="headerlink" title="Experimentation and fear"></a>Experimentation and fear</h4><p>So, here I was afraid of experimenting with a trivial thing, inspite of all my<br>beleifs. Then it hit me, the more you fear, the lesser you experiment and the<br>lesser you experiment the lesser you grow. <strong>Experimentation takes courage.</strong></p>
@@ -500,20 +500,20 @@ Connection: keep-alive
     <![CDATA[<h4 id="Tossing_a_bottle"><a href="#Tossing_a_bottle" class="headerlink" title="Tossing a bottle"></a>Tossing a bottle</h4><p>Today while wa]]>
     </summary>
     
-      <category term="experiment" scheme="http://code.minhajuddin.com/tags/experiment/"/>
+      <category term="experiment" scheme="http://minhajuddin.com/tags/experiment/"/>
     
-      <category term="explore" scheme="http://code.minhajuddin.com/tags/explore/"/>
+      <category term="explore" scheme="http://minhajuddin.com/tags/explore/"/>
     
-      <category term="fear" scheme="http://code.minhajuddin.com/tags/fear/"/>
+      <category term="fear" scheme="http://minhajuddin.com/tags/fear/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Git workflow for projects with multiple developers]]></title>
-    <link href="http://code.minhajuddin.com/2013/01/30/git-workflow-for-projects-with-multiple-developers/"/>
-    <id>http://code.minhajuddin.com/2013/01/30/git-workflow-for-projects-with-multiple-developers/</id>
+    <link href="http://minhajuddin.com/2013/01/30/git-workflow-for-projects-with-multiple-developers/"/>
+    <id>http://minhajuddin.com/2013/01/30/git-workflow-for-projects-with-multiple-developers/</id>
     <published>2013-01-30T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>For the trainees :)</p>
 <pre><code>B &lt;= current branch
 D &lt;= Commands to run on developer&apos;s computer
@@ -573,18 +573,18 @@ D &lt;= Commands to run on developer&apos;s computer
 R &lt;= Commands to run on]]>
     </summary>
     
-      <category term="git" scheme="http://code.minhajuddin.com/tags/git/"/>
+      <category term="git" scheme="http://minhajuddin.com/tags/git/"/>
     
-      <category term="workflow" scheme="http://code.minhajuddin.com/tags/workflow/"/>
+      <category term="workflow" scheme="http://minhajuddin.com/tags/workflow/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Resisting the temptation to be clever]]></title>
-    <link href="http://code.minhajuddin.com/2013/01/17/resisting-the-temptation-to-be-clever/"/>
-    <id>http://code.minhajuddin.com/2013/01/17/resisting-the-temptation-to-be-clever/</id>
+    <link href="http://minhajuddin.com/2013/01/17/resisting-the-temptation-to-be-clever/"/>
+    <id>http://minhajuddin.com/2013/01/17/resisting-the-temptation-to-be-clever/</id>
     <published>2013-01-17T18:30:00.000Z</published>
-    <updated>2016-01-12T13:44:09.000Z</updated>
+    <updated>2016-01-12T14:06:49.000Z</updated>
     <content type="html"><![CDATA[<p>The temptation to be clever while programming is very high. You want to show off or use your mad skills to create the most clever piece of code. It gives you a sense of satisfaction which very few things do. However, I’ve found like most people that it’s not the best thing to do for the long term maintainability of projects.</p>
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/50f94ccb03b04d32da0007fe/temptation-to-be-clever.jpg" alt="The temptation to be clever while programming is too damn high"></p>
 <p>Languages like ruby, being very powerful, make this very easy. Like they say <em>with great power comes great responsibilty</em>. So, this is some advice for young devs: <strong>Create the cleverest piece of code in your personal, fun projects to satiate your hunger, but when it comes to projects for customers, you owe it to them to be sensible and write mundane code</strong></p>
@@ -596,11 +596,11 @@ R &lt;= Commands to run on]]>
     <![CDATA[<p>The temptation to be clever while programming is very high. You want to show off or use your mad skills to create the most clever piece o]]>
     </summary>
     
-      <category term="clever-code" scheme="http://code.minhajuddin.com/tags/clever-code/"/>
+      <category term="clever-code" scheme="http://minhajuddin.com/tags/clever-code/"/>
     
-      <category term="mundane-code" scheme="http://code.minhajuddin.com/tags/mundane-code/"/>
+      <category term="mundane-code" scheme="http://minhajuddin.com/tags/mundane-code/"/>
     
-      <category term="temptation" scheme="http://code.minhajuddin.com/tags/temptation/"/>
+      <category term="temptation" scheme="http://minhajuddin.com/tags/temptation/"/>
     
   </entry>
   

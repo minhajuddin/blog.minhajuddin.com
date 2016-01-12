@@ -8,7 +8,7 @@
   <meta name="description" content="Some thoughts on writing simple code and other random ramblings.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Simplicity">
-<meta property="og:url" content="http://code.minhajuddin.com/page/5/index.html">
+<meta property="og:url" content="http://minhajuddin.com/page/5/index.html">
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="Some thoughts on writing simple code and other random ramblings.">
 <meta name="twitter:card" content="summary">
@@ -54,7 +54,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://code.minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -93,7 +93,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2010/06/27/jekyll-the-programmers-blog-engine/" data-id="cijbgb8cp004414te8nbkeybx" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/27/jekyll-the-programmers-blog-engine/" data-id="cijbh4qcy004414mk8shbjze5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -137,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2010/06/05/redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze/" data-id="cijbgb8b3002r14tedvs01fbk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/05/redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze/" data-id="cijbh4qa2002r14mkyaxxeqjg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -169,12 +169,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The other day I was trying to get started with Mono using ASP.NET MVC.<br>  As usual I googled and found a useful post on it<br>  <a title="http://beyondfocus.com/mono/asp-net-mvc-on-mono-two-options-for-the-ide-crowd/" href="http://beyondfocus.com/mono/asp-net-mvc-on-mono-two-options-for-the-ide-crowd/" target="_blank" rel="external"><br>    http://beyondfocus.com/mono/asp-net-mvc-on-mono-two-options-for-the-ide-crowd/</a> .<br>  But, the post assumes you already know how to deploy an asp.net app on Mono.<br>  Anyway here is my attempt to make it easier for folks to hop onto Mono.</p>  <p>&#160;</p><br><p>Alright, so all I am trying to do here is get the ASP.NET MVC 1.0 default template up and running on Mono.<br>  There are a few things you need, to get this working:</p>  <ol><br>  <li>You need to download a Virtual Machine image from <a title="http://www.go-mono.com/mono-downloads/download.html" href="http://www.go-mono.com/mono-downloads/download.html" target="_blank" rel="external">http://www.go-mono.com/mono-downloads/download.html</a><br>    OR install Mono 2.4, apache, mono_mod, and xsp if you already have a linux machine up and running.</li><br>  <li>Visual Studio with ASP.NET MVC 1.0 installed.</li> </ol>  <p>Now, once you have these pre-requisites, </p>  <ol><br>  <li>Fire up your vs and create a new ASP.NET MVC 1.0 project.<br>    Change whatever text you want to in the template, Here is how mine looks on my machine:<br>    <a href="http://minhajuddin.com/wp-content/uploads/2009/12/image.png" target="_blank" rel="external"><br>      <img style="border-bottom: 0px; border-left: 0px; display: block; float: none; margin-left: auto; border-top: 0px; margin-right: auto; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0303b04d2e0300000f/image_thumb.png" width="571" height="230"><br>    </a></li>    <li>Publish this application to a folder, say d:\binaries\mono_mvc. and then copy it to your Mono linux machine, copy it to the /srv/www/ folder.<br>    <br>      <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image1.png" target="_blank" rel="external"><br>      <img style="border-bottom: 0px; border-left: 0px; display: block; float: none; margin-left: auto; border-top: 0px; margin-right: auto; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0403b04d2e03000010/image_thumb1.png" width="271" height="132"></a><br>    <br></li>    <li>Once you’ve done that, head over to the <a title="http://go-mono.com/config-mod-mono/" href="http://go-mono.com/config-mod-mono/" target="_blank" rel="external"><br>      http://go-mono.com/config-mod-mono/</a> to create your mod_mono configuration file. Fill out all the necessary details and click on the<br>    Download button to download your newly configuration file.<br>    <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image2.png" target="_blank" rel="external"><br>      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0503b04d2e03000011/image_thumb2.png" width="581" height="700"></a><br>    <br></li>    <li>Copy this new configuration file to the /etc/apache2/conf.d/ directory on your linux machine.<br>    <br>      <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image3.png" target="_blank" rel="external"><br>      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0703b04d2e03000012/image_thumb3.png" width="580" height="105"></a><br>    <br></li>    <li>The last thing you need to do is restart your apache server     <br><br>    <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image4.png" target="_blank" rel="external"><br>      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0803b04d2e03000013/image_thumb4.png" width="587" height="74"><br>    </a> </li>    <li>Now you can browse to <a href="http://localhost/&lt;your_application_name&amp;gt" target="_blank" rel="external">http://localhost/&lt;your_application_name&amp;gt</a>; to see your asp.net mvc application in it’s full glory :)<br>    <br>      <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image5.png" target="_blank" rel="external"><br>      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0903b04d2e03000014/image_thumb5.png" width="586" height="261"></a>&#160;<br>    <br></li> </ol>  <p>This is obviously a contrived example, but you can see how easy it is to deploy an asp.net mvc application to a<br>  linux box running apache and Mono. This is no more complicated than deploying a web app on a Windows box, and all props go to the<br>  <a href="http://www.mono-project.com/Main_Page" target="_blank">Mono guys</a> for making Mono easier to use with every release.<br>  I hope to dive in deeper into Mono real soon and I’ll share my experiences with you guys.&#160;&#160; </p>
+        <p>The other day I was trying to get started with Mono using ASP.NET MVC.<br>  As usual I googled and found a useful post on it<br>  <a title="http://beyondfocus.com/mono/asp-net-mvc-on-mono-two-options-for-the-ide-crowd/" href="http://beyondfocus.com/mono/asp-net-mvc-on-mono-two-options-for-the-ide-crowd/" target="_blank" rel="external"><br>    http://beyondfocus.com/mono/asp-net-mvc-on-mono-two-options-for-the-ide-crowd/</a> .<br>  But, the post assumes you already know how to deploy an asp.net app on Mono.<br>  Anyway here is my attempt to make it easier for folks to hop onto Mono.</p>  <p>&#160;</p><br><p>Alright, so all I am trying to do here is get the ASP.NET MVC 1.0 default template up and running on Mono.<br>  There are a few things you need, to get this working:</p>  <ol><br>  <li>You need to download a Virtual Machine image from <a title="http://www.go-mono.com/mono-downloads/download.html" href="http://www.go-mono.com/mono-downloads/download.html" target="_blank" rel="external">http://www.go-mono.com/mono-downloads/download.html</a><br>    OR install Mono 2.4, apache, mono_mod, and xsp if you already have a linux machine up and running.</li><br>  <li>Visual Studio with ASP.NET MVC 1.0 installed.</li> </ol>  <p>Now, once you have these pre-requisites, </p>  <ol><br>  <li>Fire up your vs and create a new ASP.NET MVC 1.0 project.<br>    Change whatever text you want to in the template, Here is how mine looks on my machine:<br>    <a href="http://minhajuddin.com/wp-content/uploads/2009/12/image.png"><br>      <img style="border-bottom: 0px; border-left: 0px; display: block; float: none; margin-left: auto; border-top: 0px; margin-right: auto; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0303b04d2e0300000f/image_thumb.png" width="571" height="230"><br>    </a></li>    <li>Publish this application to a folder, say d:\binaries\mono_mvc. and then copy it to your Mono linux machine, copy it to the /srv/www/ folder.<br>    <br>      <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image1.png"><br>      <img style="border-bottom: 0px; border-left: 0px; display: block; float: none; margin-left: auto; border-top: 0px; margin-right: auto; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0403b04d2e03000010/image_thumb1.png" width="271" height="132"></a><br>    <br></li>    <li>Once you’ve done that, head over to the <a title="http://go-mono.com/config-mod-mono/" href="http://go-mono.com/config-mod-mono/" target="_blank" rel="external"><br>      http://go-mono.com/config-mod-mono/</a> to create your mod_mono configuration file. Fill out all the necessary details and click on the<br>    Download button to download your newly configuration file.<br>    <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image2.png"><br>      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0503b04d2e03000011/image_thumb2.png" width="581" height="700"></a><br>    <br></li>    <li>Copy this new configuration file to the /etc/apache2/conf.d/ directory on your linux machine.<br>    <br>      <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image3.png"><br>      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0703b04d2e03000012/image_thumb3.png" width="580" height="105"></a><br>    <br></li>    <li>The last thing you need to do is restart your apache server     <br><br>    <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image4.png"><br>      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0803b04d2e03000013/image_thumb4.png" width="587" height="74"><br>    </a> </li>    <li>Now you can browse to <a href="http://localhost/&lt;your_application_name&amp;gt" target="_blank" rel="external">http://localhost/&lt;your_application_name&amp;gt</a>; to see your asp.net mvc application in it’s full glory :)<br>    <br>      <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image5.png"><br>      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0903b04d2e03000014/image_thumb5.png" width="586" height="261"></a>&#160;<br>    <br></li> </ol>  <p>This is obviously a contrived example, but you can see how easy it is to deploy an asp.net mvc application to a<br>  linux box running apache and Mono. This is no more complicated than deploying a web app on a Windows box, and all props go to the<br>  <a href="http://www.mono-project.com/Main_Page" target="_blank">Mono guys</a> for making Mono easier to use with every release.<br>  I hope to dive in deeper into Mono real soon and I’ll share my experiences with you guys.&#160;&#160; </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2009/12/11/asp-net-mvc-with-mono/" data-id="cijbgb8h1007j14telwjy47nt" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/12/11/asp-net-mvc-with-mono/" data-id="cijbh4qg8007j14mk8mj4st1b" class="article-share-link">Share</a>
       
       
     </footer>
@@ -216,7 +216,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2009/09/19/sitemaplite-adding-html-helpers/" data-id="cijbgb8a2001l14tevf36j1c4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/09/19/sitemaplite-adding-html-helpers/" data-id="cijbh4q93001l14mk8nov52j7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -272,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2009/09/17/birth-of-sitemaplite-aspnetmvc-sitemap-provider/" data-id="cijbgb8gr007a14telorhq5vg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/09/17/birth-of-sitemaplite-aspnetmvc-sitemap-provider/" data-id="cijbh4qfy007a14mkh73a63xj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -314,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2009/09/07/json-sitemap-provider-for-asp-net-mvc/" data-id="cijbgb8cl004214te79umdtdi" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/09/07/json-sitemap-provider-for-asp-net-mvc/" data-id="cijbh4qcs004214mkk8to2bve" class="article-share-link">Share</a>
       
       
     </footer>
@@ -365,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2009/08/31/easily-get-an-asp-net-website-offline/" data-id="cijbgb8gb006p14tep7t0qmhe" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/08/31/easily-get-an-asp-net-website-offline/" data-id="cijbh4qff006p14mkraa0wut4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -411,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2009/08/30/mblog-a-light-weight-blogging-engine-created-in-asp-net-mvc/" data-id="cijbgb8c5003r14te0rbxt3sk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/08/30/mblog-a-light-weight-blogging-engine-created-in-asp-net-mvc/" data-id="cijbh4qb5003r14mkqhq5ua2o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -456,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2009/08/29/traits-of-great-bloggers/" data-id="cijbgb897000s14tel8vfdd7m" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/08/29/traits-of-great-bloggers/" data-id="cijbh4q88000s14mk69vuc3x0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -497,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2009/07/24/tip-1-to-become-a-good-blogger/" data-id="cijbgb89f001014teih3n0mzw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/07/24/tip-1-to-become-a-good-blogger/" data-id="cijbh4q8f001014mktb7nrwc1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -536,7 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://code.minhajuddin.com/2009/04/20/hello-world/" data-id="cijbgb8fi005v14teei1oy6kg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/04/20/hello-world/" data-id="cijbh4qek005v14mkb5bxw6yc" class="article-share-link">Share</a>
       
       
     </footer>
