@@ -98,7 +98,13 @@ feed:
 #- recent_posts
 
 # Miscellaneous
-google_analytics:
+google_analytics: UA-10568795-1
 favicon: /favicon.png
 twitter: minhajuddin
 google_plus: +KhajaMinhajuddin
+
+archive_generator:
+  per_page: 0
+  yearly: true
+  monthly: true
+  daily: true
