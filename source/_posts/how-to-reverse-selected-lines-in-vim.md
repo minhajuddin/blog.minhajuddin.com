@@ -6,5 +6,5 @@ tags:
  - reverse
 ---
 
-If you want to reverse the selected lines in vim, just type `:!tac` in normal mode.
+If you want to reverse the selected lines in vim, just type `:!tac` in normal mode after selecting them.
 
