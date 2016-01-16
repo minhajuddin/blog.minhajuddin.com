@@ -25,7 +25,10 @@
   <link rel="stylesheet" href="/css/style.css" type="text/css">
   
 
+
+  
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -65,6 +68,107 @@
 </header>
       <div class="outer">
         <section id="main">
+          
+  
+    <article id="post-how-to-get-vanity-urls-in-rails" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/17/how-to-get-vanity-urls-in-rails/" class="article-date">
+  <time datetime="2011-04-17T00:00:00.000Z" itemprop="datePublished">2011-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/17/how-to-get-vanity-urls-in-rails/">how to get vanity urls in rails</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Getting vanity urls to work in rails is very simple. Let’s say you want to allow<br>your users to expose their Profiles through a facebook like url<br><code>http://www.facebook.com/GreenDay</code>. This is what you need to change in your<br>routes file.</p>
+<p>The <code>except =&gt; :show</code> on line#5 makes the resources helper skip the show route.<br>And line#9 which should be at the end of the routes file, creates a route called<br>profile which will be used for all the profile <em>show</em> links automatically.<br>That’s it now your application has vanity urls, whenever someone clicks on a<br>profile#show link they will be taken to /:slug. Obviously in this case the slug<br>is assumed to be unique.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="constant">Funky::Application</span>.routes.draw <span class="keyword">do</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="comment">#at the end of the routes file</span></span><br><span class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>###Update###<br>One of the readers emailed me asking what the controller code would look like. Here it is:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#app/models/profile.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span></span><br><span class="line">  <span class="comment">#should have a column called "slug"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> <span class="inheritance">&lt; <span class="parent">ApplicationController</span></span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></span><br><span class="line">    <span class="variable">@profile</span> = <span class="constant">Profile</span>.find_by_slug(params[<span class="symbol">:slug</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>###References###</p>
+<ul>
+<li><a href="http://guides.rubyonrails.org/routing.html#naming-routes" target="_blank" rel="external">http://guides.rubyonrails.org/routing.html#naming-routes</a></li>
+<li><a href="http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/" target="_blank" rel="external">http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/</a></li>
+</ul>
+
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="cijh90jm6005v15pinnl3gfw1" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-reminiscing-my-past" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/02/reminiscing-my-past/" class="article-date">
+  <time datetime="2011-04-02T00:00:00.000Z" itemprop="datePublished">2011-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/02/reminiscing-my-past/">reminiscing my past</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I consider myself a self-taught developer for the most part.<br>And, free screencasts where the next best thing to having a<br>trainer for me. The importance of screencasts gets lost once you get a grip on<br>programming and development. But, in the initial days when you don’t know anything<br>about programming, having a human voice guide you can make all the difference in<br>the world.</p>
+<p>Below is a list of screencasts/videos/books which helped me in my initial days of web development:</p>
+<ul>
+<li><a href="http://blogs.msdn.com/b/wsteele/archive/2005/11/07/489884.aspx" target="_blank" rel="external">ASP.NET Soup to Nuts</a> by <a href="http://blogs.msdn.com/b/wsteele/" target="_blank" rel="external">Bill Steele</a>. I learnt how things really worked on the world wide web here for the first time. The first couple of videos are relevant even for non-ASP.NET web devs.</li>
+<li><a href="http://blogs.msdn.com/b/wsteele/archive/2007/01/29/c-soup-to-nuts-webcast-links.aspx" target="_blank" rel="external">Visual C# Soup to Nuts</a> by the same Bill Steele. This is where I really learnt concepts about programming.</li>
+<li><a href="http://computerscience1.tv/2006/fall/" target="_blank" rel="external">Computer Science - E1 : Understanding Computers and the Internet</a> by <a href="http://www.cs.harvard.edu/malan/" target="_blank" rel="external">David Malan</a>. This course filled up a lot of gaps about computer science for me.</li>
+<li><a href="http://blog.wekeroad.com/2008/04/07/mvc-storefront-part-1" target="_blank" rel="external">ASP.NET MVC : Storefront series</a> by our very own <a href="http://wekeroad.com/" target="_blank" rel="external">Rob Conery</a>. This was the series of screencasts which made me truly understand what serious web-development was all about.</li>
+<li><a href="http://www.summerofnhibernate.com/" target="_blank" rel="external">Summer of NHibernate</a> by <a href="http://unhandled-exceptions.com/blog/index.php/about/" target="_blank" rel="external">Stephen Bohlen</a></li>
+<li><a href="http://www.dimecasts.net/" target="_blank" rel="external">Dimecasts</a> by <a href="http://devlicio.us/blogs/derik_whittaker/" target="_blank" rel="external">Derik Whittaker</a> and friends</li>
+<li><a href="http://railscasts.com/" target="_blank" rel="external">Railscasts</a> by <a href="http://workingwithrails.com/person/6491-ryan-bates" target="_blank" rel="external">Ryan Bates</a></li>
+<li><a href="http://headfirstlabs.com/books/hfooad/" target="_blank" rel="external">Head First OOA&amp;D</a> Although this book has examples in Java, it taught me a lot about the <a href="http://en.wikipedia.org/wiki/Solid_(object-oriented_design" target="_blank" rel="external">SOLID</a> OO principles and Object Oriented Design in general.</li>
+</ul>
+<p>I haven’t talked about my past on my blog. But, I had a secure and high paying job<br>at a big MNC called <a href="http://tcs.com" target="_blank" rel="external">TCS</a> from 2006 to 2008.<br>I used to work as an ETL developer, designing <em>jobs</em> using a tool called<br><a href="http://en.wikipedia.org/wiki/IBM_InfoSphere_DataStage" target="_blank" rel="external">Datastage</a>. It was a<br>niche skill and I was very good at it. The only problem was it didn’t give me an<br>opportunity to program. Designing high performance ETL jobs was interesting but<br>it never satisfied my hunger for <em>programming</em>. Anyway, I<br>decided to leave my secure job and start my own gig around Aug 2008.<br>My first programming job as a freelancer was fixing a <em>slow performing sql<br>query</em>(btw, the problem it had was that it was doing a cartesian join instead of<br>an inner join). I did it for $8(out of which I got $5, and the other $3 went to rentacoder.com),<br>but the satisfaction and confidence it gave me was priceless.<br>I have come a long way since then. I have developed atleast half a dozen high<br>quality web applications since then. And <em>I owe a lot of what I know to<br>the gentlemen who devoted their time in spreading knowledge through screencasts, blog posts and books.</em></p>
+<p>I am planning to do a series of screencasts to look at ruby on rails development<br>using ubuntu and post them on <a href="/vimeo">vimeo</a>, hoping to help beginners.<br>I’ll try and post atleast one video every week.</p>
+
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="cijh90jhh002t15pinnsumtmd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-ruby-on-rails-on-ubuntu-soup-to-nuts" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -114,66 +218,18 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 </ol>
 <h2 id="Next_screencast_3A"><a href="#Next_screencast_3A" class="headerlink" title="Next screencast:"></a>Next screencast: </h2><p>How to build a simple rails application<br><em>Things that will make it easy for you to follow the next session: html, http, basics of ruby programming, basics of css</em></p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="cijcxhvzd002d15lr9rhqa759" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-reminiscing-my-past" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/04/02/reminiscing-my-past/" class="article-date">
-  <time datetime="2011-04-02T00:00:00.000Z" itemprop="datePublished">2011-04-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/04/02/reminiscing-my-past/">reminiscing my past</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I consider myself a self-taught developer for the most part.<br>And, free screencasts where the next best thing to having a<br>trainer for me. The importance of screencasts gets lost once you get a grip on<br>programming and development. But, in the initial days when you don’t know anything<br>about programming, having a human voice guide you can make all the difference in<br>the world.</p>
-<p>Below is a list of screencasts/videos/books which helped me in my initial days of web development:</p>
-<ul>
-<li><a href="http://blogs.msdn.com/b/wsteele/archive/2005/11/07/489884.aspx" target="_blank" rel="external">ASP.NET Soup to Nuts</a> by <a href="http://blogs.msdn.com/b/wsteele/" target="_blank" rel="external">Bill Steele</a>. I learnt how things really worked on the world wide web here for the first time. The first couple of videos are relevant even for non-ASP.NET web devs.</li>
-<li><a href="http://blogs.msdn.com/b/wsteele/archive/2007/01/29/c-soup-to-nuts-webcast-links.aspx" target="_blank" rel="external">Visual C# Soup to Nuts</a> by the same Bill Steele. This is where I really learnt concepts about programming.</li>
-<li><a href="http://computerscience1.tv/2006/fall/" target="_blank" rel="external">Computer Science - E1 : Understanding Computers and the Internet</a> by <a href="http://www.cs.harvard.edu/malan/" target="_blank" rel="external">David Malan</a>. This course filled up a lot of gaps about computer science for me.</li>
-<li><a href="http://blog.wekeroad.com/2008/04/07/mvc-storefront-part-1" target="_blank" rel="external">ASP.NET MVC : Storefront series</a> by our very own <a href="http://wekeroad.com/" target="_blank" rel="external">Rob Conery</a>. This was the series of screencasts which made me truly understand what serious web-development was all about.</li>
-<li><a href="http://www.summerofnhibernate.com/" target="_blank" rel="external">Summer of NHibernate</a> by <a href="http://unhandled-exceptions.com/blog/index.php/about/" target="_blank" rel="external">Stephen Bohlen</a></li>
-<li><a href="http://www.dimecasts.net/" target="_blank" rel="external">Dimecasts</a> by <a href="http://devlicio.us/blogs/derik_whittaker/" target="_blank" rel="external">Derik Whittaker</a> and friends</li>
-<li><a href="http://railscasts.com/" target="_blank" rel="external">Railscasts</a> by <a href="http://workingwithrails.com/person/6491-ryan-bates" target="_blank" rel="external">Ryan Bates</a></li>
-<li><a href="http://headfirstlabs.com/books/hfooad/" target="_blank" rel="external">Head First OOA&amp;D</a> Although this book has examples in Java, it taught me a lot about the <a href="http://en.wikipedia.org/wiki/Solid_(object-oriented_design" target="_blank" rel="external">SOLID</a> OO principles and Object Oriented Design in general.</li>
-</ul>
-<p>I haven’t talked about my past on my blog. But, I had a secure and high paying job<br>at a big MNC called <a href="http://tcs.com" target="_blank" rel="external">TCS</a> from 2006 to 2008.<br>I used to work as an ETL developer, designing <em>jobs</em> using a tool called<br><a href="http://en.wikipedia.org/wiki/IBM_InfoSphere_DataStage" target="_blank" rel="external">Datastage</a>. It was a<br>niche skill and I was very good at it. The only problem was it didn’t give me an<br>opportunity to program. Designing high performance ETL jobs was interesting but<br>it never satisfied my hunger for <em>programming</em>. Anyway, I<br>decided to leave my secure job and start my own gig around Aug 2008.<br>My first programming job as a freelancer was fixing a <em>slow performing sql<br>query</em>(btw, the problem it had was that it was doing a cartesian join instead of<br>an inner join). I did it for $8(out of which I got $5, and the other $3 went to rentacoder.com),<br>but the satisfaction and confidence it gave me was priceless.<br>I have come a long way since then. I have developed atleast half a dozen high<br>quality web applications since then. And <em>I owe a lot of what I know to<br>the gentlemen who devoted their time in spreading knowledge through screencasts, blog posts and books.</em></p>
-<p>I am planning to do a series of screencasts to look at ruby on rails development<br>using ubuntu and post them on <a href="/vimeo">vimeo</a>, hoping to help beginners.<br>I’ll try and post atleast one video every week.</p>
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="cijcxhvzn002q15lrre1t93mn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="cijh90jh8002g15pig7kbz8pl" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -228,16 +284,18 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 <li><a href="http://www.digicert.com/ssl-certificate-installation-nginx.htm" target="_blank" rel="external">SSL Certificate Installation - Nginx Server</a></li>
 </ul>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cijcxhw2j005q15lr9ntcu9jo" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cijh90jm3005u15pihh2rdhwq" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -268,16 +326,18 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- first query</span></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">pi</span>.*</span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  .. a <span class="number">100</span> JOINS <span class="keyword">or</span> SPATIAL FUNCTIONS ...;</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- end of first query</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- second query</span></span><br><span class="line"><span class="comment">-- :skip and :take are sql parameters for pagination</span></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> pr.* <span class="keyword">FROM</span> </span><br><span class="line">(<span class="keyword">SELECT</span> tp.*, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> tp.<span class="keyword">Id</span>) <span class="keyword">AS</span> <span class="keyword">ROWNUM</span></span><br><span class="line">  <span class="keyword">FROM</span> #TempPerfIntensiveTable tp)pr</span><br><span class="line"><span class="keyword">WHERE</span> pr.<span class="keyword">ROWNUM</span> <span class="keyword">BETWEEN</span> :<span class="keyword">skip</span> <span class="keyword">AND</span> :take + :<span class="keyword">skip</span>;</span></span><br><span class="line"><span class="comment">-- end of second query</span></span><br></pre></td></tr></table></figure>
 <p>These queries need to be executed by calling <code>session.CreateSQLQuery(query).SetInt32.....</code> This stuff is not specific to<br>NHibernate, I just put it out there to help future searchers :)</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cijcxhw5g008q15lrumw8g1an" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cijh90jpg008u15piiqto5ku9" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -315,55 +375,18 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#remote_deploy.bat</span></span><br><span class="line">psexec \\example.com -u userfoo -w <span class="string">"c:\repos\foobar"</span> <span class="string">"c:\repos\foobar\deploy.bat"</span></span><br></pre></td></tr></table></figure>
 <p>The code should be self explanatory. All we are doing is, instead of running the<br>command manually automating them.</p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cijcxhw3s006x15lr3i4z67zo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" class="article-date">
-  <time datetime="2011-01-21T00:00:00.000Z" itemprop="datePublished">2011-01-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/">a simple rake task to ping google, bing, and yahoo about a change in your sitemap</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>There is an easy way to notify google, bing and yahoo whenever you add content<br>to your site or blog. All of them expose a url which when called with your<br>sitemap’s url updates their indexes. This fact is known to most developers, I<br>just wanted to share a simple rake task, which automates this. I use it to ping these<br>search engines whenever I write a new blog post.  </p>
-<p>All it’s doing is looping over all the search engines’ urls and using curl to<br>ping them.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="constant">Sitemap</span> = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></span><br><span class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></span><br><span class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></span><br><span class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</span><br><span class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</span><br><span class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> |url|</span><br><span class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;<span class="constant">Sitemap</span>&#125;</span>`</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cijcxhw57008e15lrxsnqxsjn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cijh90jnn007115pictxqbs25" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -400,16 +423,59 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 
 <hr>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="cijcxhvyo001k15lrqmtwyv9l" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="cijh90jgd001n15pih93rmdew" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
+
+
+  
+    <article id="post-a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" class="article-date">
+  <time datetime="2011-01-21T00:00:00.000Z" itemprop="datePublished">2011-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/">a simple rake task to ping google, bing, and yahoo about a change in your sitemap</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There is an easy way to notify google, bing and yahoo whenever you add content<br>to your site or blog. All of them expose a url which when called with your<br>sitemap’s url updates their indexes. This fact is known to most developers, I<br>just wanted to share a simple rake task, which automates this. I use it to ping these<br>search engines whenever I write a new blog post.  </p>
+<p>All it’s doing is looping over all the search engines’ urls and using curl to<br>ping them.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="constant">Sitemap</span> = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></span><br><span class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></span><br><span class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></span><br><span class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</span><br><span class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</span><br><span class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> |url|</span><br><span class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;<span class="constant">Sitemap</span>&#125;</span>`</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cijh90jp5008i15piqtbt8xe2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
 
 
   
@@ -440,16 +506,18 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 install malcolmx</code> you can check for multiple domain names like this:</p>
 <pre><code>malcolmx cosmicvent minhajuddin myfunkyfreakydomain
 </code></pre>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="cijcxhvxu000r15lrbwy5ay1g" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="cijh90jf7000u15pivf60cbd1" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -478,16 +546,18 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
         <p>Naming is a very hard problem, everyone who has named a <em>company/product/child</em><br>knows that. A good name can often be a motivating factor for a product. And<br>seeing people name their products <strong>Yet Another X</strong> makes me mad! I mean these<br>guys are putting in so much effort in building these products and they can’t<br>figure out a decent name! Naming something <strong>Yet Another X</strong> is mostly the<br>easiest thing to do. But, before you do that just think about how it would sound when you ask someone to use<br>“Yet Another Blogging Engine” or “Yet Another IRC Client” (<em>Hey checkout this awesome “Yet Another Blogging Engine”</em>).<br>Or think about asking a guy to help you with “Yet Another Something”, Why would anyone want to<br>(buy/use/work) do that, when they can get the <em>original</em>?</p>
 <p>Any product worth your effort deservers a better name, Any product with this kind of name doesn’t deserve to be used. Period.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="cijcxhvy8001215lrpytd98o2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="cijh90jfs001515pikr4rzo2j" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -518,16 +588,18 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
 /etc/synergy.conf</code> and there it was, when I switched the computer using a hotkey<br>it crashed. But this time, it wrote the actual error on the screen, so I could<br>investigate more and fix it. So, the next time your synergy server keeps<br>crashing and you don’t find anything in the logs run it in foreground and see<br>what’s going on :)</p>
 <p>By the way, the synergy binaries in the ubuntu repositories are very old, you<br>should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux" target="_blank" rel="external">download the binaries from their site</a></p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cijcxhvym001j15lryy8m5hyc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cijh90jga001m15pirvdipq2z" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -559,16 +631,18 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">desc <span class="string">'deletes untracked files'</span></span><br><span class="line">task <span class="string">'git:del'</span> <span class="keyword">do</span></span><br><span class="line">  files = <span class="string">`git status -s`</span></span><br><span class="line">  files.lines.each <span class="keyword">do</span> |f|</span><br><span class="line">    <span class="keyword">next</span> <span class="keyword">unless</span> f.start_with? <span class="string">'??'</span></span><br><span class="line">    f = f.gsub(<span class="string">'??'</span>, <span class="string">''</span>).strip</span><br><span class="line">    <span class="constant">File</span>.delete(f)</span><br><span class="line">    puts <span class="string">"deleted =&gt; <span class="subst">#&#123;f&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>This will permanently delete <strong>all</strong> untracked files from your working copy, so<br>use it with care! :)</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cijcxhw00003515lryls4tvzm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cijh90jhy003815pif4p2h3im" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -603,16 +677,18 @@ end
 </code></pre><p>Now when you hit Alt+k you’re active machine will be changed to the one on the<br>right, Alt+j will change it to the one on the left. </p>
 <p>By the way, if you don’t know anything about synergy and want to get started with it,<br>checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-steps/" target="_blank" rel="external">How to configure Synergy in six steps</a></p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="cijcxhw2v006015lro013sq6u" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="cijh90jmk006415pimnnlgtgi" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -644,16 +720,18 @@ end
 <p><img src="http://imgur.com/jmalM.jpg" alt="r3t Rails Template Screenshot"></p>
 <p><a href="https://github.com/minhajuddin/r3t/zipball/master" target="_blank" rel="external">Download the template</a></p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="cijcxhw03003615lrk1zwr522" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="cijh90ji3003915pihqq471rm" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -690,16 +768,18 @@ end
 </ol>
 <p>Now, whenever you login to your computer it will start pageant automatically and<br>ask you for the password of your private key. Once you do that you can pull and<br>push as much as you want, you won’t be pestered for your password anymore :)</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cijcxhw0c003915lr26x9nuvb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cijh90ji9003c15pig2mazfkt" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -729,16 +809,18 @@ end
 <p>So, I wrote a small script which reconnects the router if it has disconnected.<br>you can use it if you have the same problem ;)</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">"net/http"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"uri"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'base64'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(page, method = <span class="string">'get'</span>, form_data = <span class="keyword">nil</span>)</span></span></span><br><span class="line">  uri = <span class="constant">URI</span>.parse(<span class="string">"http://router<span class="subst">#&#123;page&#125;</span>"</span>)</span><br><span class="line">  http = <span class="constant">Net::HTTP</span>.new(uri.host, uri.port)</span><br><span class="line">  request = method == <span class="string">'get'</span> ? <span class="constant">Net::HTTP::Get</span>.new(uri.request_uri) <span class="symbol">:</span> <span class="constant">Net::HTTP::Post</span>.new(uri.request_uri)</span><br><span class="line">  request.set_form_data(form_data) <span class="keyword">if</span> form_data</span><br><span class="line">  request.basic_auth(<span class="string">"username"</span>, <span class="string">"password"</span>)</span><br><span class="line">  http.request(request)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect</span></span></span><br><span class="line">  connect_url = <span class="string">'/webconfig/quick_start/connect.html/action_qstart_connect?qstart_pppIntf=pppoe_0_35&amp;qstart_pppUserName=username&amp;qstart_pppPassword=password&amp;submit_Connect=Connect'</span></span><br><span class="line">  res = request(<span class="string">'/webconfig/wan/wan.html'</span>)</span><br><span class="line">  <span class="keyword">unless</span> res.body.match <span class="string">"Disconnect"</span></span><br><span class="line">    puts <span class="string">'disconnected, connecting ....'</span></span><br><span class="line">    res = request(connect_url)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    puts <span class="string">'connected'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    connect</span><br><span class="line">  <span class="keyword">rescue</span></span><br><span class="line">    puts <span class="variable">$!</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  sleep <span class="number">5</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cijcxhw1x004x15lr1vhdaoc3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cijh90jlb005015pioc1a2thv" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -773,16 +855,18 @@ end
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></span><br><span class="line"><span class="comment"># which is the title of the blog post</span></span><br><span class="line"><span class="comment"># e.g. command:</span></span><br><span class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Some constants</span></span><br><span class="line"><span class="constant">TEMPLATE</span> = <span class="string">"template.markdown"</span></span><br><span class="line"><span class="constant">TARGET_DIR</span> = <span class="string">"_posts"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the title which was passed as an argument</span></span><br><span class="line">title = <span class="constant">ARGV</span>[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># Get the filename</span></span><br><span class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</span><br><span class="line">filename = <span class="string">"<span class="subst">#&#123; <span class="constant">Time</span>.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </span><br><span class="line">filepath = <span class="constant">File</span>.join(<span class="constant">TARGET_DIR</span>, filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a copy of the template with the title replaced</span></span><br><span class="line">new_post = <span class="constant">File</span>.read(<span class="constant">TEMPLATE</span>)</span><br><span class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write out the file to the target directory</span></span><br><span class="line">new_post_file = <span class="constant">File</span>.open(filepath, <span class="string">'w'</span>)</span><br><span class="line">new_post_file.puts new_post</span><br><span class="line">new_post_file.close</span><br><span class="line"></span><br><span class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></span><br></pre></td></tr></table></figure>
 <p><a href="http://gist.github.com/604999#comments" target="_blank" rel="external">Download the gist</a></p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cijcxhw2w006115lrtyk0yu7e" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cijh90jmm006515piz7ykw4zc" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -831,16 +915,18 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fixnum_extensions'</span></span><br><span class="line"><span class="number">1</span>.add(<span class="number">2</span>).mul(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 <p>  Jeweler adds a lot of nifty tasks which are great, to check them out just run<br>  <code>rake -T</code></p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cijcxhw3x007315lr1ggl381n" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cijh90jnt007715pia5hxreor" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -870,16 +956,18 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 <h2 id="basic_commands"><a href="#basic_commands" class="headerlink" title="basic commands"></a>basic commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#create the repository, first thing when creating a project</span></span><br><span class="line">git init </span><br><span class="line"></span><br><span class="line"><span class="comment">#shows you the current status of your repository</span></span><br><span class="line">git status </span><br><span class="line"></span><br><span class="line"><span class="comment">#adds files or directories to the staging area</span></span><br><span class="line">git add filename </span><br><span class="line"></span><br><span class="line"><span class="comment">#commits the changes from the staging area to the repository</span></span><br><span class="line">git commit -m <span class="string">'commit message'</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment">#shows the repositories graph</span></span><br><span class="line">gitk --all </span><br><span class="line"></span><br><span class="line"><span class="comment"># to check the commits</span></span><br><span class="line">git <span class="built_in">log</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># get the last commit info</span></span><br><span class="line">git <span class="built_in">log</span> -<span class="number">1</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># file which stores the ignore file patterns</span></span><br><span class="line">.gitignore </span><br><span class="line"></span><br><span class="line"><span class="comment">#to checkout a commit</span></span><br><span class="line">git checkout SHA1ID </span><br><span class="line"></span><br><span class="line"><span class="comment">#to check the differences between working dir and latest commit</span></span><br><span class="line">git diff </span><br><span class="line"></span><br><span class="line"><span class="comment">#diff between those two commits</span></span><br><span class="line">git diff commit_id1 commit_id2 </span><br><span class="line"></span><br><span class="line"><span class="comment">#server #to push to a server</span></span><br><span class="line">git push </span><br><span class="line"></span><br><span class="line"><span class="comment">#to manager remotes</span></span><br><span class="line">git remote </span><br><span class="line"></span><br><span class="line"><span class="comment"># to get the latest commits</span></span><br><span class="line">git fetch</span><br></pre></td></tr></table></figure>
 <p><em>I’ll update this post with more examples as I get the time</em></p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="cijcxhw39006d15lrsh5044i7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="cijh90jn0006h15pilntpcpiw" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -914,55 +1002,18 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 <li>Permission to <em>repo</em> denied to <em>username</em>: this means your <em>git</em> user doesn’t have read priveleges on your repository. Fix it by giving the git user readonly privileges in your gitosis.conf</li>
 </ul>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="cijcxhw05003715lrmlymw2kn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install-a-ruby-version-with-rvm-when-offline" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/07/22/install-a-ruby-version-with-rvm-when-offline/" class="article-date">
-  <time datetime="2010-07-22T00:00:00.000Z" itemprop="datePublished">2010-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
         
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/07/22/install-a-ruby-version-with-rvm-when-offline/">how to install a ruby version with rvm when you are offline</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>This has happened to me manytimes, When I try to install a version of ruby, rvm<br>crashes unable to download the right version of the ruby source code. Sometimes<br>because it can’t resolve rubyforge.org and other times for other reasons. </p>
-<p>Anyway, when such a thing happens, or when you don’t have an internet connection<br>to the computer on which you want to install a version of ruby, you can copy the<br>zipped file with the source code to your <code>$HOME/.rvm/archives/</code> directory and<br>then run <code>rvm install &lt;ruby-version&gt;</code>. This will install the desired ruby<br>version skipping the download and using the file present in the archives<br>direcotry.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cp ruby-enterprise-<span class="number">1.8</span>.<span class="number">7</span>-<span class="number">2010.02</span>.tar.gz /home/minhajuddin/.rvm/archives</span><br><span class="line">rvm install ree-<span class="number">1.8</span>.<span class="number">7</span></span><br></pre></td></tr></table></figure>
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/" data-id="cijcxhw1i004a15lr7mh27ub2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="cijh90ji5003a15pinmwrscfm" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
 </article>
+
 
 
   
@@ -971,7 +1022,8 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
-</section>
+
+        </section>
         
           <aside id="sidebar">
   
@@ -999,7 +1051,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1009,6 +1061,10 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/01/16/how-to-reverse-selected-lines-in-vim/">How to reverse selected lines in vim</a>
+          </li>
         
           <li>
             <a href="/2016/01/13/if-you-have-an-api-make-it-curlable/">If you have an API make it curlable</a>
@@ -1024,10 +1080,6 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
         
           <li>
             <a href="/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/">Recursive/Deep open struct for hashes in ruby</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/05/default-user-for-coreos-on-digital-ocean/">Default user for coreos on Digital Ocean</a>
           </li>
         
       </ul>
@@ -1071,6 +1123,8 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
 
 <script src="/js/script.js" type="text/javascript"></script>
+
+
 
   </div>
 </body>

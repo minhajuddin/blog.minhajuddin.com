@@ -25,7 +25,10 @@
   <link rel="stylesheet" href="/css/style.css" type="text/css">
   
 
+
+  
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -65,6 +68,98 @@
 </header>
       <div class="outer">
         <section id="main">
+          
+  
+    <article id="post-git-workflow-for-projects-with-multiple-developers" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/01/31/git-workflow-for-projects-with-multiple-developers/" class="article-date">
+  <time datetime="2013-01-31T00:00:00.000Z" itemprop="datePublished">2013-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/01/31/git-workflow-for-projects-with-multiple-developers/">Git workflow for projects with multiple developers</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>For the trainees :)</p>
+<pre><code>B &lt;= current branch
+D &lt;= Commands to run on developer&apos;s computer
+R &lt;= Commands to run on reviewer&apos;s computer
+# &lt;= comment
+
+1  Update your master
+    B: master   D: git checkout master
+    B: master   D: git fetch origin
+    B: master   D: git merge origin/master #this will never create merge conflicts
+                                            because it is a fast forward (straight line)
+
+2  Create topical branch and add features/commits
+    B: master   D: git checkout -b foo
+    B: foo      D: #make all your feature commits
+
+2.1 This is an optional step, which you can do if your feature is taking a long time.
+    This will reduce your merge conflict pain down the line
+
+                D: Update master, see step #1
+    B: master   D: git checkout foo
+    B: foo      D: git merge master
+
+
+3  Review
+    B: foo      D: git push origin foo
+    B: foo      R: git fetch
+    B: foo      R: git checkout -t origin/foo
+    B: foo      R: #add notes or refactor
+    B: foo      R: #add commits on foo
+    B: foo      R: git push origin foo
+
+4  Merge review notes or refactored code
+    B: foo      D: git fetch origin
+    B: foo      D: git merge origin/foo
+    B: foo      D: #make more commits/features
+    #Repeat 3-4 as many times as you need
+
+5  Merge into master
+                D: Update master, see step #1
+    #Merge topical branch into master
+    B: master   D: git checkout foo
+    B: foo      D: git merge master #this step might cause merge conflicts
+    B: foo      D: #resolve the conflicts
+    B: foo      D: git checkout master
+    B: master   D: git merge foo #this won&apos;t cause any conflicts
+
+6  Push your code to origin
+    B: master   D: git push origin master
+</code></pre><p><strong>Steps #5 and #6 should be done in a small time window</strong></p>
+<p>Update: Changed <code>git checkout origin/foo -b foo</code> to <code>git checkout -t origin/foo</code> from a <a href="https://news.ycombinator.com/item?id=5144737" target="_blank" rel="external">tip on HN</a></p>
+
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="cijh90jmw006d15piyv4ux8ul" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/workflow/">workflow</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-resisting-the-temptation-to-be-clever" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -95,10 +190,11 @@
 <p>###Clever code<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [<span class="symbol">:street</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:zip</span>].any?&#123;|method| customer.send(method).<span class="keyword">nil</span>? || customer.send(method).squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
 <p>###Mundane code<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [customer.street, customer.city, customer.state, customer.zip].any?&#123;|prop| prop.<span class="keyword">nil</span>? || prop.squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="cijcxhvzj002j15lrn5ke1ed6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="cijh90jhd002m15pi4ib3od0o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/clever-code/">clever-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mundane-code/">mundane-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/temptation/">temptation</a></li></ul>
@@ -107,6 +203,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -135,10 +232,11 @@
         <p>Use the <code>vba</code> package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#download the code</span></span><br><span class="line"><span class="built_in">cd</span> ~/.vim/bundle</span><br><span class="line">git <span class="built_in">clone</span> git://git.wincent.com/<span class="built_in">command</span>-t.git bundle/<span class="built_in">command</span>-t</span><br><span class="line"><span class="comment"># or if you manage your dotfiles using git</span></span><br><span class="line"><span class="comment"># git submodule add git://git.wincent.com/command-t.git bundle/command-t</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># unset your CFLAGS if you have any, may not be necessary, but just in case</span></span><br><span class="line"><span class="built_in">unset</span> CFLAGS</span><br><span class="line"><span class="comment"># change your ruby version to the version used by vim</span></span><br><span class="line"><span class="comment"># you can check the version with which vim was compiled using</span></span><br><span class="line"><span class="comment"># by running the following from the vim command prompt</span></span><br><span class="line"><span class="comment"># :ruby puts RUBY_VERSION</span></span><br><span class="line">rvm use ruby-<span class="number">1.8</span>.<span class="number">7</span>-p357</span><br><span class="line"><span class="built_in">cd</span> ~/.vim/ruby/<span class="built_in">command</span>-t</span><br><span class="line">ruby extconf.rb</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cijcxhw2f005i15lromcgmw8b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cijh90jlz005m15pi444jpg84" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/command-t/">command-t</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">rvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
@@ -147,6 +245,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -178,10 +277,11 @@
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/50e3354203b04d3567000398/vim-shot.png" alt="vim screenshot"></p>
 <p>###TODO<br>Make it overwrite the old output or insert before the previous output</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cijcxhw3h006k15lrjb7nhmsz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cijh90jn8006o15pi9uu83mo5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
@@ -190,6 +290,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -233,10 +334,11 @@
 <p>All of this runs behind the scenes without you even noticing it, if everything is good. You would find a <code>failed-#{buildid}</code> tag only if the tests fail. It’s working great for me. Hope it helps you guys :)</p>
 <p>Update: Fixed redirection in git hook and added a way to notify when the tests are executed</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cijcxhvyv001n15lrj5iitd0f" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cijh90jgm001q15piz43tms8x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
@@ -245,6 +347,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -280,10 +383,11 @@
 <p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
 <p>Update: Added a version with notification</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cijcxhvza002815lrehv6pevm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cijh90jh3002b15pi5d39yupk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
@@ -292,6 +396,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -333,10 +438,11 @@
 <p><strong>For software products, India is like the island of barefooters</strong>. There is a huge<br>opportunity for people like us, but it’s not easy! Awareness has to be created<br>among customers about the benefits of technology. It is a challenging job. </p>
 <p>Hopefully this time I will get out of my cocoon and actually build and sell a<br>software product.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cijcxhvya001315lr7l2mdh1r" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cijh90jfv001615pisig7j2np" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/barefooters/">barefooters</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/india/">india</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">software</a></li></ul>
@@ -346,44 +452,6 @@
   
 </article>
 
-
-  
-    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
-  <time datetime="2012-11-30T00:00:00.000Z" itemprop="datePublished">2012-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cijcxhw1k004b15lrd2x0dg0c" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
 
 
   
@@ -417,10 +485,11 @@
 <p>On a related note, godoc can be used from the command line like:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#godoc &lt;pkg name&gt; Type/Func</span></span><br><span class="line">godoc net Listener</span><br></pre></td></tr></table></figure>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cijcxhw4d007j15lr67jfu78m" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cijh90joc007n15pizmclchqz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/godoc/">godoc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/upstart/">upstart</a></li></ul>
@@ -429,6 +498,48 @@
   </div>
   
 </article>
+
+
+
+  
+    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
+  <time datetime="2012-11-30T00:00:00.000Z" itemprop="datePublished">2012-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cijh90jku004e15pip2dfatgq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
 
 
   
@@ -463,10 +574,11 @@
 <p>Screenshot:<br><img src="https://substancehq.s3.amazonaws.com/static_asset/50a3474b03b04d4c12000fc7/Selection_004.png" alt="screenshot"></p>
 <p>###Update 2<br>You need <code>inotify-tools</code> to get this to work. You can install it on ubuntu by running <code>sudo apt-get install inotify-tools</code></p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cijcxhvxo000i15lr6iwz3506" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cijh90jf0000l15pibwis41je" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inotify/">inotify</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/watch/">watch</a></li></ul>
@@ -475,6 +587,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -511,10 +624,11 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#to sign in</span></span><br><span class="line">app.post <span class="string">'/users/sign_in'</span>,  <span class="symbol">user:</span> &#123;<span class="symbol">email:</span> <span class="string">'foo@mailinator.com'</span>, <span class="symbol">password:</span> <span class="string">"&lt;doesn't matter&gt;"</span>&#125;</span><br><span class="line"><span class="comment">#to test it out</span></span><br><span class="line">app.get <span class="string">'/desired-url'</span></span><br><span class="line">puts app.response</span><br></pre></td></tr></table></figure>
 <p>Hope that helps</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cijcxhw22004z15lrpaup6u7m" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cijh90jli005215pi1f45h6yi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/authenticate/">authenticate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/console/">console</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devise/">devise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/production/">production</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li></ul>
@@ -523,6 +637,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -553,10 +668,11 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#crontab entry</span></span><br><span class="line">@reboot /bin/bash <span class="operator">-l</span> -c <span class="string">'cd /home/minhajuddin/ &amp;&amp; $HOME/.scripts/git-update'</span></span><br></pre></td></tr></table></figure>
 <p>The git-update script should be pretty self explantory. I am looking at all the dirs under my “repos root dir” and for each of those I am finding the remotes and fetching them one at a time. The crontab entry on the other hand makes sure that every time I start my computer this script is executed. Also, I can run <code>git update</code> whenever I am online to get fetch all the new commits for my repos.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cijcxhw0h003f15lr5wqb7wne" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cijh90jif003i15pik018vgo8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automatic/">automatic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
@@ -565,6 +681,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -597,10 +714,11 @@
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/5075a77003b04d129f00082f/Selection_036.jpeg" alt="Code diff"></p>
 <p>You can see that there are 66 + 27 lines which are hidden from the view because they are the <em>exact same</em>. They don’t matter to me because nothing has changed in those lines. However, in the product comparison, I <em>have</em> to read each and every feature to find the differences. It would be great to have these kind of diffs for product comparison. Just hide the features which are the same or show some kind of color coding which convey that two products have the same feature.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="cijcxhw5c008j15lrykeynmns" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="cijh90jpb008n15pinr7fhb97" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/diff/">diff</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ecommerce/">ecommerce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ux/">ux</a></li></ul>
@@ -609,6 +727,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -647,10 +766,11 @@
 </ol>
 <p>You guys can let me know if these work for you.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="cijcxhw59008f15lrs1xmu4gj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="cijh90jp7008j15pivwh7y0bf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sleep/">sleep</a></li></ul>
@@ -659,6 +779,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -689,10 +810,11 @@
 <p>As you can see, a popular project like rails is giving them 200K pageviews in 3 months, that is a lot of eyeballs in return for hosting a git repository for free. And these numbers are from 4 years ago, I bet they have only grown since then. Also not every project is as popular as rails, But, with the <em>Law of averages</em> on their side, I am sure Github is being paid handsomely for their free hosting. As they say <em>There ain’t no such thing as a free lunch</em>. </p>
 <p>I need the traffic from my repos more than github does, so I am looking for alternatives.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="cijcxhw31006315lrnjfo53s6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="cijh90jms006715piekd0r95o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/free-lunch/">free-lunch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
@@ -701,6 +823,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -737,10 +860,11 @@
 <h3 id="Version_5-_With_chaining_and_jquery_like_onload_syntax"><a href="#Version_5-_With_chaining_and_jquery_like_onload_syntax" class="headerlink" title="Version 5. With chaining and jquery like onload syntax"></a>Version 5. With chaining and jquery like onload syntax</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line"><span class="comment">//Our tiny fraction of jQuery</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">JqueryElement</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.el = el;</span><br><span class="line">  <span class="keyword">this</span>.val = <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      el.value = newValue;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> el.value;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.click = <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</span><br><span class="line">    el.onclick = callback;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.html = <span class="function"><span class="keyword">function</span>(<span class="params">html</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      el.innerHTML = html;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> el.innerHTML;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.$ = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> id == <span class="string">'function'</span>)&#123;</span><br><span class="line">    <span class="comment">//input argument is a callback function to be called on window.onload</span></span><br><span class="line">    <span class="built_in">window</span>.onload = id;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> selectedElement = <span class="built_in">document</span>.getElementById(id);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> JqueryElement(selectedElement);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'add'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> result = +$(<span class="string">'first-operand'</span>).val() + +$(<span class="string">'second-operand'</span>).val();</span><br><span class="line">      $(<span class="string">'op'</span>).html(result);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h2</span>&gt;</span>Initial version using jQuery<span class="tag">&lt;/<span class="title">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"first-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"second-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">'add'</span>&gt;</span>Add<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"op"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>This was just for demonstration purpose for our trainees. As they say nothing in programming is magic.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="cijcxhw1n004h15lrrm7fm38y" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="cijh90jl0004k15pi8s3sb9ul" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li></ul>
@@ -749,6 +873,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -780,10 +905,11 @@
 <p>###Use cases</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#copy the html source of cosmicvent.com to clipboard</span></span><br><span class="line">curl <span class="operator">-s</span> http://cosmicvent.com | xc </span><br><span class="line"></span><br><span class="line"><span class="comment">#copy date to clipboard</span></span><br><span class="line">xc $(date)</span><br></pre></td></tr></table></figure>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cijcxhvxg000615lrdspax807" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cijh90jeq000915pi9wd5mw52" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utility/">utility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xclip/">xclip</a></li></ul>
@@ -792,6 +918,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -823,10 +950,11 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javascript:<span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'watch-sidebar'</span>);</span><br><span class="line">e.parentNode.removeChild(e);</span><br></pre></td></tr></table></figure>
 <p>This code just removes the div containing the recommendation videos. These are just a few examples, if you know a little bit of javascript. You can easily create bookmarklets to make your repetitive jobs easy.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cijcxhw4s007z15lrd7pm2of4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cijh90jot008315pizce6dggs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bookmarklet/">bookmarklet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -835,6 +963,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -862,10 +991,11 @@
       
         <p>I’ve recently started <a href="http://steveblank.com/2012/09/06/the-lean-launchpad-online/" target="_blank" rel="external">‘Going out of the the building for business’</a> and have to wait at a lot of places, and I have this urge to know How long it’s been since I started waiting for some one, or how long It took me to finish something. One the desktop I use the awesome <a href="http://mg.pov.lt/gtimelog/" target="_blank" rel="external">gtimelog</a>. However, I had no way to do the same when I was not using my computer. Until I noticed that my phone had a call register with timestamps. All I had to do, to log my time on an ordinary phone was call my own number, to store the call timestamps whenever I started something. Now, I know how much time I spend on different things and I can optimize it. Hope you find it helpful.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="cijcxhw54008a15lr8apgm8qn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="cijh90jp2008e15pizd7kx7me" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time/">time</a></li></ul>
@@ -874,6 +1004,7 @@
   </div>
   
 </article>
+
 
 
   
@@ -901,10 +1032,11 @@
       
         <p>I have used a lot of tools to manage my <strong>TODO</strong> lists, I even wrote one (<a href="https://github.com/minhajuddin/taskr" target="_blank" rel="external">Taskr - Simple command line utility to manage your tasks</a>). However, I keep coming back to <em>pen and paper</em>. I think I <em>get</em> it now, The biggest drawback of the Todo list apps I’ve used was that they made managing my Todo lists <em>easy</em>. As a result of which my lists started growing. When I use pen and paper, I <em>have</em> to copy everything to a new page <em>every single day</em>, and THAT is NOT easy. It makes me <em>think</em> which task is worth copying. At the end of the day, this is what makes my todo lists sane. I think I am going to stick to pen and paper for my Todo lists for a long time.</p>
 
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="cijcxhvxk000d15lrpw13ylih" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="cijh90jev000g15pi3i2bsulo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/difficulty/">difficulty</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/todo-list/">todo-list</a></li></ul>
@@ -915,45 +1047,6 @@
 </article>
 
 
-  
-    <article id="post-my-substance-template" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/07/03/my-substance-template/" class="article-date">
-  <time datetime="2012-07-03T00:00:00.000Z" itemprop="datePublished">2012-07-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/07/03/my-substance-template/">My Substance Template</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Here is the substance template I use for my blog. You can get a blog with the same style just by copying this content to your substance template.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">href</span>=<span class="value">"https://substancehq.s3.amazonaws.com/assets/themes/basic-ad984f7b012b0c32734a2fe824329238.css"</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">href</span>=<span class="value">"https://substancehq.s3.amazonaws.com/assets/pygments-18ba01c79ccfbe022848bccbb4413b59.css"</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"alternate"</span> <span class="attribute">type</span>=<span class="value">"application/atom+xml"</span> <span class="attribute">title</span>=<span class="value">"Atom feed"</span> <span class="attribute">href</span>=<span class="value">"/atom.xml"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"sitemap"</span> <span class="attribute">type</span>=<span class="value">"application/xml"</span> <span class="attribute">title</span>=<span class="value">"Sitemap"</span> <span class="attribute">href</span>=<span class="value">"/sitemap.xml"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"author"</span> <span class="attribute">content</span>=<span class="value">"Khaja Minhajuddin"</span> /&gt;</span></span><br><span class="line">    &#123;&#123;^page.indexed&#125;&#125;    </span><br><span class="line">    <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"robots"</span> <span class="attribute">content</span>=<span class="value">"noindex"</span> /&gt;</span></span><br><span class="line">     &#123;&#123;/page.indexed&#125;&#125;    </span><br><span class="line">    <span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css"></span><br><span class="line">  <span class="id">#posts-list</span><span class="rules">&#123; <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> <span class="number">20px</span></span></span>; <span class="rule"><span class="attribute">margin-bottom</span>:<span class="value"> <span class="number">10px</span></span></span>; &#125;</span></span><br><span class="line"><span class="id">#posts-list</span> <span class="tag">td</span><span class="class">.post-date</span><span class="rules">&#123; <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>; <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;<span class="rule"><span class="attribute">padding-right</span>:<span class="value"><span class="number">0</span></span></span>; <span class="rule"><span class="attribute">padding-left</span>:<span class="value"><span class="number">0</span></span></span>;&#125;</span></span><br><span class="line"><span class="id">#posts-list</span> <span class="tag">td</span><span class="class">.post-link</span><span class="rules">&#123; <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">10px</span></span></span>; &#125;</span></span><br><span class="line"><span class="id">#posts-list</span> <span class="tag">td</span><span class="class">.post-date</span><span class="rules">&#123;<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">10%</span></span></span>;&#125;</span></span><br><span class="line"><span class="id">#posts-list</span> <span class="tag">td</span><span class="class">.post-tags</span><span class="rules">&#123;<span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">30%</span></span></span>;&#125;</span></span><br><span class="line"><span class="id">#posts-list</span> <span class="tag">td</span><span class="rules">&#123;<span class="rule"><span class="attribute">padding-bottom</span>:<span class="value"> <span class="number">20px</span></span></span>; &#125;</span></span><br><span class="line"><span class="id">#post-tags</span> <span class="rules">&#123;<span class="rule"><span class="attribute">margin-bottom</span>:<span class="value"> <span class="number">10px</span></span></span>;&#125;</span></span><br><span class="line">   </span><span class="tag">&lt;/<span class="title">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">title</span>&gt;</span></span><br><span class="line">      &#123;&#123; page.title &#125;&#125; - &#123;&#123; site.title &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="title">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"alternate"</span> <span class="attribute">type</span>=<span class="value">"application/atom+xml"</span> <span class="attribute">href</span>=<span class="value">"http://feeds.feedburner.com/shiny-stuff"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"canonical"</span> <span class="attribute">href</span>=<span class="value">"&#123;&#123; page.absolute_url &#125;&#125;/"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"shortcut icon"</span> <span class="attribute">type</span>=<span class="value">"image/x-icon"</span> <span class="attribute">href</span>=<span class="value">"http://minhajuddin.com/favicon.ico"</span>&gt;</span></span><br><span class="line">    &#123;&#123;&#123;google_analytics_script&#125;&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="title">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">nav</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"centered"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"brand"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'/'</span>&gt;</span>&#123;&#123; site.title &#125;&#125; »<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/"</span> <span class="attribute">title</span>=<span class="value">"In search of the next shiny thing"</span>&gt;</span>Home<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/hire-me"</span> <span class="attribute">title</span>=<span class="value">"Hire Me"</span>&gt;</span>Hire Me<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/about"</span> <span class="attribute">title</span>=<span class="value">"About Me"</span>&gt;</span>About<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://feeds.feedburner.com/shiny-stuff"</span> <span class="attribute">title</span>=<span class="value">"Subscribe to the rss feed"</span>&gt;</span>Subscribe<span class="tag">&lt;/<span class="title">a</span>&gt;</span> <span class="tag">&lt;/<span class="title">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"clear:both;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">nav</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"wrapper"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">'content'</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        &#123;&#123;#if_page&#125;&#125;</span><br><span class="line">        &#123;&#123;&gt;content&#125;&#125;</span><br><span class="line">        &#123;&#123;/if_page&#125;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#123;&#123;#if_post&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"post"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">h1</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"&#123;&#123; page.url &#125;&#125;"</span> <span class="attribute">title</span>=<span class="value">'&#123;&#123; page.title &#125;&#125;'</span> <span class="attribute">class</span>=<span class="value">'post-title'</span>&gt;</span></span><br><span class="line">              &#123;&#123; page.title &#125;&#125;</span><br><span class="line">          <span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">h1</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">'post-date'</span>&gt;</span>&#123;&#123;page.formatted_published_at&#125;&#125;<span class="tag">&lt;/<span class="title">span</span>&gt;</span></span><br><span class="line">          &#123;&#123;&#123; page.markdownified_content &#125;&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">'post-tags'</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          &#123;&#123;#page.tags&#125;&#125;</span><br><span class="line">          <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'/tagged/&#123;&#123;.&#125;&#125;'</span>&gt;</span>#&#123;&#123;.&#125;&#125;<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">          &#123;&#123;/page.tags&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://twitter.com/share"</span> <span class="attribute">class</span>=<span class="value">"twitter-share-button"</span> <span class="attribute">data-count</span>=<span class="value">"horizontal"</span> <span class="attribute">data-via</span>=<span class="value">"minhajuddin"</span>&gt;</span>Tweet<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span> <span class="attribute">src</span>=<span class="value">"http://platform.twitter.com/widgets.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">g:plusone</span> <span class="attribute">size</span>=<span class="value">"medium"</span>&gt;</span><span class="tag">&lt;/<span class="title">g:plusone</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">hr</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">'comments'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"disqus_thread"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">    <span class="keyword">var</span> disqus_identifier = <span class="string">'&#123;&#123;page.url&#125;&#125;'</span>;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> dsq = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>); dsq.type = <span class="string">'text/javascript'</span>; dsq.async = <span class="literal">true</span>;</span><br><span class="line">     dsq.src = <span class="string">'http://minhajuddin.disqus.com/embed.js'</span>;</span><br><span class="line">     (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(dsq);</span><br><span class="line">     &#125;)();</span><br><span class="line">   </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">          (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="keyword">var</span> po = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>); po.type = <span class="string">'text/javascript'</span>; po.async = <span class="literal">true</span>;</span><br><span class="line">           po.src = <span class="string">'https://apis.google.com/js/plusone.js'</span>;</span><br><span class="line">           <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'script'</span>)[<span class="number">0</span>]; s.parentNode.insertBefore(po, s);</span><br><span class="line">           &#125;)();     </span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">       &#123;&#123;/if_post&#125;&#125;</span><br><span class="line">       <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"float:left;"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/"</span> <span class="attribute">title</span>=<span class="value">"In search of the next shiny thing"</span>&gt;</span>home<span class="tag">&lt;/<span class="title">a</span>&gt;</span> ·</span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://feeds.feedburner.com/shiny-stuff"</span> <span class="attribute">title</span>=<span class="value">"Subscribe to the rss feed"</span>&gt;</span>rss<span class="tag">&lt;/<span class="title">a</span>&gt;</span> ·</span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/archives"</span> <span class="attribute">title</span>=<span class="value">"Archives"</span>&gt;</span>archives<span class="tag">&lt;/<span class="title">a</span>&gt;</span>   ·</span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/hire-me"</span> <span class="attribute">title</span>=<span class="value">"hire me"</span>&gt;</span>hire me<span class="tag">&lt;/<span class="title">a</span>&gt;</span> ·</span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/about"</span> <span class="attribute">title</span>=<span class="value">"about me"</span>&gt;</span>about<span class="tag">&lt;/<span class="title">a</span>&gt;</span> ·</span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"/about#disclaimer"</span> <span class="attribute">title</span>=<span class="value">"legal"</span>&gt;</span>legal<span class="tag">&lt;/<span class="title">a</span>&gt;</span> ·</span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://github.com/minhajuddin"</span> <span class="attribute">title</span>=<span class="value">"me on github"</span>&gt;</span>on github<span class="tag">&lt;/<span class="title">a</span>&gt;</span> ·</span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://twitter.com/minhajuddin"</span> <span class="attribute">title</span>=<span class="value">"me on twitter"</span>&gt;</span>on twitter<span class="tag">&lt;/<span class="title">a</span>&gt;</span> ·</span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"mailto:minhajuddin.k@gmail.com"</span> <span class="attribute">title</span>=<span class="value">"email"</span>&gt;</span>email<span class="tag">&lt;/<span class="title">a</span>&gt;</span> ·</span><br><span class="line">     <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://cosmicvent.com"</span> <span class="attribute">title</span>=<span class="value">"Cosmicvent Software"</span>&gt;</span>my company<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"float:right;"</span>&gt;</span></span><br><span class="line">Powered by <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">'http://substancehq.com'</span> <span class="attribute">title</span>=<span class="value">'Substance - The simple blog engine'</span> &gt;</span>Substance<span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">style</span>=<span class="value">"clear:both;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"footer-sites"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color:#0074CC;font-size:140%"</span>&gt;</span>■<span class="tag">&lt;/<span class="title">span</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://substancehq.com"</span> <span class="attribute">title</span>=<span class="value">'The simple blog engine - Substance'</span>&gt;</span>substancehq.com<span class="tag">&lt;/<span class="title">a</span>&gt;</span>&amp;nbsp;</span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color:#000;font-size:140%"</span>&gt;</span>■<span class="tag">&lt;/<span class="title">span</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://getsimpleform.com/"</span> <span class="attribute">title</span>=<span class="value">'Simple Form - Build simple web forms'</span>&gt;</span>getsimpleform.com<span class="tag">&lt;/<span class="title">a</span>&gt;</span>&amp;nbsp;</span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color:#607848;font-size:140%"</span>&gt;</span>■<span class="tag">&lt;/<span class="title">span</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://redirectapp.com"</span> <span class="attribute">title</span>=<span class="value">'Easy url redirection for your websites - Redirect App'</span>&gt;</span>redirectapp.com<span class="tag">&lt;/<span class="title">a</span>&gt;</span>&amp;nbsp;</span><br><span class="line">    <span class="tag">&lt;<span class="title">span</span> <span class="attribute">style</span>=<span class="value">"color:#222;font-size:140%"</span>&gt;</span>■<span class="tag">&lt;/<span class="title">span</span>&gt;</span>&amp;nbsp;<span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"http://logb.in"</span> <span class="attribute">title</span>=<span class="value">'Save your cherished private moments for posterity - Logbin'</span>&gt;</span>logb.in<span class="tag">&lt;/<span class="title">a</span>&gt;</span>&amp;nbsp;</span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">footer</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="title">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/07/03/my-substance-template/" data-id="cijcxhw0k003l15lrm751vvt5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/substance/">substance</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/template/">template</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
 
   
   
@@ -961,7 +1054,8 @@
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
-</section>
+
+        </section>
         
           <aside id="sidebar">
   
@@ -989,7 +1083,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -999,6 +1093,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/01/16/how-to-reverse-selected-lines-in-vim/">How to reverse selected lines in vim</a>
+          </li>
         
           <li>
             <a href="/2016/01/13/if-you-have-an-api-make-it-curlable/">If you have an API make it curlable</a>
@@ -1014,10 +1112,6 @@
         
           <li>
             <a href="/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/">Recursive/Deep open struct for hashes in ruby</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/05/default-user-for-coreos-on-digital-ocean/">Default user for coreos on Digital Ocean</a>
           </li>
         
       </ul>
@@ -1061,6 +1155,8 @@
 
 
 <script src="/js/script.js" type="text/javascript"></script>
+
+
 
   </div>
 </body>
