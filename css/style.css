@@ -1292,6 +1292,27 @@ pre .javascript .function {
     color: #fff;
   }
 }
+.btn {
+  font-family: Arial;
+  color: #fff;
+  font-size: 20px;
+  background: #3498db;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+.btn:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+.highlighted-widget .widget {
+  background: #eee;
+  font-size: 1.1em;
+  border: 4px solid #fc9a24;
+}
+.highlighted-widget .widget a {
+  color: #555;
+  text-decoration: underline;
+}
 @media screen and (min-width: 768px) {
   #sidebar {
     display: inline;
