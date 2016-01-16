@@ -22,3 +22,10 @@
 <% } %>
 
 <%- js('js/script') %>
+
+<% if (page.screencast) { %>
+  <%- js('/static/asciinema-player.js') %>
+  <script>
+    asciinema_player.core.CreatePlayer('player-container', '/static/<%= page.screencast %>')
+  </script>
+<% } %>
