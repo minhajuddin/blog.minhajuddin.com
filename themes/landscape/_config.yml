@@ -21,9 +21,9 @@ widgets:
 - tag
 
 # Miscellaneous
-google_analytics:
+google_analytics: UA-10568795-1
 favicon: /favicon.png
 twitter: minhajuddin
-google_plus:
+google_plus: +KhajaMinhajuddin
 fb_admins:
 fb_app_id:
