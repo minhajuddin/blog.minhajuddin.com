@@ -5,22 +5,25 @@
   
   <title>helper script to create new posts using jekyll | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundantand painful stuff. To create a blog post, you’ll have to do the following:
+  <meta name="description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
+and painful stuff. To create a blog post, you’ll have to do the following:
 
-Create a filename called 2010-10">
+Create a filename called 2010-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="helper script to create new posts using jekyll">
 <meta property="og:url" content="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundantand painful stuff. To create a blog post, you’ll have to do the following:
+<meta property="og:description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
+and painful stuff. To create a blog post, you’ll have to do the following:
 
-Create a filename called 2010-10">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+Create a filename called 2010-">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="helper script to create new posts using jekyll">
-<meta name="twitter:description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundantand painful stuff. To create a blog post, you’ll have to do the following:
+<meta name="twitter:description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
+and painful stuff. To create a blog post, you’ll have to do the following:
 
-Create a filename called 2010-10">
+Create a filename called 2010-">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -111,12 +114,16 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant<br>and painful stuff. To create a blog post, you’ll have to do the following:</p>
+        <p>Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
+and painful stuff. To create a blog post, you’ll have to do the following:</p>
 <ul>
-<li>Create a filename called 2010-10-01-helper-script-to-create-new-posts-using-jekyll.markdown<br>which has a timestamp, hyphens and a title which is kind of a pain to type.</li>
-<li>And once you have this file you’ll have to put up some yaml front matter: the<br>title, and the layout is the minimum, Here you are typing the title again.</li>
+<li>Create a filename called 2010-10-01-helper-script-to-create-new-posts-using-jekyll.markdown
+which has a timestamp, hyphens and a title which is kind of a pain to type.</li>
+<li>And once you have this file you’ll have to put up some yaml front matter: the
+title, and the layout is the minimum, Here you are typing the title again.</li>
 </ul>
-<p>It’s not a big deal, but it’s still annoying. So, I came up with a small ruby<br>script called new.rb, which basically automates this stuff.</p>
+<p>It’s not a big deal, but it’s still annoying. So, I came up with a small ruby
+script called new.rb, which basically automates this stuff.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></span><br><span class="line"><span class="comment"># which is the title of the blog post</span></span><br><span class="line"><span class="comment"># e.g. command:</span></span><br><span class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Some constants</span></span><br><span class="line"><span class="constant">TEMPLATE</span> = <span class="string">"template.markdown"</span></span><br><span class="line"><span class="constant">TARGET_DIR</span> = <span class="string">"_posts"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the title which was passed as an argument</span></span><br><span class="line">title = <span class="constant">ARGV</span>[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># Get the filename</span></span><br><span class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</span><br><span class="line">filename = <span class="string">"<span class="subst">#&#123; <span class="constant">Time</span>.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </span><br><span class="line">filepath = <span class="constant">File</span>.join(<span class="constant">TARGET_DIR</span>, filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a copy of the template with the title replaced</span></span><br><span class="line">new_post = <span class="constant">File</span>.read(<span class="constant">TEMPLATE</span>)</span><br><span class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write out the file to the target directory</span></span><br><span class="line">new_post_file = <span class="constant">File</span>.open(filepath, <span class="string">'w'</span>)</span><br><span class="line">new_post_file.puts new_post</span><br><span class="line">new_post_file.close</span><br><span class="line"></span><br><span class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></span><br></pre></td></tr></table></figure>
 <p><a href="http://gist.github.com/604999#comments" target="_blank" rel="external">Download the gist</a></p>
 
@@ -124,7 +131,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cijlnnxj1006915pdrh0x1aiy" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cijloc3pi006914nr7dkfnrcg" class="article-share-link">Share</a>
       
       
     </footer>

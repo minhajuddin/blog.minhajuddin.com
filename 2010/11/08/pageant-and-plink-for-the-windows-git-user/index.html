@@ -5,16 +5,22 @@
   
   <title>pageant and plink for the windows git user | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Alright, pushing and pulling can be a pain if you are using git (through msysGit) on windows.You’ll have to enter the password every time you want to pull or push, And if you are working in ateam wher">
+  <meta name="description" content="Alright, pushing and pulling can be a pain if you are using git (through msysGit) on windows. 
+You’ll have to enter the password every time you want to pull or push, And if you are working in a
+team w">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pageant and plink for the windows git user">
 <meta property="og:url" content="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Alright, pushing and pulling can be a pain if you are using git (through msysGit) on windows.You’ll have to enter the password every time you want to pull or push, And if you are working in ateam wher">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="Alright, pushing and pulling can be a pain if you are using git (through msysGit) on windows. 
+You’ll have to enter the password every time you want to pull or push, And if you are working in a
+team w">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pageant and plink for the windows git user">
-<meta name="twitter:description" content="Alright, pushing and pulling can be a pain if you are using git (through msysGit) on windows.You’ll have to enter the password every time you want to pull or push, And if you are working in ateam wher">
+<meta name="twitter:description" content="Alright, pushing and pulling can be a pain if you are using git (through msysGit) on windows. 
+You’ll have to enter the password every time you want to pull or push, And if you are working in a
+team w">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,22 +111,34 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Alright, pushing and pulling can be a pain if you are using git (through msysGit) on <em>windows</em>.<br>You’ll have to enter the password <em>every</em> time you want to pull or push, And if you are working in a<br>team where you need to sync your stuff a lot, this is really painful. </p>
-<p>I use ubuntu for half of my work and Windows for the other half. And this is one<br>of the many places where ubuntu shines, It remembers the passwords of my private<br>keys in a keyring. Once you configure it, it doesn’t ask you for the password of<br>your private key, it just works.</p>
-<p>If you want to do the same with windows, you’ll need plink, putty and pageant<br>which you can <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank" rel="external">dowload here</a>. Once you have it copied to a directory, you<br>need to do the following:</p>
+        <p>Alright, pushing and pulling can be a pain if you are using git (through msysGit) on <em>windows</em>. 
+You’ll have to enter the password <em>every</em> time you want to pull or push, And if you are working in a
+team where you need to sync your stuff a lot, this is really painful. </p>
+<p>I use ubuntu for half of my work and Windows for the other half. And this is one
+of the many places where ubuntu shines, It remembers the passwords of my private
+keys in a keyring. Once you configure it, it doesn’t ask you for the password of
+your private key, it just works.</p>
+<p>If you want to do the same with windows, you’ll need plink, putty and pageant
+which you can <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank" rel="external">dowload here</a>. Once you have it copied to a directory, you
+need to do the following:</p>
 <ol>
-<li>Create an environment variable called <code>GIT_SSH</code> and copy the absolute path<br>of plink to it, e.g. d:\utilities\putty_stuff\plink.exe</li>
+<li>Create an environment variable called <code>GIT_SSH</code> and copy the absolute path
+of plink to it, e.g. d:\utilities\putty_stuff\plink.exe</li>
 <li>Create a shortcut of pageant on your desktop</li>
-<li>Right click and open up the properties of this shortcut and and append the<br>path of your key to the target of this shortcut. ()</li>
-<li>Copy this shortcut to the <em>startup</em> directory in your windows programs menu<br>to start it automatically when you login to windows</li>
+<li>Right click and open up the properties of this shortcut and and append the
+path of your key to the target of this shortcut. ()</li>
+<li>Copy this shortcut to the <em>startup</em> directory in your windows programs menu 
+to start it automatically when you login to windows</li>
 </ol>
-<p>Now, whenever you login to your computer it will start pageant automatically and<br>ask you for the password of your private key. Once you do that you can pull and<br>push as much as you want, you won’t be pestered for your password anymore :)</p>
+<p>Now, whenever you login to your computer it will start pageant automatically and
+ask you for the password of your private key. Once you do that you can pull and
+push as much as you want, you won’t be pestered for your password anymore :)</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cijlnnxfo003d15pd2ejxwkxp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cijloc3jr003d14nrsg8skw3x" class="article-share-link">Share</a>
       
       
     </footer>

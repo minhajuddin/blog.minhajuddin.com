@@ -5,16 +5,22 @@
   
   <title>how to setup your router to automatically reconnect | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="At my home I have a DSL router which disconnects whenever it feels like it ;)To reconnect it, I usually have to open up the router’s home page, browse to thepage with the connect link, enter the usern">
+  <meta name="description" content="At my home I have a DSL router which disconnects whenever it feels like it ;)
+To reconnect it, I usually have to open up the router’s home page, browse to the
+page with the connect link, enter the use">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how to setup your router to automatically reconnect">
 <meta property="og:url" content="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="At my home I have a DSL router which disconnects whenever it feels like it ;)To reconnect it, I usually have to open up the router’s home page, browse to thepage with the connect link, enter the usern">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="At my home I have a DSL router which disconnects whenever it feels like it ;)
+To reconnect it, I usually have to open up the router’s home page, browse to the
+page with the connect link, enter the use">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how to setup your router to automatically reconnect">
-<meta name="twitter:description" content="At my home I have a DSL router which disconnects whenever it feels like it ;)To reconnect it, I usually have to open up the router’s home page, browse to thepage with the connect link, enter the usern">
+<meta name="twitter:description" content="At my home I have a DSL router which disconnects whenever it feels like it ;)
+To reconnect it, I usually have to open up the router’s home page, browse to the
+page with the connect link, enter the use">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,15 +111,19 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>At my home I have a DSL router which disconnects whenever it feels like it ;)<br>To reconnect it, I usually have to open up the router’s home page, browse to the<br>page with the connect link, enter the username and password and then submit the form.<br>I know just reading the above text makes me sleepy and it’s such a distraction.</p>
-<p>So, I wrote a small script which reconnects the router if it has disconnected.<br>you can use it if you have the same problem ;)</p>
+        <p>At my home I have a DSL router which disconnects whenever it feels like it ;)
+To reconnect it, I usually have to open up the router’s home page, browse to the
+page with the connect link, enter the username and password and then submit the form.
+I know just reading the above text makes me sleepy and it’s such a distraction.</p>
+<p>So, I wrote a small script which reconnects the router if it has disconnected.
+you can use it if you have the same problem ;)</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">"net/http"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"uri"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'base64'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(page, method = <span class="string">'get'</span>, form_data = <span class="keyword">nil</span>)</span></span></span><br><span class="line">  uri = <span class="constant">URI</span>.parse(<span class="string">"http://router<span class="subst">#&#123;page&#125;</span>"</span>)</span><br><span class="line">  http = <span class="constant">Net::HTTP</span>.new(uri.host, uri.port)</span><br><span class="line">  request = method == <span class="string">'get'</span> ? <span class="constant">Net::HTTP::Get</span>.new(uri.request_uri) <span class="symbol">:</span> <span class="constant">Net::HTTP::Post</span>.new(uri.request_uri)</span><br><span class="line">  request.set_form_data(form_data) <span class="keyword">if</span> form_data</span><br><span class="line">  request.basic_auth(<span class="string">"username"</span>, <span class="string">"password"</span>)</span><br><span class="line">  http.request(request)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect</span></span></span><br><span class="line">  connect_url = <span class="string">'/webconfig/quick_start/connect.html/action_qstart_connect?qstart_pppIntf=pppoe_0_35&amp;qstart_pppUserName=username&amp;qstart_pppPassword=password&amp;submit_Connect=Connect'</span></span><br><span class="line">  res = request(<span class="string">'/webconfig/wan/wan.html'</span>)</span><br><span class="line">  <span class="keyword">unless</span> res.body.match <span class="string">"Disconnect"</span></span><br><span class="line">    puts <span class="string">'disconnected, connecting ....'</span></span><br><span class="line">    res = request(connect_url)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    puts <span class="string">'connected'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    connect</span><br><span class="line">  <span class="keyword">rescue</span></span><br><span class="line">    puts <span class="variable">$!</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  sleep <span class="number">5</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cijlnnxhh005115pdka1kltwo" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cijloc3n4005114nr1zly5r9w" class="article-share-link">Share</a>
       
       
     </footer>

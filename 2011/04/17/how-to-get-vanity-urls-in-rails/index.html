@@ -5,16 +5,22 @@
   
   <title>how to get vanity urls in rails | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allowyour users to expose their Profiles through a facebook like urlhttp://www.facebook.com/GreenDay. This is what you need t">
+  <meta name="description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allow
+your users to expose their Profiles through a facebook like url
+http://www.facebook.com/GreenDay. This is what you need">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how to get vanity urls in rails">
 <meta property="og:url" content="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allowyour users to expose their Profiles through a facebook like urlhttp://www.facebook.com/GreenDay. This is what you need t">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allow
+your users to expose their Profiles through a facebook like url
+http://www.facebook.com/GreenDay. This is what you need">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how to get vanity urls in rails">
-<meta name="twitter:description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allowyour users to expose their Profiles through a facebook like urlhttp://www.facebook.com/GreenDay. This is what you need t">
+<meta name="twitter:description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allow
+your users to expose their Profiles through a facebook like url
+http://www.facebook.com/GreenDay. This is what you need">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,10 +111,19 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Getting vanity urls to work in rails is very simple. Let’s say you want to allow<br>your users to expose their Profiles through a facebook like url<br><code>http://www.facebook.com/GreenDay</code>. This is what you need to change in your<br>routes file.</p>
-<p>The <code>except =&gt; :show</code> on line#5 makes the resources helper skip the show route.<br>And line#9 which should be at the end of the routes file, creates a route called<br>profile which will be used for all the profile <em>show</em> links automatically.<br>That’s it now your application has vanity urls, whenever someone clicks on a<br>profile#show link they will be taken to /:slug. Obviously in this case the slug<br>is assumed to be unique.</p>
+        <p>Getting vanity urls to work in rails is very simple. Let’s say you want to allow
+your users to expose their Profiles through a facebook like url
+<code>http://www.facebook.com/GreenDay</code>. This is what you need to change in your
+routes file.</p>
+<p>The <code>except =&gt; :show</code> on line#5 makes the resources helper skip the show route.
+And line#9 which should be at the end of the routes file, creates a route called
+profile which will be used for all the profile <em>show</em> links automatically.
+That’s it now your application has vanity urls, whenever someone clicks on a
+profile#show link they will be taken to /:slug. Obviously in this case the slug
+is assumed to be unique.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="constant">Funky::Application</span>.routes.draw <span class="keyword">do</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="comment">#at the end of the routes file</span></span><br><span class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>###Update###<br>One of the readers emailed me asking what the controller code would look like. Here it is:</p>
+<p>###Update###
+One of the readers emailed me asking what the controller code would look like. Here it is:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#app/models/profile.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span></span><br><span class="line">  <span class="comment">#should have a column called "slug"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> <span class="inheritance">&lt; <span class="parent">ApplicationController</span></span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></span><br><span class="line">    <span class="variable">@profile</span> = <span class="constant">Profile</span>.find_by_slug(params[<span class="symbol">:slug</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>###References###</p>
 <ul>
@@ -120,7 +135,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="cijlnnxib005z15pd8ldnmfw0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="cijloc3ol005z14nr9cvx9k4t" class="article-share-link">Share</a>
       
       
     </footer>

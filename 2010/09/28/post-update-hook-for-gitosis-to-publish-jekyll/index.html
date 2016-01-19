@@ -5,19 +5,19 @@
   
   <title>post update hook for gitosis and jekyll | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="If you have a gitosis server on which you host blog using jekyll (that would be 0.00001% of the bloggers I guess ;) ).You can use the following file as a post-update hook to update your jekyll blog.
-S">
+  <meta name="description" content="If you have a gitosis server on which you host blog using jekyll (that would be 0.00001% of the bloggers I guess ;) ). 
+You can use the following file as a post-update hook to update your jekyll blog.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="post update hook for gitosis and jekyll">
 <meta property="og:url" content="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="If you have a gitosis server on which you host blog using jekyll (that would be 0.00001% of the bloggers I guess ;) ).You can use the following file as a post-update hook to update your jekyll blog.
-S">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="If you have a gitosis server on which you host blog using jekyll (that would be 0.00001% of the bloggers I guess ;) ). 
+You can use the following file as a post-update hook to update your jekyll blog.">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="post update hook for gitosis and jekyll">
-<meta name="twitter:description" content="If you have a gitosis server on which you host blog using jekyll (that would be 0.00001% of the bloggers I guess ;) ).You can use the following file as a post-update hook to update your jekyll blog.
-S">
+<meta name="twitter:description" content="If you have a gitosis server on which you host blog using jekyll (that would be 0.00001% of the bloggers I guess ;) ). 
+You can use the following file as a post-update hook to update your jekyll blog.">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -108,8 +108,11 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If you have a gitosis server on which you host blog using jekyll (that would be 0.00001% of the bloggers I guess ;) ).<br>You can use the following file as a post-update hook to update your jekyll blog.</p>
-<p>So, let’s say your git repository is named <em>example.com</em>, browse to /home/git/repositories/example.com/hooks and create<br>a file with the name <em>post-update</em>, copy the content below to your <em>post-update</em> file. That’s it you are set, the next<br>time you push to your git repo, your blog will be automatically published.</p>
+        <p>If you have a gitosis server on which you host blog using jekyll (that would be 0.00001% of the bloggers I guess ;) ). 
+You can use the following file as a post-update hook to update your jekyll blog.</p>
+<p>So, let’s say your git repository is named <em>example.com</em>, browse to /home/git/repositories/example.com/hooks and create
+a file with the name <em>post-update</em>, copy the content below to your <em>post-update</em> file. That’s it you are set, the next
+time you push to your git repo, your blog will be automatically published.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#post-update</span></span><br><span class="line"><span class="built_in">unset</span> GIT_DIR &amp;&amp; <span class="built_in">cd</span> /var/www/blogs/example.com &amp;&amp; git pull &amp;&amp; jekyll</span><br><span class="line"><span class="comment">#/var/www/blogs/example.com is where your blog's repo is cloned</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"finished deployment"</span></span><br></pre></td></tr></table></figure>
 <p>Below are a couple of problems I ran into and how I fixed them:</p>
 <ul>
@@ -121,7 +124,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="cijlnnxfj003b15pdqczjrjcn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="cijloc3jm003b14nrm2l81gxm" class="article-share-link">Share</a>
       
       
     </footer>

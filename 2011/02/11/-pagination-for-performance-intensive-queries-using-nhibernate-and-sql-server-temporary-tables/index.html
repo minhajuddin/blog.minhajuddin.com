@@ -5,16 +5,22 @@
   
   <title>pagination for performance intensive queries using nhibernate and sql server temporary tables | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa!The basic implementation is simple. To paginate a result set you run twoalmost identical queries, one which fet">
+  <meta name="description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa!
+The basic implementation is simple. To paginate a result set you run two
+almost identical queries, one which f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pagination for performance intensive queries using nhibernate and sql server temporary tables">
 <meta property="og:url" content="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa!The basic implementation is simple. To paginate a result set you run twoalmost identical queries, one which fet">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa!
+The basic implementation is simple. To paginate a result set you run two
+almost identical queries, one which f">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pagination for performance intensive queries using nhibernate and sql server temporary tables">
-<meta name="twitter:description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa!The basic implementation is simple. To paginate a result set you run twoalmost identical queries, one which fet">
+<meta name="twitter:description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa!
+The basic implementation is simple. To paginate a result set you run two
+almost identical queries, one which f">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,16 +111,26 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Pagination is a solved problem. A simple google search shows up <em>11,200,000</em> results. Whoa!<br>The basic implementation is simple. To paginate a result set you run two<br>almost <em>identical</em> queries, one which fetches the count of the result set. The<br>other which <em>skips</em> and <em>takes</em> the desired slice from the result set. </p>
-<p>This is fine in most of the cases, But, when your query is very performance intensive, you<br>just can’t afford to run the same query twice. I ran into a similar situation<br>recently and was searching for a decent approach to solve this problem, and<br>then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="external">Temporary tables in SQL Server</a>.<br>Once I knew about them the solution became very simple. It still needs execution<br>of two queries but it doesn’t run the performance intesive query twice. See for<br>yourself:</p>
+        <p>Pagination is a solved problem. A simple google search shows up <em>11,200,000</em> results. Whoa!
+The basic implementation is simple. To paginate a result set you run two
+almost <em>identical</em> queries, one which fetches the count of the result set. The
+other which <em>skips</em> and <em>takes</em> the desired slice from the result set. </p>
+<p>This is fine in most of the cases, But, when your query is very performance intensive, you
+just can’t afford to run the same query twice. I ran into a similar situation
+recently and was searching for a decent approach to solve this problem, and
+then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="external">Temporary tables in SQL Server</a>.
+Once I knew about them the solution became very simple. It still needs execution
+of two queries but it doesn’t run the performance intesive query twice. See for
+yourself:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- first query</span></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">pi</span>.*</span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  .. a <span class="number">100</span> JOINS <span class="keyword">or</span> SPATIAL FUNCTIONS ...;</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- end of first query</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- second query</span></span><br><span class="line"><span class="comment">-- :skip and :take are sql parameters for pagination</span></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> pr.* <span class="keyword">FROM</span> </span><br><span class="line">(<span class="keyword">SELECT</span> tp.*, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> tp.<span class="keyword">Id</span>) <span class="keyword">AS</span> <span class="keyword">ROWNUM</span></span><br><span class="line">  <span class="keyword">FROM</span> #TempPerfIntensiveTable tp)pr</span><br><span class="line"><span class="keyword">WHERE</span> pr.<span class="keyword">ROWNUM</span> <span class="keyword">BETWEEN</span> :<span class="keyword">skip</span> <span class="keyword">AND</span> :take + :<span class="keyword">skip</span>;</span></span><br><span class="line"><span class="comment">-- end of second query</span></span><br></pre></td></tr></table></figure>
-<p>These queries need to be executed by calling <code>session.CreateSQLQuery(query).SetInt32.....</code> This stuff is not specific to<br>NHibernate, I just put it out there to help future searchers :)</p>
+<p>These queries need to be executed by calling <code>session.CreateSQLQuery(query).SetInt32.....</code> This stuff is not specific to 
+NHibernate, I just put it out there to help future searchers :)</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cijlnnxmo009315pd7w2colfh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cijloc3w9009314nroi1kc5uh" class="article-share-link">Share</a>
       
       
     </footer>

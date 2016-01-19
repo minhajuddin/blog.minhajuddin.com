@@ -106,14 +106,16 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A few minutes ago I learnt that adding <em>linenos</em> to the end of the highlight tag<br>in jekyll adds line numbers to a code snippet. I wanted to add this to all the<br>hightlight blocks in my blog. I came up with this command:</p>
+        <p>A few minutes ago I learnt that adding <em>linenos</em> to the end of the highlight tag
+in jekyll adds line numbers to a code snippet. I wanted to add this to all the
+hightlight blocks in my blog. I came up with this command:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grep highlight _posts/*.* \</span><br><span class="line">| awk -F : <span class="string">' &#123; print $1&#125;'</span> \</span><br><span class="line">|  uniq \</span><br><span class="line">| xargs sed -i <span class="string">'s/% *highlight *\([a-z]*\) *%/% highlight \1 linenos %/'</span></span><br></pre></td></tr></table></figure>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/05/03/linux-awesomeness/" data-id="cijlnnxgj004515pd0x936vh9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/05/03/linux-awesomeness/" data-id="cijloc3ls004514nru0yd44un" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,10 +148,19 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Getting vanity urls to work in rails is very simple. Let’s say you want to allow<br>your users to expose their Profiles through a facebook like url<br><code>http://www.facebook.com/GreenDay</code>. This is what you need to change in your<br>routes file.</p>
-<p>The <code>except =&gt; :show</code> on line#5 makes the resources helper skip the show route.<br>And line#9 which should be at the end of the routes file, creates a route called<br>profile which will be used for all the profile <em>show</em> links automatically.<br>That’s it now your application has vanity urls, whenever someone clicks on a<br>profile#show link they will be taken to /:slug. Obviously in this case the slug<br>is assumed to be unique.</p>
+        <p>Getting vanity urls to work in rails is very simple. Let’s say you want to allow
+your users to expose their Profiles through a facebook like url
+<code>http://www.facebook.com/GreenDay</code>. This is what you need to change in your
+routes file.</p>
+<p>The <code>except =&gt; :show</code> on line#5 makes the resources helper skip the show route.
+And line#9 which should be at the end of the routes file, creates a route called
+profile which will be used for all the profile <em>show</em> links automatically.
+That’s it now your application has vanity urls, whenever someone clicks on a
+profile#show link they will be taken to /:slug. Obviously in this case the slug
+is assumed to be unique.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="constant">Funky::Application</span>.routes.draw <span class="keyword">do</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="comment">#at the end of the routes file</span></span><br><span class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>###Update###<br>One of the readers emailed me asking what the controller code would look like. Here it is:</p>
+<p>###Update###
+One of the readers emailed me asking what the controller code would look like. Here it is:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#app/models/profile.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span></span><br><span class="line">  <span class="comment">#should have a column called "slug"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> <span class="inheritance">&lt; <span class="parent">ApplicationController</span></span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></span><br><span class="line">    <span class="variable">@profile</span> = <span class="constant">Profile</span>.find_by_slug(params[<span class="symbol">:slug</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>###References###</p>
 <ul>
@@ -161,7 +172,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="cijlnnxib005z15pd8ldnmfw0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="cijloc3ol005z14nr9cvx9k4t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -194,9 +205,14 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Ruby_on_Rails_Soup_to_Nuts"><a href="#Ruby_on_Rails_Soup_to_Nuts" class="headerlink" title="Ruby on Rails Soup to Nuts"></a>Ruby on Rails Soup to Nuts</h1><p>This is the first in a set of screencasts on ruby on rails. The purpose of these<br>screencasts is to teach you ruby on rails from the ground up using an ubuntu dev<br>environment.</p>
+        <h1 id="Ruby_on_Rails_Soup_to_Nuts"><a href="#Ruby_on_Rails_Soup_to_Nuts" class="headerlink" title="Ruby on Rails Soup to Nuts"></a>Ruby on Rails Soup to Nuts</h1><p>This is the first in a set of screencasts on ruby on rails. The purpose of these
+screencasts is to teach you ruby on rails from the ground up using an ubuntu dev
+environment.</p>
 <p>Here is the first one:</p>
-<div><br>  <iframe title="YouTube video player" width="630" height="503" src="http://www.youtube.com/embed/71UbXZ0WrCc?rel=0" frameborder="0"><br>  </iframe><br></div>
+<div>
+  <iframe title="YouTube video player" width="630" height="503" src="http://www.youtube.com/embed/71UbXZ0WrCc?rel=0" frameborder="0">
+  </iframe>
+</div>
 
 
 <h2 id="Notes_for_Session_1_3A_Setup_an_ubuntu_machine_with_the_basic_software"><a href="#Notes_for_Session_1_3A_Setup_an_ubuntu_machine_with_the_basic_software" class="headerlink" title="Notes for Session 1: Setup an ubuntu machine with the basic software"></a>Notes for Session 1: Setup an ubuntu machine with the basic software</h2><ol>
@@ -218,13 +234,14 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 <ol>
 <li>Install rails: gem install rails</li>
 </ol>
-<h2 id="Next_screencast_3A"><a href="#Next_screencast_3A" class="headerlink" title="Next screencast:"></a>Next screencast: </h2><p>How to build a simple rails application<br><em>Things that will make it easy for you to follow the next session: html, http, basics of ruby programming, basics of css</em></p>
+<h2 id="Next_screencast_3A"><a href="#Next_screencast_3A" class="headerlink" title="Next screencast:"></a>Next screencast: </h2><p>How to build a simple rails application 
+<em>Things that will make it easy for you to follow the next session: html, http, basics of ruby programming, basics of css</em></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="cijlnnxem002h15pdqzwz0vys" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="cijloc3ip002h14nrn85zypsp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -257,7 +274,12 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I consider myself a self-taught developer for the most part.<br>And, free screencasts where the next best thing to having a<br>trainer for me. The importance of screencasts gets lost once you get a grip on<br>programming and development. But, in the initial days when you don’t know anything<br>about programming, having a human voice guide you can make all the difference in<br>the world.</p>
+        <p>I consider myself a self-taught developer for the most part. 
+And, free screencasts where the next best thing to having a
+trainer for me. The importance of screencasts gets lost once you get a grip on
+programming and development. But, in the initial days when you don’t know anything
+about programming, having a human voice guide you can make all the difference in
+the world.</p>
 <p>Below is a list of screencasts/videos/books which helped me in my initial days of web development:</p>
 <ul>
 <li><a href="http://blogs.msdn.com/b/wsteele/archive/2005/11/07/489884.aspx" target="_blank" rel="external">ASP.NET Soup to Nuts</a> by <a href="http://blogs.msdn.com/b/wsteele/" target="_blank" rel="external">Bill Steele</a>. I learnt how things really worked on the world wide web here for the first time. The first couple of videos are relevant even for non-ASP.NET web devs.</li>
@@ -269,14 +291,30 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 <li><a href="http://railscasts.com/" target="_blank" rel="external">Railscasts</a> by <a href="http://workingwithrails.com/person/6491-ryan-bates" target="_blank" rel="external">Ryan Bates</a></li>
 <li><a href="http://headfirstlabs.com/books/hfooad/" target="_blank" rel="external">Head First OOA&amp;D</a> Although this book has examples in Java, it taught me a lot about the <a href="http://en.wikipedia.org/wiki/Solid_(object-oriented_design" target="_blank" rel="external">SOLID</a> OO principles and Object Oriented Design in general.</li>
 </ul>
-<p>I haven’t talked about my past on my blog. But, I had a secure and high paying job<br>at a big MNC called <a href="http://tcs.com" target="_blank" rel="external">TCS</a> from 2006 to 2008.<br>I used to work as an ETL developer, designing <em>jobs</em> using a tool called<br><a href="http://en.wikipedia.org/wiki/IBM_InfoSphere_DataStage" target="_blank" rel="external">Datastage</a>. It was a<br>niche skill and I was very good at it. The only problem was it didn’t give me an<br>opportunity to program. Designing high performance ETL jobs was interesting but<br>it never satisfied my hunger for <em>programming</em>. Anyway, I<br>decided to leave my secure job and start my own gig around Aug 2008.<br>My first programming job as a freelancer was fixing a <em>slow performing sql<br>query</em>(btw, the problem it had was that it was doing a cartesian join instead of<br>an inner join). I did it for $8(out of which I got $5, and the other $3 went to rentacoder.com),<br>but the satisfaction and confidence it gave me was priceless.<br>I have come a long way since then. I have developed atleast half a dozen high<br>quality web applications since then. And <em>I owe a lot of what I know to<br>the gentlemen who devoted their time in spreading knowledge through screencasts, blog posts and books.</em></p>
-<p>I am planning to do a series of screencasts to look at ruby on rails development<br>using ubuntu and post them on <a href="/vimeo">vimeo</a>, hoping to help beginners.<br>I’ll try and post atleast one video every week.</p>
+<p>I haven’t talked about my past on my blog. But, I had a secure and high paying job 
+at a big MNC called <a href="http://tcs.com" target="_blank" rel="external">TCS</a> from 2006 to 2008.
+I used to work as an ETL developer, designing <em>jobs</em> using a tool called
+<a href="http://en.wikipedia.org/wiki/IBM_InfoSphere_DataStage" target="_blank" rel="external">Datastage</a>. It was a
+niche skill and I was very good at it. The only problem was it didn’t give me an
+opportunity to program. Designing high performance ETL jobs was interesting but
+it never satisfied my hunger for <em>programming</em>. Anyway, I
+decided to leave my secure job and start my own gig around Aug 2008.
+My first programming job as a freelancer was fixing a <em>slow performing sql
+query</em>(btw, the problem it had was that it was doing a cartesian join instead of
+an inner join). I did it for $8(out of which I got $5, and the other $3 went to rentacoder.com), 
+but the satisfaction and confidence it gave me was priceless. 
+I have come a long way since then. I have developed atleast half a dozen high 
+quality web applications since then. And <em>I owe a lot of what I know to
+the gentlemen who devoted their time in spreading knowledge through screencasts, blog posts and books.</em></p>
+<p>I am planning to do a series of screencasts to look at ruby on rails development
+using ubuntu and post them on <a href="/vimeo">vimeo</a>, hoping to help beginners.
+I’ll try and post atleast one video every week.</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="cijlnnxew002u15pd2xhhz4np" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="cijloc3iz002u14nrc6n7gcco" class="article-share-link">Share</a>
       
       
     </footer>
@@ -342,7 +380,7 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cijlnnxi8005y15pd3x6i6nip" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cijloc3og005y14nrw4jeuvfm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -375,16 +413,26 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Pagination is a solved problem. A simple google search shows up <em>11,200,000</em> results. Whoa!<br>The basic implementation is simple. To paginate a result set you run two<br>almost <em>identical</em> queries, one which fetches the count of the result set. The<br>other which <em>skips</em> and <em>takes</em> the desired slice from the result set. </p>
-<p>This is fine in most of the cases, But, when your query is very performance intensive, you<br>just can’t afford to run the same query twice. I ran into a similar situation<br>recently and was searching for a decent approach to solve this problem, and<br>then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="external">Temporary tables in SQL Server</a>.<br>Once I knew about them the solution became very simple. It still needs execution<br>of two queries but it doesn’t run the performance intesive query twice. See for<br>yourself:</p>
+        <p>Pagination is a solved problem. A simple google search shows up <em>11,200,000</em> results. Whoa!
+The basic implementation is simple. To paginate a result set you run two
+almost <em>identical</em> queries, one which fetches the count of the result set. The
+other which <em>skips</em> and <em>takes</em> the desired slice from the result set. </p>
+<p>This is fine in most of the cases, But, when your query is very performance intensive, you
+just can’t afford to run the same query twice. I ran into a similar situation
+recently and was searching for a decent approach to solve this problem, and
+then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="external">Temporary tables in SQL Server</a>.
+Once I knew about them the solution became very simple. It still needs execution
+of two queries but it doesn’t run the performance intesive query twice. See for
+yourself:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- first query</span></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">pi</span>.*</span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  .. a <span class="number">100</span> JOINS <span class="keyword">or</span> SPATIAL FUNCTIONS ...;</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- end of first query</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- second query</span></span><br><span class="line"><span class="comment">-- :skip and :take are sql parameters for pagination</span></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> pr.* <span class="keyword">FROM</span> </span><br><span class="line">(<span class="keyword">SELECT</span> tp.*, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> tp.<span class="keyword">Id</span>) <span class="keyword">AS</span> <span class="keyword">ROWNUM</span></span><br><span class="line">  <span class="keyword">FROM</span> #TempPerfIntensiveTable tp)pr</span><br><span class="line"><span class="keyword">WHERE</span> pr.<span class="keyword">ROWNUM</span> <span class="keyword">BETWEEN</span> :<span class="keyword">skip</span> <span class="keyword">AND</span> :take + :<span class="keyword">skip</span>;</span></span><br><span class="line"><span class="comment">-- end of second query</span></span><br></pre></td></tr></table></figure>
-<p>These queries need to be executed by calling <code>session.CreateSQLQuery(query).SetInt32.....</code> This stuff is not specific to<br>NHibernate, I just put it out there to help future searchers :)</p>
+<p>These queries need to be executed by calling <code>session.CreateSQLQuery(query).SetInt32.....</code> This stuff is not specific to 
+NHibernate, I just put it out there to help future searchers :)</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cijlnnxmo009315pd7w2colfh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cijloc3w9009314nroi1kc5uh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -417,23 +465,29 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="external">rake/albacore</a><br>tasks to compile the asp.net mvc application on the remote server and update the<br>database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="external">fluent migrator</a>.</p>
+        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="external">rake/albacore</a>
+tasks to compile the asp.net mvc application on the remote server and update the 
+database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="external">fluent migrator</a>.</p>
 <p>Whenever I need to deploy I do the following:  </p>
 <ol>
 <li>RDP into the remote server</li>
 <li>Open git bash =&gt; cd to the repository’s directory =&gt; do a <code>git fetch</code> and <code>git merge origin/master</code></li>
 <li>And then run <code>rake compile</code> (to compile the latest changes) and finally <code>rake db:migrate</code>(to update the database if there are any db changes)</li>
 </ol>
-<p>Even though rake and fluentmigrator make this pretty painless. It’s still a pain<br>to rdp and do this stuff. So, I came up with a couple of batch scripts to make<br>this process even simpler. Now I have two batch files in the root directory of<br>my git repo:</p>
+<p>Even though rake and fluentmigrator make this pretty painless. It’s still a pain
+to rdp and do this stuff. So, I came up with a couple of batch scripts to make
+this process even simpler. Now I have two batch files in the root directory of
+my git repo:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#deploy.bat</span></span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> fetch &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> reset --hard HEAD &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> merge origin/master &amp;&amp; </span><br><span class="line">rake compile &amp;&amp; </span><br><span class="line">rake db:migrate</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#remote_deploy.bat</span></span><br><span class="line">psexec \\example.com -u userfoo -w <span class="string">"c:\repos\foobar"</span> <span class="string">"c:\repos\foobar\deploy.bat"</span></span><br></pre></td></tr></table></figure>
-<p>The code should be self explanatory. All we are doing is, instead of running the<br>command manually automating them.</p>
+<p>The code should be self explanatory. All we are doing is, instead of running the
+command manually automating them.</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cijlnnxkk007a15pd2108sf3r" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cijloc3sb007a14nr4encpk06" class="article-share-link">Share</a>
       
       
     </footer>
@@ -466,15 +520,20 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>There is an easy way to notify google, bing and yahoo whenever you add content<br>to your site or blog. All of them expose a url which when called with your<br>sitemap’s url updates their indexes. This fact is known to most developers, I<br>just wanted to share a simple rake task, which automates this. I use it to ping these<br>search engines whenever I write a new blog post.  </p>
-<p>All it’s doing is looping over all the search engines’ urls and using curl to<br>ping them.</p>
+        <p>There is an easy way to notify google, bing and yahoo whenever you add content
+to your site or blog. All of them expose a url which when called with your
+sitemap’s url updates their indexes. This fact is known to most developers, I
+just wanted to share a simple rake task, which automates this. I use it to ping these 
+search engines whenever I write a new blog post.  </p>
+<p>All it’s doing is looping over all the search engines’ urls and using curl to
+ping them.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="constant">Sitemap</span> = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></span><br><span class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></span><br><span class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></span><br><span class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</span><br><span class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</span><br><span class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> |url|</span><br><span class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;<span class="constant">Sitemap</span>&#125;</span>`</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cijlnnxmd008r15pdxr90bp3y" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cijloc3vp008r14nrh2pytk1s" class="article-share-link">Share</a>
       
       
     </footer>
@@ -507,14 +566,20 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>We software developers are so obsessed with trying to be cool that we forget who<br>we are. I am sure many of you have seen phrases like <em>javascript ninja/C# ninja/<br>php rockstar developer (with a silhouette of a rockstar)</em> on various websites.  </p>
+        <p>We software developers are so obsessed with trying to be cool that we forget who
+we are. I am sure many of you have seen phrases like <em>javascript ninja/C# ninja/
+php rockstar developer (with a silhouette of a rockstar)</em> on various websites.  </p>
 <p><strong>Think about what these phrases mean for a second.</strong>  </p>
 <p>Why the hell would I call myself a javascript ninja, instead of a javascript developer or a javascript hacker?  </p>
 <p>Is it because javascript <em>ninja</em> sounds cooler?  </p>
 <p>Does it mean that I would rather be a <em>ninja</em> than a javascript <em>developer</em>?  </p>
-<p>I get pissed off whenever I see a guy who gets his body peirced or calls himself<br>a rockstar developer or calls himself some ninja just to look cool.  </p>
-<p>We are not ninjas or rockstars, we are programmers/developers/hackers and we<br>need to be proud of that. Intel gets this right: <em>Our rock stars are’nt like your<br>rockstars</em>.</p>
-<iframe title="YouTube video player" class="youtube-player" type="text/html" width="589" height="472" src="http://www.youtube.com/embed/q-8GVi2Fdi4?rel=0" frameborder="0"><br></iframe>
+<p>I get pissed off whenever I see a guy who gets his body peirced or calls himself 
+a rockstar developer or calls himself some ninja just to look cool.  </p>
+<p>We are not ninjas or rockstars, we are programmers/developers/hackers and we
+need to be proud of that. Intel gets this right: <em>Our rock stars are’nt like your
+rockstars</em>.</p>
+<iframe title="YouTube video player" class="youtube-player" type="text/html" width="589" height="472" src="http://www.youtube.com/embed/q-8GVi2Fdi4?rel=0" frameborder="0">
+</iframe>
 
 <hr>
 
@@ -522,7 +587,7 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="cijlnnxdq001o15pdhlkmehem" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="cijloc3hp001o14nrx6zmd5pa" class="article-share-link">Share</a>
       
       
     </footer>
@@ -555,8 +620,14 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The other day I stumbled upon <a href="http://instantdomainsearch.com/" target="_blank" rel="external">instantdomainsearch.com</a>.<br>It’s <em>the</em> best among the domain name checking apps I have used till now. It’s very<br>zippy and has a clean interface. </p>
-<p>It has just one limitation, it allows you to search domains <em>one</em> at a time. And<br>if you have a bunch of domain names which you want to check in one go, you can’t<br>do it. So, I slapped together a <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">gem: MalcolmX</a> which allows us<br>to check for multiple domain names in one go. You can checkout it’s <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">code on<br>github</a>. Once you install it using <code>gem
+        <p>The other day I stumbled upon <a href="http://instantdomainsearch.com/" target="_blank" rel="external">instantdomainsearch.com</a>. 
+It’s <em>the</em> best among the domain name checking apps I have used till now. It’s very
+zippy and has a clean interface. </p>
+<p>It has just one limitation, it allows you to search domains <em>one</em> at a time. And
+if you have a bunch of domain names which you want to check in one go, you can’t
+do it. So, I slapped together a <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">gem: MalcolmX</a> which allows us
+to check for multiple domain names in one go. You can checkout it’s <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">code on
+github</a>. Once you install it using <code>gem
 install malcolmx</code> you can check for multiple domain names like this:</p>
 <pre><code>malcolmx cosmicvent minhajuddin myfunkyfreakydomain
 </code></pre>
@@ -564,7 +635,7 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="cijlnnxcq000v15pd8qpjgf4s" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="cijloc3gk000v14nrepx1nfgj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -597,14 +668,22 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Naming is a very hard problem, everyone who has named a <em>company/product/child</em><br>knows that. A good name can often be a motivating factor for a product. And<br>seeing people name their products <strong>Yet Another X</strong> makes me mad! I mean these<br>guys are putting in so much effort in building these products and they can’t<br>figure out a decent name! Naming something <strong>Yet Another X</strong> is mostly the<br>easiest thing to do. But, before you do that just think about how it would sound when you ask someone to use<br>“Yet Another Blogging Engine” or “Yet Another IRC Client” (<em>Hey checkout this awesome “Yet Another Blogging Engine”</em>).<br>Or think about asking a guy to help you with “Yet Another Something”, Why would anyone want to<br>(buy/use/work) do that, when they can get the <em>original</em>?</p>
+        <p>Naming is a very hard problem, everyone who has named a <em>company/product/child</em>
+knows that. A good name can often be a motivating factor for a product. And
+seeing people name their products <strong>Yet Another X</strong> makes me mad! I mean these
+guys are putting in so much effort in building these products and they can’t
+figure out a decent name! Naming something <strong>Yet Another X</strong> is mostly the
+easiest thing to do. But, before you do that just think about how it would sound when you ask someone to use
+“Yet Another Blogging Engine” or “Yet Another IRC Client” (<em>Hey checkout this awesome “Yet Another Blogging Engine”</em>). 
+Or think about asking a guy to help you with “Yet Another Something”, Why would anyone want to
+(buy/use/work) do that, when they can get the <em>original</em>?</p>
 <p>Any product worth your effort deservers a better name, Any product with this kind of name doesn’t deserve to be used. Period.</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="cijlnnxd8001615pdxoff22ru" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="cijloc3h4001614nr47lojqnz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -637,16 +716,25 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been using <a href="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/">Synergy</a><br>to work seamlessly across my ubuntu and windows 7 machines. </p>
-<p>Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing without<br>all the time. Looking into the logs (<code>/var/log/syslog</code>) didn’t show anything, I<br>was left scratching my head for a long time. Then I realized that the <code>synergys</code><br>can be executed in foreground using the <code>-f</code> flag. I executed <code>synergys -f -c
-/etc/synergy.conf</code> and there it was, when I switched the computer using a hotkey<br>it crashed. But this time, it wrote the actual error on the screen, so I could<br>investigate more and fix it. So, the next time your synergy server keeps<br>crashing and you don’t find anything in the logs run it in foreground and see<br>what’s going on :)</p>
-<p>By the way, the synergy binaries in the ubuntu repositories are very old, you<br>should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux" target="_blank" rel="external">download the binaries from their site</a></p>
+        <p>I’ve been using <a href="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/">Synergy</a> 
+to work seamlessly across my ubuntu and windows 7 machines. </p>
+<p>Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing without
+all the time. Looking into the logs (<code>/var/log/syslog</code>) didn’t show anything, I
+was left scratching my head for a long time. Then I realized that the <code>synergys</code>
+can be executed in foreground using the <code>-f</code> flag. I executed <code>synergys -f -c
+/etc/synergy.conf</code> and there it was, when I switched the computer using a hotkey
+it crashed. But this time, it wrote the actual error on the screen, so I could
+investigate more and fix it. So, the next time your synergy server keeps
+crashing and you don’t find anything in the logs run it in foreground and see
+what’s going on :)</p>
+<p>By the way, the synergy binaries in the ubuntu repositories are very old, you
+should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux" target="_blank" rel="external">download the binaries from their site</a></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cijlnnxdn001n15pd2xk9egas" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cijloc3hl001n14nrtuyfns6w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -679,17 +767,22 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>UPDATE</strong> I should have checked if git has a command for this. Anyway <em>SomeGuy</em><br>has reminded me once again that I should GTFT (Google the f*** thing) before<br>creating a task. Thanks for the tip <em>SomeGuy</em> :). Long story short, use <code>git clean</code> to <a href="http://www.gitready.com/beginner/2009/01/16/cleaning-up-untracked-files.html" target="_blank" rel="external">cleanup<br>untracked files</a></p>
+        <p><strong>UPDATE</strong> I should have checked if git has a command for this. Anyway <em>SomeGuy</em>
+has reminded me once again that I should GTFT (Google the f*** thing) before
+creating a task. Thanks for the tip <em>SomeGuy</em> :). Long story short, use <code>git clean</code> to <a href="http://www.gitready.com/beginner/2009/01/16/cleaning-up-untracked-files.html" target="_blank" rel="external">cleanup
+untracked files</a></p>
 <hr>
-<p>Whenever I merge stuff from my colleagues, I end up with a bunch of <strong>*.orig</strong> files.<br>So, I created a simple rake task which deletes all the untracked files.</p>
+<p>Whenever I merge stuff from my colleagues, I end up with a bunch of <strong>*.orig</strong> files.
+So, I created a simple rake task which deletes all the untracked files.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">desc <span class="string">'deletes untracked files'</span></span><br><span class="line">task <span class="string">'git:del'</span> <span class="keyword">do</span></span><br><span class="line">  files = <span class="string">`git status -s`</span></span><br><span class="line">  files.lines.each <span class="keyword">do</span> |f|</span><br><span class="line">    <span class="keyword">next</span> <span class="keyword">unless</span> f.start_with? <span class="string">'??'</span></span><br><span class="line">    f = f.gsub(<span class="string">'??'</span>, <span class="string">''</span>).strip</span><br><span class="line">    <span class="constant">File</span>.delete(f)</span><br><span class="line">    puts <span class="string">"deleted =&gt; <span class="subst">#&#123;f&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>This will permanently delete <strong>all</strong> untracked files from your working copy, so<br>use it with care! :)</p>
+<p>This will permanently delete <strong>all</strong> untracked files from your working copy, so
+use it with care! :)</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cijlnnxff003915pd2n3ji26v" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cijloc3ji003914nrdi1b4ii7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -722,20 +815,30 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I have a Windows workstation and an Ubuntu laptop. And I use them simultaneously<br>at work. Using two keyboards and mice can be a pain. And that’s when I<br>found <a href="http://synergy-foss.org/" target="_blank" rel="external">Synergy</a>. Once you setup synergy you can use one keyboard/mouse to<br>manage both your computers. It works like a dual monitor setup, only that the<br>other monitor is a different machine.</p>
-<p>I am a keyboard person and moving the mouse over to the next screen to use the<br>other machine is …. well, It’s not enjoyable. Synergy makes it very easy to<br>hookup hotkeys to be able to do things. You can add the following code to the<br>synergy configy file which is located at <code>C:\Users\minhajuddin\Documents\synergy.sgc</code><br>if you are using a windows machine as the synergy server.</p>
+        <p>I have a Windows workstation and an Ubuntu laptop. And I use them simultaneously
+at work. Using two keyboards and mice can be a pain. And that’s when I
+found <a href="http://synergy-foss.org/" target="_blank" rel="external">Synergy</a>. Once you setup synergy you can use one keyboard/mouse to
+manage both your computers. It works like a dual monitor setup, only that the
+other monitor is a different machine.</p>
+<p>I am a keyboard person and moving the mouse over to the next screen to use the
+other machine is …. well, It’s not enjoyable. Synergy makes it very easy to
+hookup hotkeys to be able to do things. You can add the following code to the
+synergy configy file which is located at <code>C:\Users\minhajuddin\Documents\synergy.sgc</code>
+if you are using a windows machine as the synergy server.</p>
 <pre><code>section: options
     keystroke(Alt+\u006B) = ; switchInDirection(right)
     keystroke(Alt+\u006A) = ; switchInDirection(left)
 end
-</code></pre><p>Now when you hit Alt+k you’re active machine will be changed to the one on the<br>right, Alt+j will change it to the one on the left. </p>
-<p>By the way, if you don’t know anything about synergy and want to get started with it,<br>checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-steps/" target="_blank" rel="external">How to configure Synergy in six steps</a></p>
+</code></pre><p>Now when you hit Alt+k you’re active machine will be changed to the one on the
+right, Alt+j will change it to the one on the left. </p>
+<p>By the way, if you don’t know anything about synergy and want to get started with it,
+checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-steps/" target="_blank" rel="external">How to configure Synergy in six steps</a></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="cijlnnxix006815pdejbg4xrz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="cijloc3pd006814nrceafv2j2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -768,8 +871,13 @@ end
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Lately I have been prototyping a lot. And the initial rails wireup with all my<br>gems was becoming a pain. I checked out <a href="http://railswizard.org/" target="_blank" rel="external">RailsWizard</a> It’s an awesome app,<br>and for most of the requirements it would work right out of the box.</p>
-<p>I needed a template with a little more customization, so I created a rails<br>project wired it up and put it on <a href="https://github.com/minhajuddin/r3t" target="_blank" rel="external">github</a>. So, now, whenever I need to do<br>some quick prototyping, I don’t get distracted by the initial wireup. I just<br>clone the repo and start banging out code :)</p>
+        <p>Lately I have been prototyping a lot. And the initial rails wireup with all my
+gems was becoming a pain. I checked out <a href="http://railswizard.org/" target="_blank" rel="external">RailsWizard</a> It’s an awesome app,
+and for most of the requirements it would work right out of the box.</p>
+<p>I needed a template with a little more customization, so I created a rails
+project wired it up and put it on <a href="https://github.com/minhajuddin/r3t" target="_blank" rel="external">github</a>. So, now, whenever I need to do
+some quick prototyping, I don’t get distracted by the initial wireup. I just
+clone the repo and start banging out code :)</p>
 <p>Here is a screenshot of the users page</p>
 <p><img src="http://imgur.com/jmalM.jpg" alt="r3t Rails Template Screenshot"></p>
 <p><a href="https://github.com/minhajuddin/r3t/zipball/master" target="_blank" rel="external">Download the template</a></p>
@@ -778,7 +886,7 @@ end
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="cijlnnxfh003a15pd9tmqee41" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="cijloc3jk003a14nrd3cwcbre" class="article-share-link">Share</a>
       
       
     </footer>
@@ -811,22 +919,34 @@ end
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Alright, pushing and pulling can be a pain if you are using git (through msysGit) on <em>windows</em>.<br>You’ll have to enter the password <em>every</em> time you want to pull or push, And if you are working in a<br>team where you need to sync your stuff a lot, this is really painful. </p>
-<p>I use ubuntu for half of my work and Windows for the other half. And this is one<br>of the many places where ubuntu shines, It remembers the passwords of my private<br>keys in a keyring. Once you configure it, it doesn’t ask you for the password of<br>your private key, it just works.</p>
-<p>If you want to do the same with windows, you’ll need plink, putty and pageant<br>which you can <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank" rel="external">dowload here</a>. Once you have it copied to a directory, you<br>need to do the following:</p>
+        <p>Alright, pushing and pulling can be a pain if you are using git (through msysGit) on <em>windows</em>. 
+You’ll have to enter the password <em>every</em> time you want to pull or push, And if you are working in a
+team where you need to sync your stuff a lot, this is really painful. </p>
+<p>I use ubuntu for half of my work and Windows for the other half. And this is one
+of the many places where ubuntu shines, It remembers the passwords of my private
+keys in a keyring. Once you configure it, it doesn’t ask you for the password of
+your private key, it just works.</p>
+<p>If you want to do the same with windows, you’ll need plink, putty and pageant
+which you can <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank" rel="external">dowload here</a>. Once you have it copied to a directory, you
+need to do the following:</p>
 <ol>
-<li>Create an environment variable called <code>GIT_SSH</code> and copy the absolute path<br>of plink to it, e.g. d:\utilities\putty_stuff\plink.exe</li>
+<li>Create an environment variable called <code>GIT_SSH</code> and copy the absolute path
+of plink to it, e.g. d:\utilities\putty_stuff\plink.exe</li>
 <li>Create a shortcut of pageant on your desktop</li>
-<li>Right click and open up the properties of this shortcut and and append the<br>path of your key to the target of this shortcut. ()</li>
-<li>Copy this shortcut to the <em>startup</em> directory in your windows programs menu<br>to start it automatically when you login to windows</li>
+<li>Right click and open up the properties of this shortcut and and append the
+path of your key to the target of this shortcut. ()</li>
+<li>Copy this shortcut to the <em>startup</em> directory in your windows programs menu 
+to start it automatically when you login to windows</li>
 </ol>
-<p>Now, whenever you login to your computer it will start pageant automatically and<br>ask you for the password of your private key. Once you do that you can pull and<br>push as much as you want, you won’t be pestered for your password anymore :)</p>
+<p>Now, whenever you login to your computer it will start pageant automatically and
+ask you for the password of your private key. Once you do that you can pull and
+push as much as you want, you won’t be pestered for your password anymore :)</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cijlnnxfo003d15pd2ejxwkxp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cijloc3jr003d14nrsg8skw3x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -859,15 +979,19 @@ end
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>At my home I have a DSL router which disconnects whenever it feels like it ;)<br>To reconnect it, I usually have to open up the router’s home page, browse to the<br>page with the connect link, enter the username and password and then submit the form.<br>I know just reading the above text makes me sleepy and it’s such a distraction.</p>
-<p>So, I wrote a small script which reconnects the router if it has disconnected.<br>you can use it if you have the same problem ;)</p>
+        <p>At my home I have a DSL router which disconnects whenever it feels like it ;)
+To reconnect it, I usually have to open up the router’s home page, browse to the
+page with the connect link, enter the username and password and then submit the form.
+I know just reading the above text makes me sleepy and it’s such a distraction.</p>
+<p>So, I wrote a small script which reconnects the router if it has disconnected.
+you can use it if you have the same problem ;)</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">"net/http"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"uri"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'base64'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(page, method = <span class="string">'get'</span>, form_data = <span class="keyword">nil</span>)</span></span></span><br><span class="line">  uri = <span class="constant">URI</span>.parse(<span class="string">"http://router<span class="subst">#&#123;page&#125;</span>"</span>)</span><br><span class="line">  http = <span class="constant">Net::HTTP</span>.new(uri.host, uri.port)</span><br><span class="line">  request = method == <span class="string">'get'</span> ? <span class="constant">Net::HTTP::Get</span>.new(uri.request_uri) <span class="symbol">:</span> <span class="constant">Net::HTTP::Post</span>.new(uri.request_uri)</span><br><span class="line">  request.set_form_data(form_data) <span class="keyword">if</span> form_data</span><br><span class="line">  request.basic_auth(<span class="string">"username"</span>, <span class="string">"password"</span>)</span><br><span class="line">  http.request(request)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect</span></span></span><br><span class="line">  connect_url = <span class="string">'/webconfig/quick_start/connect.html/action_qstart_connect?qstart_pppIntf=pppoe_0_35&amp;qstart_pppUserName=username&amp;qstart_pppPassword=password&amp;submit_Connect=Connect'</span></span><br><span class="line">  res = request(<span class="string">'/webconfig/wan/wan.html'</span>)</span><br><span class="line">  <span class="keyword">unless</span> res.body.match <span class="string">"Disconnect"</span></span><br><span class="line">    puts <span class="string">'disconnected, connecting ....'</span></span><br><span class="line">    res = request(connect_url)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    puts <span class="string">'connected'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    connect</span><br><span class="line">  <span class="keyword">rescue</span></span><br><span class="line">    puts <span class="variable">$!</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  sleep <span class="number">5</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cijlnnxhh005115pdka1kltwo" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cijloc3n4005114nr1zly5r9w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -900,12 +1024,16 @@ end
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant<br>and painful stuff. To create a blog post, you’ll have to do the following:</p>
+        <p>Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
+and painful stuff. To create a blog post, you’ll have to do the following:</p>
 <ul>
-<li>Create a filename called 2010-10-01-helper-script-to-create-new-posts-using-jekyll.markdown<br>which has a timestamp, hyphens and a title which is kind of a pain to type.</li>
-<li>And once you have this file you’ll have to put up some yaml front matter: the<br>title, and the layout is the minimum, Here you are typing the title again.</li>
+<li>Create a filename called 2010-10-01-helper-script-to-create-new-posts-using-jekyll.markdown
+which has a timestamp, hyphens and a title which is kind of a pain to type.</li>
+<li>And once you have this file you’ll have to put up some yaml front matter: the
+title, and the layout is the minimum, Here you are typing the title again.</li>
 </ul>
-<p>It’s not a big deal, but it’s still annoying. So, I came up with a small ruby<br>script called new.rb, which basically automates this stuff.</p>
+<p>It’s not a big deal, but it’s still annoying. So, I came up with a small ruby
+script called new.rb, which basically automates this stuff.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></span><br><span class="line"><span class="comment"># which is the title of the blog post</span></span><br><span class="line"><span class="comment"># e.g. command:</span></span><br><span class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Some constants</span></span><br><span class="line"><span class="constant">TEMPLATE</span> = <span class="string">"template.markdown"</span></span><br><span class="line"><span class="constant">TARGET_DIR</span> = <span class="string">"_posts"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the title which was passed as an argument</span></span><br><span class="line">title = <span class="constant">ARGV</span>[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># Get the filename</span></span><br><span class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</span><br><span class="line">filename = <span class="string">"<span class="subst">#&#123; <span class="constant">Time</span>.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </span><br><span class="line">filepath = <span class="constant">File</span>.join(<span class="constant">TARGET_DIR</span>, filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a copy of the template with the title replaced</span></span><br><span class="line">new_post = <span class="constant">File</span>.read(<span class="constant">TEMPLATE</span>)</span><br><span class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write out the file to the target directory</span></span><br><span class="line">new_post_file = <span class="constant">File</span>.open(filepath, <span class="string">'w'</span>)</span><br><span class="line">new_post_file.puts new_post</span><br><span class="line">new_post_file.close</span><br><span class="line"></span><br><span class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></span><br></pre></td></tr></table></figure>
 <p><a href="http://gist.github.com/604999#comments" target="_blank" rel="external">Download the gist</a></p>
 
@@ -913,7 +1041,7 @@ end
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cijlnnxj1006915pdrh0x1aiy" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cijloc3pi006914nr7dkfnrcg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -946,34 +1074,58 @@ end
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it<br>across your projects. And you don’t want to copy/paste the files across<br>different projects, cause that’s a pain and keeping all your re-usable code<br>across the projects up to date is not feasible. </p>
-<p>It’s obvious at this point that what you want is a gem, which would make sharing of code<br>across your projects a breeze, with the added benefits of seamless upgrades.<br>Hopefully this blog post will teach you how to create a simple gem in a few<br>steps.</p>
-<p>Gem creation is very easy if you use the right tools. If you go to<br><a href="http://ruby-toolbox.com/categories/gem_creation.html" target="_blank" rel="external">ruby-toolbox.com</a> you can see that there is more than one tool for gem<br>creation and management. The top-most on this list is <a href="http://github.com/technicalpickles/jeweler" target="_blank" rel="external">Jeweler</a>, It is an<br>awesome gem with a lot of nifty features which makes gem management a breeze.</p>
-<p>OK, <em>Enough talk let’s fight</em>. The first thing which you need to do<br>is install jeweler with the command <code>[sudo] gem install jeweler</code></p>
-<p>Once you have jeweler installed just follow the steps below to create your <em>own</em><br>gem:</p>
+        <p>So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it
+across your projects. And you don’t want to copy/paste the files across
+different projects, cause that’s a pain and keeping all your re-usable code
+across the projects up to date is not feasible. </p>
+<p>It’s obvious at this point that what you want is a gem, which would make sharing of code
+across your projects a breeze, with the added benefits of seamless upgrades.
+Hopefully this blog post will teach you how to create a simple gem in a few
+steps.</p>
+<p>Gem creation is very easy if you use the right tools. If you go to
+<a href="http://ruby-toolbox.com/categories/gem_creation.html" target="_blank" rel="external">ruby-toolbox.com</a> you can see that there is more than one tool for gem
+creation and management. The top-most on this list is <a href="http://github.com/technicalpickles/jeweler" target="_blank" rel="external">Jeweler</a>, It is an
+awesome gem with a lot of nifty features which makes gem management a breeze.</p>
+<p>OK, <em>Enough talk let’s fight</em>. The first thing which you need to do
+is install jeweler with the command <code>[sudo] gem install jeweler</code></p>
+<p>Once you have jeweler installed just follow the steps below to create your <em>own</em>
+gem:</p>
 <ul>
-<li>Run the command <code>jeweler fixnum_extensions</code> in the directory where you want<br>to create your your gem (fixnum_extensions here is the name of the gem).</li>
-<li>With the above command jeweler creates a bunch of files and directories for<br>your gem. One of the files which it creates is the <code>Rakefile</code> which has a lot<br>of predefined tasks which you can use to manager your gems.</li>
-<li>The file where you need to put your ruby code is  <code>lib/fixnum_extensions.rb</code><br>my file has the code below in it:</li>
+<li>Run the command <code>jeweler fixnum_extensions</code> in the directory where you want
+to create your your gem (fixnum_extensions here is the name of the gem).</li>
+<li>With the above command jeweler creates a bunch of files and directories for
+your gem. One of the files which it creates is the <code>Rakefile</code> which has a lot
+of predefined tasks which you can use to manager your gems.</li>
+<li>The file where you need to put your ruby code is  <code>lib/fixnum_extensions.rb</code> 
+my file has the code below in it:</li>
 </ul>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#This is a contrived example but it's fine</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(number)</span></span></span><br><span class="line">    number + <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(number)</span></span></span><br><span class="line">    number - <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(number)</span></span></span><br><span class="line">    number * <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">div</span><span class="params">(number)</span></span></span><br><span class="line">    number / <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>Now you need to open up the Rakefile and add a <em>description</em> and <em>summary</em><br>instead of the TODOs.</li>
-<li>Note that it fills up the author name and email by<br>looking at your git configuration files, it also creates a git repository with<br>a nice .gitignore file and makes the initial commit.</li>
-<li>The last thing you need to do before building your gem is create a VERSION<br>file, to do this just run <code>rake version:write</code>. This command creates a VERSION<br>file in your gem’s root folder which holds the version number of your gem.</li>
-<li>Finally, to build our gem run <code>rake build</code> (ignore the warnings when you run<br>this command). This will create a folder called <code>pkg</code> which holds your final<br>gem file <code>fixnum_extensions-0.0.0.gem</code>.</li>
+<li>Now you need to open up the Rakefile and add a <em>description</em> and <em>summary</em>
+instead of the TODOs.</li>
+<li>Note that it fills up the author name and email by
+looking at your git configuration files, it also creates a git repository with
+a nice .gitignore file and makes the initial commit.</li>
+<li>The last thing you need to do before building your gem is create a VERSION
+file, to do this just run <code>rake version:write</code>. This command creates a VERSION
+file in your gem’s root folder which holds the version number of your gem.</li>
+<li>Finally, to build our gem run <code>rake build</code> (ignore the warnings when you run
+this command). This will create a folder called <code>pkg</code> which holds your final
+gem file <code>fixnum_extensions-0.0.0.gem</code>.</li>
 </ul>
-<p>Now, you can share this gemfile with anyone you want and they’ll get all your<br>code in a nice gem package. To install it, just run the command <code>gem install
+<p>Now, you can share this gemfile with anyone you want and they’ll get all your
+code in a nice gem package. To install it, just run the command <code>gem install
 pkg/fixnum_extensions-0.0.0.gem</code></p>
 <p>To test it out open an irb session and run the following commands</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fixnum_extensions'</span></span><br><span class="line"><span class="number">1</span>.add(<span class="number">2</span>).mul(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>  Jeweler adds a lot of nifty tasks which are great, to check them out just run<br>  <code>rake -T</code></p>
+<p>  Jeweler adds a lot of nifty tasks which are great, to check them out just run
+  <code>rake -T</code></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cijlnnxkr007g15pd1wma1uyd" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cijloc3sx007g14nrskbu57h3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1014,7 +1166,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="cijlnnxje006l15pdo1wp6h82" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="cijloc3q7006l14nrp82epg5c" class="article-share-link">Share</a>
       
       
     </footer>

@@ -5,16 +5,22 @@
   
   <title>rake task to delete untracked files in git | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuyhas reminded me once again that I should GTFT (Google the f*** thing) beforecreating a task. Thanks for the tip SomeGuy :). Lo">
+  <meta name="description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuy
+has reminded me once again that I should GTFT (Google the f*** thing) before
+creating a task. Thanks for the tip SomeGuy :).">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rake task to delete untracked files in git">
 <meta property="og:url" content="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuyhas reminded me once again that I should GTFT (Google the f*** thing) beforecreating a task. Thanks for the tip SomeGuy :). Lo">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuy
+has reminded me once again that I should GTFT (Google the f*** thing) before
+creating a task. Thanks for the tip SomeGuy :).">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rake task to delete untracked files in git">
-<meta name="twitter:description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuyhas reminded me once again that I should GTFT (Google the f*** thing) beforecreating a task. Thanks for the tip SomeGuy :). Lo">
+<meta name="twitter:description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuy
+has reminded me once again that I should GTFT (Google the f*** thing) before
+creating a task. Thanks for the tip SomeGuy :).">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,17 +111,22 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>UPDATE</strong> I should have checked if git has a command for this. Anyway <em>SomeGuy</em><br>has reminded me once again that I should GTFT (Google the f*** thing) before<br>creating a task. Thanks for the tip <em>SomeGuy</em> :). Long story short, use <code>git clean</code> to <a href="http://www.gitready.com/beginner/2009/01/16/cleaning-up-untracked-files.html" target="_blank" rel="external">cleanup<br>untracked files</a></p>
+        <p><strong>UPDATE</strong> I should have checked if git has a command for this. Anyway <em>SomeGuy</em>
+has reminded me once again that I should GTFT (Google the f*** thing) before
+creating a task. Thanks for the tip <em>SomeGuy</em> :). Long story short, use <code>git clean</code> to <a href="http://www.gitready.com/beginner/2009/01/16/cleaning-up-untracked-files.html" target="_blank" rel="external">cleanup
+untracked files</a></p>
 <hr>
-<p>Whenever I merge stuff from my colleagues, I end up with a bunch of <strong>*.orig</strong> files.<br>So, I created a simple rake task which deletes all the untracked files.</p>
+<p>Whenever I merge stuff from my colleagues, I end up with a bunch of <strong>*.orig</strong> files.
+So, I created a simple rake task which deletes all the untracked files.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">desc <span class="string">'deletes untracked files'</span></span><br><span class="line">task <span class="string">'git:del'</span> <span class="keyword">do</span></span><br><span class="line">  files = <span class="string">`git status -s`</span></span><br><span class="line">  files.lines.each <span class="keyword">do</span> |f|</span><br><span class="line">    <span class="keyword">next</span> <span class="keyword">unless</span> f.start_with? <span class="string">'??'</span></span><br><span class="line">    f = f.gsub(<span class="string">'??'</span>, <span class="string">''</span>).strip</span><br><span class="line">    <span class="constant">File</span>.delete(f)</span><br><span class="line">    puts <span class="string">"deleted =&gt; <span class="subst">#&#123;f&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>This will permanently delete <strong>all</strong> untracked files from your working copy, so<br>use it with care! :)</p>
+<p>This will permanently delete <strong>all</strong> untracked files from your working copy, so
+use it with care! :)</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cijlnnxff003915pd2n3ji26v" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cijloc3ji003914nrdi1b4ii7" class="article-share-link">Share</a>
       
       
     </footer>

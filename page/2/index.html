@@ -109,13 +109,14 @@ ga('send', 'pageview');
         <p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="external">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#~/.bashrc</span></span><br><span class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></span><br></pre></td></tr></table></figure>
 <p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="external">excellent archlinux wiki</a></p>
-<p>Screenshot:<br><img src="https://substancehq.s3.amazonaws.com/static_asset/510bb12e03b04d32da00233b/Selection_047.jpeg" alt="Screenshot"></p>
+<p>Screenshot:
+<img src="https://substancehq.s3.amazonaws.com/static_asset/510bb12e03b04d32da00233b/Selection_047.jpeg" alt="Screenshot"></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="cijlnnxm4008h15pdglzf4ap3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="cijloc3v4008h14nr7x0y47vm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prompt/">prompt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ps1/">ps1</a></li></ul>
@@ -206,7 +207,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="cijlnnxjb006h15pd5xs66507" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="cijloc3q1006h14nrsqsrgs6e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/workflow/">workflow</a></li></ul>
@@ -245,14 +246,16 @@ R &lt;= Commands to run on reviewer&apos;s computer
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/50f94ccb03b04d32da0007fe/temptation-to-be-clever.jpg" alt="The temptation to be clever while programming is too damn high"></p>
 <p>Languages like ruby, being very powerful, make this very easy. Like they say <em>with great power comes great responsibilty</em>. So, this is some advice for young devs: <strong>Create the cleverest piece of code in your personal, fun projects to satiate your hunger, but when it comes to projects for customers, you owe it to them to be sensible and write mundane code</strong></p>
 <p>Here is a small example of clever vs mundane code.</p>
-<p>###Clever code<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [<span class="symbol">:street</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:zip</span>].any?&#123;|method| customer.send(method).<span class="keyword">nil</span>? || customer.send(method).squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>###Mundane code<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [customer.street, customer.city, customer.state, customer.zip].any?&#123;|prop| prop.<span class="keyword">nil</span>? || prop.squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>###Clever code
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [<span class="symbol">:street</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:zip</span>].any?&#123;|method| customer.send(method).<span class="keyword">nil</span>? || customer.send(method).squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>###Mundane code
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [customer.street, customer.city, customer.state, customer.zip].any?&#123;|prop| prop.<span class="keyword">nil</span>? || prop.squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="cijlnnxer002n15pdval5er76" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="cijloc3iv002n14nr4msghfna" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/clever-code/">clever-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mundane-code/">mundane-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/temptation/">temptation</a></li></ul>
@@ -294,7 +297,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cijlnnxi3005q15pdz86cc9wp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cijloc3o6005q14nrqqzai29p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/command-t/">command-t</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">rvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
@@ -333,13 +336,14 @@ R &lt;= Commands to run on reviewer&apos;s computer
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function! RunHandler()</span><br><span class="line">  " to save the cursor position</span><br><span class="line">  let l:winview = winsaveview()</span><br><span class="line">  if &amp;ft == "go"</span><br><span class="line">    :silent!$r!go run % 2&gt;&amp;1 | sed 's/^/\/\//g'</span><br><span class="line">    redraw!</span><br><span class="line">    echo "triggered go run " expand("%")</span><br><span class="line">  endif</span><br><span class="line">  call winrestview(l:winview)</span><br><span class="line">endfunction</span><br><span class="line">nnoremap &lt;C-d&gt; :call RunHandler()&lt;cr&gt;</span><br></pre></td></tr></table></figure>
 <p>You can use this with slight changes with other file types. Here is a screenshot:</p>
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/50e3354203b04d3567000398/vim-shot.png" alt="vim screenshot"></p>
-<p>###TODO<br>Make it overwrite the old output or insert before the previous output</p>
+<p>###TODO
+Make it overwrite the old output or insert before the previous output</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cijlnnxjo006s15pd5n63k0bg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cijloc3qr006s14nrmoe8yyav" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
@@ -380,7 +384,8 @@ R &lt;= Commands to run on reviewer&apos;s computer
 <p>The setup contains two parts.</p>
 <p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#~/.scripts/runinbg</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to run a command in background redirecting the</span></span><br><span class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</span><br><span class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> <span class="number">1</span>&gt;&gt; /tmp/runinbg.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></span><br><span class="line"><span class="comment">#when the test is complete</span></span><br><span class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></span><br></pre></td></tr></table></figure>
-<p>###2. Vim function to call this script with the current filename<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function! RunSpecs()</span><br><span class="line">  :silent!!runinbg bundle exec rspec % "you can tweak this to your liking</span><br><span class="line">  redraw! "without this the screen goes blank</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">nnoremap &lt;C-d&gt; :call RunSpecs()&lt;cr&gt;</span><br></pre></td></tr></table></figure></p>
+<p>###2. Vim function to call this script with the current filename
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function! RunSpecs()</span><br><span class="line">  :silent!!runinbg bundle exec rspec % "you can tweak this to your liking</span><br><span class="line">  redraw! "without this the screen goes blank</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">nnoremap &lt;C-d&gt; :call RunSpecs()&lt;cr&gt;</span><br></pre></td></tr></table></figure></p>
 <p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
 <p>Update: Added a version with notification</p>
 
@@ -388,7 +393,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cijlnnxei002c15pd6umf7h26" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cijloc3ik002c14nrcwpjt8va" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
@@ -445,7 +450,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cijlnnxdx001r15pd6ae0qzdn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cijloc3hy001r14nrpns7k3nf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
@@ -480,27 +485,57 @@ R &lt;= Commands to run on reviewer&apos;s computer
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I started a freelancing/consulting business about 4 years ago. And over the last<br>4 years I have built a small company which provides software development services<br>in ASP.NET MVC and Ruby on Rails. I consider myself a good developer (who doesn’t :) ).<br>However, I think I have created a cocoon around myself, where I am comfortable doing<br>stuff which I understand.  </p>
+        <p>I started a freelancing/consulting business about 4 years ago. And over the last 
+4 years I have built a small company which provides software development services 
+in ASP.NET MVC and Ruby on Rails. I consider myself a good developer (who doesn’t :) ). 
+However, I think I have created a cocoon around myself, where I am comfortable doing 
+stuff which I understand.  </p>
 <p>About a month ago, I saw this thought shared by <a href="https://twitter.com/dcurtis/status/220347986948009984" target="_blank" rel="external">@dcurtis</a></p>
 <blockquote>
-<p>Moderate success is the worst place for a startup. It’s worse than failure. There’s<br>some validation, but no growth. Endless paralysis.</p>
+<p>Moderate success is the worst place for a startup. It’s worse than failure. There’s 
+some validation, but no growth. Endless paralysis.</p>
 </blockquote>
-<p>It hit me like a ton of bricks. I have been moderately successful, I make more<br>money than my colleagues who work for the big companies. I have a nice office I<br>have a few guys working with me. And this has made me comfortable. The last<br>exciting/dangerous/risky thing I have done was quitting my job to start freelancing/consulting with just 2<br>years of experience. Since then, I haven’t done anything major. This is<br>definitely not a good place to be. Mind you, I <em>am very comfortable</em>, but career<br>wise / growth wise, this is not a good place to be.</p>
-<p>In the past while discussing software products, I always used to say that India doesn’t have<br>any takers for software products. I used to say that the general public<br>isn’t aware of the latest technologies and don’t want to use them, which is<br>true even today. I have talked to a few schools and their interest in technology<br>is non-existent. However, this reminded me of a story my uncle used to<br>say (I am not sure where he heard it):</p>
+<p>It hit me like a ton of bricks. I have been moderately successful, I make more
+money than my colleagues who work for the big companies. I have a nice office I
+have a few guys working with me. And this has made me comfortable. The last 
+exciting/dangerous/risky thing I have done was quitting my job to start freelancing/consulting with just 2
+years of experience. Since then, I haven’t done anything major. This is
+definitely not a good place to be. Mind you, I <em>am very comfortable</em>, but career
+wise / growth wise, this is not a good place to be.</p>
+<p>In the past while discussing software products, I always used to say that India doesn’t have
+any takers for software products. I used to say that the general public
+isn’t aware of the latest technologies and don’t want to use them, which is
+true even today. I have talked to a few schools and their interest in technology
+is non-existent. However, this reminded me of a story my uncle used to
+say (I am not sure where he heard it):</p>
 <blockquote>
-<p>There were two salesmen who worked for a footwear company. They were asked<br>to go to a specific island and analyse the market for footwear.</p>
-<p>One of them reported that the people on the Island did not know about<br>footwear. So, there was zero potential for the company.<br>He said that the company could not sell any of their products. </p>
-<p>The other guy came to a different conclusion<br>He said that this Island was full of people who didn’t have any footwear!<br>And that there was a huge market for them to sell footwear and make money.<br>They could get 100% of the market.</p>
+<p>There were two salesmen who worked for a footwear company. They were asked
+to go to a specific island and analyse the market for footwear.</p>
+<p>One of them reported that the people on the Island did not know about
+footwear. So, there was zero potential for the company.
+He said that the company could not sell any of their products. </p>
+<p>The other guy came to a different conclusion
+He said that this Island was full of people who didn’t have any footwear! 
+And that there was a huge market for them to sell footwear and make money.
+They could get 100% of the market.</p>
 </blockquote>
-<p>Obviously, it’s not a black and white situation. There is truth in both their<br>conclusions. Since the Islanders didn’t know what footwear was, they wouldn’t<br>really buy them (Why fix something which is not broken). But, if people were<br>shown how comfortable footwear makes your life, there would be a huge market for<br>footwear. And <em>that</em> is difficult, creating awareness among people, <em>changing<br>their perceptions</em> is difficult.</p>
-<p><strong>For software products, India is like the island of barefooters</strong>. There is a huge<br>opportunity for people like us, but it’s not easy! Awareness has to be created<br>among customers about the benefits of technology. It is a challenging job. </p>
-<p>Hopefully this time I will get out of my cocoon and actually build and sell a<br>software product.</p>
+<p>Obviously, it’s not a black and white situation. There is truth in both their
+conclusions. Since the Islanders didn’t know what footwear was, they wouldn’t
+really buy them (Why fix something which is not broken). But, if people were
+shown how comfortable footwear makes your life, there would be a huge market for
+footwear. And <em>that</em> is difficult, creating awareness among people, <em>changing
+their perceptions</em> is difficult.</p>
+<p><strong>For software products, India is like the island of barefooters</strong>. There is a huge
+opportunity for people like us, but it’s not easy! Awareness has to be created
+among customers about the benefits of technology. It is a challenging job. </p>
+<p>Hopefully this time I will get out of my cocoon and actually build and sell a 
+software product.</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cijlnnxdb001715pdb4adqqg0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cijloc3h6001714nrndscxgry" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/barefooters/">barefooters</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/india/">india</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">software</a></li></ul>
@@ -547,7 +582,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cijlnnxlm007w15pdexv2wi0r" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cijloc3u2007w14nrju7k6cd1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/godoc/">godoc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/upstart/">upstart</a></li></ul>
@@ -588,7 +623,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cijlnnxgz004f15pdflz5inwj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cijloc3m7004f14nrmx0hchz2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
@@ -627,16 +662,19 @@ R &lt;= Commands to run on reviewer&apos;s computer
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Wait for go files to be modified and then execute them</span></span><br><span class="line"><span class="comment">#Dependency: inotify-tools</span></span><br><span class="line"><span class="comment">#Install on ubuntu using: apt-get install inotify-tools</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#the command before the pipe is a blocking command, i.e. it doesn't end</span></span><br><span class="line">inotifywait -mrq --format <span class="string">'%f'</span> <span class="operator">-e</span> close_write <span class="variable">$1</span> | <span class="keyword">while</span> <span class="built_in">read</span> file</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment">#here we filter any changes to files other than go files</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">echo</span> <span class="variable">$file</span> | grep -E <span class="string">'^.*\.go$'</span>)</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="comment">#once we know that a go file has been written to we run it</span></span><br><span class="line">    clear</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"executing 'go run <span class="variable">$file</span>'"</span></span><br><span class="line">    go run <span class="variable">$file</span> </span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p>The script itself is pretty self explanatory, We run inotifywait in <code>monitor</code> mode so that it blocks the current process, after that we pipe whatever output comes out of inotifywait which is just the filename to the while loop which doesn’t end because of the previous stream. Now, we just filter it to <em>go</em> source files and execute them.</p>
 <p>This can be used with any other programming language too, you just have to change the filter and the execute command.</p>
-<p>###Update:<br>I started playing with go web apps recently, and the following script has been helping me with recompile and reload. Hope it helps you guys too:</p>
+<p>###Update:
+I started playing with go web apps recently, and the following script has been helping me with recompile and reload. Hope it helps you guys too:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to restart the go webserver by building and restarting the binary whenever html or go files change</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">__restart_goserver</span></span>()&#123;</span><br><span class="line">  binary=<span class="string">"<span class="variable">$(basename $(pwd)</span>)"</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"building <span class="variable">$binary</span>"</span></span><br><span class="line">  <span class="keyword">if</span> go build</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"killing old process"</span></span><br><span class="line">    <span class="built_in">kill</span> -<span class="number">9</span> $(pidof <span class="string">"<span class="variable">$binary</span>"</span>) &gt; /dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"starting '<span class="variable">$binary</span>'"</span></span><br><span class="line">    ./<span class="variable">$binary</span> &amp; <span class="comment">#run it in background</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"started with pid: $!"</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"server restart failed"</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#cd to the right directory</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$1</span></span><br><span class="line">__restart_goserver</span><br><span class="line"><span class="comment">#the command before the pipe is a blocking command, i.e. it doesn't end</span></span><br><span class="line">inotifywait -mrq --exclude=<span class="string">"<span class="variable">$(basename $(pwd)</span>)"</span> --format <span class="string">'%f'</span> <span class="operator">-e</span> close_write <span class="variable">$1</span> | <span class="keyword">while</span> <span class="built_in">read</span> file</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">echo</span> <span class="variable">$file</span> | grep -E <span class="string">'^(.*\.go)|(.*\.html)$'</span>)</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"--------------------"</span></span><br><span class="line">    <span class="comment">#once we know that a go file has been written to we run it</span></span><br><span class="line">    __restart_goserver</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<p>Screenshot:<br><img src="https://substancehq.s3.amazonaws.com/static_asset/50a3474b03b04d4c12000fc7/Selection_004.png" alt="screenshot"></p>
-<p>###Update 2<br>You need <code>inotify-tools</code> to get this to work. You can install it on ubuntu by running <code>sudo apt-get install inotify-tools</code></p>
+<p>Screenshot:
+<img src="https://substancehq.s3.amazonaws.com/static_asset/50a3474b03b04d4c12000fc7/Selection_004.png" alt="screenshot"></p>
+<p>###Update 2
+You need <code>inotify-tools</code> to get this to work. You can install it on ubuntu by running <code>sudo apt-get install inotify-tools</code></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cijlnnxck000m15pdetuk5ayr" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cijloc3ge000m14nrktisn2lx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inotify/">inotify</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/watch/">watch</a></li></ul>
@@ -686,7 +724,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cijlnnxhn005315pd1n3im31b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cijloc3ne005314nrr3bkbt0m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/authenticate/">authenticate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/console/">console</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devise/">devise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/production/">production</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li></ul>
@@ -730,7 +768,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cijlnnxfu003j15pdl9dd1orh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cijloc3l6003j14nrwgui7n2c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automatic/">automatic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
@@ -776,7 +814,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="cijlnnxmk008w15pdax2hi6i7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="cijloc3w0008w14nro3gql1k2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/diff/">diff</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ecommerce/">ecommerce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ux/">ux</a></li></ul>
@@ -828,7 +866,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="cijlnnxmg008s15pd8obg9yub" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="cijloc3vt008s14nruj9wrhbo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sleep/">sleep</a></li></ul>
@@ -872,7 +910,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="cijlnnxj6006b15pdv3rrmcr1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="cijloc3ps006b14nrijdidkoq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/free-lunch/">free-lunch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
@@ -909,8 +947,10 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
         <p>Today, I took a small session for a few of our trainees on javascript. And they wanted me to show the use of jQuery. One of them asked how jQuery is different than javascript. I demonstrated it by implementing a tiny fraction of jQuery. Hope it helps others understand javascript and jQuery better.</p>
 <p>Here are the different versions of a calcuator.</p>
-<p>###Version 1. Using jQuery<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      $(<span class="string">'#add'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> result = +$(<span class="string">'#first-operand'</span>).val() + +$(<span class="string">'#second-operand'</span>).val()</span><br><span class="line">        $(<span class="string">'#op'</span>).html(result);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"first-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"second-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">'add'</span>&gt;</span>Add<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"op"</span>&gt;</span></span><br><span class="line">  Result</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>###Version 2. Using plain javascript<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'add'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> result = +<span class="built_in">document</span>.getElementById(<span class="string">'first-operand'</span>).value + +<span class="built_in">document</span>.getElementById(<span class="string">'second-operand'</span>).value;</span><br><span class="line">      <span class="built_in">document</span>.getElementById(<span class="string">'op'</span>).innerHTML = result;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"first-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"second-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">'add'</span>&gt;</span>Add<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"op"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>###Version 1. Using jQuery 
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      $(<span class="string">'#add'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> result = +$(<span class="string">'#first-operand'</span>).val() + +$(<span class="string">'#second-operand'</span>).val()</span><br><span class="line">        $(<span class="string">'#op'</span>).html(result);</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"first-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"second-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">'add'</span>&gt;</span>Add<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"op"</span>&gt;</span></span><br><span class="line">  Result</span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>###Version 2. Using plain javascript
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'add'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> result = +<span class="built_in">document</span>.getElementById(<span class="string">'first-operand'</span>).value + +<span class="built_in">document</span>.getElementById(<span class="string">'second-operand'</span>).value;</span><br><span class="line">      <span class="built_in">document</span>.getElementById(<span class="string">'op'</span>).innerHTML = result;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"first-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"second-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">'add'</span>&gt;</span>Add<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"op"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>###Version 3. Using our simple jQuery like code</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="comment">//Our tiny fraction of jQuery</span></span><br><span class="line">  <span class="built_in">window</span>.$ = <span class="function"><span class="keyword">function</span>(<span class="params">id</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> selectedElement = <span class="built_in">document</span>.getElementById(id);</span><br><span class="line">    <span class="keyword">return</span> selectedElement;</span><br><span class="line">  &#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">'add'</span>).onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> result = +$(<span class="string">'first-operand'</span>).value + +$(<span class="string">'second-operand'</span>).value;</span><br><span class="line">      $(<span class="string">'op'</span>).innerHTML = result;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">h2</span>&gt;</span>Initial version using jQuery<span class="tag">&lt;/<span class="title">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"first-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">"text"</span> <span class="attribute">id</span>=<span class="value">"second-operand"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">button</span> <span class="attribute">id</span>=<span class="value">'add'</span>&gt;</span>Add<span class="tag">&lt;/<span class="title">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"op"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>###Version 4. Using a bit more jQueryesque code</p>
@@ -922,7 +962,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="cijlnnxh6004l15pda29dr8gw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="cijloc3mi004l14nrhtmig8in" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li></ul>
@@ -967,7 +1007,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cijlnnxcc000a15pdf8nkgl7v" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cijloc3g4000a14nr2nuad9eq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utility/">utility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xclip/">xclip</a></li></ul>
@@ -1012,7 +1052,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cijlnnxm0008c15pdkw2jmgxf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cijloc3uw008c14nrbui7yb43" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bookmarklet/">bookmarklet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
@@ -1053,7 +1093,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="cijlnnxm8008n15pdicsgq6k2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="cijloc3vf008n14nrj5fp8zwd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time/">time</a></li></ul>

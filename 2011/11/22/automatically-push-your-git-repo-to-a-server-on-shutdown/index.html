@@ -5,16 +5,22 @@
   
   <title>automatically push your git repo to a server on shutdown | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Sometimes, I forget to push my git commits to our git server at the end of the day.This causes inconvenience to others as they can’t review my code or build uponit. So, today I wrote a small script wh">
+  <meta name="description" content="Sometimes, I forget to push my git commits to our git server at the end of the day.
+This causes inconvenience to others as they can’t review my code or build upon
+it. So, today I wrote a small script">
 <meta property="og:type" content="article">
 <meta property="og:title" content="automatically push your git repo to a server on shutdown">
 <meta property="og:url" content="http://minhajuddin.com/2011/11/22/automatically-push-your-git-repo-to-a-server-on-shutdown/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Sometimes, I forget to push my git commits to our git server at the end of the day.This causes inconvenience to others as they can’t review my code or build uponit. So, today I wrote a small script wh">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="Sometimes, I forget to push my git commits to our git server at the end of the day.
+This causes inconvenience to others as they can’t review my code or build upon
+it. So, today I wrote a small script">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="automatically push your git repo to a server on shutdown">
-<meta name="twitter:description" content="Sometimes, I forget to push my git commits to our git server at the end of the day.This causes inconvenience to others as they can’t review my code or build uponit. So, today I wrote a small script wh">
+<meta name="twitter:description" content="Sometimes, I forget to push my git commits to our git server at the end of the day.
+This causes inconvenience to others as they can’t review my code or build upon
+it. So, today I wrote a small script">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,7 +111,10 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Sometimes, I forget to push my git commits to our git server at the end of the day.<br>This causes inconvenience to others as they can’t review my code or build upon<br>it. So, today I wrote a small script which syncs all my git repositories with a<br>remote server. Hope it helps you too :)</p>
+        <p>Sometimes, I forget to push my git commits to our git server at the end of the day.
+This causes inconvenience to others as they can’t review my code or build upon
+it. So, today I wrote a small script which syncs all my git repositories with a
+remote server. Hope it helps you too :)</p>
 <p>The setup consists of three files:</p>
 <p>###core syncing script at ~/.scripts/sync-repos###</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'yaml'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#replace google.com with your git servers domain</span></span><br><span class="line"><span class="string">`ping -c 1 google.com`</span></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$?</span>.exitstatus != <span class="number">0</span></span><br><span class="line">  puts <span class="string">'UNABLE TO SYNC REPOS AS NW IS DOWN'</span></span><br><span class="line">  exit <span class="variable">$?</span>.exitstatus</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">'syncing repositories'</span></span><br><span class="line"></span><br><span class="line"><span class="variable">@repos</span> = <span class="constant">YAML::</span>load_file <span class="constant">File</span>.expand_path( <span class="string">'~/.sync-repos'</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable">@repos</span>.each <span class="keyword">do</span> |repo|</span><br><span class="line">  path = <span class="constant">File</span>.expand_path repo[<span class="symbol">:path</span>]</span><br><span class="line">  remotes = repo[<span class="symbol">:remotes</span>].is_a?(<span class="constant">String</span>) ? [repo[<span class="symbol">:remotes</span>]] <span class="symbol">:</span> repo[<span class="symbol">:remotes</span>]</span><br><span class="line">  <span class="keyword">unless</span> <span class="constant">File</span>.exist? path</span><br><span class="line">    puts <span class="string">"skipping <span class="subst">#&#123;path&#125;</span> as directory not found"</span></span><br><span class="line">    <span class="keyword">next</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  remotes.each <span class="keyword">do</span> |remote|</span><br><span class="line">    cmd = <span class="string">"cd <span class="subst">#&#123;path&#125;</span> &amp;&amp; git push <span class="subst">#&#123;remote&#125;</span>"</span></span><br><span class="line">    puts <span class="string">"executing: '<span class="subst">#&#123;cmd&#125;</span>'"</span></span><br><span class="line">    system(cmd)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">'done syncing repositories'</span></span><br></pre></td></tr></table></figure>
@@ -118,7 +127,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/11/22/automatically-push-your-git-repo-to-a-server-on-shutdown/" data-id="cijlnnxlq008215pd9625ugsq" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/11/22/automatically-push-your-git-repo-to-a-server-on-shutdown/" data-id="cijloc3ua008214nrlx30leeb" class="article-share-link">Share</a>
       
       
     </footer>

@@ -5,16 +5,22 @@
   
   <title>how to setup solr and sunspot on a rails production server | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, settingit up can be a pain if you don’t find the right guide, or if you miss some smalldetail. So, here is my attempt to doc">
+  <meta name="description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, setting
+it up can be a pain if you don’t find the right guide, or if you miss some small
+detail. So, here is my attempt to d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how to setup solr and sunspot on a rails production server">
 <meta property="og:url" content="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, settingit up can be a pain if you don’t find the right guide, or if you miss some smalldetail. So, here is my attempt to doc">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, setting
+it up can be a pain if you don’t find the right guide, or if you miss some small
+detail. So, here is my attempt to d">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how to setup solr and sunspot on a rails production server">
-<meta name="twitter:description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, settingit up can be a pain if you don’t find the right guide, or if you miss some smalldetail. So, here is my attempt to doc">
+<meta name="twitter:description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, setting
+it up can be a pain if you don’t find the right guide, or if you miss some small
+detail. So, here is my attempt to d">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,8 +111,13 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Solr is an awesome app built on top of Lucene for fulltext search. However, setting<br>it up can be a pain if you don’t find the right guide, or if you miss some small<br>detail. So, here is my attempt to document the process of setting up solr in<br>development and production using a rails app as an example.</p>
-<p>Solr and Lucene are java apps, so you need java to get this stuff working,<br>I installed sun-jdk just to play it safe, as far as I know it works well<br>even with openjdk.</p>
+        <p>Solr is an awesome app built on top of Lucene for fulltext search. However, setting
+it up can be a pain if you don’t find the right guide, or if you miss some small
+detail. So, here is my attempt to document the process of setting up solr in
+development and production using a rails app as an example.</p>
+<p>Solr and Lucene are java apps, so you need java to get this stuff working,
+I installed sun-jdk just to play it safe, as far as I know it works well
+even with openjdk.</p>
 <p>Steps to setup solr on production</p>
 <ol>
 <li>Install Sun JDK:</li>
@@ -117,7 +128,8 @@ ga('send', 'pageview');
 </li>
 <li><p>Download or build the solr war files and copy them to <code>/apps/solr</code>. You can find the links at: <a href="http://lucene.apache.org/solr/" target="_blank" rel="external">http://lucene.apache.org/solr/</a> or <a href="http://www.apache.org/dyn/closer.cgi/lucene/solr/" target="_blank" rel="external">http://www.apache.org/dyn/closer.cgi/lucene/solr/</a>. The war file is usually in a folder called <code>dist</code> and has a filename like <code>apache-solr-3.4.0.war</code></p>
 </li>
-<li><p>Create a file  ~/apps/tomcat/conf/Catalina/localhost/solr-appname.xml<br>with the following content</p>
+<li><p>Create a file  ~/apps/tomcat/conf/Catalina/localhost/solr-appname.xml
+with the following content</p>
 </li>
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- I usually create this file in the rails app config/ directory and symlink</span><br><span class="line">it to the ~/tomcat/conf/Catalina/localhost/ directory--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- the docBase path should point to your solr.war file --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">Context</span> <span class="attribute">docBase</span>=<span class="value">"/home/minhajuddin/apps/solr/solr.war"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- the value string should point to your apps solr directory --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">Environment</span> <span class="attribute">name</span>=<span class="value">"solr/home"</span> <span class="attribute">type</span>=<span class="value">"java.lang.String"</span> <span class="attribute">value</span>=<span class="value">"/home/minhajuddin/spikes/solr-blog/solr"</span> <span class="attribute">override</span>=<span class="value">"true"</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- value= app-name/solr --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -129,7 +141,8 @@ ga('send', 'pageview');
 <ol>
 <li>Run the <code>bundle exec rake sunspot:solr:start</code> command once, on the development machine, to generate the solr configuration files. And push this code to the production server.</li>
 </ol>
-<p>That’s all. Setting solr is not very straightforward, but once you have it set<br>up, it’s very easy to setup additional apps with the same solr server.</p>
+<p>That’s all. Setting solr is not very straightforward, but once you have it set
+up, it’s very easy to setup additional apps with the same solr server.</p>
 <p>On a development machine, all you need to get solr working is: install java (check step 1) and setup sunspot (check step 5), and start the solr server with <code>bundle exec rake sunspot:solr:start</code></p>
 <p>###Resources###</p>
 <ul>
@@ -145,7 +158,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" data-id="cijlnnxhk005215pde8zowuy1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" data-id="cijloc3na005214nrvouk5kiw" class="article-share-link">Share</a>
       
       
     </footer>

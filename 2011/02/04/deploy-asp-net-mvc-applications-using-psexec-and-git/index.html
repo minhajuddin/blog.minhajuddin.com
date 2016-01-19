@@ -5,16 +5,22 @@
   
   <title>deploy asp net mvc applications using psexec and git | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacoretasks to compile the asp.net mvc application on the remote server and update thedatabase using fluent migrat">
+  <meta name="description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacore
+tasks to compile the asp.net mvc application on the remote server and update the 
+database using fluent mig">
 <meta property="og:type" content="article">
 <meta property="og:title" content="deploy asp net mvc applications using psexec and git">
 <meta property="og:url" content="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacoretasks to compile the asp.net mvc application on the remote server and update thedatabase using fluent migrat">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacore
+tasks to compile the asp.net mvc application on the remote server and update the 
+database using fluent mig">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deploy asp net mvc applications using psexec and git">
-<meta name="twitter:description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacoretasks to compile the asp.net mvc application on the remote server and update thedatabase using fluent migrat">
+<meta name="twitter:description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacore
+tasks to compile the asp.net mvc application on the remote server and update the 
+database using fluent mig">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,23 +111,29 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="external">rake/albacore</a><br>tasks to compile the asp.net mvc application on the remote server and update the<br>database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="external">fluent migrator</a>.</p>
+        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="external">rake/albacore</a>
+tasks to compile the asp.net mvc application on the remote server and update the 
+database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="external">fluent migrator</a>.</p>
 <p>Whenever I need to deploy I do the following:  </p>
 <ol>
 <li>RDP into the remote server</li>
 <li>Open git bash =&gt; cd to the repository’s directory =&gt; do a <code>git fetch</code> and <code>git merge origin/master</code></li>
 <li>And then run <code>rake compile</code> (to compile the latest changes) and finally <code>rake db:migrate</code>(to update the database if there are any db changes)</li>
 </ol>
-<p>Even though rake and fluentmigrator make this pretty painless. It’s still a pain<br>to rdp and do this stuff. So, I came up with a couple of batch scripts to make<br>this process even simpler. Now I have two batch files in the root directory of<br>my git repo:</p>
+<p>Even though rake and fluentmigrator make this pretty painless. It’s still a pain
+to rdp and do this stuff. So, I came up with a couple of batch scripts to make
+this process even simpler. Now I have two batch files in the root directory of
+my git repo:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#deploy.bat</span></span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> fetch &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> reset --hard HEAD &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> merge origin/master &amp;&amp; </span><br><span class="line">rake compile &amp;&amp; </span><br><span class="line">rake db:migrate</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#remote_deploy.bat</span></span><br><span class="line">psexec \\example.com -u userfoo -w <span class="string">"c:\repos\foobar"</span> <span class="string">"c:\repos\foobar\deploy.bat"</span></span><br></pre></td></tr></table></figure>
-<p>The code should be self explanatory. All we are doing is, instead of running the<br>command manually automating them.</p>
+<p>The code should be self explanatory. All we are doing is, instead of running the
+command manually automating them.</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cijlnnxkk007a15pd2108sf3r" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cijloc3sb007a14nr4encpk06" class="article-share-link">Share</a>
       
       
     </footer>

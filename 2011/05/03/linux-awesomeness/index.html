@@ -5,16 +5,22 @@
   
   <title>linux awesomeness | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A few minutes ago I learnt that adding linenos to the end of the highlight tagin jekyll adds line numbers to a code snippet. I wanted to add this to all thehightlight blocks in my blog. I came up with">
+  <meta name="description" content="A few minutes ago I learnt that adding linenos to the end of the highlight tag
+in jekyll adds line numbers to a code snippet. I wanted to add this to all the
+hightlight blocks in my blog. I came up wi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux awesomeness">
 <meta property="og:url" content="http://minhajuddin.com/2011/05/03/linux-awesomeness/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="A few minutes ago I learnt that adding linenos to the end of the highlight tagin jekyll adds line numbers to a code snippet. I wanted to add this to all thehightlight blocks in my blog. I came up with">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="A few minutes ago I learnt that adding linenos to the end of the highlight tag
+in jekyll adds line numbers to a code snippet. I wanted to add this to all the
+hightlight blocks in my blog. I came up wi">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux awesomeness">
-<meta name="twitter:description" content="A few minutes ago I learnt that adding linenos to the end of the highlight tagin jekyll adds line numbers to a code snippet. I wanted to add this to all thehightlight blocks in my blog. I came up with">
+<meta name="twitter:description" content="A few minutes ago I learnt that adding linenos to the end of the highlight tag
+in jekyll adds line numbers to a code snippet. I wanted to add this to all the
+hightlight blocks in my blog. I came up wi">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,14 +111,16 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>A few minutes ago I learnt that adding <em>linenos</em> to the end of the highlight tag<br>in jekyll adds line numbers to a code snippet. I wanted to add this to all the<br>hightlight blocks in my blog. I came up with this command:</p>
+        <p>A few minutes ago I learnt that adding <em>linenos</em> to the end of the highlight tag
+in jekyll adds line numbers to a code snippet. I wanted to add this to all the
+hightlight blocks in my blog. I came up with this command:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grep highlight _posts/*.* \</span><br><span class="line">| awk -F : <span class="string">' &#123; print $1&#125;'</span> \</span><br><span class="line">|  uniq \</span><br><span class="line">| xargs sed -i <span class="string">'s/% *highlight *\([a-z]*\) *%/% highlight \1 linenos %/'</span></span><br></pre></td></tr></table></figure>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/05/03/linux-awesomeness/" data-id="cijlnnxgj004515pd0x936vh9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/05/03/linux-awesomeness/" data-id="cijloc3ls004514nru0yd44un" class="article-share-link">Share</a>
       
       
     </footer>

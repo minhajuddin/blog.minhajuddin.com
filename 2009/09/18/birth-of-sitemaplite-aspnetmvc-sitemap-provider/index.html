@@ -5,17 +5,20 @@
   
   <title>The Birth of SiteMapLite (ASP.NET MVC Sitemap provider) | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Alright, the last post about the json sitemap provider got some people interested in this utility. So, I thought of improving the code a bit more before actually coding up theHtml helpers to render th">
+  <meta name="description" content="Alright, the last post about the json sitemap provider got some people interested in this utility. So, I thought of improving the code a bit more before actually coding up the 
+Html helpers to render">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Birth of SiteMapLite (ASP.NET MVC Sitemap provider)">
 <meta property="og:url" content="http://minhajuddin.com/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Alright, the last post about the json sitemap provider got some people interested in this utility. So, I thought of improving the code a bit more before actually coding up theHtml helpers to render th">
+<meta property="og:description" content="Alright, the last post about the json sitemap provider got some people interested in this utility. So, I thought of improving the code a bit more before actually coding up the 
+Html helpers to render">
 <meta property="og:image" content="http://minhajuddin.com/images/SiteMapLite.png">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Birth of SiteMapLite (ASP.NET MVC Sitemap provider)">
-<meta name="twitter:description" content="Alright, the last post about the json sitemap provider got some people interested in this utility. So, I thought of improving the code a bit more before actually coding up theHtml helpers to render th">
+<meta name="twitter:description" content="Alright, the last post about the json sitemap provider got some people interested in this utility. So, I thought of improving the code a bit more before actually coding up the 
+Html helpers to render">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -106,10 +109,13 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Alright, the last post about the json sitemap provider got some people interested in this utility. So, I thought of improving the code a bit more before actually coding up the<br>Html helpers to render the navigation links. So, here we go. ( I named this utility <strong>SiteMapLite</strong> so that it’s easy to reference it,<br>If you’ve got a better name leave it in the comments ;) )  </p>
+        <p>Alright, the last post about the json sitemap provider got some people interested in this utility. So, I thought of improving the code a bit more before actually coding up the 
+Html helpers to render the navigation links. So, here we go. ( I named this utility <strong>SiteMapLite</strong> so that it’s easy to reference it, 
+If you’ve got a better name leave it in the comments ;) )  </p>
 <p>When you think about a sitemap there are a few things which come to mind</p>
 <ol>
-<li>The Nodes: Sitemaps are all about nodes, where each node is a hyperlink pointing to a resource, In our code we have a class called the<br><strong>SiteMapNode</strong> which represents a single node in a SiteMap. </li>
+<li>The Nodes: Sitemaps are all about nodes, where each node is a hyperlink pointing to a resource, In our code we have a class called the 
+<strong>SiteMapNode</strong> which represents a single node in a SiteMap. </li>
 </ol>
 <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SiteMapNode</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">int</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> Action &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> Controller &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> Title &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> Role &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> ParentId &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> IEnumerable&lt;SiteMapNode&gt; Children;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">IsInRole</span>(<span class="params"><span class="keyword">string</span> role</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (Role == <span class="keyword">null</span> || Role.Trim().Length == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> count = Role.Split(<span class="string">','</span>).Count(x =&gt; x.Trim().Equals(role, StringComparison.OrdinalIgnoreCase));</span><br><span class="line">            <span class="keyword">return</span> count != <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">bool</span> IsRootNode &#123;</span><br><span class="line">            <span class="keyword">get</span> &#123; <span class="keyword">return</span> ParentId == <span class="number">0</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <ol>
@@ -123,7 +129,16 @@ ga('send', 'pageview');
 
 <p><img style="border-right-width: 0px; display: block; float: none; border-top-width: 0px; border-bottom-width: 0px; margin-left: auto; border-left-width: 0px; margin-right: auto" title="SiteMapLite" border="0" alt="SiteMapLite" src="/images/SiteMapLite.png" width="501" height="404"></p>
 
-<p>We have made the code more generic and flexible by moving the responsibility of reading the sitemap data to an interface called ISiteMapReader,<br>Now, we can create any custom implementation of the ISiteMapReader which could read data from a json flat file or an XML file or a database or a webservice,<br>and the code in the SiteMapService doesn’t have to change even by a tiny bit to utilize these SiteMapReaders. Now the responsibility of the<br>SiteMapReader is just to retrieve all the SiteMapNodes from the persistence medium and return them in their raw form (without any grouping).<br>The job of Grouping the nodes into a set of root nodes and wiring up their child references is done by the ISiteMapService. The only method which the<br>Html helper would use would be the <em>GetNodesForRole </em>method. This method would return a list of root nodes which are accessible to the input role.<br>This gives us a solid foundation to create our HtmlHelpers and extend the code base as we like without changing existing code.<br>I know I haven’t explained the whole code, but by now you should have have a big picture of the whole project.<br>To understand the code further, download the code from <a href="http://github.com/minhajuddin/sitemaplite" target="_blank" rel="external">http://github.com/minhajuddin/sitemaplite</a> .<br>In a future blog post, I’ll create a few HtmlHelpers to render a basic navigation dashboard.</p>
+<p>We have made the code more generic and flexible by moving the responsibility of reading the sitemap data to an interface called ISiteMapReader, 
+Now, we can create any custom implementation of the ISiteMapReader which could read data from a json flat file or an XML file or a database or a webservice, 
+and the code in the SiteMapService doesn’t have to change even by a tiny bit to utilize these SiteMapReaders. Now the responsibility of the 
+SiteMapReader is just to retrieve all the SiteMapNodes from the persistence medium and return them in their raw form (without any grouping). 
+The job of Grouping the nodes into a set of root nodes and wiring up their child references is done by the ISiteMapService. The only method which the 
+Html helper would use would be the <em>GetNodesForRole </em>method. This method would return a list of root nodes which are accessible to the input role. 
+This gives us a solid foundation to create our HtmlHelpers and extend the code base as we like without changing existing code. 
+I know I haven’t explained the whole code, but by now you should have have a big picture of the whole project. 
+To understand the code further, download the code from <a href="http://github.com/minhajuddin/sitemaplite" target="_blank" rel="external">http://github.com/minhajuddin/sitemaplite</a> . 
+In a future blog post, I’ll create a few HtmlHelpers to render a basic navigation dashboard.</p>
 <p>Till next time</p>
 <p>[ <a href="http://twitter.com/minhajuddin" target="_blank" rel="external">@minhajuddin</a> ]</p>
 
@@ -131,7 +146,7 @@ ga('send', 'pageview');
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/" data-id="cijlnnxlf007u15pdt69zpzum" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/" data-id="cijloc3tq007u14nrki7jftqe" class="article-share-link">Share</a>
       
       
     </footer>

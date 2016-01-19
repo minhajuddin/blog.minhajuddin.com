@@ -5,16 +5,22 @@
   
   <title>HTTP | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HTTP is a protocol used by computers to communicate with each other.A protocol is just a series of rules/steps which need to be followed for communication.e.g. If you want to buy a chocolate from the">
+  <meta name="description" content="HTTP is a protocol used by computers to communicate with each other.
+A protocol is just a series of rules/steps which need to be followed for communication.
+e.g. If you want to buy a chocolate from th">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP">
 <meta property="og:url" content="http://minhajuddin.com/2013/05/19/http/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="HTTP is a protocol used by computers to communicate with each other.A protocol is just a series of rules/steps which need to be followed for communication.e.g. If you want to buy a chocolate from the">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="HTTP is a protocol used by computers to communicate with each other.
+A protocol is just a series of rules/steps which need to be followed for communication.
+e.g. If you want to buy a chocolate from th">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTP">
-<meta name="twitter:description" content="HTTP is a protocol used by computers to communicate with each other.A protocol is just a series of rules/steps which need to be followed for communication.e.g. If you want to buy a chocolate from the">
+<meta name="twitter:description" content="HTTP is a protocol used by computers to communicate with each other.
+A protocol is just a series of rules/steps which need to be followed for communication.
+e.g. If you want to buy a chocolate from th">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,9 +111,18 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>HTTP is a protocol used by computers to communicate with each other.<br>A protocol is just a series of rules/steps which need to be followed for communication.<br>e.g. If you want to buy a chocolate from the mall, you can go to the mall,<br>find the chocolate put it in a shopping cart, go to the checkout counter and pay the bill.<br>This can be thought of as a protocol, In this example, the steps are not very strict,<br>but in computer protocols there is no scope for ambiguity. </p>
-<p>HTTP is used whenever you visit a website. HTTP lays out the rules the<br>communication between your browser and the web server. Here is an example of<br>what happens when you open enter  cosmicvent.com in your browser and hit enter:</p>
-<p>1) The browser finds the IP address of cosmicvent.com (which at the moment is 176.9.113.5).<br>2) It sends it a text message using another protocol called TCP/IP. The message<br>    looks something like this:</p>
+        <p>HTTP is a protocol used by computers to communicate with each other.
+A protocol is just a series of rules/steps which need to be followed for communication.
+e.g. If you want to buy a chocolate from the mall, you can go to the mall,
+find the chocolate put it in a shopping cart, go to the checkout counter and pay the bill.
+This can be thought of as a protocol, In this example, the steps are not very strict,
+but in computer protocols there is no scope for ambiguity. </p>
+<p>HTTP is used whenever you visit a website. HTTP lays out the rules the
+communication between your browser and the web server. Here is an example of
+what happens when you open enter  cosmicvent.com in your browser and hit enter:</p>
+<p>1) The browser finds the IP address of cosmicvent.com (which at the moment is 176.9.113.5).
+2) It sends it a text message using another protocol called TCP/IP. The message
+    looks something like this:</p>
 <pre><code>GET / HTTP/1.1
 Host: cosmicvent.com
 Connection: keep-alive
@@ -117,8 +132,12 @@ Accept-Encoding: gzip,deflate,sdch
 Accept-Language: en-US,en;q=0.8,hi;q=0.6,te;q=0.4
 Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3
 Cookie: __utma=223412489.1036637458.1339923857.1366442947.1368767056.19; __utmz=223412489.1339923857.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
-</code></pre><p>  This is called an HTTP ‘Request’, It says that the browser is ‘making’ a ‘GET’<br>  request using the ‘HTTP/1.1’ protocol and that the browser is looking for a<br>  ‘document’ called ‘/‘ of type ‘html’ or ‘xhtml’. The ‘User-Agent’ has information about<br>  the version of the browser.</p>
-<p>3) Now, the webserver which is the software running on google sends an HTTP<br>    ‘Response’ which looks like the following:</p>
+</code></pre><p>  This is called an HTTP ‘Request’, It says that the browser is ‘making’ a ‘GET’
+  request using the ‘HTTP/1.1’ protocol and that the browser is looking for a
+  ‘document’ called ‘/‘ of type ‘html’ or ‘xhtml’. The ‘User-Agent’ has information about
+  the version of the browser.</p>
+<p>3) Now, the webserver which is the software running on google sends an HTTP
+    ‘Response’ which looks like the following:</p>
 <pre><code>HTTP/1.1 200 OK
 Server: nginx/1.0.11
 Content-Type: text/html; charset=utf-8
@@ -150,15 +169,34 @@ Connection: keep-alive
             &lt;title&gt;
               Home - Cosmicvent Software
             &lt;/title&gt;
-</code></pre><p>  Now this text is understood by the browser, the browser reads the header which<br>  is the part above the empty line (above &lt;!doctype html&gt;). The response says<br>  that the server is also using the ‘HTTP/1.1’ protocol, the 200 and OK mean<br>  that the response was ‘successful’ and it didn’t fail (The 200 is a status<br>  code, and HTTP has many status codes with different meanings, you might have<br>  seen 404 Not found in a browser, that means the document requested by the<br>  browser could not be found by the webserver). It also tells us when this<br>  document was sent, and some more information which is understood by the<br>  server. Another important Header is the ‘Content-Type’ which tells the browser<br>  what type of document the response is. In this example it says the content<br>  type is an html document. So, the browser renders it as an html page. If the<br>  content type was an image, the response would have something like: ‘Content-Type: image/png’,<br>  which would tell the browser to render it as an image. What follows after the<br>  empty line (the &lt;!doctype html&gt;…) is the actual content.</p>
-<p>  An analogy for an HTTP Response is a mail package. The cover of the mail package has<br>  information about the package like the weight of the package, the address to<br>  which it is to be delivered, its contents. And when you open the package it<br>  contains the actual items. An HTTP response is similar but it has different<br>  information in the ‘Header’ (the package wrapping). This information is<br>  sometimes also called meta data. And, the actual document comes after an empty<br>  line after the header.</p>
+</code></pre><p>  Now this text is understood by the browser, the browser reads the header which
+  is the part above the empty line (above &lt;!doctype html&gt;). The response says
+  that the server is also using the ‘HTTP/1.1’ protocol, the 200 and OK mean
+  that the response was ‘successful’ and it didn’t fail (The 200 is a status
+  code, and HTTP has many status codes with different meanings, you might have
+  seen 404 Not found in a browser, that means the document requested by the
+  browser could not be found by the webserver). It also tells us when this
+  document was sent, and some more information which is understood by the
+  server. Another important Header is the ‘Content-Type’ which tells the browser
+  what type of document the response is. In this example it says the content
+  type is an html document. So, the browser renders it as an html page. If the
+  content type was an image, the response would have something like: ‘Content-Type: image/png’, 
+  which would tell the browser to render it as an image. What follows after the
+  empty line (the &lt;!doctype html&gt;…) is the actual content.</p>
+<p>  An analogy for an HTTP Response is a mail package. The cover of the mail package has
+  information about the package like the weight of the package, the address to
+  which it is to be delivered, its contents. And when you open the package it
+  contains the actual items. An HTTP response is similar but it has different
+  information in the ‘Header’ (the package wrapping). This information is
+  sometimes also called meta data. And, the actual document comes after an empty
+  line after the header.</p>
 <p>You can read more about HTTP here: <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank" rel="external">https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol</a></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="cijlnnxhe004x15pd1u1jupuz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="cijloc3mx004x14nrdnxxun7d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>

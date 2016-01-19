@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="The temptation to be clever while programming is very high. You want to show off or use your mad skills to create the most clever piece of code. It gives you a sense of satisfaction which very few thi">
 <meta property="og:image" content="https://substancehq.s3.amazonaws.com/static_asset/50f94ccb03b04d32da0007fe/temptation-to-be-clever.jpg">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Resisting the temptation to be clever">
 <meta name="twitter:description" content="The temptation to be clever while programming is very high. You want to show off or use your mad skills to create the most clever piece of code. It gives you a sense of satisfaction which very few thi">
@@ -110,14 +110,16 @@ ga('send', 'pageview');
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/50f94ccb03b04d32da0007fe/temptation-to-be-clever.jpg" alt="The temptation to be clever while programming is too damn high"></p>
 <p>Languages like ruby, being very powerful, make this very easy. Like they say <em>with great power comes great responsibilty</em>. So, this is some advice for young devs: <strong>Create the cleverest piece of code in your personal, fun projects to satiate your hunger, but when it comes to projects for customers, you owe it to them to be sensible and write mundane code</strong></p>
 <p>Here is a small example of clever vs mundane code.</p>
-<p>###Clever code<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [<span class="symbol">:street</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:zip</span>].any?&#123;|method| customer.send(method).<span class="keyword">nil</span>? || customer.send(method).squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>###Mundane code<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [customer.street, customer.city, customer.state, customer.zip].any?&#123;|prop| prop.<span class="keyword">nil</span>? || prop.squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>###Clever code
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [<span class="symbol">:street</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:zip</span>].any?&#123;|method| customer.send(method).<span class="keyword">nil</span>? || customer.send(method).squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>###Mundane code
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></span><br><span class="line">  [customer.street, customer.city, customer.state, customer.zip].any?&#123;|prop| prop.<span class="keyword">nil</span>? || prop.squish.empty? &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="cijlnnxer002n15pdval5er76" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="cijloc3iv002n14nr4msghfna" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/clever-code/">clever-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mundane-code/">mundane-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/temptation/">temptation</a></li></ul>

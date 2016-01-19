@@ -5,16 +5,22 @@
   
   <title>create a simple gem using jeweler | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use itacross your projects. And you don’t want to copy/paste the files acrossdifferent projects, cause that’s a pain and">
+  <meta name="description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it
+across your projects. And you don’t want to copy/paste the files across
+different projects, cause that’s a pain a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="create a simple gem using jeweler">
 <meta property="og:url" content="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use itacross your projects. And you don’t want to copy/paste the files acrossdifferent projects, cause that’s a pain and">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it
+across your projects. And you don’t want to copy/paste the files across
+different projects, cause that’s a pain a">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="create a simple gem using jeweler">
-<meta name="twitter:description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use itacross your projects. And you don’t want to copy/paste the files acrossdifferent projects, cause that’s a pain and">
+<meta name="twitter:description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it
+across your projects. And you don’t want to copy/paste the files across
+different projects, cause that’s a pain a">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -105,34 +111,58 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it<br>across your projects. And you don’t want to copy/paste the files across<br>different projects, cause that’s a pain and keeping all your re-usable code<br>across the projects up to date is not feasible. </p>
-<p>It’s obvious at this point that what you want is a gem, which would make sharing of code<br>across your projects a breeze, with the added benefits of seamless upgrades.<br>Hopefully this blog post will teach you how to create a simple gem in a few<br>steps.</p>
-<p>Gem creation is very easy if you use the right tools. If you go to<br><a href="http://ruby-toolbox.com/categories/gem_creation.html" target="_blank" rel="external">ruby-toolbox.com</a> you can see that there is more than one tool for gem<br>creation and management. The top-most on this list is <a href="http://github.com/technicalpickles/jeweler" target="_blank" rel="external">Jeweler</a>, It is an<br>awesome gem with a lot of nifty features which makes gem management a breeze.</p>
-<p>OK, <em>Enough talk let’s fight</em>. The first thing which you need to do<br>is install jeweler with the command <code>[sudo] gem install jeweler</code></p>
-<p>Once you have jeweler installed just follow the steps below to create your <em>own</em><br>gem:</p>
+        <p>So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it
+across your projects. And you don’t want to copy/paste the files across
+different projects, cause that’s a pain and keeping all your re-usable code
+across the projects up to date is not feasible. </p>
+<p>It’s obvious at this point that what you want is a gem, which would make sharing of code
+across your projects a breeze, with the added benefits of seamless upgrades.
+Hopefully this blog post will teach you how to create a simple gem in a few
+steps.</p>
+<p>Gem creation is very easy if you use the right tools. If you go to
+<a href="http://ruby-toolbox.com/categories/gem_creation.html" target="_blank" rel="external">ruby-toolbox.com</a> you can see that there is more than one tool for gem
+creation and management. The top-most on this list is <a href="http://github.com/technicalpickles/jeweler" target="_blank" rel="external">Jeweler</a>, It is an
+awesome gem with a lot of nifty features which makes gem management a breeze.</p>
+<p>OK, <em>Enough talk let’s fight</em>. The first thing which you need to do
+is install jeweler with the command <code>[sudo] gem install jeweler</code></p>
+<p>Once you have jeweler installed just follow the steps below to create your <em>own</em>
+gem:</p>
 <ul>
-<li>Run the command <code>jeweler fixnum_extensions</code> in the directory where you want<br>to create your your gem (fixnum_extensions here is the name of the gem).</li>
-<li>With the above command jeweler creates a bunch of files and directories for<br>your gem. One of the files which it creates is the <code>Rakefile</code> which has a lot<br>of predefined tasks which you can use to manager your gems.</li>
-<li>The file where you need to put your ruby code is  <code>lib/fixnum_extensions.rb</code><br>my file has the code below in it:</li>
+<li>Run the command <code>jeweler fixnum_extensions</code> in the directory where you want
+to create your your gem (fixnum_extensions here is the name of the gem).</li>
+<li>With the above command jeweler creates a bunch of files and directories for
+your gem. One of the files which it creates is the <code>Rakefile</code> which has a lot
+of predefined tasks which you can use to manager your gems.</li>
+<li>The file where you need to put your ruby code is  <code>lib/fixnum_extensions.rb</code> 
+my file has the code below in it:</li>
 </ul>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#This is a contrived example but it's fine</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(number)</span></span></span><br><span class="line">    number + <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(number)</span></span></span><br><span class="line">    number - <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(number)</span></span></span><br><span class="line">    number * <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">div</span><span class="params">(number)</span></span></span><br><span class="line">    number / <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>Now you need to open up the Rakefile and add a <em>description</em> and <em>summary</em><br>instead of the TODOs.</li>
-<li>Note that it fills up the author name and email by<br>looking at your git configuration files, it also creates a git repository with<br>a nice .gitignore file and makes the initial commit.</li>
-<li>The last thing you need to do before building your gem is create a VERSION<br>file, to do this just run <code>rake version:write</code>. This command creates a VERSION<br>file in your gem’s root folder which holds the version number of your gem.</li>
-<li>Finally, to build our gem run <code>rake build</code> (ignore the warnings when you run<br>this command). This will create a folder called <code>pkg</code> which holds your final<br>gem file <code>fixnum_extensions-0.0.0.gem</code>.</li>
+<li>Now you need to open up the Rakefile and add a <em>description</em> and <em>summary</em>
+instead of the TODOs.</li>
+<li>Note that it fills up the author name and email by
+looking at your git configuration files, it also creates a git repository with
+a nice .gitignore file and makes the initial commit.</li>
+<li>The last thing you need to do before building your gem is create a VERSION
+file, to do this just run <code>rake version:write</code>. This command creates a VERSION
+file in your gem’s root folder which holds the version number of your gem.</li>
+<li>Finally, to build our gem run <code>rake build</code> (ignore the warnings when you run
+this command). This will create a folder called <code>pkg</code> which holds your final
+gem file <code>fixnum_extensions-0.0.0.gem</code>.</li>
 </ul>
-<p>Now, you can share this gemfile with anyone you want and they’ll get all your<br>code in a nice gem package. To install it, just run the command <code>gem install
+<p>Now, you can share this gemfile with anyone you want and they’ll get all your
+code in a nice gem package. To install it, just run the command <code>gem install
 pkg/fixnum_extensions-0.0.0.gem</code></p>
 <p>To test it out open an irb session and run the following commands</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fixnum_extensions'</span></span><br><span class="line"><span class="number">1</span>.add(<span class="number">2</span>).mul(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-<p>  Jeweler adds a lot of nifty tasks which are great, to check them out just run<br>  <code>rake -T</code></p>
+<p>  Jeweler adds a lot of nifty tasks which are great, to check them out just run
+  <code>rake -T</code></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cijlnnxkr007g15pd1wma1uyd" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cijloc3sx007g14nrskbu57h3" class="article-share-link">Share</a>
       
       
     </footer>

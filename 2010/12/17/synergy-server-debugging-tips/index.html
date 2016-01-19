@@ -5,19 +5,25 @@
   
   <title>synergy server debugging tips | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I’ve been using Synergyto work seamlessly across my ubuntu and windows 7 machines. 
-Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing withoutall the time. Look">
+  <meta name="description" content="I’ve been using Synergy 
+to work seamlessly across my ubuntu and windows 7 machines. 
+Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing without
+all the time. L">
 <meta property="og:type" content="article">
 <meta property="og:title" content="synergy server debugging tips">
 <meta property="og:url" content="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I’ve been using Synergyto work seamlessly across my ubuntu and windows 7 machines. 
-Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing withoutall the time. Look">
-<meta property="og:updated_time" content="2016-01-19T17:08:42.000Z">
+<meta property="og:description" content="I’ve been using Synergy 
+to work seamlessly across my ubuntu and windows 7 machines. 
+Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing without
+all the time. L">
+<meta property="og:updated_time" content="2016-01-19T17:27:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="synergy server debugging tips">
-<meta name="twitter:description" content="I’ve been using Synergyto work seamlessly across my ubuntu and windows 7 machines. 
-Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing withoutall the time. Look">
+<meta name="twitter:description" content="I’ve been using Synergy 
+to work seamlessly across my ubuntu and windows 7 machines. 
+Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing without
+all the time. L">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -108,16 +114,25 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been using <a href="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/">Synergy</a><br>to work seamlessly across my ubuntu and windows 7 machines. </p>
-<p>Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing without<br>all the time. Looking into the logs (<code>/var/log/syslog</code>) didn’t show anything, I<br>was left scratching my head for a long time. Then I realized that the <code>synergys</code><br>can be executed in foreground using the <code>-f</code> flag. I executed <code>synergys -f -c
-/etc/synergy.conf</code> and there it was, when I switched the computer using a hotkey<br>it crashed. But this time, it wrote the actual error on the screen, so I could<br>investigate more and fix it. So, the next time your synergy server keeps<br>crashing and you don’t find anything in the logs run it in foreground and see<br>what’s going on :)</p>
-<p>By the way, the synergy binaries in the ubuntu repositories are very old, you<br>should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux" target="_blank" rel="external">download the binaries from their site</a></p>
+        <p>I’ve been using <a href="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/">Synergy</a> 
+to work seamlessly across my ubuntu and windows 7 machines. </p>
+<p>Recenty I changed my ubuntu box to the synergy server, and the synergy server was crashing without
+all the time. Looking into the logs (<code>/var/log/syslog</code>) didn’t show anything, I
+was left scratching my head for a long time. Then I realized that the <code>synergys</code>
+can be executed in foreground using the <code>-f</code> flag. I executed <code>synergys -f -c
+/etc/synergy.conf</code> and there it was, when I switched the computer using a hotkey
+it crashed. But this time, it wrote the actual error on the screen, so I could
+investigate more and fix it. So, the next time your synergy server keeps
+crashing and you don’t find anything in the logs run it in foreground and see
+what’s going on :)</p>
+<p>By the way, the synergy binaries in the ubuntu repositories are very old, you
+should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux" target="_blank" rel="external">download the binaries from their site</a></p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cijlnnxdn001n15pd2xk9egas" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cijloc3hl001n14nrtuyfns6w" class="article-share-link">Share</a>
       
       
     </footer>
