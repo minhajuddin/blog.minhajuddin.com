@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://minhajuddin.com/"/>
-  <updated>2016-01-21T03:05:51.000Z</updated>
+  <updated>2016-01-25T12:26:57.000Z</updated>
   <id>http://minhajuddin.com/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/"/>
     <id>http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/</id>
     <published>2016-01-20T09:38:44.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>I have been using this script to log my time for a long time, thought I would share it.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Usage:</span></span><br><span class="line"><span class="comment"># log time</span></span><br><span class="line"><span class="comment"># $ gl browsing redding again</span></span><br><span class="line"><span class="comment"># $ gl finished Hugo recipe for zammu.in</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># check log</span></span><br><span class="line"><span class="comment"># $ gl</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># check last 2 logs</span></span><br><span class="line"><span class="comment"># $ gl t -n2</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># edit the timelog file</span></span><br><span class="line"><span class="comment"># $ gl e</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">gl</span></span>() &#123;</span><br><span class="line">gtimelog=~/timelog.txt</span><br><span class="line"></span><br><span class="line">[ <span class="variable">$#</span> <span class="operator">-eq</span> <span class="number">0</span> ]  &amp;&amp; tail <span class="variable">$gtimelog</span> <span class="variable">$2</span> &amp;&amp; <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">  t|c) tail <span class="variable">$gtimelog</span> <span class="variable">$2</span></span><br><span class="line">    ;;</span><br><span class="line">  a) <span class="built_in">echo</span> <span class="string">"<span class="variable">$(date "+%Y-%m-%d %H:%M")</span>: <span class="variable">$(tail -1 $gtimelog | sed -e 's/^[0-9 :-]*//g')</span>"</span>  &gt;&gt; <span class="variable">$gtimelog</span></span><br><span class="line">    ;;</span><br><span class="line">  e) vi <span class="variable">$gtimelog</span></span><br><span class="line">    ;;</span><br><span class="line">  *) <span class="built_in">echo</span> <span class="string">"<span class="variable">$(date "+%Y-%m-%d %H:%M")</span>: <span class="variable">$&#123;@/jj/**&#125;</span>"</span> &gt;&gt; <span class="variable">$gtimelog</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -41,7 +41,7 @@
     <link href="http://minhajuddin.com/2016/01/18/drag-and-drop-works-with-the-terminal-too/"/>
     <id>http://minhajuddin.com/2016/01/18/drag-and-drop-works-with-the-terminal-too/</id>
     <published>2016-01-18T22:23:27.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>You can just drag and drop files in your terminal to get the full path of the file. Then you can do whatever you want with it, e.g. in my case I had downloaded a google verification file, I just dragged it to my terminal and edited the command to scp it over to my server. This can be very useful when you have unwieldy filenames.</p>
 <img src="/2016/01/18/drag-and-drop-works-with-the-terminal-too/draganddrop.png" alt="drag-and-drop-photo" title="drag-and-drop-photo">
 ]]></content>
@@ -60,7 +60,7 @@
     <link href="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/"/>
     <id>http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/</id>
     <published>2016-01-16T18:21:26.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>If you want to reverse the selected lines in vim, just type <code>:!tac</code> in normal mode after selecting them.</p>
 ]]></content>
     <summary type="html">
@@ -79,7 +79,7 @@
     <link href="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/"/>
     <id>http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/</id>
     <published>2016-01-13T12:37:05.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it.</p>
 <p>Take an example of the below API call, it is from a <a href="https://stripe.com/blog/accept-ach-payments" target="_blank" rel="external">stripe blog post demonstrating their use of ACH payments</a>. See how easy it is to read and understand the call? Why can’t all APIs be like this?</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.stripe.com/v1/charges \</span><br><span class="line">  -u sk_<span class="built_in">test</span>_BQokikJOvBiI2HlWgH4olfQ2: \</span><br><span class="line">  <span class="operator">-d</span> amount=<span class="number">250000</span> \</span><br><span class="line">  <span class="operator">-d</span> currency=usd \</span><br><span class="line">  <span class="operator">-d</span> description=<span class="string">"Corp Site License 2016"</span> \</span><br><span class="line">  <span class="operator">-d</span> customer=cus_7hyNnNEjxYuJOE \</span><br><span class="line">  <span class="operator">-d</span> <span class="built_in">source</span>=ba_17SYQs2eZvKYlo2CcV8BfFGz</span><br></pre></td></tr></table></figure>
@@ -102,7 +102,7 @@
     <link href="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/"/>
     <id>http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/</id>
     <published>2016-01-10T21:28:29.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>Here is a small script I wrote to get a git archive of your repository containing all the submodules with the root repository.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author Khaja Minhajuddin</span></span><br><span class="line"><span class="comment"># File name: git-archive-all</span></span><br><span class="line"><span class="comment"># cd root-git-repo; git-archive-all</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> <span class="operator">-e</span></span><br><span class="line"><span class="built_in">set</span> -C <span class="comment"># noclobber</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; creating root archive"</span></span><br><span class="line"><span class="built_in">export</span> ROOT_ARCHIVE_DIR=<span class="string">"<span class="variable">$(pwd)</span>"</span></span><br><span class="line"><span class="comment"># create root archive</span></span><br><span class="line">git archive --verbose --prefix <span class="string">"repo/"</span> --format <span class="string">"tar"</span> --output <span class="string">"<span class="variable">$ROOT_ARCHIVE_DIR</span>/repo-output.tar"</span> <span class="string">"master"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; appending submodule archives"</span></span><br><span class="line"><span class="comment"># for each of git submodules append to the root archive</span></span><br><span class="line">git submodule foreach --recursive <span class="string">'git archive --verbose --prefix=repo/$path/ --format tar master --output $ROOT_ARCHIVE_DIR/repo-output-sub-$sha1.tar'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ $(ls repo-output-sub*.tar | wc <span class="operator">-l</span>) != <span class="number">0</span>  ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="comment"># combine all archives into one tar</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"&gt; combining all tars"</span></span><br><span class="line">  tar --concatenate --file repo-output.tar repo-output-sub*.tar</span><br><span class="line"></span><br><span class="line">  <span class="comment"># remove sub tars</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"&gt; removing all sub tars"</span></span><br><span class="line">  rm -rf repo-output-sub*.tar</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># gzip the tar</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; gzipping final tar"</span></span><br><span class="line">gzip --force --verbose repo-output.tar</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; moving output file to <span class="variable">$OUTPUT_FILE</span>"</span></span><br><span class="line">mv repo-output.tar.gz <span class="variable">$OUTPUT_FILE</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; git-archive-all done"</span></span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -124,7 +124,7 @@
     <link href="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/"/>
     <id>http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/</id>
     <published>2015-12-09T13:08:30.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>Here is an example of an elastic object wrapper in ruby</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ElasticObject</span></span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">attr_reader</span> <span class="symbol">:object</span></span><br><span class="line">  alias_method <span class="symbol">:value</span>, <span class="symbol">:object</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(object)</span></span></span><br><span class="line">    <span class="variable">@object</span> = object</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">method_missing</span><span class="params">(method, *args, &amp;block)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="constant">ElasticObject</span>.new(object.send(method, *args, &amp;block)) <span class="keyword">if</span> object.respond_to?(method)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="constant">ElasticObject</span>.new(<span class="keyword">nil</span>) <span class="keyword">if</span> !object.is_a?(<span class="constant">Hash</span>)</span><br><span class="line"></span><br><span class="line">    result = [method] <span class="keyword">if</span> key?(method)</span><br><span class="line">    result = [method.to_s] <span class="keyword">if</span> key?(method.to_s)</span><br><span class="line">    <span class="keyword">return</span> <span class="constant">ElasticObject</span>.new(result)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">emp = <span class="constant">ElasticObject</span>.new(&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"age"</span> =&gt; <span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">puts emp.dob.month <span class="comment"># =&gt; nil</span></span><br><span class="line">puts emp.name <span class="comment"># =&gt; "Mujju"</span></span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -146,7 +146,7 @@
     <link href="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/"/>
     <id>http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/</id>
     <published>2015-12-09T11:29:43.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>So, I had to convert a hash into an open struct to make accessing things easy. Here is the code.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'ostruct'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">DeepStruct</span></span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">to_ostruct</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">self</span></span><br><span class="line">    <span class="keyword">when</span> <span class="constant">Hash</span></span><br><span class="line">      root = <span class="constant">OpenStruct</span>.new(<span class="keyword">self</span>)</span><br><span class="line">      <span class="keyword">self</span>.each_with_object(root) <span class="keyword">do</span> |(k,v), o|</span><br><span class="line">        o.send(<span class="string">"<span class="subst">#&#123;k&#125;</span>="</span>, v.to_ostruct)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">      root</span><br><span class="line">    <span class="keyword">when</span> <span class="constant">Array</span></span><br><span class="line">      <span class="keyword">self</span>.map <span class="keyword">do</span> |v|</span><br><span class="line">        v.to_ostruct</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">self</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Object</span>.send(<span class="symbol">:include</span>, <span class="constant">DeepStruct</span>)</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -168,7 +168,7 @@
     <link href="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/"/>
     <id>http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/</id>
     <published>2015-12-05T13:28:51.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>I just started playing with <a href="https://coreos.com" target="_blank" rel="external">Coreos</a> to run my docker containers.
 However, when I spun up an instance on Digital Ocean with my private key,
 I wasn’t able to login using the root account. It turns out that Digital Ocean sets up the private key
@@ -192,7 +192,7 @@ However, ]]>
     <link href="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/"/>
     <id>http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/</id>
     <published>2014-03-12T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>In the past I struggled with having a consistent strategy for showing error messages in javascript. In rails we usually put the error/success messages in the flash, However if the request is an ajax request the flash doesn’t get used and the message shows up on the next page load.</p>
 <p>The following code shows error/success messages using the flash properly</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#app/classes/ajax_flash.rb</span></span><br><span class="line"><span class="comment">#include this module in your Applicationcontroller</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">AjaxFlash</span></span></span><br><span class="line">  extend <span class="constant">ActiveSupport::Concern</span></span><br><span class="line"></span><br><span class="line">  included <span class="keyword">do</span></span><br><span class="line">    after_filter <span class="symbol">:add_flash_to_header</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add_flash_to_header</span></span></span><br><span class="line">    <span class="comment"># only run this in case it's an Ajax request.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">unless</span> request.xhr?</span><br><span class="line">    <span class="comment"># add flash to header</span></span><br><span class="line">    response.headers[<span class="string">'X-Flash'</span>] = flash.to_h.to_json</span><br><span class="line">    <span class="comment"># make sure flash does not appear on the next page</span></span><br><span class="line">    flash.discard</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
@@ -218,7 +218,7 @@ However, ]]>
     <link href="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/"/>
     <id>http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/</id>
     <published>2014-02-26T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>Today I saw a submission on HN about formspree.com which allows you to setup a form on your site similar to google forms / wufoo but without an iframe, so you can tweak it as much as you like. A quick whois lookup shows that this domain was created on 17 Feb 2014 which is just a few days ago. I had launched a similar service called <a href="http://getsimpleform.com/" target="_blank" rel="external">http://getsimpleform.com/</a> almost 2 years ago. It differs with formspree in a few aspects though. When I was thinking about creating simpleform, I didn’t want to expose the users email to the public by putting it in a form as formspree does, it is just a design choice I made. getsimpleform also has spam prevention using akismet and allows you to create forms with file uploads. So, it is a bit more feature rich then formspree. </p>
 <p>However, the point I am trying to make here is about the impact of a good looking visual design on how users perceive your product. Formspree has 209 upvotes (at the time of this post) and getsimpleform.com posts (5 submissions all of which were made by me) have a sum of 7 upvotes. Look at the difference in their screenshots.</p>
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/530deb968aef3a081d0081a6/Formspree___Functional_HTML_forms.png" alt="Formspree">
@@ -245,7 +245,7 @@ However, ]]>
     <link href="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/"/>
     <id>http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/</id>
     <published>2014-01-27T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>I have a big library of music with a lot of songs I don’t like anymore or songs which were a part of an album from which there was one song which I liked. And whenever my music player starts playing these songs, I hit a keyboard combo which goes to the next song. But these songs would be in my library just waiting to annoy me again. Here is a little ruby script which I wrote from an idea by my friend <a href="/codingtales.com">Abdul Sattar</a>.</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/home/minhajuddin/.rvm/rubies/ruby-1.9.3-p194/bin/ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'uri'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fileutils'</span></span><br><span class="line"></span><br><span class="line">song = <span class="string">`banshee --query-uri`</span>.chomp</span><br><span class="line">song = song.gsub(<span class="regexp">/uri:.*file:\/\//</span>,<span class="string">''</span>)</span><br><span class="line">song =  <span class="constant">URI</span>.decode(song)</span><br><span class="line"></span><br><span class="line"><span class="constant">FileUtils</span>.mv(song, <span class="string">'/home/minhajuddin/badmusic/'</span>)</span><br><span class="line">system(<span class="string">"/usr/bin/banshee --next"</span>)</span><br><span class="line">puts <span class="string">"Moved song '<span class="subst">#&#123;song&#125;</span>'"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#mv "$(ruby -e 'require "uri"; puts URI.decode(ARGV.join.gsub(/uri:file:\/\//,""))' $(banshee --query-uri))" /home/minhajuddin/badmusic/</span></span><br></pre></td></tr></table></figure>
 <p>I also have a keyboard shortcut bound to it which triggers it.</p>
@@ -267,7 +267,7 @@ However, ]]>
     <link href="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/"/>
     <id>http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/</id>
     <published>2014-01-20T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --no-acl --no-owner <span class="operator">-d</span> localdb</span><br></pre></td></tr></table></figure>
 ]]></content>
@@ -287,7 +287,7 @@ However, ]]>
     <link href="http://minhajuddin.com/2013/05/19/cloud-computing/"/>
     <id>http://minhajuddin.com/2013/05/19/cloud-computing/</id>
     <published>2013-05-19T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>Cloud computing is mostly a buzzword. In the old days when people wanted a
 server to put run their software on it (like a website), they used to order a
 dedicated (also called bare metal) server with a hosting company (like
@@ -347,7 +347,7 @@ server to put run their software on it (like a website), they ]]>
     <link href="http://minhajuddin.com/2013/05/19/http/"/>
     <id>http://minhajuddin.com/2013/05/19/http/</id>
     <published>2013-05-19T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>HTTP is a protocol used by computers to communicate with each other.
 A protocol is just a series of rules/steps which need to be followed for communication.
 e.g. If you want to buy a chocolate from the mall, you can go to the mall,
@@ -445,7 +445,7 @@ A protocol is just a series of rules/steps which need to be followed]]>
     <link href="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/"/>
     <id>http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/</id>
     <published>2013-04-28T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>Angularjs loads the templates used through the [ng-include] (<a href="http://docs.angularjs.org/api/ng.directive:ngInclude" target="_blank" rel="external">http://docs.angularjs.org/api/ng.directive:ngInclude</a>) directive on the fly. This might cause a lot of requests to be made to your server which is not a good thing.</p>
 <p>This solution allows you to load all your templates in one go and it will actually shove all your templates into your final application.js file.</p>
 <p><strong><s>GOTCHA: If you use this approach you will have to change this file whenever a template changes in development, if you don’t it won’t recompile this file which will cause your app to use old templates. This happens only in development and it’s a pain, I don’t know how to solve it yet. Anyone who knows can help me out here :)</s></strong></p>
@@ -476,7 +476,7 @@ A protocol is just a series of rules/steps which need to be followed]]>
     <link href="http://minhajuddin.com/2013/02/19/brute-force/"/>
     <id>http://minhajuddin.com/2013/02/19/brute-force/</id>
     <published>2013-02-19T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>I am planning to participate in the Google Code Jam this year.
 And I have been working on the <a href="https://code.google.com/codejam/contests.html" target="_blank" rel="external">practice problems</a>. 
 It’s been fun, It’s a great feeling when you are able to solve a challenging
@@ -526,7 +526,7 @@ And I have been working on the <a href="https://code.google.com/codejam/co]]>
     <link href="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/"/>
     <id>http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/</id>
     <published>2013-02-19T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>I had to write some code to see if the input time slots on a given day overlapped.
 I gave this problem to my sister, to come up with an algorithm. She came up with
 a nice solution which hadn’t crossed my mind. See, if your solution is as good
@@ -574,7 +574,7 @@ I gave this problem to my sister, to come up with an a]]>
     <link href="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/"/>
     <id>http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/</id>
     <published>2013-02-09T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>Review</p>
 ]]></content>
     <summary type="html">
@@ -593,7 +593,7 @@ I gave this problem to my sister, to come up with an a]]>
     <link href="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/"/>
     <id>http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/</id>
     <published>2013-02-09T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>I have read <em><a href="http://www.amazon.com/gp/product/1439167346/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1439167346&amp;linkCode=as2&amp;tag=httpminhajuco-20" target="_blank" rel="external">How to Win Friends &amp; Influence People</a></em>
 a few years ago, It’s an amazing book filled with great advice on how to talk to people.
 However, I have ended up using it on the wrong people, I’ve found myself sugar coating a lot of stuff when I communicate.</p>
@@ -635,7 +635,7 @@ an unconscious player in a game of hide and seek with your words</strong></p>
     <link href="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/"/>
     <id>http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/</id>
     <published>2013-02-06T00:00:00.000Z</published>
-    <updated>2016-01-21T03:05:51.000Z</updated>
+    <updated>2016-01-25T12:26:57.000Z</updated>
     <content type="html"><![CDATA[<p>As a programmer, you should always thinking about automating your grunt work. My family has a private google group where we share/discuss stuff (I know what you are thinking, sharing through email ugh.. but that’s how it is). Whenever I wanted to share I used to copy the link, hit Ctrl+D to get the bookmark save box, copy the title from that and then use that as a subject to send an email, so, here is a script I wrote to automate that.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">window</span>.location.href = <span class="string">"mailto:fooxxxx@googlegroups.com?subject="</span>+<span class="built_in">document</span>.title+<span class="string">"&amp;body="</span>+<span class="built_in">window</span>.location.href;&#125;)()</span><br></pre></td></tr></table></figure>
 <p>Just change the email in the above script to be sent to the group you want and add it as a bookmarklet</p>
