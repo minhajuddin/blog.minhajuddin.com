@@ -85,94 +85,6 @@ ga('send', 'pageview');
         <section id="main">
           
   
-    <article id="post-javascript-bookmarklet-to-share-a-webpage-with-someone" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" class="article-date">
-  <time datetime="2013-02-06T00:00:00.000Z" itemprop="datePublished">2013-02-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/">Javascript bookmarklet to share a webpage</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>As a programmer, you should always thinking about automating your grunt work. My family has a private google group where we share/discuss stuff (I know what you are thinking, sharing through email ugh.. but that’s how it is). Whenever I wanted to share I used to copy the link, hit Ctrl+D to get the bookmark save box, copy the title from that and then use that as a subject to send an email, so, here is a script I wrote to automate that.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">window</span>.location.href = <span class="string">"mailto:fooxxxx@googlegroups.com?subject="</span>+<span class="built_in">document</span>.title+<span class="string">"&amp;body="</span>+<span class="built_in">window</span>.location.href;&#125;)()</span><br></pre></td></tr></table></figure>
-<p>Just change the email in the above script to be sent to the group you want and add it as a bookmarklet</p>
-
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" data-id="cijtzbxne004a16ms0s1i5ul5" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bookmarklet/">bookmarklet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-a-usable-bash-prompt" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/01/a-usable-bash-prompt/" class="article-date">
-  <time datetime="2013-02-01T00:00:00.000Z" itemprop="datePublished">2013-02-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/01/a-usable-bash-prompt/">A usable bash prompt</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="external">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#~/.bashrc</span></span><br><span class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></span><br></pre></td></tr></table></figure>
-<p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="external">excellent archlinux wiki</a></p>
-<p>Screenshot:
-<img src="https://substancehq.s3.amazonaws.com/static_asset/510bb12e03b04d32da00233b/Selection_047.jpeg" alt="Screenshot"></p>
-
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="cijtzbxtt008i16ms29tqif6d" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prompt/">prompt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ps1/">ps1</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-tossing-a-bottle" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/02/01/tossing-a-bottle/" class="article-date">
@@ -246,10 +158,55 @@ possible.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="cijtzbxil000x16msiay9ugfw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="cijtzdwr3000x17r0q2lwe43p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/experiment/">experiment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/explore/">explore</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fear/">fear</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-a-usable-bash-prompt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/02/01/a-usable-bash-prompt/" class="article-date">
+  <time datetime="2013-02-01T00:00:00.000Z" itemprop="datePublished">2013-02-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/02/01/a-usable-bash-prompt/">A usable bash prompt</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="external">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#~/.bashrc</span></span><br><span class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></span><br></pre></td></tr></table></figure>
+<p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="external">excellent archlinux wiki</a></p>
+<p>Screenshot:
+<img src="https://substancehq.s3.amazonaws.com/static_asset/510bb12e03b04d32da00233b/Selection_047.jpeg" alt="Screenshot"></p>
+
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="cijtzdx30008h17r0vsjqwcf4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prompt/">prompt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ps1/">ps1</a></li></ul>
 
     </footer>
   </div>
@@ -337,7 +294,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="cijtzbxqy006i16mswjy0imjv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="cijtzdwzw006h17r0j4wlsk80" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/workflow/">workflow</a></li></ul>
@@ -385,7 +342,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="cijtzbxkk002o16msaissl6it" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="cijtzdwu4002n17r0gq707ijh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/clever-code/">clever-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mundane-code/">mundane-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/temptation/">temptation</a></li></ul>
@@ -427,7 +384,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cijtzbxpv005r16msyrd8r7fc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cijtzdwyl005q17r0mb2j10h2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/command-t/">command-t</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rvm/">rvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
@@ -473,60 +430,10 @@ Make it overwrite the old output or insert before the previous output</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cijtzbxre006t16mskdxruloc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cijtzdx0k006s17r0ld7zbjfl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
-  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
-<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
-<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
-<p>The setup contains two parts.</p>
-<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#~/.scripts/runinbg</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to run a command in background redirecting the</span></span><br><span class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</span><br><span class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> <span class="number">1</span>&gt;&gt; /tmp/runinbg.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></span><br><span class="line"><span class="comment">#when the test is complete</span></span><br><span class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></span><br></pre></td></tr></table></figure>
-<p>###2. Vim function to call this script with the current filename
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function! RunSpecs()</span><br><span class="line">  :silent!!runinbg bundle exec rspec % "you can tweak this to your liking</span><br><span class="line">  redraw! "without this the screen goes blank</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">nnoremap &lt;C-d&gt; :call RunSpecs()&lt;cr&gt;</span><br></pre></td></tr></table></figure></p>
-<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
-<p>Update: Added a version with notification</p>
-
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cijtzbxkb002d16msmipazglk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   </div>
@@ -580,10 +487,60 @@ Make it overwrite the old output or insert before the previous output</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cijtzbxjs001r16msl445aru6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cijtzdwte001r17r0ce8d3xra" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
+  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
+<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
+<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
+<p>The setup contains two parts.</p>
+<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#~/.scripts/runinbg</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to run a command in background redirecting the</span></span><br><span class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</span><br><span class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> <span class="number">1</span>&gt;&gt; /tmp/runinbg.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></span><br><span class="line"><span class="comment">#when the test is complete</span></span><br><span class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></span><br></pre></td></tr></table></figure>
+<p>###2. Vim function to call this script with the current filename
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function! RunSpecs()</span><br><span class="line">  :silent!!runinbg bundle exec rspec % "you can tweak this to your liking</span><br><span class="line">  redraw! "without this the screen goes blank</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">nnoremap &lt;C-d&gt; :call RunSpecs()&lt;cr&gt;</span><br></pre></td></tr></table></figure></p>
+<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
+<p>Update: Added a version with notification</p>
+
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cijtzdwtw002c17r0bx8k380r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   </div>
@@ -665,7 +622,7 @@ software product.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cijtzbxj0001716msmdd7o158" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cijtzdws9001717r0rqx88wpw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/barefooters/">barefooters</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/india/">india</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">software</a></li></ul>
@@ -712,7 +669,7 @@ software product.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cijtzbxsx007x16msx3zorgh1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cijtzdx2f007w17r07dpbkbqk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/godoc/">godoc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/upstart/">upstart</a></li></ul>
@@ -753,7 +710,7 @@ software product.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cijtzbxnp004g16msfzmg6okw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cijtzdwxk004f17r0vntvhz0z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
@@ -804,7 +761,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cijtzbxi9000m16msn767fr3b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cijtzdwqd000m17r0xxvs9x1m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inotify/">inotify</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/watch/">watch</a></li></ul>
@@ -848,7 +805,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cijtzbxly003k16ms00r4ithc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cijtzdwwi003j17r074geggh6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automatic/">automatic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
@@ -898,7 +855,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cijtzbxp3005416mspvefek28" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cijtzdwy6005317r0t3rxpsxb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/authenticate/">authenticate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/console/">console</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devise/">devise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/production/">production</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li></ul>
@@ -944,7 +901,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="cijtzbxu9008x16ms6yac5ada" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="cijtzdx3e008w17r0fd3gk79h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/diff/">diff</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ecommerce/">ecommerce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ux/">ux</a></li></ul>
@@ -996,7 +953,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="cijtzbxu5008t16msjq9g7t7b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="cijtzdx3b008s17r0kotpzq1u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sleep/">sleep</a></li></ul>
@@ -1040,7 +997,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="cijtzbxqt006c16msle4v95vw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="cijtzdwzn006b17r0j0aydhm5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/free-lunch/">free-lunch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li></ul>
@@ -1092,7 +1049,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="cijtzbxo1004m16mstcd52wbm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="cijtzdwxq004l17r0jfg1d1xx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li></ul>
@@ -1137,10 +1094,55 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cijtzbxhy000a16msigouc6o7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cijtzdwpu000a17r0aiucij8i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utility/">utility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xclip/">xclip</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-an-easy-way-to-automate-your-browser" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/09/25/an-easy-way-to-automate-your-browser/" class="article-date">
+  <time datetime="2012-09-25T00:00:00.000Z" itemprop="datePublished">2012-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/09/25/an-easy-way-to-automate-your-browser/">An easy way to automate your browser</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I build web applications, and use the browser a lot. And there are a few things which I do all the time. For instance, all my web applications have a login page and while developing them, I have to login every time before I start testing them. To make this pain free, I’ve added a bookmarklet in my bookmark with the following code:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Devise login</span></span><br><span class="line">javascript: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"user_email"</span>).value = <span class="string">"user@mailinator.com"</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"user_password"</span>).value = <span class="string">"please"</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"new_user"</span>).submit();</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>If you know javascript, you’ll know that all this code is doing is filling the username and password and posting the form. This saves me a lot of keystrokes. Another bookmarklet which I use is to remove NSFW videos from youtube’s recommendations list</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javascript:<span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'watch-sidebar'</span>);</span><br><span class="line">e.parentNode.removeChild(e);</span><br></pre></td></tr></table></figure>
+<p>This code just removes the div containing the recommendation videos. These are just a few examples, if you know a little bit of javascript. You can easily create bookmarklets to make your repetitive jobs easy.</p>
+
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cijtzdx2w008c17r0jsd59yiz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bookmarklet/">bookmarklet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
     </footer>
   </div>
@@ -1192,10 +1194,6 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       <ul>
         
           <li>
-            <a href="/2016/01/25/shahbaz-test-post/">Shahbaz test post</a>
-          </li>
-        
-          <li>
             <a href="/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/">A bash script to replace gtimelog for the terminal</a>
           </li>
         
@@ -1209,6 +1207,10 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
         
           <li>
             <a href="/2016/01/13/if-you-have-an-api-make-it-curlable/">If you have an API make it curlable</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/10/how-to-get-a-git-archive-including-submodules/">How to get a git archive including submodules</a>
           </li>
         
       </ul>
@@ -1231,7 +1233,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
