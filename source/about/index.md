@@ -2,7 +2,7 @@ title: About
 date: 2016-01-12 04:47:01
 ---
 
-![Khaja Minhajuddin](https://s.gravatar.com/avatar/ca4be9237627c499136b8799ff0c7f57?s=200)
+![Khaja Minhajuddin](/images/khaja-minhajuddin-independence-day.png)
 
 I am a very passionate programmer. I am also the CEO of a Micro ISV, [Cosmicvent Software][]. I have been in the software industry for <script>document.write(Math.round(((new Date()) - (new Date(2006, 11, 13)))/31536000000))</script> years. You can shoot me an email at **[minhajuddin.k@gmail.com][]** or send a tweet to [@minhajuddin][].
 
