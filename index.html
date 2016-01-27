@@ -131,13 +131,14 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
 </ol>
 <p>Here is our final script:</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fileutils'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># this generates a static site into a public folder for the current directory</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># create the folder</span></span><br><span class="line"><span class="constant">FileUtils</span>.mkdir_p <span class="string">"public"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># read the layout</span></span><br><span class="line">layout = <span class="constant">File</span>.read(<span class="string">"layout.html"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># read the pages</span></span><br><span class="line"><span class="constant">Dir</span>[<span class="string">"pages/*html"</span>].each <span class="keyword">do</span> |page_filepath|</span><br><span class="line">  page = <span class="constant">File</span>.read(page_filepath)</span><br><span class="line">  <span class="comment"># replace the page title and page content</span></span><br><span class="line">  title = <span class="constant">File</span>.basename(page_filepath) <span class="comment"># we'll use the filename as the title</span></span><br><span class="line">  rendered_page = layout.gsub(<span class="string">"_PAGE_TITLE"</span>, title)</span><br><span class="line">  rendered_page = rendered_page.gsub(<span class="string">"_PAGE_CONTENT"</span>, page)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># write it out</span></span><br><span class="line">  <span class="constant">File</span>.write(<span class="string">"public/<span class="subst">#&#123;title&#125;</span>"</span>, rendered_page)</span><br><span class="line">  puts <span class="string">"generated <span class="subst">#&#123;title&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">"DONE"</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://zammu.in/?invitation_code=MINHAJUDDIN" target="_blank" rel="external">By, the way I am building an Automatic Deployment solution which can build and deploy Hugo, Hexo, Middleman and Octopress sites to Github pages</a></p>
 <p>I created a small asciicast too, you can watch it below:</p>
 
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/" data-id="cijwhwo9k00471blizyjpw46p" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/" data-id="cijwifbt600471bt76530rkau" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/how-to/">How To</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a></li></ul>
@@ -179,7 +180,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/" data-id="cijwhwog800991blitb3ohuzr" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/" data-id="cijwifc3a00991bt7p2uwixh8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gtimelog/">gtimelog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time/">time</a></li></ul>
@@ -221,7 +222,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/18/drag-and-drop-works-with-the-terminal-too/" data-id="cijwhwoe5007b1blineccirp6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/18/drag-and-drop-works-with-the-terminal-too/" data-id="cijwifbzm007b1bt799hi1i1h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/terminal/">terminal</a></li></ul>
@@ -262,7 +263,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/" data-id="cijwhwoc5005j1bli9l7silif" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/" data-id="cijwifbvo005j1bt7iweoeiyc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reverse/">reverse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
@@ -306,7 +307,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/" data-id="cijwhwob3004w1blimjxe0cxb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/" data-id="cijwifbul004w1bt7m0t36x86" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/curl/">curl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design/">design</a></li></ul>
@@ -348,7 +349,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/" data-id="cijwhwocq00661blil786rq2z" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/" data-id="cijwifbwr00661bt771lqxann" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/submodules/">submodules</a></li></ul>
@@ -390,7 +391,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/" data-id="cijwhwodx00731bliddpoa1nv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/" data-id="cijwifbyz00731bt7spnpp9sf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elastic-object/">elastic object</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/metaprogramming/">metaprogramming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li></ul>
@@ -432,7 +433,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/" data-id="cijwhwo6i002x1blio0uhz1n5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/" data-id="cijwifbqd002x1bt7am8llkel" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hash/">hash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/open-struct/">open struct</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li></ul>
@@ -478,7 +479,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/" data-id="cijwhwoek007h1blin4a7dw34" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/" data-id="cijwifc0e007h1bt73puag6wr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/coreos/">coreos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
@@ -525,7 +526,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/" data-id="cijwhwo4q00211blih18x8myn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/" data-id="cijwifbop00211bt7w2tkiony" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax/">ajax,</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flash/">flash,</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li></ul>
@@ -571,7 +572,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/" data-id="cijwhwo3a001f1blinwu3txch" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/" data-id="cijwifbng001f1bt7a198saz1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/getsimpleform/">getsimpleform</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/perception/">perception,</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shiny/">shiny,</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/usability/">usability,</a></li></ul>
@@ -616,7 +617,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/" data-id="cijwhwo5600281blihzmmeyko" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/" data-id="cijwifbp300281bt78sxw586e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/banshee/">banshee,</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/music/">music</a></li></ul>
@@ -658,7 +659,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" data-id="cijwhwo7s003f1bliqdosryae" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" data-id="cijwifbrj003f1bt7yj0fs6am" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/import/">import</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">postgresql,</a></li></ul>
@@ -778,7 +779,7 @@ Connection: keep-alive
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="cijwhwobe00531bliiztq0wod" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="cijwifbuu00531bt7aeqgkwkn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
@@ -858,7 +859,7 @@ customers? Virtualization/Cloud computing allows web administrators to do this.<
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="cijwhwoer007n1bliiooq0qcj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="cijwifc0s007n1bt7wlul3x5x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cloud-computing/">cloud-computing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualization/">virtualization</a></li></ul>
@@ -908,7 +909,7 @@ customers? Virtualization/Cloud computing allows web administrators to do this.<
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="cijwhwoff008a1bli6p6o3hso" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="cijwifc2b008a1bt7rv1cf91h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eager-load/">eager-load</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/templates/">templates</a></li></ul>
@@ -978,7 +979,7 @@ as hers :)</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="cijwhwodo006t1bli31yd5qy2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="cijwifbyb006t1bt7mdg4x6g1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time-overlap/">time-overlap</a></li></ul>
@@ -1048,7 +1049,7 @@ feedback cycle of coding that we fail to spend time thinking of the problem/solu
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="cijwhwoex007t1blikr1cw19b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="cijwifc15007t1bt7ihi7pxm8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brute-force/">brute-force</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solving/">solving</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
@@ -1111,7 +1112,7 @@ an unconscious player in a game of hide and seek with your words</strong></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="cijwhwo6w00331bli9oozixcj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="cijwifbqq00331bt7ofqh0f9f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/communication/">communication</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/raw/">raw</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sugar-coat/">sugar-coat</a></li></ul>
@@ -1152,7 +1153,7 @@ an unconscious player in a game of hide and seek with your words</strong></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="cijwhwo5p002j1bligktbn4k1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="cijwifbpk002j1bt70uox2p3u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/books/">books</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/">review</a></li></ul>
