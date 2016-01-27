@@ -97,5 +97,7 @@ end
 puts "DONE"
 ~~~
 
+[By, the way I am building an Automatic Deployment solution which can build and deploy Hugo, Hexo, Middleman and Octopress sites to Github pages](https://zammu.in/?invitation_code=MINHAJUDDIN)
+
 I created a small asciicast too, you can watch it below:
 
