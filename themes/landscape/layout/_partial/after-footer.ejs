@@ -1,8 +1,9 @@
 <% if (config.disqus_shortname){ %>
 <script>
   var disqus_shortname = '<%= config.disqus_shortname %>';
+  <%// identifier from the old blog on substance %>
   <% if (page.permalink){ %>
-  var disqus_url = '<%= page.permalink %>';
+    var disqus_identifier = '/<%= page.path.replace(/\/$/, '') %>';
   <% } %>
   (function(){
     var dsq = document.createElement('script');
