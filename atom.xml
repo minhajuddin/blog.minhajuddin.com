@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://minhajuddin.com/"/>
-  <updated>2016-02-15T20:23:47.000Z</updated>
+  <updated>2016-02-16T07:48:11.000Z</updated>
   <id>http://minhajuddin.com/</id>
   
   <author>
@@ -16,11 +16,41 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>How to extract images from a pdf and reduce their size</title>
+    <link href="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/"/>
+    <id>http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/</id>
+    <published>2016-02-16T13:14:05.000Z</published>
+    <updated>2016-02-16T07:48:11.000Z</updated>
+    
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Extract the images into a temporary folder. Twiddle with the quality value to reduce the size.&lt;/p&gt;
+&lt;figure class=&quot;highlight haml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;convert \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-&lt;span class=&quot;ruby&quot;&gt;verbose \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;-&lt;span class=&quot;ruby&quot;&gt;density &lt;span class=&quot;number&quot;&gt;150&lt;/span&gt; \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;-&lt;span class=&quot;ruby&quot;&gt;trim \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;source-pdf-file.pdf&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;-&lt;span class=&quot;ruby&quot;&gt;quality &lt;span class=&quot;number&quot;&gt;50&lt;/span&gt; \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;-&lt;span class=&quot;ruby&quot;&gt;sharpen &lt;span class=&quot;number&quot;&gt;0x1&lt;/span&gt;.&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; \&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;image-prefix.jpg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Create the pdf back from all the images.&lt;/p&gt;
+&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;convert&lt;/span&gt; *&lt;span class=&quot;class&quot;&gt;.jpg&lt;/span&gt; &lt;span class=&quot;tag&quot;&gt;output-file&lt;/span&gt;&lt;span class=&quot;class&quot;&gt;.pdf&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Extract the images into a temporary folder. Twiddle with the quality value to reduce the size.&lt;/p&gt;
+&lt;figure class=&quot;highlight haml
+    
+    </summary>
+    
+    
+      <category term="PDF" scheme="http://minhajuddin.com/tags/pdf/"/>
+    
+  </entry>
+  
+  <entry>
     <title>A very simple environment loader for ruby</title>
     <link href="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/"/>
     <id>http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/</id>
     <published>2016-02-10T21:11:18.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;There are &lt;a href=&quot;https://github.com/laserlemon/figaro&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;many&lt;/a&gt; &lt;a href=&quot;https://github.com/bkeepers/dotenv&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gems&lt;/a&gt;
 which do app configuration loading for ruby.
@@ -49,7 +79,7 @@ snippet of code which does most of what you want.&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/"/>
     <id>http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/</id>
     <published>2016-02-06T14:39:08.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/guard/guard&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Guard&lt;/a&gt; is an awesome rubygem which allows livereload among other things.
 However, when I run guard in tmux it was crashing all my tmux sessions. I guess
@@ -78,7 +108,7 @@ should be good.&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/"/>
     <id>http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/</id>
     <published>2016-02-03T11:50:03.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: &lt;a href=&quot;http://www.andrews-corner.org/mutt.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.andrews-corner.org/mutt.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;However, I had to hit &lt;code&gt;I&lt;/code&gt; to make mutt fetch the email, Here is a crontab entry I setup to automatically retreive the email every minute.&lt;/p&gt;
@@ -103,7 +133,7 @@ should be good.&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/"/>
     <id>http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/</id>
     <published>2016-02-01T22:38:12.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;I &lt;a href=&quot;http://blog.teamtreehouse.com/deploy-static-site-heroku#comment-170888&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;see&lt;/a&gt; &lt;a href=&quot;https://github.com/roperzh/heroku-buildpack-hugo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;many&lt;/a&gt;
 &lt;a href=&quot;https://github.com/spf13/hugo/issues/293&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;posts&lt;/a&gt; &lt;a href=&quot;http://byenary.com/blog/2015/04/02/setting-up-a-blog-with-hugo-and-heroku/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;on the internet&lt;/a&gt;
@@ -132,7 +162,7 @@ for static content. Heck, it even supports building of websites automatically us
     <link href="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/"/>
     <id>http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/</id>
     <published>2016-01-30T18:56:35.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;While writing code to show themes in Zammu, I had to show the same button in two places on the same page.
 The easy way is to duplicate the code. But that causes problems with maintainability.&lt;/p&gt;
@@ -165,7 +195,7 @@ The easy way is to duplicate th
     <link href="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/"/>
     <id>http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/</id>
     <published>2016-01-27T12:06:52.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;Static Site Generators are awesome because of their speed and robustness.&lt;/p&gt;
 &lt;p&gt;There are &lt;a href=&quot;https://middlemanapp.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;many&lt;/a&gt; &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;static&lt;/a&gt; &lt;a href=&quot;http://gohugo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;site&lt;/a&gt; &lt;a href=&quot;http://octopress.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;generators&lt;/a&gt;.&lt;/p&gt;
@@ -214,7 +244,7 @@ I am using a dumb way to notate placeholder, we’ll use &lt;code&gt;_PAGE_TITLE
     <link href="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/"/>
     <id>http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/</id>
     <published>2016-01-20T09:38:44.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;I have been using this script to log my time for a long time, thought I would share it.&lt;/p&gt;
 &lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Usage:&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# log time&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# $ gl browsing redding again&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# $ gl finished Hugo recipe for zammu.in&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# check log&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# $ gl&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# check last 2 logs&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# $ gl t -n2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# edit the timelog file&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# $ gl e&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;title&quot;&gt;gl&lt;/span&gt;&lt;/span&gt;() &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gtimelog=~/timelog.txt&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;[ &lt;span class=&quot;variable&quot;&gt;$#&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;-eq&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt; ]  &amp;amp;&amp;amp; tail &lt;span class=&quot;variable&quot;&gt;$gtimelog&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$2&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;built_in&quot;&gt;return&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;in&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  t|c) tail &lt;span class=&quot;variable&quot;&gt;$gtimelog&lt;/span&gt; &lt;span class=&quot;variable&quot;&gt;$2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  a) &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$(date &quot;+%Y-%m-%d %H:%M&quot;)&lt;/span&gt;: &lt;span class=&quot;variable&quot;&gt;$(tail -1 $gtimelog | sed -e &#39;s/^[0-9 :-]*//g&#39;)&lt;/span&gt;&quot;&lt;/span&gt;  &amp;gt;&amp;gt; &lt;span class=&quot;variable&quot;&gt;$gtimelog&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  e) vi &lt;span class=&quot;variable&quot;&gt;$gtimelog&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  *) &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$(date &quot;+%Y-%m-%d %H:%M&quot;)&lt;/span&gt;: &lt;span class=&quot;variable&quot;&gt;$&amp;#123;@/jj/**&amp;#125;&lt;/span&gt;&quot;&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class=&quot;variable&quot;&gt;$gtimelog&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;esac&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -241,7 +271,7 @@ I am using a dumb way to notate placeholder, we’ll use &lt;code&gt;_PAGE_TITLE
     <link href="http://minhajuddin.com/2016/01/18/drag-and-drop-works-with-the-terminal-too/"/>
     <id>http://minhajuddin.com/2016/01/18/drag-and-drop-works-with-the-terminal-too/</id>
     <published>2016-01-18T22:23:27.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;You can just drag and drop files in your terminal to get the full path of the file. Then you can do whatever you want with it, e.g. in my case I had downloaded a google verification file, I just dragged it to my terminal and edited the command to scp it over to my server. This can be very useful when you have unwieldy filenames.&lt;/p&gt;
 &lt;img src=&quot;/2016/01/18/drag-and-drop-works-with-the-terminal-too/draganddrop.png&quot; alt=&quot;drag-and-drop-photo&quot; title=&quot;drag-and-drop-photo&quot;&gt;
@@ -265,7 +295,7 @@ I am using a dumb way to notate placeholder, we’ll use &lt;code&gt;_PAGE_TITLE
     <link href="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/"/>
     <id>http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/</id>
     <published>2016-01-16T18:21:26.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;If you want to reverse the selected lines in vim, just type &lt;code&gt;:!tac&lt;/code&gt; in normal mode after selecting them.&lt;/p&gt;
 </content>
@@ -289,7 +319,7 @@ I am using a dumb way to notate placeholder, we’ll use &lt;code&gt;_PAGE_TITLE
     <link href="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/"/>
     <id>http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/</id>
     <published>2016-01-13T12:37:05.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it.&lt;/p&gt;
 &lt;p&gt;Take an example of the below API call, it is from a &lt;a href=&quot;https://stripe.com/blog/accept-ach-payments&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;stripe blog post demonstrating their use of ACH payments&lt;/a&gt;. See how easy it is to read and understand the call? Why can’t all APIs be like this?&lt;/p&gt;
@@ -317,7 +347,7 @@ I am using a dumb way to notate placeholder, we’ll use &lt;code&gt;_PAGE_TITLE
     <link href="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/"/>
     <id>http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/</id>
     <published>2016-01-10T21:28:29.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;Here is a small script I wrote to get a git archive of your repository containing all the submodules with the root repository.&lt;/p&gt;
 &lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;shebang&quot;&gt;#!/bin/bash&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# Author Khaja Minhajuddin&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# File name: git-archive-all&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# cd root-git-repo; git-archive-all&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;operator&quot;&gt;-e&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;set&lt;/span&gt; -C &lt;span class=&quot;comment&quot;&gt;# noclobber&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&amp;gt; creating root archive&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;export&lt;/span&gt; ROOT_ARCHIVE_DIR=&lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$(pwd)&lt;/span&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# create root archive&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git archive --verbose --prefix &lt;span class=&quot;string&quot;&gt;&quot;repo/&quot;&lt;/span&gt; --format &lt;span class=&quot;string&quot;&gt;&quot;tar&quot;&lt;/span&gt; --output &lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;variable&quot;&gt;$ROOT_ARCHIVE_DIR&lt;/span&gt;/repo-output.tar&quot;&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;master&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&amp;gt; appending submodule archives&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# for each of git submodules append to the root archive&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git submodule foreach --recursive &lt;span class=&quot;string&quot;&gt;&#39;git archive --verbose --prefix=repo/$path/ --format tar master --output $ROOT_ARCHIVE_DIR/repo-output-sub-$sha1.tar&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; [[ $(ls repo-output-sub*.tar | wc &lt;span class=&quot;operator&quot;&gt;-l&lt;/span&gt;) != &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;  ]]; &lt;span class=&quot;keyword&quot;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;# combine all archives into one tar&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&amp;gt; combining all tars&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  tar --concatenate --file repo-output.tar repo-output-sub*.tar&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;comment&quot;&gt;# remove sub tars&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&amp;gt; removing all sub tars&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  rm -rf repo-output-sub*.tar&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;fi&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# gzip the tar&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&amp;gt; gzipping final tar&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;gzip --force --verbose repo-output.tar&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&amp;gt; moving output file to &lt;span class=&quot;variable&quot;&gt;$OUTPUT_FILE&lt;/span&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mv repo-output.tar.gz &lt;span class=&quot;variable&quot;&gt;$OUTPUT_FILE&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;&amp;gt; git-archive-all done&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -344,7 +374,7 @@ I am using a dumb way to notate placeholder, we’ll use &lt;code&gt;_PAGE_TITLE
     <link href="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/"/>
     <id>http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/</id>
     <published>2015-12-09T13:08:30.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;Here is an example of an elastic object wrapper in ruby&lt;/p&gt;
 &lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;ElasticObject&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;attr_reader&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;:object&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  alias_method &lt;span class=&quot;symbol&quot;&gt;:value&lt;/span&gt;, &lt;span class=&quot;symbol&quot;&gt;:object&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;initialize&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(object)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;variable&quot;&gt;@object&lt;/span&gt; = object&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;method_missing&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(method, *args, &amp;amp;block)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;constant&quot;&gt;ElasticObject&lt;/span&gt;.new(object.send(method, *args, &amp;amp;block)) &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; object.respond_to?(method)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;constant&quot;&gt;ElasticObject&lt;/span&gt;.new(&lt;span class=&quot;keyword&quot;&gt;nil&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; !object.is_a?(&lt;span class=&quot;constant&quot;&gt;Hash&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    result = [method] &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; key?(method)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    result = [method.to_s] &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; key?(method.to_s)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;constant&quot;&gt;ElasticObject&lt;/span&gt;.new(result)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;emp = &lt;span class=&quot;constant&quot;&gt;ElasticObject&lt;/span&gt;.new(&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;name&quot;&lt;/span&gt; =&amp;gt; &lt;span class=&quot;string&quot;&gt;&quot;Mujju&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;age&quot;&lt;/span&gt; =&amp;gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;&amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;puts emp.dob.month &lt;span class=&quot;comment&quot;&gt;# =&amp;gt; nil&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;puts emp.name &lt;span class=&quot;comment&quot;&gt;# =&amp;gt; &quot;Mujju&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -371,7 +401,7 @@ I am using a dumb way to notate placeholder, we’ll use &lt;code&gt;_PAGE_TITLE
     <link href="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/"/>
     <id>http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/</id>
     <published>2015-12-09T11:29:43.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;So, I had to convert a hash into an open struct to make accessing things easy. Here is the code.&lt;/p&gt;
 &lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;ostruct&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;DeepStruct&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;to_ostruct&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;self&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;constant&quot;&gt;Hash&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      root = &lt;span class=&quot;constant&quot;&gt;OpenStruct&lt;/span&gt;.new(&lt;span class=&quot;keyword&quot;&gt;self&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;self&lt;/span&gt;.each_with_object(root) &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt; |(k,v), o|&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        o.send(&lt;span class=&quot;string&quot;&gt;&quot;&lt;span class=&quot;subst&quot;&gt;#&amp;#123;k&amp;#125;&lt;/span&gt;=&quot;&lt;/span&gt;, v.to_ostruct)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      root&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;constant&quot;&gt;Array&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;self&lt;/span&gt;.map &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt; |v|&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        v.to_ostruct&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;self&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;constant&quot;&gt;Object&lt;/span&gt;.send(&lt;span class=&quot;symbol&quot;&gt;:include&lt;/span&gt;, &lt;span class=&quot;constant&quot;&gt;DeepStruct&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -398,7 +428,7 @@ I am using a dumb way to notate placeholder, we’ll use &lt;code&gt;_PAGE_TITLE
     <link href="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/"/>
     <id>http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/</id>
     <published>2015-12-05T13:28:51.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;I just started playing with &lt;a href=&quot;https://coreos.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Coreos&lt;/a&gt; to run my docker containers.
 However, when I spun up an instance on Digital Ocean with my private key,
@@ -427,7 +457,7 @@ However,
     <link href="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/"/>
     <id>http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/</id>
     <published>2014-03-12T00:00:00.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;In the past I struggled with having a consistent strategy for showing error messages in javascript. In rails we usually put the error/success messages in the flash, However if the request is an ajax request the flash doesn’t get used and the message shows up on the next page load.&lt;/p&gt;
 &lt;p&gt;The following code shows error/success messages using the flash properly&lt;/p&gt;
@@ -458,7 +488,7 @@ However,
     <link href="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/"/>
     <id>http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/</id>
     <published>2014-02-26T00:00:00.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;Today I saw a submission on HN about formspree.com which allows you to setup a form on your site similar to google forms / wufoo but without an iframe, so you can tweak it as much as you like. A quick whois lookup shows that this domain was created on 17 Feb 2014 which is just a few days ago. I had launched a similar service called &lt;a href=&quot;http://getsimpleform.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://getsimpleform.com/&lt;/a&gt; almost 2 years ago. It differs with formspree in a few aspects though. When I was thinking about creating simpleform, I didn’t want to expose the users email to the public by putting it in a form as formspree does, it is just a design choice I made. getsimpleform also has spam prevention using akismet and allows you to create forms with file uploads. So, it is a bit more feature rich then formspree. &lt;/p&gt;
 &lt;p&gt;However, the point I am trying to make here is about the impact of a good looking visual design on how users perceive your product. Formspree has 209 upvotes (at the time of this post) and getsimpleform.com posts (5 submissions all of which were made by me) have a sum of 7 upvotes. Look at the difference in their screenshots.&lt;/p&gt;
@@ -490,7 +520,7 @@ However,
     <link href="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/"/>
     <id>http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/</id>
     <published>2014-01-27T00:00:00.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;I have a big library of music with a lot of songs I don’t like anymore or songs which were a part of an album from which there was one song which I liked. And whenever my music player starts playing these songs, I hit a keyboard combo which goes to the next song. But these songs would be in my library just waiting to annoy me again. Here is a little ruby script which I wrote from an idea by my friend &lt;a href=&quot;codingtales.com&quot;&gt;Abdul Sattar&lt;/a&gt;.&lt;/p&gt;
 &lt;figure class=&quot;highlight ruby&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#!/home/minhajuddin/.rvm/rubies/ruby-1.9.3-p194/bin/ruby&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;uri&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;fileutils&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;song = &lt;span class=&quot;string&quot;&gt;`banshee --query-uri`&lt;/span&gt;.chomp&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;song = song.gsub(&lt;span class=&quot;regexp&quot;&gt;/uri:.*file:\/\//&lt;/span&gt;,&lt;span class=&quot;string&quot;&gt;&#39;&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;song =  &lt;span class=&quot;constant&quot;&gt;URI&lt;/span&gt;.decode(song)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;constant&quot;&gt;FileUtils&lt;/span&gt;.mv(song, &lt;span class=&quot;string&quot;&gt;&#39;/home/minhajuddin/badmusic/&#39;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;system(&lt;span class=&quot;string&quot;&gt;&quot;/usr/bin/banshee --next&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;puts &lt;span class=&quot;string&quot;&gt;&quot;Moved song &#39;&lt;span class=&quot;subst&quot;&gt;#&amp;#123;song&amp;#125;&lt;/span&gt;&#39;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;#mv &quot;$(ruby -e &#39;require &quot;uri&quot;; puts URI.decode(ARGV.join.gsub(/uri:file:\/\//,&quot;&quot;))&#39; $(banshee --query-uri))&quot; /home/minhajuddin/badmusic/&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -517,7 +547,7 @@ However,
     <link href="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/"/>
     <id>http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/</id>
     <published>2014-01-20T00:00:00.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally&lt;/p&gt;
 &lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --no-acl --no-owner &lt;span class=&quot;operator&quot;&gt;-d&lt;/span&gt; localdb&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -542,7 +572,7 @@ However,
     <link href="http://minhajuddin.com/2013/05/19/cloud-computing/"/>
     <id>http://minhajuddin.com/2013/05/19/cloud-computing/</id>
     <published>2013-05-19T00:00:00.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
+    <updated>2016-02-16T07:48:11.000Z</updated>
     
     <content type="html">&lt;p&gt;Cloud computing is mostly a buzzword. In the old days when people wanted a
 server to put run their software on it (like a website), they used to order a
@@ -599,109 +629,6 @@ server to put run their software on it (like a website), they
       <category term="for-sohel" scheme="http://minhajuddin.com/tags/for-sohel/"/>
     
       <category term="virtualization" scheme="http://minhajuddin.com/tags/virtualization/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP</title>
-    <link href="http://minhajuddin.com/2013/05/19/http/"/>
-    <id>http://minhajuddin.com/2013/05/19/http/</id>
-    <published>2013-05-19T00:00:00.000Z</published>
-    <updated>2016-02-15T20:23:47.000Z</updated>
-    
-    <content type="html">&lt;p&gt;HTTP is a protocol used by computers to communicate with each other.
-A protocol is just a series of rules/steps which need to be followed for communication.
-e.g. If you want to buy a chocolate from the mall, you can go to the mall,
-find the chocolate put it in a shopping cart, go to the checkout counter and pay the bill.
-This can be thought of as a protocol, In this example, the steps are not very strict,
-but in computer protocols there is no scope for ambiguity. &lt;/p&gt;
-&lt;p&gt;HTTP is used whenever you visit a website. HTTP lays out the rules the
-communication between your browser and the web server. Here is an example of
-what happens when you open enter  cosmicvent.com in your browser and hit enter:&lt;/p&gt;
-&lt;p&gt;1) The browser finds the IP address of cosmicvent.com (which at the moment is 176.9.113.5).
-2) It sends it a text message using another protocol called TCP/IP. The message
-    looks something like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;GET / HTTP/1.1
-Host: cosmicvent.com
-Connection: keep-alive
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.63 Safari/537.31
-Accept-Encoding: gzip,deflate,sdch
-Accept-Language: en-US,en;q=0.8,hi;q=0.6,te;q=0.4
-Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3
-Cookie: __utma=223412489.1036637458.1339923857.1366442947.1368767056.19; __utmz=223412489.1339923857.1.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  This is called an HTTP ‘Request’, It says that the browser is ‘making’ a ‘GET’
-  request using the ‘HTTP/1.1’ protocol and that the browser is looking for a
-  ‘document’ called ‘/‘ of type ‘html’ or ‘xhtml’. The ‘User-Agent’ has information about
-  the version of the browser.&lt;/p&gt;
-&lt;p&gt;3) Now, the webserver which is the software running on google sends an HTTP
-    ‘Response’ which looks like the following:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;HTTP/1.1 200 OK
-Server: nginx/1.0.11
-Content-Type: text/html; charset=utf-8
-Keep-Alive: timeout=20
-Status: 200 OK
-Cache-Control: max-age=60, private
-X-UA-Compatible: IE=Edge,chrome=1
-ETag: &amp;quot;39a5d8d65c963b21615df87157699c2e&amp;quot;
-X-Request-Id: 8a9bce4126abb10ca9fdd1e76a1ea520
-X-Runtime: 0.059963
-X-Rack-Cache: miss
-Transfer-Encoding: chunked
-Date: Sun, 19 May 2013 17:38:22 GMT
-X-Varnish: 2087699445
-Age: 0
-Via: 1.1 varnish
-Connection: keep-alive
-
-&amp;lt;!DOCTYPE html PUBLIC &amp;quot;-//W3C//DTD XHTML 1.0 Strict//EN&amp;quot; &amp;quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&amp;quot;&amp;gt;
-&amp;lt;!--[if lt IE 7 ]&amp;gt; &amp;lt;html class=&amp;quot;ie6&amp;quot; xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt; &amp;lt;![endif]--&amp;gt;
-  &amp;lt;!--[if IE 7 ]&amp;gt;    &amp;lt;html class=&amp;quot;ie7&amp;quot; xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt; &amp;lt;![endif]--&amp;gt;
-    &amp;lt;!--[if IE 8 ]&amp;gt;    &amp;lt;html class=&amp;quot;ie8&amp;quot; xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt; &amp;lt;![endif]--&amp;gt;
-      &amp;lt;!--[if IE 9 ]&amp;gt;    &amp;lt;html class=&amp;quot;ie9&amp;quot; xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt; &amp;lt;![endif]--&amp;gt;
-        &amp;lt;!--[if (gt IE 9)|!(IE)]&amp;gt;&amp;lt;!--&amp;gt; &amp;lt;html xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&amp;gt; &amp;lt;!--&amp;lt;![endif]--&amp;gt;
-          &amp;lt;head&amp;gt;
-            &amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot; /&amp;gt;
-
-            &amp;lt;link rel=&amp;quot;sitemap&amp;quot; type=&amp;quot;application/xml&amp;quot; title=&amp;quot;Sitemap&amp;quot; href=&amp;quot;/sitemap.xml&amp;quot; /&amp;gt;
-            &amp;lt;title&amp;gt;
-              Home - Cosmicvent Software
-            &amp;lt;/title&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;  Now this text is understood by the browser, the browser reads the header which
-  is the part above the empty line (above &amp;lt;!doctype html&amp;gt;). The response says
-  that the server is also using the ‘HTTP/1.1’ protocol, the 200 and OK mean
-  that the response was ‘successful’ and it didn’t fail (The 200 is a status
-  code, and HTTP has many status codes with different meanings, you might have
-  seen 404 Not found in a browser, that means the document requested by the
-  browser could not be found by the webserver). It also tells us when this
-  document was sent, and some more information which is understood by the
-  server. Another important Header is the ‘Content-Type’ which tells the browser
-  what type of document the response is. In this example it says the content
-  type is an html document. So, the browser renders it as an html page. If the
-  content type was an image, the response would have something like: ‘Content-Type: image/png’, 
-  which would tell the browser to render it as an image. What follows after the
-  empty line (the &amp;lt;!doctype html&amp;gt;…) is the actual content.&lt;/p&gt;
-&lt;p&gt;  An analogy for an HTTP Response is a mail package. The cover of the mail package has
-  information about the package like the weight of the package, the address to
-  which it is to be delivered, its contents. And when you open the package it
-  contains the actual items. An HTTP response is similar but it has different
-  information in the ‘Header’ (the package wrapping). This information is
-  sometimes also called meta data. And, the actual document comes after an empty
-  line after the header.&lt;/p&gt;
-&lt;p&gt;You can read more about HTTP here: &lt;a href=&quot;https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;HTTP is a protocol used by computers to communicate with each other.
-A protocol is just a series of rules/steps which need to be followed
-    
-    </summary>
-    
-    
-      <category term="for-sohel" scheme="http://minhajuddin.com/tags/for-sohel/"/>
-    
-      <category term="http" scheme="http://minhajuddin.com/tags/http/"/>
     
   </entry>
   
