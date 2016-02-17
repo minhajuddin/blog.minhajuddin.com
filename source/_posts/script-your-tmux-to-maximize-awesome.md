@@ -40,6 +40,10 @@ This has been saving me a lot of time, I hope you find it useful.
 I have similar workspace setter uppers for my communication (mutt,
 rainbowstream, irssi) and other projects.
 
+I have also created a short screencast for it, check it out.
+
+{% youtube na_FMtOinVw %}
+
 ~~~bash
 #!/bin/bash
 #filepath: ~/bin/tmz
