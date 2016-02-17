@@ -40,6 +40,10 @@ This has been saving me a lot of time, I hope you find it useful.
 I have similar workspace setter uppers for my communication (mutt,
 rainbowstream, irssi) and other projects.
 
+I just ran the command `history | grep  '2016-02-17' | wc` and it gave me `591 3066 23269`
+That is 591 commands in 3066 words and 23269 characters and that's just the terminal.
+Do yourself a favor and use tmux.
+
 I have also created a short screencast for it, check it out.
 
 {% youtube na_FMtOinVw %}
