@@ -85,6 +85,140 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-one-line-command-to-import-prod-data-to-development-computer" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" class="article-date">
+  <time datetime="2014-01-20T00:00:00.000Z" itemprop="datePublished">2014-01-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/">One line command to import prod data to development computer</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --no-acl --no-owner <span class="operator">-d</span> localdb</span><br></pre></td></tr></table></figure>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" data-id="ciktr98o1003w1fnyt0969tfv" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/import/">import</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">postgresql,</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-cloud-computing" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/19/cloud-computing/" class="article-date">
+  <time datetime="2013-05-19T00:00:00.000Z" itemprop="datePublished">2013-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/19/cloud-computing/">Cloud Computing / Virtualization</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Cloud computing is mostly a buzzword. In the old days when people wanted a
+server to put run their software on it (like a website), they used to order a
+dedicated (also called bare metal) server with a hosting company (like
+rackspace.com), these companies would setup a server with your configuration and
+then give you access to it so that you could put your software and use it anyway
+you want. This usually would take days and the server companies needed upfront
+payments for setup and monthly fees for server costs. So, if you wanted to put a
+website for a week for a small conference you would have to pay for the setup
+and the fee for the minimum rent duration (which would typically be a month).</p>
+<p>With this kind of setup it used to be hard for website developers/maintainers to
+scale their website. Scaling usually means adding more servers to your setup or
+adding more resources (CPUs/RAM etc,.) to your existing servers, to be able to
+handle an increase in traffic to your website or software.</p>
+<p>With the advancement of technologies, and with the inception of virtualization,
+hosting providers have become more flexible. Virtualization technologies allow
+you to have any number of ‘virtual servers’ running on any number of
+‘real/physical servers’. So, you can have one real computer running two ‘virtual servers’, one
+might be a linux operating system and another a windows operating system
+simultaneously. Virtualization is useful because not all servers run at their
+full capacity all the time. So, if there are two ‘virtual servers’ running on
+one physical server, they share their resources (CPU, RAM etc,.) and since they
+are not using all their resources all the time, the resources can be shared. The
+important thing about virtualization is that you can create as many virtual
+servers as you want (as long as your hardware can handle the load) very easily.
+So, this has allowed hosting providers to setup huge clusters of hardware
+running virtualized servers on top of them. So, now if you want a virtual
+server, it will be ready at the click of a button. You can even create a virtual
+server, increase its RAM size by running a simple command. This allows web
+developers and administrators to automatically increase the number of servers
+when their is an increase in traffic and shutdown servers when there is less
+traffic. And since you only pay for the amount of time your servers are running
+and not by months, you can have efficient setups without wasting your money. If
+you had a supermarket wouldn’t it be awesome if you had 100 checkout lanes when
+you had a huge amount of customers (on weekends) and only 1 when there are no
+customers? Virtualization/Cloud computing allows web administrators to do this.</p>
+<p>More information can be found here: </p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cloud_computing" target="_blank" rel="external">https://en.wikipedia.org/wiki/Cloud_computing</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Virtualization" target="_blank" rel="external">https://en.wikipedia.org/wiki/Virtualization</a></li>
+</ul>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="ciktr98yz008q1fny2cnlufi7" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/05/19/cloud-computing/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cloud-computing/">cloud-computing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualization/">virtualization</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-http" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2013/05/19/http/" class="article-date">
@@ -196,98 +330,12 @@ Connection: keep-alive
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="cikr0mxrp005k1fpnkaojv74o" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="ciktr98rl005k1fnydftkmv6t" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/05/19/http/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-cloud-computing" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/05/19/cloud-computing/" class="article-date">
-  <time datetime="2013-05-19T00:00:00.000Z" itemprop="datePublished">2013-05-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/05/19/cloud-computing/">Cloud Computing / Virtualization</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Cloud computing is mostly a buzzword. In the old days when people wanted a
-server to put run their software on it (like a website), they used to order a
-dedicated (also called bare metal) server with a hosting company (like
-rackspace.com), these companies would setup a server with your configuration and
-then give you access to it so that you could put your software and use it anyway
-you want. This usually would take days and the server companies needed upfront
-payments for setup and monthly fees for server costs. So, if you wanted to put a
-website for a week for a small conference you would have to pay for the setup
-and the fee for the minimum rent duration (which would typically be a month).</p>
-<p>With this kind of setup it used to be hard for website developers/maintainers to
-scale their website. Scaling usually means adding more servers to your setup or
-adding more resources (CPUs/RAM etc,.) to your existing servers, to be able to
-handle an increase in traffic to your website or software.</p>
-<p>With the advancement of technologies, and with the inception of virtualization,
-hosting providers have become more flexible. Virtualization technologies allow
-you to have any number of ‘virtual servers’ running on any number of
-‘real/physical servers’. So, you can have one real computer running two ‘virtual servers’, one
-might be a linux operating system and another a windows operating system
-simultaneously. Virtualization is useful because not all servers run at their
-full capacity all the time. So, if there are two ‘virtual servers’ running on
-one physical server, they share their resources (CPU, RAM etc,.) and since they
-are not using all their resources all the time, the resources can be shared. The
-important thing about virtualization is that you can create as many virtual
-servers as you want (as long as your hardware can handle the load) very easily.
-So, this has allowed hosting providers to setup huge clusters of hardware
-running virtualized servers on top of them. So, now if you want a virtual
-server, it will be ready at the click of a button. You can even create a virtual
-server, increase its RAM size by running a simple command. This allows web
-developers and administrators to automatically increase the number of servers
-when their is an increase in traffic and shutdown servers when there is less
-traffic. And since you only pay for the amount of time your servers are running
-and not by months, you can have efficient setups without wasting your money. If
-you had a supermarket wouldn’t it be awesome if you had 100 checkout lanes when
-you had a huge amount of customers (on weekends) and only 1 when there are no
-customers? Virtualization/Cloud computing allows web administrators to do this.</p>
-<p>More information can be found here: </p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Cloud_computing" target="_blank" rel="external">https://en.wikipedia.org/wiki/Cloud_computing</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Virtualization" target="_blank" rel="external">https://en.wikipedia.org/wiki/Virtualization</a></li>
-</ul>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="cikr0mxv8008h1fpnwwygg5xv" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/05/19/cloud-computing/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cloud-computing/">cloud-computing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualization/">virtualization</a></li></ul>
 
     </footer>
   </div>
@@ -338,7 +386,7 @@ customers? Virtualization/Cloud computing allows web administrators to do this.<
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="cikr0mxvt00941fpn4r5nr3a7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="ciktr98zx009d1fnyhpgv4zir" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -414,7 +462,7 @@ feedback cycle of coding that we fail to spend time thinking of the problem/solu
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="cikr0mxvc008n1fpnmvjc54id" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="ciktr98z4008w1fnyqz7er50d" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/19/brute-force/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -490,7 +538,7 @@ as hers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="cikr0mxu1007n1fpnb2yjvg2c" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="ciktr98wn007w1fnywf6qnbu5" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -537,7 +585,7 @@ as hers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="cikr0mxov002t1fpnuwgg2vpq" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="ciktr98l8002t1fny636cbcuk" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -606,7 +654,7 @@ an unconscious player in a game of hide and seek with your words</strong></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="cikr0mxpj003k1fpnmo3t2hqa" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="ciktr98mo003k1fnykfvrizsq" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -655,63 +703,12 @@ an unconscious player in a game of hide and seek with your words</strong></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" data-id="cikr0mxr3004w1fpnoyof7xs2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" data-id="ciktr98qa004w1fny89zrpk2y" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bookmarklet/">bookmarklet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-a-usable-bash-prompt" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/01/a-usable-bash-prompt/" class="article-date">
-  <time datetime="2013-02-01T00:00:00.000Z" itemprop="datePublished">2013-02-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/01/a-usable-bash-prompt/">A usable bash prompt</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="external">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#~/.bashrc</span></span><br><span class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></span><br></pre></td></tr></table></figure>
-<p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="external">excellent archlinux wiki</a></p>
-<p>Screenshot:
-<img src="https://substancehq.s3.amazonaws.com/static_asset/510bb12e03b04d32da00233b/Selection_047.jpeg" alt="Screenshot"></p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="cikr0mxwa009k1fpn0p4b8ba0" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prompt/">prompt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ps1/">ps1</a></li></ul>
 
     </footer>
   </div>
@@ -798,12 +795,63 @@ possible.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="cikr0mxn1000y1fpnh1rdi0h5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="ciktr98hk000y1fnyf7l6jfmx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/01/tossing-a-bottle/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/experiment/">experiment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/explore/">explore</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fear/">fear</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-a-usable-bash-prompt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/02/01/a-usable-bash-prompt/" class="article-date">
+  <time datetime="2013-02-01T00:00:00.000Z" itemprop="datePublished">2013-02-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/02/01/a-usable-bash-prompt/">A usable bash prompt</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="external">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#~/.bashrc</span></span><br><span class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></span><br></pre></td></tr></table></figure>
+<p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="external">excellent archlinux wiki</a></p>
+<p>Screenshot:
+<img src="https://substancehq.s3.amazonaws.com/static_asset/510bb12e03b04d32da00233b/Selection_047.jpeg" alt="Screenshot"></p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="ciktr990e009t1fny6m5f9zxk" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prompt/">prompt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ps1/">ps1</a></li></ul>
 
     </footer>
   </div>
@@ -895,7 +943,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="cikr0mxtu007h1fpnvlnd661s" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="ciktr98vz007q1fnyf277lgvs" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -949,7 +997,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="cikr0mxoz002y1fpnzakcsy8a" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="ciktr98lh002y1fnyncort9me" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -997,7 +1045,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cikr0mxsk006i1fpngecm89qv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="ciktr98tw006r1fnyv4ng1mab" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1049,68 +1097,12 @@ Make it overwrite the old output or insert before the previous output</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cikr0mxu7007s1fpnip3xyyvp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="ciktr98x000811fnyg1yzofd0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
-  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
-<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
-<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
-<p>The setup contains two parts.</p>
-<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#~/.scripts/runinbg</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to run a command in background redirecting the</span></span><br><span class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</span><br><span class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> <span class="number">1</span>&gt;&gt; /tmp/runinbg.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></span><br><span class="line"><span class="comment">#when the test is complete</span></span><br><span class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></span><br></pre></td></tr></table></figure>
-<p>###2. Vim function to call this script with the current filename
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function! RunSpecs()</span><br><span class="line">  :silent!!runinbg bundle exec rspec % "you can tweak this to your liking</span><br><span class="line">  redraw! "without this the screen goes blank</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">nnoremap &lt;C-d&gt; :call RunSpecs()&lt;cr&gt;</span><br></pre></td></tr></table></figure></p>
-<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
-<p>Update: Added a version with notification</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cikr0mxoo002n1fpncjaxee9s" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   </div>
@@ -1168,12 +1160,68 @@ Make it overwrite the old output or insert before the previous output</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cikr0mxo5001v1fpnfvysn1x4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="ciktr98ju001v1fnynf3nwm1e" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
+  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
+<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
+<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
+<p>The setup contains two parts.</p>
+<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#~/.scripts/runinbg</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to run a command in background redirecting the</span></span><br><span class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</span><br><span class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> <span class="number">1</span>&gt;&gt; /tmp/runinbg.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br><span class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></span><br><span class="line"><span class="comment">#when the test is complete</span></span><br><span class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></span><br></pre></td></tr></table></figure>
+<p>###2. Vim function to call this script with the current filename
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function! RunSpecs()</span><br><span class="line">  :silent!!runinbg bundle exec rspec % "you can tweak this to your liking</span><br><span class="line">  redraw! "without this the screen goes blank</span><br><span class="line">endfunction</span><br><span class="line"></span><br><span class="line">nnoremap &lt;C-d&gt; :call RunSpecs()&lt;cr&gt;</span><br></pre></td></tr></table></figure></p>
+<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
+<p>Update: Added a version with notification</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="ciktr98kw002n1fnyj7caicuf" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   </div>
@@ -1259,59 +1307,12 @@ software product.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cikr0mxne00181fpnvcxl97lz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="ciktr98ic00181fnyzbtg0ssk" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/barefooters/">barefooters</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/india/">india</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">software</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
-  <time datetime="2012-11-30T00:00:00.000Z" itemprop="datePublished">2012-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cikr0mxrc00521fpnxoj7nz7g" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </footer>
   </div>
@@ -1359,7 +1360,7 @@ software product.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cikr0mxvl008w1fpngftgkcn0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="ciktr98zg00951fnyc32a52ra" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1374,10 +1375,10 @@ software product.</p>
 
 
   
-    <article id="post-using-inotify-to-make-speedup-your-learning-and-experimenting" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" class="article-date">
-  <time datetime="2012-11-08T00:00:00.000Z" itemprop="datePublished">2012-11-08</time>
+    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
+  <time datetime="2012-11-30T00:00:00.000Z" itemprop="datePublished">2012-11-30</time>
 </a>
     
   </div>
@@ -1388,7 +1389,7 @@ software product.</p>
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/">Using inotify to speedup your learning and experimenting</a>
+      <a class="article-title" href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
     </h1>
   
 
@@ -1396,17 +1397,7 @@ software product.</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Recently I have started learning <a href="http://golang.org" target="_blank" rel="external">go</a>. It is fun to learn something new, However this time just to make the feedback loop faster, I wrote a small bash script (by collecting fragments from all over the internet) using inotify. Here it is:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Wait for go files to be modified and then execute them</span></span><br><span class="line"><span class="comment">#Dependency: inotify-tools</span></span><br><span class="line"><span class="comment">#Install on ubuntu using: apt-get install inotify-tools</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#the command before the pipe is a blocking command, i.e. it doesn't end</span></span><br><span class="line">inotifywait -mrq --format <span class="string">'%f'</span> <span class="operator">-e</span> close_write <span class="variable">$1</span> | <span class="keyword">while</span> <span class="built_in">read</span> file</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment">#here we filter any changes to files other than go files</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">echo</span> <span class="variable">$file</span> | grep -E <span class="string">'^.*\.go$'</span>)</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="comment">#once we know that a go file has been written to we run it</span></span><br><span class="line">    clear</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"executing 'go run <span class="variable">$file</span>'"</span></span><br><span class="line">    go run <span class="variable">$file</span> </span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<p>The script itself is pretty self explanatory, We run inotifywait in <code>monitor</code> mode so that it blocks the current process, after that we pipe whatever output comes out of inotifywait which is just the filename to the while loop which doesn’t end because of the previous stream. Now, we just filter it to <em>go</em> source files and execute them.</p>
-<p>This can be used with any other programming language too, you just have to change the filter and the execute command.</p>
-<p>###Update:
-I started playing with go web apps recently, and the following script has been helping me with recompile and reload. Hope it helps you guys too:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#Script to restart the go webserver by building and restarting the binary whenever html or go files change</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">__restart_goserver</span></span>()&#123;</span><br><span class="line">  binary=<span class="string">"<span class="variable">$(basename $(pwd)</span>)"</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"building <span class="variable">$binary</span>"</span></span><br><span class="line">  <span class="keyword">if</span> go build</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"killing old process"</span></span><br><span class="line">    <span class="built_in">kill</span> -<span class="number">9</span> $(pidof <span class="string">"<span class="variable">$binary</span>"</span>) &gt; /dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"starting '<span class="variable">$binary</span>'"</span></span><br><span class="line">    ./<span class="variable">$binary</span> &amp; <span class="comment">#run it in background</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"started with pid: $!"</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"server restart failed"</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#cd to the right directory</span></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$1</span></span><br><span class="line">__restart_goserver</span><br><span class="line"><span class="comment">#the command before the pipe is a blocking command, i.e. it doesn't end</span></span><br><span class="line">inotifywait -mrq --exclude=<span class="string">"<span class="variable">$(basename $(pwd)</span>)"</span> --format <span class="string">'%f'</span> <span class="operator">-e</span> close_write <span class="variable">$1</span> | <span class="keyword">while</span> <span class="built_in">read</span> file</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">echo</span> <span class="variable">$file</span> | grep -E <span class="string">'^(.*\.go)|(.*\.html)$'</span>)</span><br><span class="line">  <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"--------------------"</span></span><br><span class="line">    <span class="comment">#once we know that a go file has been written to we run it</span></span><br><span class="line">    __restart_goserver</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<p>Screenshot:
-<img src="https://substancehq.s3.amazonaws.com/static_asset/50a3474b03b04d4c12000fc7/Selection_004.png" alt="screenshot"></p>
-<p>###Update 2
-You need <code>inotify-tools</code> to get this to work. You can install it on ubuntu by running <code>sudo apt-get install inotify-tools</code></p>
+        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
 
         
       
@@ -1416,12 +1407,12 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cikr0mxmp000n1fpn3c27n467" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="ciktr98qv00521fnydtt31297" class="article-share-link">Share</a>
       
-        <a href="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inotify/">inotify</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/watch/">watch</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </footer>
   </div>
@@ -1477,6 +1468,10 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
       <ul>
         
           <li>
+            <a href="/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/">How to open the most recent file created in Vim</a>
+          </li>
+        
+          <li>
             <a href="/2016/02/17/script-your-tmux-to-maximize-awesome/">Script your tmux to maximize awesome!</a>
           </li>
         
@@ -1492,10 +1487,6 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
             <a href="/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/">How to fix guard crashing your tmux server</a>
           </li>
         
-          <li>
-            <a href="/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/">How to setup mutt to fetchmail every minute</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1507,7 +1498,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/dry/" style="font-size: 10px;">DRY</a> <a href="/tags/duplication/" style="font-size: 10px;">Duplication</a> <a href="/tags/erb/" style="font-size: 10px;">ERB</a> <a href="/tags/environment-loader/" style="font-size: 10px;">Environment Loader</a> <a href="/tags/guard/" style="font-size: 10px;">Guard</a> <a href="/tags/heroku/" style="font-size: 10px;">Heroku</a> <a href="/tags/how-to/" style="font-size: 10px;">How To</a> <a href="/tags/how-to/" style="font-size: 10px;">How to</a> <a href="/tags/pdf/" style="font-size: 10px;">PDF</a> <a href="/tags/static-site-generator/" style="font-size: 10px;">Static Site Generator</a> <a href="/tags/tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automate/" style="font-size: 10px;">automate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/bookmarklet/" style="font-size: 12.5px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/drag-and-drop/" style="font-size: 10px;">drag-and-drop</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 12.5px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 17.5px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/gtimelog/" style="font-size: 10px;">gtimelog</a> <a href="/tags/hack/" style="font-size: 15px;">hack</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 15px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mutt/" style="font-size: 10px;">mutt</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/rspec/" style="font-size: 12.5px;">rspec</a> <a href="/tags/ruby/" style="font-size: 15px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/script/" style="font-size: 10px;">script</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/submodules/" style="font-size: 10px;">submodules</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 12.5px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12.5px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
+      <a href="/tags/dry/" style="font-size: 10px;">DRY</a> <a href="/tags/duplication/" style="font-size: 10px;">Duplication</a> <a href="/tags/erb/" style="font-size: 10px;">ERB</a> <a href="/tags/environment-loader/" style="font-size: 10px;">Environment Loader</a> <a href="/tags/guard/" style="font-size: 10px;">Guard</a> <a href="/tags/heroku/" style="font-size: 10px;">Heroku</a> <a href="/tags/how-to/" style="font-size: 10px;">How To</a> <a href="/tags/how-to/" style="font-size: 10px;">How to</a> <a href="/tags/pdf/" style="font-size: 10px;">PDF</a> <a href="/tags/rails-migrations/" style="font-size: 10px;">Rails Migrations</a> <a href="/tags/static-site-generator/" style="font-size: 10px;">Static Site Generator</a> <a href="/tags/static-sites/" style="font-size: 10px;">Static Sites</a> <a href="/tags/tip/" style="font-size: 10px;">Tip</a> <a href="/tags/tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/vim/" style="font-size: 10px;">Vim</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automate/" style="font-size: 10px;">automate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/bookmarklet/" style="font-size: 12.5px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/drag-and-drop/" style="font-size: 10px;">drag-and-drop</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 12.5px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 17.5px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/gtimelog/" style="font-size: 10px;">gtimelog</a> <a href="/tags/hack/" style="font-size: 15px;">hack</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 15px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mutt/" style="font-size: 10px;">mutt</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/rspec/" style="font-size: 12.5px;">rspec</a> <a href="/tags/ruby/" style="font-size: 15px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/script/" style="font-size: 10px;">script</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/submodules/" style="font-size: 10px;">submodules</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 12.5px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12.5px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
     </div>
   </div>
 
@@ -1516,7 +1507,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1525,7 +1516,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/dry/">DRY</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/duplication/">Duplication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/erb/">ERB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment-loader/">Environment Loader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/guard/">Guard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heroku/">Heroku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How To</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How to</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">PDF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">Tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automate/">automate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curl/">curl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtimelog/">gtimelog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mutt/">mutt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/script/">script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/">submodules</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/dry/">DRY</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/duplication/">Duplication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/erb/">ERB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment-loader/">Environment Loader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/guard/">Guard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heroku/">Heroku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How To</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How to</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">PDF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails-migrations/">Rails Migrations</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-sites/">Static Sites</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">Tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automate/">automate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curl/">curl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtimelog/">gtimelog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mutt/">mutt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/script/">script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/">submodules</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
