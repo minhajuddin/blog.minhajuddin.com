@@ -2,10 +2,10 @@ title: Put this in your code to debug anything
 date: 2016-03-03 09:24:46
 tags:
 ---
+
 Aaron Patterson wrote [a very nice article on how he does deubgging](https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html).
 
 Here is some more code to make your debugging easier.
-
 
 ~~~ruby
 
