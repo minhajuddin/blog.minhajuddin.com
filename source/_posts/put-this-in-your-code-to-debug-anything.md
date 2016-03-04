@@ -26,3 +26,6 @@ get_csv.find{|x| x[id_column] == row_id}
 get_csv.dbg.find{|x| x[id_column.dbg] == row_id.dbg}.dbg
 
 ~~~
+
+### Update:
+[Josh Cheek](http://joshcheek.com/) has taken this to the 11th level here: https://gist.github.com/JoshCheek/55b53e2faa2776d6a054#file-ss-png Awesome stuff :)
