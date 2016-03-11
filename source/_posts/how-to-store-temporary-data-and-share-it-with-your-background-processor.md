@@ -45,7 +45,6 @@ And here is the user class
 
 ~~~ruby
 # /app/models/user.rb
-~~~
 class User < ActiveRecord::Base
   #...
 
@@ -56,5 +55,6 @@ class User < ActiveRecord::Base
   #...
 end
 ~~~
+
 
 Hope you find it useful :)
