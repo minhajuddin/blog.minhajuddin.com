@@ -33,8 +33,11 @@ processes as diverse as *Data Warehousing* and *Live Vehicle tracking*.
 
 ### Contact Me
 <form action="http://getsimpleform.com/messages?form_api_token=475339605245a246498c3b1d364a845b" method="post"><input type='hidden' name='redirect_to' value='http://minhajuddin.com/thank-you' /><input type='text' id='name' name='name' placeholder='Your Name' />
+  <br >
   <input type='text' id='email' name='email' placeholder='Your Email' />
+  <br >
   <textarea id='message' name='message' placeholder='Message' rows='8' cols='50'></textarea>
+  <br >
   <input type='submit' value='Submit' />
 </form>
 
