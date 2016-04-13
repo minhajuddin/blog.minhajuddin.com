@@ -1,6 +1,7 @@
 layout: ''
 ---
 <!doctype html>
+<title>Simple Timer</title>
 
 <h1 style='text-align: center;padding-top: 40px;'>Timer <span id=time>...</span></h1>
 
@@ -24,7 +25,9 @@ layout: ''
   }
 
   function tick() {
-    op.innerHTML = interval((new Date() - start) / 1000);
+    var formattedTime = interval((new Date() - start) / 1000);
+    op.innerHTML = formattedTime;
+    document.title = formattedTime;
     setTimeout(tick, 1000);
   }
   tick()
