@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Subdomains to restrict from your SaaS app | Simplicity</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Many SaaS apps allow users to host their websites under their root domain, e.g. GitHub allows you to host your sites using GitHub Pages under the .github.io domain.
+Here is a list of subdomains which">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Subdomains to restrict from your SaaS app">
+<meta property="og:url" content="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/index.html">
+<meta property="og:site_name" content="Simplicity">
+<meta property="og:description" content="Many SaaS apps allow users to host their websites under their root domain, e.g. GitHub allows you to host your sites using GitHub Pages under the .github.io domain.
+Here is a list of subdomains which">
+<meta property="og:updated_time" content="2016-07-05T03:21:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Subdomains to restrict from your SaaS app">
+<meta name="twitter:description" content="Many SaaS apps allow users to host their websites under their root domain, e.g. GitHub allows you to host your sites using GitHub Pages under the .github.io domain.
+Here is a list of subdomains which">
+<meta name="twitter:creator" content="@minhajuddin">
+<link rel="publisher" href="+KhajaMinhajuddin">
+  
+    <link rel="alternative" href="/atom.xml" title="Simplicity" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-10568795-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Simplicity</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/about/">About</a>
+        
+          <a class="main-nav-link" href="/about/#Contact_Me">Contact</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+          <article id="post-subdomains-to-restrict-from-your-saas-app" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/03/09/subdomains-to-restrict-from-your-saas-app/" class="article-date">
+  <time datetime="2016-03-09T16:13:49.000Z" itemprop="datePublished">2016-03-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Subdomains to restrict from your SaaS app
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Many SaaS apps allow users to host their websites under their root domain, e.g. GitHub allows you to host your sites using GitHub Pages under the <code>.github.io</code> domain.</p>
+<p>Here is a list of subdomains which you should reserve while building your own SaaS product.</p>
+<p>I usually put this data in a /data/reserved_subdomains file and then use it like below:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Site</span> &lt; ActiveRecord::Base</span></div><div class="line"></div><div class="line">  <span class="comment">#...</span></div><div class="line"></div><div class="line">  <span class="comment"># validations</span></div><div class="line">  SUBDOMAIN_RX = <span class="regexp">/\A[a-z\d]+(-[a-z\d]+)*\Z/i</span></div><div class="line">  validates <span class="symbol">:subdomain</span>, <span class="symbol">presence:</span> <span class="literal">true</span>,</div><div class="line">    <span class="symbol">uniqueness:</span> <span class="literal">true</span>,</div><div class="line">    <span class="symbol">length:</span> &#123; <span class="symbol">in:</span> <span class="number">4</span>..<span class="number">63</span> , <span class="symbol">unless:</span> Proc.new&#123; user &amp;&amp; user.admin? &#125;&#125;,</div><div class="line">    <span class="symbol">format:</span> &#123;<span class="symbol">:with</span> =&gt; SUBDOMAIN_RX&#125;,</div><div class="line">    <span class="symbol">exclusion:</span> &#123; <span class="symbol">in:</span> File.read(Rails.root.join(<span class="string">"./data/reserved_subdomains"</span>)).each_line.map&#123;<span class="params">|x|</span> x.strip&#125; , <span class="symbol">unless:</span> Proc.new&#123; user &amp;&amp; user.admin? &#125;&#125;</div><div class="line"></div><div class="line">  <span class="comment">#...</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div></pre></td><td class="code"><pre><div class="line">about</div><div class="line">abuse</div><div class="line">access</div><div class="line">account</div><div class="line">accounts</div><div class="line">address</div><div class="line">admanager</div><div class="line">admin</div><div class="line">admindashboard</div><div class="line">administration</div><div class="line">administrator</div><div class="line">administrators</div><div class="line">admins</div><div class="line">adsense</div><div class="line">adult</div><div class="line">advertising</div><div class="line">adwords</div><div class="line">affiliate</div><div class="line">affiliates</div><div class="line">ajax</div><div class="line">analytics</div><div class="line">android</div><div class="line">anon</div><div class="line">anonymous</div><div class="line">api1</div><div class="line">api2</div><div class="line">api3</div><div class="line">apps</div><div class="line">archive</div><div class="line">assets</div><div class="line">assets1</div><div class="line">assets2</div><div class="line">assets3</div><div class="line">assets4</div><div class="line">assets5</div><div class="line">atom</div><div class="line">auth</div><div class="line">authentication</div><div class="line">avatar</div><div class="line">backup</div><div class="line">banner</div><div class="line">banners</div><div class="line">beta</div><div class="line">billing</div><div class="line">billings</div><div class="line">blog</div><div class="line">blogs</div><div class="line">board</div><div class="line">bots</div><div class="line">business</div><div class="line">cache</div><div class="line">cadastro</div><div class="line">calendar</div><div class="line">campaign</div><div class="line">careers</div><div class="line">chat</div><div class="line">client</div><div class="line">cliente</div><div class="line">clients</div><div class="line">cname</div><div class="line">code</div><div class="line">comercial</div><div class="line">community</div><div class="line">compare</div><div class="line">compras</div><div class="line">config</div><div class="line">connect</div><div class="line">contact</div><div class="line">contest</div><div class="line">copyright</div><div class="line">cpanel</div><div class="line">create</div><div class="line">css1</div><div class="line">css2</div><div class="line">css3</div><div class="line">dashboard</div><div class="line">data</div><div class="line">delete</div><div class="line">demo</div><div class="line">design</div><div class="line">designer</div><div class="line">devel</div><div class="line">developer</div><div class="line">developers</div><div class="line">development</div><div class="line">directory</div><div class="line">docs</div><div class="line">domain</div><div class="line">donate</div><div class="line">download</div><div class="line">downloads</div><div class="line">ecommerce</div><div class="line">edit</div><div class="line">editor</div><div class="line">email</div><div class="line">e-mail</div><div class="line">example</div><div class="line">favorite</div><div class="line">feed</div><div class="line">feedback</div><div class="line">feeds</div><div class="line">file</div><div class="line">files</div><div class="line">flog</div><div class="line">follow</div><div class="line">forum</div><div class="line">forums</div><div class="line">free</div><div class="line">gadget</div><div class="line">gadgets</div><div class="line">games</div><div class="line">gettingstarted</div><div class="line">graph</div><div class="line">graphs</div><div class="line">group</div><div class="line">groups</div><div class="line">guest</div><div class="line">help</div><div class="line">home</div><div class="line">homepage</div><div class="line">host</div><div class="line">hosting</div><div class="line">hostmaster</div><div class="line">hostname</div><div class="line">html</div><div class="line">http</div><div class="line">httpd</div><div class="line">https</div><div class="line">image</div><div class="line">images</div><div class="line">imap</div><div class="line">img1</div><div class="line">img2</div><div class="line">img3</div><div class="line">inbox</div><div class="line">index</div><div class="line">indice</div><div class="line">info</div><div class="line">information</div><div class="line">intranet</div><div class="line">invite</div><div class="line">invoice</div><div class="line">invoices</div><div class="line">ipad</div><div class="line">iphone</div><div class="line">jabber</div><div class="line">jars</div><div class="line">java</div><div class="line">javascript</div><div class="line">jobs</div><div class="line">knowledgebase</div><div class="line">launchpad</div><div class="line">legal</div><div class="line">list</div><div class="line">lists</div><div class="line">login</div><div class="line">logout</div><div class="line">logs</div><div class="line">mail</div><div class="line">mail1</div><div class="line">mail2</div><div class="line">mail3</div><div class="line">mail4</div><div class="line">mail5</div><div class="line">mailer</div><div class="line">mailing</div><div class="line">main</div><div class="line">manage</div><div class="line">manager</div><div class="line">marketing</div><div class="line">master</div><div class="line">media</div><div class="line">message</div><div class="line">messages</div><div class="line">messenger</div><div class="line">microblog</div><div class="line">microblogs</div><div class="line">mine</div><div class="line">mobile</div><div class="line">movie</div><div class="line">movies</div><div class="line">music</div><div class="line">musicas</div><div class="line">mysql</div><div class="line">name</div><div class="line">named</div><div class="line">network</div><div class="line">networks</div><div class="line">news</div><div class="line">newsite</div><div class="line">newsletter</div><div class="line">nick</div><div class="line">nickname</div><div class="line">notes</div><div class="line">noticias</div><div class="line">official</div><div class="line">online</div><div class="line">operator</div><div class="line">order</div><div class="line">orders</div><div class="line">page</div><div class="line">pager</div><div class="line">pages</div><div class="line">panel</div><div class="line">partner</div><div class="line">partnerpage</div><div class="line">partners</div><div class="line">password</div><div class="line">payment</div><div class="line">payments</div><div class="line">perl</div><div class="line">photo</div><div class="line">photoalbum</div><div class="line">photos</div><div class="line">pics</div><div class="line">picture</div><div class="line">pictures</div><div class="line">plugin</div><div class="line">plugins</div><div class="line">policy</div><div class="line">pop3</div><div class="line">popular</div><div class="line">portal</div><div class="line">post</div><div class="line">postfix</div><div class="line">postmaster</div><div class="line">posts</div><div class="line">press</div><div class="line">privacy</div><div class="line">private</div><div class="line">profile</div><div class="line">project</div><div class="line">projects</div><div class="line">promo</div><div class="line">public</div><div class="line">python</div><div class="line">random</div><div class="line">redirect</div><div class="line">register</div><div class="line">registration</div><div class="line">resolver</div><div class="line">root</div><div class="line">ruby</div><div class="line">sale</div><div class="line">sales</div><div class="line">sample</div><div class="line">samples</div><div class="line">sandbox</div><div class="line">script</div><div class="line">scripts</div><div class="line">search</div><div class="line">secure</div><div class="line">security</div><div class="line">send</div><div class="line">server</div><div class="line">servers</div><div class="line">service</div><div class="line">setting</div><div class="line">settings</div><div class="line">setup</div><div class="line">shop</div><div class="line">signin</div><div class="line">signup</div><div class="line">site</div><div class="line">sitemap</div><div class="line">sitenews</div><div class="line">sites</div><div class="line">smtp</div><div class="line">soporte</div><div class="line">sorry</div><div class="line">staff</div><div class="line">stage</div><div class="line">staging</div><div class="line">start</div><div class="line">stat</div><div class="line">static</div><div class="line">statistics</div><div class="line">stats</div><div class="line">status</div><div class="line">store</div><div class="line">stores</div><div class="line">subdomain</div><div class="line">subscribe</div><div class="line">suporte</div><div class="line">support</div><div class="line">survey</div><div class="line">surveys</div><div class="line">system</div><div class="line">tablet</div><div class="line">tablets</div><div class="line">talk</div><div class="line">task</div><div class="line">tasks</div><div class="line">teams</div><div class="line">tech</div><div class="line">telnet</div><div class="line">test</div><div class="line">test1</div><div class="line">test2</div><div class="line">test3</div><div class="line">teste</div><div class="line">tests</div><div class="line">theme</div><div class="line">themes</div><div class="line">todo</div><div class="line">tools</div><div class="line">trac</div><div class="line">translate</div><div class="line">update</div><div class="line">upload</div><div class="line">uploads</div><div class="line">usage</div><div class="line">user</div><div class="line">username</div><div class="line">usernames</div><div class="line">users</div><div class="line">usuario</div><div class="line">validation</div><div class="line">validations</div><div class="line">vendas</div><div class="line">video</div><div class="line">videos</div><div class="line">visitor</div><div class="line">webdisk</div><div class="line">webmail</div><div class="line">webmaster</div><div class="line">website</div><div class="line">websites</div><div class="line">whois</div><div class="line">wiki</div><div class="line">workshop</div><div class="line">www1</div><div class="line">www2</div><div class="line">www3</div><div class="line">www4</div><div class="line">www5</div><div class="line">www6</div><div class="line">www7</div><div class="line">wwws</div><div class="line">wwww</div><div class="line">yourdomain</div><div class="line">yourname</div><div class="line">yoursite</div><div class="line">yourusername</div></pre></td></tr></table></figure>
+
+        
+      
+
+
+      
+      <hr>
+      <div style='margin-bottom: 10px;'>
+        I am currently working on <a href='https://zammu.in/?invitation_code=KHAJA'>Zammu</a> which makes
+        <a href='https://zammu.in/?invitation_code=KHAJA'>Automatic Deployment of static websites to Github Pages very easy.</a>
+        I would love to get your feedback on it, Use the invitation code <code>KHAJA</code>
+      </div>
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="ciqtjx1g000ac23qpe1tf4rpv" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restricted-subdomains/">Restricted Subdomains</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/saas-tip/">SaaS Tip</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          How to store temporary data and share it with your background processor
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Script to cleanup old directories on a linux server</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+
+        </section>
+        
+          <aside id="sidebar">
+  
+    <div class="widget-wrap highlighted-widget">
+  <div class="widget">
+    Thanks for visiting my blog. If you find this content interesting, Please take a look at
+    <a href='https://zammu.in/?invitation_code=KHAJA'>Zammu</a>. It makes
+    <a href='https://zammu.in/?invitation_code=KHAJA'>
+      Continuous Deployment of static websites very easy.
+    </a>
+    <div style='text-align: center; margin-top: 10px;' >
+      <a href='https://zammu.in/?invitation_code=KHAJA' style='text-decoration: none; text-align: center;display: inline-block; padding: 10px 50px; background-color: #ff3e01; color: white;' >
+        Sign up now!
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="widget-wrap">
+  <h3 class="widget-title">Resources</h3>
+  <div class="widget">
+    <ul>
+      <li><a href='/about/'>About Me</a></li>
+      <li><a href='/projects/'>My Projects</a></li>
+      <li><a href='https://github.com/minhajuddin'>Github</a></li>
+      <li><a href='https://twitter.com/minhajuddin'>@minhajuddin</a></li>
+      <li><a href='/atom.xml'>Subscribe</a></li>
+    </ul>
+  </div>
+</div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/">Algorithm to compute downtime of a service/server</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/20/elixir-io-inspect-to-debug-pipelines/">Elixir IO.inspect to debug pipelines</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/">How to store temporary data and share it with your background processor</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/09/subdomains-to-restrict-from-your-saas-app/">Subdomains to restrict from your SaaS app</a>
+          </li>
+        
+          <li>
+            <a href="/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/">Script to cleanup old directories on a linux server</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/dry/" style="font-size: 10px;">DRY</a> <a href="/tags/debug/" style="font-size: 10px;">Debug</a> <a href="/tags/duplication/" style="font-size: 10px;">Duplication</a> <a href="/tags/erb/" style="font-size: 10px;">ERB</a> <a href="/tags/elixir/" style="font-size: 10px;">Elixir</a> <a href="/tags/environment-loader/" style="font-size: 10px;">Environment Loader</a> <a href="/tags/guard/" style="font-size: 10px;">Guard</a> <a href="/tags/heroku/" style="font-size: 10px;">Heroku</a> <a href="/tags/how-to/" style="font-size: 10px;">How To</a> <a href="/tags/how-to/" style="font-size: 10px;">How to</a> <a href="/tags/pdf/" style="font-size: 10px;">PDF</a> <a href="/tags/pipelines/" style="font-size: 10px;">Pipelines</a> <a href="/tags/rails-migrations/" style="font-size: 10px;">Rails Migrations</a> <a href="/tags/redis/" style="font-size: 10px;">Redis</a> <a href="/tags/restricted-subdomains/" style="font-size: 10px;">Restricted Subdomains</a> <a href="/tags/ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/saas-tip/" style="font-size: 10px;">SaaS Tip</a> <a href="/tags/static-site-generator/" style="font-size: 10px;">Static Site Generator</a> <a href="/tags/static-sites/" style="font-size: 10px;">Static Sites</a> <a href="/tags/tip/" style="font-size: 10px;">Tip</a> <a href="/tags/tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/vim/" style="font-size: 10px;">Vim</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 12.5px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automate/" style="font-size: 10px;">automate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 17.5px;">bash</a> <a href="/tags/bookmarklet/" style="font-size: 12.5px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/cleanup/" style="font-size: 10px;">cleanup</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/downtime-calculation/" style="font-size: 10px;">downtime calculation</a> <a href="/tags/drag-and-drop/" style="font-size: 10px;">drag-and-drop</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 12.5px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 17.5px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/gtimelog/" style="font-size: 10px;">gtimelog</a> <a href="/tags/hack/" style="font-size: 15px;">hack</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 15px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mutt/" style="font-size: 10px;">mutt</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/rspec/" style="font-size: 12.5px;">rspec</a> <a href="/tags/ruby/" style="font-size: 15px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/script/" style="font-size: 10px;">script</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/submodules/" style="font-size: 10px;">submodules</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 12.5px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12.5px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/dry/">DRY</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/duplication/">Duplication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/erb/">ERB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elixir/">Elixir</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment-loader/">Environment Loader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/guard/">Guard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heroku/">Heroku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How To</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How to</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">PDF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pipelines/">Pipelines</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails-migrations/">Rails Migrations</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restricted-subdomains/">Restricted Subdomains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">Ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/saas-tip/">SaaS Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-sites/">Static Sites</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">Tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automate/">automate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleanup/">cleanup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curl/">curl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/downtime-calculation/">downtime calculation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtimelog/">gtimelog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mutt/">mutt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/script/">script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/">submodules</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Khaja Minhajuddin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
+      Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/about/" class="mobile-nav-link">About</a>
+  
+    <a href="/about/#Contact_Me" class="mobile-nav-link">Contact</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'minhajuddin';
+  
+  
+    var disqus_identifier = '/2016/03/09/subdomains-to-restrict-from-your-saas-app';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

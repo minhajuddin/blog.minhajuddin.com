@@ -24,7 +24,7 @@
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 <!-- Google Analytics -->
 <script type="text/javascript">
@@ -85,6 +85,329 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-how-to-convert-html-or-erb-to-haml-in-vim" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" class="article-date">
+  <time datetime="2012-03-15T00:00:00.000Z" itemprop="datePublished">2012-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/">how to convert html or erb to haml in vim</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I use HAML a lot, it’s a very nice templating language. And I copy a lot of
+html/erb snippets to my haml views. Here is how you can configure vim to convert
+your html to haml.</p>
+<p> 1) Install the html2haml gem. If you are using rvm, generate a wrapper using the
+ code below.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">rvm wrapper ruby-1.9.2-p290 vim html2haml</div></pre></td></tr></table></figure>
+<p>   2) Add the following mapping to your <code>~/.vimrc</code></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">" html2haml</span></div><div class="line">:<span class="keyword">vmap</span> <span class="symbol">&lt;leader&gt;</span>h :!/home/minhajuddin/.rvm/bin/vim_html2haml<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure>
+<p> That’s it, now you can select a block of text and hit the <code>&lt;leader&gt;h</code> command
+ to convert your html/erb to haml. You need to make sure that the paths and the
+ rvm strings correspond to your machine settings to get this working, also
+ html2haml needs a few more gems. Check <a href="http://haml-lang.com/docs/yardoc/Haml/Exec/HTML2Haml.html" target="_blank" rel="external">html2haml</a> for more info </p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="ciqtjx19s004o23qp7p5kuagr" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-login-to-your-remote-server-using-cd-and-rvmrc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/" class="article-date">
+  <time datetime="2012-02-08T00:00:00.000Z" itemprop="datePublished">2012-02-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/">login to your remote server using cd and rvmrc</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Here is a fun trick which you can use, to simulate that a remote server is on one of
+your directories.</p>
+<p>Create a folder call ~/m/example.com and in that folder create a file called
+.rvmrc with the following command</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ssh awesomeuser@example.com -p 2302 -i ~/.ssh/awesomekey_rsa</div><div class="line"><span class="comment">#or whatever ssh command you use</span></div></pre></td></tr></table></figure>
+<p>Now whenever you run <code>cd ~/m/example.com</code> you will automagically be logged into
+your remote computer.</p>
+<p>Obviously, this is a fun trick. All this can be done in a much nicer way using the <code>~/.ssh/config</code>
+file.</p>
+<p>Here are a few resources to make your ssh config more useful, allowing you to
+login to servers using a command like <code>ssh myserver</code></p>
+<ul>
+<li><a href="http://linux.die.net/man/5/ssh_config" target="_blank" rel="external">http://linux.die.net/man/5/ssh_config</a></li>
+<li><a href="http://www.evilsoft.org/2009/10/23/stupid-ssh-config-tricks" target="_blank" rel="external">http://www.evilsoft.org/2009/10/23/stupid-ssh-config-tricks</a></li>
+<li><a href="http://www.linuxjournal.com/article/6602" target="_blank" rel="external">http://www.linuxjournal.com/article/6602</a></li>
+<li><a href="http://www.howtogeek.com/75007/stupid-geek-tricks-use-your-ssh-config-file-to-create-aliases-for-hosts/" target="_blank" rel="external">http://www.howtogeek.com/75007/stupid-geek-tricks-use-your-ssh-config-file-to-create-aliases-for-hosts/</a></li>
+</ul>
+<p>I wonder what other stuff could be done using rvmrc.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/" data-id="ciqtjx1cr007k23qpwtlgyaxi" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-throttle-or-de-duplicate-beanstalk-tasks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/" class="article-date">
+  <time datetime="2012-01-06T00:00:00.000Z" itemprop="datePublished">2012-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/">throttle or de-duplicate beanstalk tasks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://kr.github.com/beanstalkd/" target="_blank" rel="external">Beanstalkd</a> is an awesome queue. One of the
+problems we ran into while we were building <a href="http://webw.in" target="_blank" rel="external">http://webw.in</a> was the duplication
+of site rendering.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/" data-id="ciqtjx1gm00b123qpv7vn4svi" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-make-evil-monkey-nag-you-back-to-work" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/12/16/make-evil-monkey-nag-you-back-to-work/" class="article-date">
+  <time datetime="2011-12-16T00:00:00.000Z" itemprop="datePublished">2011-12-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/12/16/make-evil-monkey-nag-you-back-to-work/">make evil monkey nag you back to work</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>###Update: fixed the cron entry</p>
+<p>I’ve read a very interesting article about <a href="http://swizec.com/blog/why-programmers-work-at-night/swizec/3198" target="_blank" rel="external">“Why programmers work at night”</a>.
+One of the points the author talks about is “how we get engrossed in
+twitter/hacker news/reddit”. I’ve felt the same. I think one of the reasons why
+we(programmers/developers) spend a lot of our time on twitter/hacker news/reddit
+is, because, we don’t have any idea of the time. Time just flies by. So, I
+created a small ruby script which nags you to get back to work :)</p>
+<p>##~/.scripts/nagger</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"><span class="keyword">require</span> <span class="string">'time'</span></div><div class="line"></div><div class="line">exit <span class="keyword">if</span> File.exists?(<span class="string">"/tmp/stop-nagging"</span>)</div><div class="line"><span class="comment">#see what I did here ;)</span></div><div class="line"></div><div class="line"><span class="comment">#run the below command to find your display</span></div><div class="line"><span class="comment">#env | grep DISPLAY</span></div><div class="line">ENV[<span class="string">'DISPLAY'</span>] = <span class="string">':0.0'</span></div><div class="line"></div><div class="line">last_line = <span class="string">`tail -2 ~/.gtimelog/timelog.txt`</span>.lines.map&#123;<span class="params">|x|</span> x.chomp&#125;.reject&#123;<span class="params">|x|</span> x.empty?&#125;.reverse.first</div><div class="line">minutes = ((Time.now - Time.parse(last_line[<span class="number">11</span>, <span class="number">5</span>])) / <span class="number">60</span>).round</div><div class="line">evil_monkey = File.expand_path File.join(File.dirname(__FILE_<span class="number">_</span>), <span class="string">'evil-monkey.gif'</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> minutes &gt; <span class="number">30</span></div><div class="line">  <span class="string">`notify-send -i '<span class="subst">#&#123;evil_monkey&#125;</span>' "It's been <span class="subst">#&#123;minutes&#125;</span> minutes since your last log"`</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>##cron entry</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">0,5,10,15,20,25,30,35,40,45,50,55 * * * * /bin/bash <span class="_">-l</span> -c <span class="string">'/home/minhajuddin/.scripts/nagger'</span></div></pre></td></tr></table></figure>
+<p><img src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd1003b04d2e0300003f/evil-monkey-nagger.png" alt="Evil monkey nagging me to get back to work"></p>
+<p>Hope it helps you get back to work too :). By the way, I use the awesome
+<a href="http://mg.pov.lt/gtimelog/" target="_blank" rel="external">gtimelog</a> app to log my time.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/" data-id="ciqtjx1cs007l23qpva0vrpxw" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-script-to-do-a-global-search-and-replace-in-a-git-repository" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/" class="article-date">
+  <time datetime="2011-12-13T00:00:00.000Z" itemprop="datePublished">2011-12-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/">script to do a global search and replace in a git repository</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There are many instances where I had to replace some variable name in all my files.
+I use a small script to do this, Hope it helps you too.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#~/.scripts/git-sub</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin &lt;minhajuddin@cosmicvent.com&gt;</span></div><div class="line"><span class="comment">#script which does a global search and replace in the git repository</span></div><div class="line"><span class="comment">#it takes two arguments</span></div><div class="line"><span class="comment">#e.g. git sub OLD NEW</span></div><div class="line"></div><div class="line">old=<span class="variable">$1</span></div><div class="line">new=<span class="variable">$2</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> file <span class="keyword">in</span> $(git grep <span class="variable">$old</span> | cut <span class="_">-d</span><span class="string">':'</span>  <span class="_">-f</span> 1 | uniq)</div><div class="line"><span class="keyword">do</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"replacing '<span class="variable">$old</span>' with '<span class="variable">$new</span>' in '<span class="variable">$file</span>'"</span></div><div class="line">  sed -i <span class="_">-e</span> <span class="string">"s/<span class="variable">$old</span>/<span class="variable">$new</span>/g"</span> <span class="variable">$file</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<p>Just remember to add it to a directory which is in the <code>$PATH</code>. I have it in my
+<code>~/.scripts</code> directory which is included in the <code>$PATH</code>. Name it <code>git-sub</code> and give it
+executable permissions using <code>chmod +x ~/.scripts/git-sub</code>. Now, you can just call <code>git sub old_var new_var</code>
+on terminal and it will do a global search and replace of all the files in the repository.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/" data-id="ciqtjx1ff009q23qpqdz5di00" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-elegance-of-functional-programming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/12/12/elegance-of-functional-programming/" class="article-date">
+  <time datetime="2011-12-12T00:00:00.000Z" itemprop="datePublished">2011-12-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/12/12/elegance-of-functional-programming/">elegance of functional programming</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Functional programming allows you to write concise and elegant code. Mainstream
+languages like Ruby and C# support a lot of functional programming paradigms,
+and learning them makes you a better programmer. Below is a small example which
+demonstrates that:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#6 lines of ugly code</span></div><div class="line">i = <span class="number">0</span></div><div class="line">tasks = list.tasks</div><div class="line"><span class="keyword">while</span>(i &lt; tasks.length - <span class="number">2</span>)</div><div class="line">  tasks[i].priority.should &gt;= tasks[i + <span class="number">1</span>].priority</div><div class="line">  i += <span class="number">1</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#3 lines of elegant functional code</span></div><div class="line">list.tasks.each_cons(<span class="number">2</span>).each <span class="keyword">do</span> <span class="params">|t1, t2|</span></div><div class="line">  t1.priority.should &gt;= t2.priority</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/" data-id="ciqtjx196004223qpgnxia14p" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-gc-your-git-repositories-automatically-with-a-cron-task" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/" class="article-date">
@@ -112,13 +435,13 @@ manually by running the <code>git gc</code> command every now and then. Tasks li
 are prime candidates for automating with <em>cron</em>. Below is a cron entry and the
 script which <code>gc</code>s my repositories. Hope you guys find it useful.</p>
 <p>###the script</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="comment">#author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#email: minhajuddin.k@gmail.com</span></span><br><span class="line"><span class="comment">#path /home/minhajuddin/.cron/reboot.sh</span></span><br><span class="line"><span class="comment">#description: script which is executed everytime computer starts</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#git gc repos</span></span><br><span class="line">REPO_DIRS=$(cat &lt;&lt;EOS</span><br><span class="line"><span class="variable">$HOME</span>/repos</span><br><span class="line"><span class="variable">$HOME</span>/repos/core</span><br><span class="line">EOS</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> repo_dir <span class="keyword">in</span> <span class="variable">$REPO_DIRS</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"checking for git repos in <span class="variable">$repo_dir</span>"</span></span><br><span class="line">  <span class="keyword">for</span> repo <span class="keyword">in</span> $(ls <span class="variable">$repo_dir</span>)</span><br><span class="line">  <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">cd</span> <span class="variable">$repo_dir</span>/<span class="variable">$repo</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="operator">-d</span> .git ]]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">      <span class="built_in">echo</span> <span class="string">"garbage collecting <span class="variable">$repo</span>"</span></span><br><span class="line">      git gc</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#email: minhajuddin.k@gmail.com</span></div><div class="line"><span class="comment">#path /home/minhajuddin/.cron/reboot.sh</span></div><div class="line"><span class="comment">#description: script which is executed everytime computer starts</span></div><div class="line"></div><div class="line"><span class="comment">#git gc repos</span></div><div class="line">REPO_DIRS=$(cat &lt;&lt;EOS</div><div class="line"><span class="variable">$HOME</span>/repos</div><div class="line"><span class="variable">$HOME</span>/repos/core</div><div class="line">EOS</div><div class="line">)</div><div class="line"></div><div class="line"><span class="keyword">for</span> repo_dir <span class="keyword">in</span> <span class="variable">$REPO_DIRS</span></div><div class="line"><span class="keyword">do</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"checking for git repos in <span class="variable">$repo_dir</span>"</span></div><div class="line">  <span class="keyword">for</span> repo <span class="keyword">in</span> $(ls <span class="variable">$repo_dir</span>)</div><div class="line">  <span class="keyword">do</span></div><div class="line">    <span class="built_in">cd</span> <span class="variable">$repo_dir</span>/<span class="variable">$repo</span></div><div class="line">    <span class="keyword">if</span> [[ <span class="_">-d</span> .git ]]</div><div class="line">    <span class="keyword">then</span></div><div class="line">      <span class="built_in">echo</span> <span class="string">"garbage collecting <span class="variable">$repo</span>"</span></div><div class="line">      git gc</div><div class="line">    <span class="keyword">fi</span></div><div class="line">  <span class="keyword">done</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
 <p>###the crontab entry</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ crontab <span class="operator">-e</span></span><br><span class="line"><span class="comment">#add the line below into the editor and save it</span></span><br><span class="line">@reboot   <span class="variable">$HOME</span>/.cron/reboot.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ crontab <span class="_">-e</span></div><div class="line"><span class="comment">#add the line below into the editor and save it</span></div><div class="line">@reboot   <span class="variable">$HOME</span>/.cron/reboot.sh</div></pre></td></tr></table></figure>
 <p>Bonus tip: If you have a gitosis server, put the following script at <code>~git/.cron/reboot.sh</code> and
 perform the above step for your <em>git user</em>.</p>
 <p>###the gitosis git user script</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line"><span class="keyword">for</span> repo <span class="keyword">in</span> $(ls ~/repositories)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">cd</span> ~/repositories/<span class="variable">$repo</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"garbage collecting <span class="variable">$repo</span>"</span></span><br><span class="line">  git gc</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> repo <span class="keyword">in</span> $(ls ~/repositories)</div><div class="line"><span class="keyword">do</span></div><div class="line">  <span class="built_in">cd</span> ~/repositories/<span class="variable">$repo</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"garbage collecting <span class="variable">$repo</span>"</span></div><div class="line">  git gc</div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
 
         
       
@@ -128,7 +451,7 @@ perform the above step for your <em>git user</em>.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/" data-id="ciktr98wg007v1fny16099npl" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/" data-id="ciqtjx197004323qpzrlkeqhd" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -169,11 +492,11 @@ it. So, today I wrote a small script which syncs all my git repositories with a
 remote server. Hope it helps you too :)</p>
 <p>The setup consists of three files:</p>
 <p>###core syncing script at ~/.scripts/sync-repos###</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'yaml'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#replace google.com with your git servers domain</span></span><br><span class="line"><span class="string">`ping -c 1 google.com`</span></span><br><span class="line"><span class="keyword">if</span> <span class="variable">$?</span>.exitstatus != <span class="number">0</span></span><br><span class="line">  puts <span class="string">'UNABLE TO SYNC REPOS AS NW IS DOWN'</span></span><br><span class="line">  exit <span class="variable">$?</span>.exitstatus</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">'syncing repositories'</span></span><br><span class="line"></span><br><span class="line"><span class="variable">@repos</span> = <span class="constant">YAML::</span>load_file <span class="constant">File</span>.expand_path( <span class="string">'~/.sync-repos'</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable">@repos</span>.each <span class="keyword">do</span> |repo|</span><br><span class="line">  path = <span class="constant">File</span>.expand_path repo[<span class="symbol">:path</span>]</span><br><span class="line">  remotes = repo[<span class="symbol">:remotes</span>].is_a?(<span class="constant">String</span>) ? [repo[<span class="symbol">:remotes</span>]] <span class="symbol">:</span> repo[<span class="symbol">:remotes</span>]</span><br><span class="line">  <span class="keyword">unless</span> <span class="constant">File</span>.exist? path</span><br><span class="line">    puts <span class="string">"skipping <span class="subst">#&#123;path&#125;</span> as directory not found"</span></span><br><span class="line">    <span class="keyword">next</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  remotes.each <span class="keyword">do</span> |remote|</span><br><span class="line">    cmd = <span class="string">"cd <span class="subst">#&#123;path&#125;</span> &amp;&amp; git push <span class="subst">#&#123;remote&#125;</span>"</span></span><br><span class="line">    puts <span class="string">"executing: '<span class="subst">#&#123;cmd&#125;</span>'"</span></span><br><span class="line">    system(cmd)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">puts <span class="string">'done syncing repositories'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'yaml'</span></div><div class="line"></div><div class="line"><span class="comment">#replace google.com with your git servers domain</span></div><div class="line"><span class="string">`ping -c 1 google.com`</span></div><div class="line"><span class="keyword">if</span> $?.exitstatus != <span class="number">0</span></div><div class="line">  puts <span class="string">'UNABLE TO SYNC REPOS AS NW IS DOWN'</span></div><div class="line">  exit $?.exitstatus</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">puts <span class="string">'syncing repositories'</span></div><div class="line"></div><div class="line">@repos = YAML::load_file File.expand_path( <span class="string">'~/.sync-repos'</span>)</div><div class="line"></div><div class="line">@repos.each <span class="keyword">do</span> <span class="params">|repo|</span></div><div class="line">  path = File.expand_path repo[<span class="symbol">:path</span>]</div><div class="line">  remotes = repo[<span class="symbol">:remotes</span>].is_a?(String) ? [repo[<span class="symbol">:remotes</span>]] : repo[<span class="symbol">:remotes</span>]</div><div class="line">  <span class="keyword">unless</span> File.exist? path</div><div class="line">    puts <span class="string">"skipping <span class="subst">#&#123;path&#125;</span> as directory not found"</span></div><div class="line">    <span class="keyword">next</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  remotes.each <span class="keyword">do</span> <span class="params">|remote|</span></div><div class="line">    cmd = <span class="string">"cd <span class="subst">#&#123;path&#125;</span> &amp;&amp; git push <span class="subst">#&#123;remote&#125;</span>"</span></div><div class="line">    puts <span class="string">"executing: '<span class="subst">#&#123;cmd&#125;</span>'"</span></div><div class="line">    system(cmd)</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">puts <span class="string">'done syncing repositories'</span></div></pre></td></tr></table></figure>
 <p>###config file pointing to all the repos at ~/.sync-repos###</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;---&#10;- :path: ~/repos/search&#10;  :remotes:&#10;  - origin&#10;- :path: ~/repos/logbin&#10;  :remotes:&#10;  - origin&#10;  - local</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">---</span></div><div class="line"><span class="bullet">-</span> :path: ~/repos/search</div><div class="line">  :remotes:</div><div class="line"><span class="bullet">  -</span> origin</div><div class="line"><span class="bullet">-</span> :path: ~/repos/logbin</div><div class="line">  :remotes:</div><div class="line"><span class="bullet">  -</span> origin</div><div class="line"><span class="bullet">  -</span> local</div></pre></td></tr></table></figure>
 <p>###upstart shutdown trigger script at /etc/init/syncrepos.conf###</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">start on runlevel [<span class="number">06</span>]</span><br><span class="line"></span><br><span class="line">/bin/bash <span class="operator">-l</span> -c /home/minhajuddin/.scripts/sync-repos</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">start on runlevel [06]</div><div class="line"></div><div class="line">/bin/bash <span class="_">-l</span> -c /home/minhajuddin/.scripts/sync-repos</div></pre></td></tr></table></figure>
 
         
       
@@ -183,7 +506,7 @@ remote server. Hope it helps you too :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/11/22/automatically-push-your-git-repo-to-a-server-on-shutdown/" data-id="ciktr98zn009b1fnyx4q0lst2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/11/22/automatically-push-your-git-repo-to-a-server-on-shutdown/" data-id="ciqtjx16y002h23qpbsxz6gxb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/11/22/automatically-push-your-git-repo-to-a-server-on-shutdown/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -229,7 +552,7 @@ even with openjdk.</p>
 <ol>
 <li>Install Sun JDK:</li>
 </ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#install and setup sun jdk</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://archive.canonical.com/ <span class="variable">$(lsb_release -cs)</span> partner"</span>| sudo tee <span class="operator">-a</span> /etc/apt/sources.list &gt; /dev/null</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sun-java6-jre sun-java6-bin sun-java6-jdk -y</span><br><span class="line">sudo update-alternatives --config java</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export JAVA_HOME=/usr/lib/jvm/java-6-sun/'</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#install and setup sun jdk</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://archive.canonical.com/ <span class="variable">$(lsb_release -cs)</span> partner"</span>| sudo tee <span class="_">-a</span> /etc/apt/sources.list &gt; /dev/null</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install sun-java6-jre sun-java6-bin sun-java6-jdk -y</div><div class="line">sudo update-alternatives --config java</div><div class="line"><span class="built_in">echo</span> <span class="string">'export JAVA_HOME=/usr/lib/jvm/java-6-sun/'</span> &gt;&gt; ~/.bashrc</div></pre></td></tr></table></figure>
 <ol>
 <li><p>Download and setup tomcat: you’ll need to setup tomcat version 6.0 for your production server. Download the latest V6 tomcat files from <a href="http://tomcat.apache.org/download-60.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-60.cgi</a>. Now, extract them into <code>~/apps</code>.</p>
 </li>
@@ -239,12 +562,12 @@ even with openjdk.</p>
 with the following content</p>
 </li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- I usually create this file in the rails app config/ directory and symlink</span><br><span class="line">it to the ~/tomcat/conf/Catalina/localhost/ directory--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- the docBase path should point to your solr.war file --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">Context</span> <span class="attribute">docBase</span>=<span class="value">"/home/minhajuddin/apps/solr/solr.war"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- the value string should point to your apps solr directory --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">Environment</span> <span class="attribute">name</span>=<span class="value">"solr/home"</span> <span class="attribute">type</span>=<span class="value">"java.lang.String"</span> <span class="attribute">value</span>=<span class="value">"/home/minhajuddin/spikes/solr-blog/solr"</span> <span class="attribute">override</span>=<span class="value">"true"</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- value= app-name/solr --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="comment">&lt;!-- I usually create this file in the rails app config/ directory and symlink</span></div><div class="line">it to the ~/tomcat/conf/Catalina/localhost/ directory--&gt;</div><div class="line"><span class="comment">&lt;!-- the docBase path should point to your solr.war file --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"/home/minhajuddin/apps/solr/solr.war"</span> <span class="attr">debug</span>=<span class="string">"0"</span> <span class="attr">crossContext</span>=<span class="string">"true"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- the value string should point to your apps solr directory --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">Environment</span> <span class="attr">name</span>=<span class="string">"solr/home"</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"/home/minhajuddin/spikes/solr-blog/solr"</span> <span class="attr">override</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line">  <span class="comment">&lt;!-- value= app-name/solr --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></div></pre></td></tr></table></figure>
 <p><em>Steps till this point are the same for any kind of solr installation, be it for a rails or any other app.</em></p>
 <ol>
 <li>I use the sunspot_rails gem in my rails application, when using this, you can run <code>rails g sunspot_rails:install</code> to create a <code>config/sunspot.yml</code> file. Once you have the config file, change the production config values to point to the right port and path, e.g:</li>
 </ol>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;..&#10;production:&#10;  solr:&#10;    hostname: localhost&#10;    port: 8080&#10;    path: &#39;/solr-odir/&#39;</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">..</div><div class="line"><span class="attr">production:</span></div><div class="line"><span class="attr">  solr:</span></div><div class="line"><span class="attr">    hostname:</span> localhost</div><div class="line"><span class="attr">    port:</span> <span class="number">8080</span></div><div class="line"><span class="attr">    path:</span> <span class="string">'/solr-odir/'</span></div></pre></td></tr></table></figure>
 <ol>
 <li>Run the <code>bundle exec rake sunspot:solr:start</code> command once, on the development machine, to generate the solr configuration files. And push this code to the production server.</li>
 </ol>
@@ -269,7 +592,7 @@ up, it’s very easy to setup additional apps with the same solr server.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" data-id="ciktr98s4005p1fnyegl6diuj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" data-id="ciqtjx1c9007623qp8wb8a6hg" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -323,7 +646,7 @@ remote log files. It runs <code>tail -f</code> over an ssh connection.
 It’s very simple to setup and use. Once you set it up, you can just <code>cd</code> into
 your application directory and run <code>rt</code> and it will start tailing your log files
 instantly. If you have any improvements you can <a href="https://gist.github.com/1348074" target="_blank" rel="external">fork this gist and update it</a>.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#~/.scripts/rt</span></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'yaml'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'erb'</span></span><br><span class="line"></span><br><span class="line"><span class="constant">ConfigFilePath</span> = <span class="constant">File</span>.expand_path(<span class="string">"~/.remote-tail.yml"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#will be written out to ConfigFilePath if not present</span></span><br><span class="line"><span class="constant">SampleConfig</span>=&lt;&lt;<span class="constant">EOS</span></span><br><span class="line">---</span><br><span class="line"><span class="symbol">defaults:</span> &amp;defaults</span><br><span class="line">  <span class="symbol">host:</span> c3</span><br><span class="line"><span class="symbol">foonginx:</span></span><br><span class="line">  <span class="symbol">file:</span> /var/log/nginx/*.log</span><br><span class="line"><span class="symbol">barapp:</span></span><br><span class="line">  <span class="symbol">host:</span> foo<span class="variable">@bar</span>.com</span><br><span class="line">  <span class="symbol">file:</span> /var/www/apps/railsfooapp/shared/log/*.log</span><br><span class="line"><span class="constant">EOS</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Usage</span>=&lt;&lt;<span class="constant">EOS</span></span><br><span class="line"><span class="constant">Usage</span><span class="symbol">:</span></span><br><span class="line">  <span class="number">1</span>. cd to into the directory whose name is the same as the name of the config <span class="keyword">and</span> run</span><br><span class="line">     rt</span><br><span class="line"></span><br><span class="line">  <span class="number">2</span>. rt &lt;name of the app&gt;</span><br><span class="line"></span><br><span class="line">  <span class="number">3</span>. rt &lt;host&gt; &lt;file&gt;</span><br><span class="line"><span class="constant">EOS</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tail</span><span class="params">(opts)</span></span></span><br><span class="line">  cmd = <span class="string">"ssh <span class="subst">#&#123;opts[<span class="string">'host'</span>]&#125;</span> 'tail -f <span class="subst">#&#123;opts[<span class="string">'file'</span>]&#125;</span>'"</span></span><br><span class="line">  puts <span class="string">"running: '<span class="subst">#&#123;cmd&#125;</span>'"</span></span><br><span class="line">  system(cmd)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">config</span><span class="params">(app)</span></span></span><br><span class="line">  puts <span class="string">"using app:<span class="subst">#&#123;app&#125;</span>"</span></span><br><span class="line">  config = <span class="constant">YAML::</span>load_file <span class="constant">ConfigFilePath</span></span><br><span class="line">  <span class="keyword">return</span> config[app] <span class="keyword">if</span> config[app]</span><br><span class="line">  puts <span class="string">"app:<span class="subst">#&#123;app&#125;</span> not found in <span class="subst">#&#123;<span class="constant">ConfigFilePath</span>&#125;</span>"</span></span><br><span class="line">  puts <span class="constant">Usage</span></span><br><span class="line">  exit <span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">setup</span></span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">if</span> <span class="constant">File</span>.exist? <span class="constant">ConfigFilePath</span></span><br><span class="line">  puts <span class="string">"creating a sample config at: <span class="subst">#&#123;<span class="constant">ConfigFilePath</span>&#125;</span>"</span></span><br><span class="line">  <span class="constant">File</span>.open(<span class="constant">ConfigFilePath</span>, <span class="string">'w'</span>) <span class="keyword">do</span> |f|</span><br><span class="line">    f.print <span class="constant">SampleConfig</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span></span></span><br><span class="line">  setup</span><br><span class="line">  <span class="keyword">case</span> <span class="constant">ARGV</span>.length</span><br><span class="line">  <span class="keyword">when</span> <span class="number">0</span></span><br><span class="line">    <span class="comment">#usage:</span></span><br><span class="line">    <span class="comment">#cd to the app root directory, usually this would be the name with which you</span></span><br><span class="line">    <span class="comment">#setup the configuration and run</span></span><br><span class="line">    <span class="comment">#$ rt</span></span><br><span class="line">    tail config(<span class="constant">File</span>.basename(<span class="constant">Dir</span>.pwd))</span><br><span class="line">  <span class="keyword">when</span> <span class="number">1</span></span><br><span class="line">    <span class="comment">#usage:</span></span><br><span class="line">    <span class="comment">#from any directory</span></span><br><span class="line">    <span class="comment">#$ rt &lt;name of the app&gt;</span></span><br><span class="line">    tail config(<span class="constant">ARGV</span>.first)</span><br><span class="line">  <span class="keyword">when</span> <span class="number">2</span></span><br><span class="line">    <span class="comment">#usage:</span></span><br><span class="line">    <span class="comment">#from any directory</span></span><br><span class="line">    <span class="comment">#$ rt &lt;host&gt; &lt;file&gt;</span></span><br><span class="line">    tail <span class="symbol">:host</span> =&gt; <span class="constant">ARGV</span>.first, <span class="symbol">:file</span> =&gt; <span class="constant">ARGV</span>.last</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    puts <span class="string">"Invalid number of arguments"</span></span><br><span class="line">    puts <span class="constant">Usage</span></span><br><span class="line">    exit <span class="number">1</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">init</span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#~/.scripts/rt</span></div><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'yaml'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'erb'</span></div><div class="line"></div><div class="line">ConfigFilePath = File.expand_path(<span class="string">"~/.remote-tail.yml"</span>)</div><div class="line"></div><div class="line"><span class="comment">#will be written out to ConfigFilePath if not present</span></div><div class="line">SampleConfig=&lt;&lt;EOS</div><div class="line">---</div><div class="line"><span class="symbol">defaults:</span> &amp;defaults</div><div class="line">  <span class="symbol">host:</span> c3</div><div class="line"><span class="symbol">foonginx:</span></div><div class="line">  <span class="symbol">file:</span> /var/log/nginx/*.log</div><div class="line"><span class="symbol">barapp:</span></div><div class="line">  <span class="symbol">host:</span> foo@bar.com</div><div class="line">  <span class="symbol">file:</span> /var/www/apps/railsfooapp/shared/log/*.log</div><div class="line">EOS</div><div class="line"></div><div class="line">Usage=&lt;&lt;EOS</div><div class="line"><span class="symbol">Usage:</span></div><div class="line">  <span class="number">1</span>. cd to into the directory whose name is the same as the name of the config <span class="keyword">and</span> run</div><div class="line">     rt</div><div class="line"></div><div class="line">  <span class="number">2</span>. rt &lt;name of the app&gt;</div><div class="line"></div><div class="line">  <span class="number">3</span>. rt &lt;host&gt; &lt;file&gt;</div><div class="line">EOS</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">tail</span><span class="params">(opts)</span></span></div><div class="line">  cmd = <span class="string">"ssh <span class="subst">#&#123;opts[<span class="string">'host'</span>]&#125;</span> 'tail -f <span class="subst">#&#123;opts[<span class="string">'file'</span>]&#125;</span>'"</span></div><div class="line">  puts <span class="string">"running: '<span class="subst">#&#123;cmd&#125;</span>'"</span></div><div class="line">  system(cmd)</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">config</span><span class="params">(app)</span></span></div><div class="line">  puts <span class="string">"using app:<span class="subst">#&#123;app&#125;</span>"</span></div><div class="line">  config = YAML::load_file ConfigFilePath</div><div class="line">  <span class="keyword">return</span> config[app] <span class="keyword">if</span> config[app]</div><div class="line">  puts <span class="string">"app:<span class="subst">#&#123;app&#125;</span> not found in <span class="subst">#&#123;ConfigFilePath&#125;</span>"</span></div><div class="line">  puts Usage</div><div class="line">  exit <span class="number">2</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">setup</span></span></div><div class="line">  <span class="keyword">return</span> <span class="keyword">if</span> File.exist? ConfigFilePath</div><div class="line">  puts <span class="string">"creating a sample config at: <span class="subst">#&#123;ConfigFilePath&#125;</span>"</span></div><div class="line">  File.open(ConfigFilePath, <span class="string">'w'</span>) <span class="keyword">do</span> <span class="params">|f|</span></div><div class="line">    f.print SampleConfig</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">init</span></span></div><div class="line">  setup</div><div class="line">  <span class="keyword">case</span> ARGV.length</div><div class="line">  <span class="keyword">when</span> <span class="number">0</span></div><div class="line">    <span class="comment">#usage:</span></div><div class="line">    <span class="comment">#cd to the app root directory, usually this would be the name with which you</span></div><div class="line">    <span class="comment">#setup the configuration and run</span></div><div class="line">    <span class="comment">#$ rt</span></div><div class="line">    tail config(File.basename(Dir.pwd))</div><div class="line">  <span class="keyword">when</span> <span class="number">1</span></div><div class="line">    <span class="comment">#usage:</span></div><div class="line">    <span class="comment">#from any directory</span></div><div class="line">    <span class="comment">#$ rt &lt;name of the app&gt;</span></div><div class="line">    tail config(ARGV.first)</div><div class="line">  <span class="keyword">when</span> <span class="number">2</span></div><div class="line">    <span class="comment">#usage:</span></div><div class="line">    <span class="comment">#from any directory</span></div><div class="line">    <span class="comment">#$ rt &lt;host&gt; &lt;file&gt;</span></div><div class="line">    tail <span class="symbol">:host</span> =&gt; ARGV.first, <span class="symbol">:file</span> =&gt; ARGV.last</div><div class="line">  <span class="keyword">else</span></div><div class="line">    puts <span class="string">"Invalid number of arguments"</span></div><div class="line">    puts Usage</div><div class="line">    exit <span class="number">1</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">init</div></pre></td></tr></table></figure>
 
         
       
@@ -333,7 +656,7 @@ instantly. If you have any improvements you can <a href="https://gist.github.com
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/11/08/simple-log-management-and-viewing-for-your-servers/" data-id="ciktr98jp001u1fnyhyxp0q7s" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/11/08/simple-log-management-and-viewing-for-your-servers/" data-id="ciqtjx1fx00aa23qpnue6o092" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/11/08/simple-log-management-and-viewing-for-your-servers/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -370,7 +693,7 @@ instantly. If you have any improvements you can <a href="https://gist.github.com
       
         <p>In my latest rails app, I needed the root url to be different based on the logged in user, i.e. if the user was logged in I wanted to show one page, if not I wanted to show a generic page. Rails 3 makes this very easy.</p>
 <p>While drawing routes, rails gives you ability to <a href="http://edgeguides.rubyonrails.org/routing.html#advanced-constraints" target="_blank" rel="external"><em>constrain</em></a> the route based on <em>anything</em> in the incoming request. As it happens, I was using <a href="https://github.com/plataformatec/devise" target="_blank" rel="external">devise</a> for my authentication needs and devise uses <a href="https://github.com/hassox/warden" target="_blank" rel="external">warden</a> which fills up the request’s <strong>env</strong> with the current user, Once I had the current user it was a simple conditional statement was all that was needed to get my routes working. Checkout the below implementation to see how it’s done:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#lib/role_constraint.rb</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoleConstraint</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(*roles)</span></span></span><br><span class="line">    <span class="variable">@roles</span> = roles</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">matches?</span><span class="params">(request)</span></span></span><br><span class="line">    <span class="variable">@roles</span>.<span class="keyword">include</span>? request.env[<span class="string">'warden'</span>].user.try(<span class="symbol">:role</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#config/routes.rb</span></span><br><span class="line">root <span class="symbol">:to</span> =&gt; <span class="string">'admin#index'</span>, <span class="symbol">:constraints</span> =&gt; <span class="constant">RoleConstraint</span>.new(<span class="symbol">:admin</span>) <span class="comment">#matches this route when the current user is an admin</span></span><br><span class="line">root <span class="symbol">:to</span> =&gt; <span class="string">'sites#index'</span>, <span class="symbol">:constraints</span> =&gt; <span class="constant">RoleConstraint</span>.new(<span class="symbol">:user</span>) <span class="comment">#matches this route when the current user is an user</span></span><br><span class="line">root <span class="symbol">:to</span> =&gt; <span class="string">'home#index'</span> <span class="comment">#matches this route when the above two matches don't pass</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#lib/role_constraint.rb</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RoleConstraint</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(*roles)</span></span></div><div class="line">    @roles = roles</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">matches?</span><span class="params">(request)</span></span></div><div class="line">    @roles.<span class="keyword">include</span>? request.env[<span class="string">'warden'</span>].user.try(<span class="symbol">:role</span>)</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment">#config/routes.rb</span></div><div class="line">root <span class="symbol">:to</span> =&gt; <span class="string">'admin#index'</span>, <span class="symbol">:constraints</span> =&gt; RoleConstraint.new(<span class="symbol">:admin</span>) <span class="comment">#matches this route when the current user is an admin</span></div><div class="line">root <span class="symbol">:to</span> =&gt; <span class="string">'sites#index'</span>, <span class="symbol">:constraints</span> =&gt; RoleConstraint.new(<span class="symbol">:user</span>) <span class="comment">#matches this route when the current user is an user</span></div><div class="line">root <span class="symbol">:to</span> =&gt; <span class="string">'home#index'</span> <span class="comment">#matches this route when the above two matches don't pass</span></div></pre></td></tr></table></figure>
 
         
       
@@ -380,7 +703,7 @@ instantly. If you have any improvements you can <a href="https://gist.github.com
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/10/24/how-to-change-the-rails-root-url-based-on-the-user-or-role/" data-id="ciktr98v8007g1fnym8wj3kuu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/10/24/how-to-change-the-rails-root-url-based-on-the-user-or-role/" data-id="ciqtjx19r004n23qp5m6m41c4" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/10/24/how-to-change-the-rails-root-url-based-on-the-user-or-role/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -428,7 +751,7 @@ served me well. I am posting it on github hoping that others may find it
 useful. You can check it out at <a href="https://github.com/minhajuddin/mindstack" target="_blank" rel="external"> Mind::Stack </a>.</p>
 <p>I also have the following line in my <code>.xmobarrc</code> so that I can see the top 3
 tasks in my status bar.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">, Run Com <span class="string">"/home/minhajuddin/.scripts/s"</span> [<span class="string">"top"</span>] <span class="string">"slotter"</span> <span class="number">600</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">, Run Com <span class="string">"/home/minhajuddin/.scripts/s"</span> [<span class="string">"top"</span>] <span class="string">"slotter"</span> 600</div></pre></td></tr></table></figure>
 <p>Screenshot of my xmobar</p>
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0c03b04d2e03000034/mindstack-screenshot.png" alt="Mindstack xmobar screenshot"></p>
 
@@ -440,7 +763,7 @@ tasks in my status bar.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/10/03/mind-stack-a-stack-of-your-thoughts-and-tasks/" data-id="ciktr98ot004c1fnymdb6briz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/10/03/mind-stack-a-stack-of-your-thoughts-and-tasks/" data-id="ciqtjx1d4007u23qpkeyp8k5o" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/10/03/mind-stack-a-stack-of-your-thoughts-and-tasks/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -476,9 +799,9 @@ tasks in my status bar.</p>
     <div class="article-entry" itemprop="articleBody">
       
         <p>Here are a bunch of scripts which can be used to backup your mongodb database files to S3.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#mongodbbak</span></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'aws/s3'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'pony'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#run export</span></span><br><span class="line"><span class="constant">Dir</span>.chdir(<span class="string">"<span class="subst">#&#123;<span class="constant">ENV</span>[<span class="string">'HOME'</span>]&#125;</span>/archives/mongodb/"</span>)</span><br><span class="line">puts <span class="string">'dumping..'</span></span><br><span class="line"><span class="string">`mongodump`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#zip</span></span><br><span class="line">puts <span class="string">'compressing..'</span></span><br><span class="line">hostname = <span class="string">`hostname`</span>.chomp</span><br><span class="line">file = <span class="string">"mongodb.<span class="subst">#&#123;hostname&#125;</span>.<span class="subst">#&#123;<span class="constant">Time</span>.now.strftime <span class="string">"%Y%m%d%H%M%S"</span>&#125;</span>.tar.gz"</span></span><br><span class="line">md5file = <span class="string">"<span class="subst">#&#123;file&#125;</span>.md5sum"</span></span><br><span class="line"><span class="string">`tar cf - dump --remove-files| gzip &gt; <span class="subst">#&#123;file&#125;</span>`</span></span><br><span class="line"><span class="string">`md5sum <span class="subst">#&#123;file&#125;</span> &gt; <span class="subst">#&#123;md5file&#125;</span>`</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#copy</span></span><br><span class="line">puts <span class="string">"copying to <span class="subst">#&#123;file&#125;</span> s3.."</span></span><br><span class="line"><span class="constant">AWS::S3::Base</span>.establish_connection!(</span><br><span class="line">    <span class="symbol">:access_key_id</span>     =&gt; <span class="constant">ENV</span>[<span class="string">'AMAZON_ACCESS_KEY_ID'</span>],</span><br><span class="line">    <span class="symbol">:secret_access_key</span> =&gt; <span class="constant">ENV</span>[<span class="string">'AMAZON_SECRET_ACCESS_KEY'</span>]</span><br><span class="line">  )</span><br><span class="line"><span class="constant">AWS::S3::S3Object</span>.store(file, open(file), <span class="string">'cvbak'</span>)</span><br><span class="line">puts <span class="string">"<span class="subst">#&#123;file&#125;</span> uploaded"</span></span><br><span class="line"><span class="comment">#create md5checksum</span></span><br><span class="line"><span class="constant">AWS::S3::S3Object</span>.store(md5file, open(md5file), <span class="string">'cvbak'</span>)</span><br><span class="line">puts <span class="string">"<span class="subst">#&#123;md5file&#125;</span> uploaded"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#message</span></span><br><span class="line"><span class="constant">Pony</span>.mail(<span class="symbol">:to</span> =&gt; <span class="string">'min@mailinator.com'</span>, <span class="symbol">:from</span> =&gt; <span class="string">'sysadmin@mailinator.com.com'</span>, <span class="symbol">:subject</span> =&gt; <span class="string">"[sys] db on <span class="subst">#&#123;hostname&#125;</span> backed up to <span class="subst">#&#123;file&#125;</span>"</span>, <span class="symbol">:body</span> =&gt; <span class="string">"mongodb database on <span class="subst">#&#123;hostname&#125;</span> has been successfully backed up to <span class="subst">#&#123;file&#125;</span>"</span>)</span><br><span class="line">puts <span class="string">'done'</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#crontab -l </span></span><br><span class="line">@daily /bin/bash -i <span class="operator">-l</span> -c <span class="string">'/home/ubuntu/repos/server_config/scripts/mongodbbak'</span> &gt;&gt; /tmp/mongobak.log <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#~/.bashrc</span></span><br><span class="line"><span class="built_in">export</span> AMAZON_ACCESS_KEY_ID=<span class="string">'mykey'</span></span><br><span class="line"><span class="built_in">export</span> AMAZON_SECRET_ACCESS_KEY=<span class="string">'mysecret'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#mongodbbak</span></div><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'aws/s3'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'pony'</span></div><div class="line"></div><div class="line"><span class="comment">#run export</span></div><div class="line">Dir.chdir(<span class="string">"<span class="subst">#&#123;ENV[<span class="string">'HOME'</span>]&#125;</span>/archives/mongodb/"</span>)</div><div class="line">puts <span class="string">'dumping..'</span></div><div class="line"><span class="string">`mongodump`</span></div><div class="line"></div><div class="line"><span class="comment">#zip</span></div><div class="line">puts <span class="string">'compressing..'</span></div><div class="line">hostname = <span class="string">`hostname`</span>.chomp</div><div class="line">file = <span class="string">"mongodb.<span class="subst">#&#123;hostname&#125;</span>.<span class="subst">#&#123;Time.now.strftime <span class="string">"%Y%m%d%H%M%S"</span>&#125;</span>.tar.gz"</span></div><div class="line">md5file = <span class="string">"<span class="subst">#&#123;file&#125;</span>.md5sum"</span></div><div class="line"><span class="string">`tar cf - dump --remove-files| gzip &gt; <span class="subst">#&#123;file&#125;</span>`</span></div><div class="line"><span class="string">`md5sum <span class="subst">#&#123;file&#125;</span> &gt; <span class="subst">#&#123;md5file&#125;</span>`</span></div><div class="line"></div><div class="line"><span class="comment">#copy</span></div><div class="line">puts <span class="string">"copying to <span class="subst">#&#123;file&#125;</span> s3.."</span></div><div class="line">AWS::S3::Base.establish_connection!(</div><div class="line">    <span class="symbol">:access_key_id</span>     =&gt; ENV[<span class="string">'AMAZON_ACCESS_KEY_ID'</span>],</div><div class="line">    <span class="symbol">:secret_access_key</span> =&gt; ENV[<span class="string">'AMAZON_SECRET_ACCESS_KEY'</span>]</div><div class="line">  )</div><div class="line">AWS::S3::S3Object.store(file, open(file), <span class="string">'cvbak'</span>)</div><div class="line">puts <span class="string">"<span class="subst">#&#123;file&#125;</span> uploaded"</span></div><div class="line"><span class="comment">#create md5checksum</span></div><div class="line">AWS::S3::S3Object.store(md5file, open(md5file), <span class="string">'cvbak'</span>)</div><div class="line">puts <span class="string">"<span class="subst">#&#123;md5file&#125;</span> uploaded"</span></div><div class="line"></div><div class="line"><span class="comment">#message</span></div><div class="line">Pony.mail(<span class="symbol">:to</span> =&gt; <span class="string">'min@mailinator.com'</span>, <span class="symbol">:from</span> =&gt; <span class="string">'sysadmin@mailinator.com.com'</span>, <span class="symbol">:subject</span> =&gt; <span class="string">"[sys] db on <span class="subst">#&#123;hostname&#125;</span> backed up to <span class="subst">#&#123;file&#125;</span>"</span>, <span class="symbol">:body</span> =&gt; <span class="string">"mongodb database on <span class="subst">#&#123;hostname&#125;</span> has been successfully backed up to <span class="subst">#&#123;file&#125;</span>"</span>)</div><div class="line">puts <span class="string">'done'</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#crontab -l </span></div><div class="line">@daily /bin/bash -i <span class="_">-l</span> -c <span class="string">'/home/ubuntu/repos/server_config/scripts/mongodbbak'</span> &gt;&gt; /tmp/mongobak.log 2&gt;&amp;1</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#~/.bashrc</span></div><div class="line"><span class="built_in">export</span> AMAZON_ACCESS_KEY_ID=<span class="string">'mykey'</span></div><div class="line"><span class="built_in">export</span> AMAZON_SECRET_ACCESS_KEY=<span class="string">'mysecret'</span></div></pre></td></tr></table></figure>
 
         
       
@@ -488,7 +811,7 @@ tasks in my status bar.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/08/02/backup-mongodb-databases-to-s3/" data-id="ciktr98zc00941fny4jo649kd" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/08/02/backup-mongodb-databases-to-s3/" data-id="ciqtjx174002p23qp8tljyh2i" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/08/02/backup-mongodb-databases-to-s3/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -532,7 +855,7 @@ updated on 2011.7.22, and that it was updated twice on that same day.</p>
 <p>You can set up a similar thing pretty easily if you are using git and rails (rails in
 not really needed, but my example shows it using rails). All you need to do is
 add the following line to your <code>config/application.rb</code></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#config/application.rb</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Khalid</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="inheritance">&lt; <span class="parent">Rails::Application</span></span></span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">    <span class="comment">#cache the version as long as the app is alive</span></span><br><span class="line">    <span class="comment">#2011.07.25.4c76f53</span></span><br><span class="line">    <span class="constant">VERSION</span> =<span class="string">`git --git-dir="<span class="subst">#&#123;<span class="constant">Rails</span>.root.join(<span class="string">".git"</span>)&#125;</span>" --work-tree="<span class="subst">#&#123;<span class="constant">Rails</span>.root&#125;</span>" log -1 --date=short --format="%ad-%h"|sed 's/-/./g'`</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#config/application.rb</span></div><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">Khalid</span></span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> &lt; Rails::Application</span></div><div class="line">  .</div><div class="line">  .</div><div class="line">  .</div><div class="line">    <span class="comment">#cache the version as long as the app is alive</span></div><div class="line">    <span class="comment">#2011.07.25.4c76f53</span></div><div class="line">    VERSION =<span class="string">`git --git-dir="<span class="subst">#&#123;Rails.root.join(<span class="string">".git"</span>)&#125;</span>" --work-tree="<span class="subst">#&#123;Rails.root&#125;</span>" log -1 --date=short --format="%ad-%h"|sed 's/-/./g'`</span></div><div class="line">  .</div><div class="line">  .</div><div class="line">  .</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>This gives you a constant called <code>Khalid::Application::VERSION</code> which will give you a nice version 
 number containing the commit sha id and the date like this: <code>2011.07.25.4c76f53</code></p>
 
@@ -544,7 +867,7 @@ number containing the commit sha id and the date like this: <code>2011.07.25.4c7
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/" data-id="ciktr98y1008c1fnyxp9r97sf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/" data-id="ciqtjx18m003h23qpr8b8e85s" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -634,7 +957,7 @@ uploader, this seemed like a long process which would atleast take a few hours.<
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/06/09/joy-of-using-linux/" data-id="ciktr98q3004u1fny1oj8s4tt" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/06/09/joy-of-using-linux/" data-id="ciqtjx1ch007c23qp5jjavz16" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/06/09/joy-of-using-linux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -679,7 +1002,7 @@ want and add them to your git repository.</li>
 folders and run it. </li>
 <li>Now, to sync your dotfiles seamlessly between your machines. You just need a remote git server (It can be your own using <a href="http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way" target="_blank" rel="external"> gitosis </a>, or you can put it on <a href="https://github.com/" target="_blank" rel="external"> github </a>). I use github to store <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="external">my dotfiles</a>. Just push your dotfiles to your remote server clone it on another machine run the <code>setup.rb</code> and bam, you’re in business.</li>
 </ol>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/bin/env ruby</span></span><br><span class="line">dirs = <span class="string">%w(bash/.bash_aliases bash/.inputrc git/.gitconfig vim/.vim vim/.vimrc .gemrc)</span></span><br><span class="line">current_dir = <span class="constant">File</span>.expand_path(<span class="constant">Dir</span>.pwd)</span><br><span class="line">home_dir = <span class="constant">File</span>.expand_path(<span class="string">"~"</span>)</span><br><span class="line"></span><br><span class="line">dirs.each <span class="keyword">do</span> |dir|</span><br><span class="line">  dir = <span class="constant">File</span>.join(current_dir, dir)</span><br><span class="line">  symlink = <span class="constant">File</span>.join(home_dir, <span class="constant">File</span>.basename(dir))</span><br><span class="line">  <span class="string">`ln -ns <span class="subst">#&#123;dir&#125;</span> <span class="subst">#&#123;symlink&#125;</span>`</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/bin/env ruby</span></div><div class="line">dirs = <span class="string">%w(bash/.bash_aliases bash/.inputrc git/.gitconfig vim/.vim vim/.vimrc .gemrc)</span></div><div class="line">current_dir = File.expand_path(Dir.pwd)</div><div class="line">home_dir = File.expand_path(<span class="string">"~"</span>)</div><div class="line"></div><div class="line">dirs.each <span class="keyword">do</span> <span class="params">|dir|</span></div><div class="line">  dir = File.join(current_dir, dir)</div><div class="line">  symlink = File.join(home_dir, File.basename(dir))</div><div class="line">  <span class="string">`ln -ns <span class="subst">#&#123;dir&#125;</span> <span class="subst">#&#123;symlink&#125;</span>`</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>This way you don’t have to copy/paste the files when you make changes to them.
 Just change the file, commit and push, and pull it on the other machines.</p>
 
@@ -691,7 +1014,7 @@ Just change the file, commit and push, and pull it on the other machines.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/" data-id="ciktr98nh003u1fnyfmo1mdqe" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/" data-id="ciqtjx1dy008c23qp4aik2x3a" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -729,7 +1052,7 @@ Just change the file, commit and push, and pull it on the other machines.</p>
         <p>A few minutes ago I learnt that adding <em>linenos</em> to the end of the highlight tag
 in jekyll adds line numbers to a code snippet. I wanted to add this to all the
 hightlight blocks in my blog. I came up with this command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">grep highlight _posts/*.* \</span><br><span class="line">| awk -F : <span class="string">' &#123; print $1&#125;'</span> \</span><br><span class="line">|  uniq \</span><br><span class="line">| xargs sed -i <span class="string">'s/% *highlight *\([a-z]*\) *%/% highlight \1 linenos %/'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">grep highlight _posts/*.* \</div><div class="line">| awk -F : <span class="string">' &#123; print $1&#125;'</span> \</div><div class="line">|  uniq \</div><div class="line">| xargs sed -i <span class="string">'s/% *highlight *\([a-z]*\) *%/% highlight \1 linenos %/'</span></div></pre></td></tr></table></figure>
 
         
       
@@ -739,7 +1062,7 @@ hightlight blocks in my blog. I came up with this command:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/05/03/linux-awesomeness/" data-id="ciktr98pk004n1fny3sm2n6ls" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/05/03/linux-awesomeness/" data-id="ciqtjx1cp007j23qpzvcsf47q" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/05/03/linux-awesomeness/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -784,10 +1107,10 @@ profile which will be used for all the profile <em>show</em> links automatically
 That’s it now your application has vanity urls, whenever someone clicks on a
 profile#show link they will be taken to /:slug. Obviously in this case the slug
 is assumed to be unique.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="constant">Funky::Application</span>.routes.draw <span class="keyword">do</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="comment">#at the end of the routes file</span></span><br><span class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Funky::Application.routes.draw <span class="keyword">do</span></div><div class="line">  .</div><div class="line">  .</div><div class="line">  .</div><div class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</div><div class="line">  .</div><div class="line">  .</div><div class="line">  <span class="comment">#at the end of the routes file</span></div><div class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>###Update###
 One of the readers emailed me asking what the controller code would look like. Here it is:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#app/models/profile.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span></span><br><span class="line">  <span class="comment">#should have a column called "slug"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> <span class="inheritance">&lt; <span class="parent">ApplicationController</span></span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></span><br><span class="line">    <span class="variable">@profile</span> = <span class="constant">Profile</span>.find_by_slug(params[<span class="symbol">:slug</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#app/models/profile.rb</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> &lt; ActiveRecord::Base</span></div><div class="line">  <span class="comment">#should have a column called "slug"</span></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> &lt; ApplicationController</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></div><div class="line">    @profile = Profile.find_by_slug(params[<span class="symbol">:slug</span>])</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>###References###</p>
 <ul>
 <li><a href="http://guides.rubyonrails.org/routing.html#naming-routes" target="_blank" rel="external">http://guides.rubyonrails.org/routing.html#naming-routes</a></li>
@@ -802,7 +1125,7 @@ One of the readers emailed me asking what the controller code would look like. H
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="ciktr98uf00701fnyfpnbv25d" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="ciqtjx1a5005223qpsevpg9kd" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -862,7 +1185,7 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 </code></pre></li>
 <li>Configure rvm and install ruby</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#replace the following which is usually found on line 6 of ~/.bashrc</span></span><br><span class="line">[ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></span><br><span class="line"><span class="comment"># with </span></span><br><span class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></span><br><span class="line"><span class="comment"># also put the following line at the end of the file</span></span><br><span class="line">[[ <span class="operator">-s</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#replace the following which is usually found on line 6 of ~/.bashrc</span></div><div class="line">[ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></div><div class="line"><span class="comment"># with </span></div><div class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></div><div class="line"><span class="comment"># also put the following line at the end of the file</span></div><div class="line">[[ <span class="_">-s</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
 <ol>
 <li>Install rails: gem install rails</li>
 </ol>
@@ -877,7 +1200,7 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="ciktr98l3002s1fny3fq1t6cg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="ciqtjx1fa009k23qpicpma1bp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -956,366 +1279,9 @@ I’ll try and post atleast one video every week.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="ciktr98m7003c1fnyd84zy5m9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="ciqtjx1eo008v23qp3mxqts1g" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/04/02/reminiscing-my-past/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-how-to-hookup-nginx-with-startssl" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/03/11/how-to-hookup-nginx-with-startssl/" class="article-date">
-  <time datetime="2011-03-11T00:00:00.000Z" itemprop="datePublished">2011-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/03/11/how-to-hookup-nginx-with-startssl/">how to hookup nginx with startssl</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>This is a note-to-self</em> </p>
-<p><a href="http://www.startssl.com" target="_blank" rel="external">StartSSL</a> is a certification authority which gives away <em>free</em> SSL certificates valid for one year (after which you can renew it again for <em>free</em>). They are simply awesome. Anyway, this blog post documents how you can setup an ssl cert on an nginx server using the start ssl free cert.</p>
-<ul>
-<li>Signup for a <a href="http://www.startssl.com" target="_blank" rel="external">StartSSL</a> account . StartSSL doesn’t give you a username and password, it gives you a client certificate instead (Use firefox to do signup). Make sure to <a href="https://www.startssl.com/?app=25#4" target="_blank" rel="external">back up</a> the client cert.</li>
-<li>SSH into your server and run the following commands:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">openssl genrsa -des3 -out server.key.secure <span class="number">2048</span></span><br><span class="line">openssl rsa -in server.key.secure -out server.key</span><br><span class="line">openssl req -new -key server.key -out server.csr</span><br></pre></td></tr></table></figure>
-<ul>
-<li>On startssl browse to the <em>control panel</em> and then to the <em>validations wizard</em> and validate the domain for which you want to generate your ssl.</li>
-<li>Now go to the <em>certificates wizard</em> tab in the <em>control panel</em> and create a <em>web server ssl certificate</em>. Skip the first step and paste your <code>server.csr</code> file in the next step. Finish the rest of the steps of this wizard.</li>
-<li>Browse to the <em>tool box</em> in the <em>control panel</em> and click on <em>retrieve certificate</em>. Copy your certificate and paste it into a file called <code>server.crt</code> on the server.</li>
-<li>Download <a href="http://www.startssl.com/certs/sub.class1.server.ca.pem" target="_blank" rel="external">sub.class1.server.ca.pem</a> to your server.</li>
-<li>Now run <code>cat sub.class1.server.ca.pem &gt;&gt; server.crt</code> to append the intermediate certificate to your cert.</li>
-<li>Run the commands:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo cp server.crt /etc/ssl/example.com.crt</span><br><span class="line">sudo cp server.key /etc/ssl/example.com.key</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Change your nginx conf to:</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">      .</span><br><span class="line">      .</span><br><span class="line">      listen <span class="number">80</span>;</span><br><span class="line">      listen <span class="number">443</span> ssl;</span><br><span class="line">      ssl on;</span><br><span class="line">      ssl_certificate /etc/ssl/example.com.crt;</span><br><span class="line">      ssl_certificate_key /etc/ssl/example.com.key;</span><br><span class="line">      .</span><br><span class="line">      .</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Restart your nginx server</li>
-</ul>
-<p>###References###</p>
-<ul>
-<li><a href="http://stephen.mcquay.me/blog/detail/30/" target="_blank" rel="external">nginx and startssl</a></li>
-<li><a href="http://www.digicert.com/ssl-certificate-installation-nginx.htm" target="_blank" rel="external">SSL Certificate Installation - Nginx Server</a></li>
-</ul>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="ciktr98u9006z1fnyw0l26wkd" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post--pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" class="article-date">
-  <time datetime="2011-02-11T00:00:00.000Z" itemprop="datePublished">2011-02-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/">pagination for performance intensive queries using nhibernate and sql server temporary tables</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Pagination is a solved problem. A simple google search shows up <em>11,200,000</em> results. Whoa!
-The basic implementation is simple. To paginate a result set you run two
-almost <em>identical</em> queries, one which fetches the count of the result set. The
-other which <em>skips</em> and <em>takes</em> the desired slice from the result set. </p>
-<p>This is fine in most of the cases, But, when your query is very performance intensive, you
-just can’t afford to run the same query twice. I ran into a similar situation
-recently and was searching for a decent approach to solve this problem, and
-then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="external">Temporary tables in SQL Server</a>.
-Once I knew about them the solution became very simple. It still needs execution
-of two queries but it doesn’t run the performance intesive query twice. See for
-yourself:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- first query</span></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">pi</span>.*</span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  .. a <span class="number">100</span> JOINS <span class="keyword">or</span> SPATIAL FUNCTIONS ...;</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- end of first query</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- second query</span></span><br><span class="line"><span class="comment">-- :skip and :take are sql parameters for pagination</span></span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> pr.* <span class="keyword">FROM</span> </span><br><span class="line">(<span class="keyword">SELECT</span> tp.*, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> tp.<span class="keyword">Id</span>) <span class="keyword">AS</span> <span class="keyword">ROWNUM</span></span><br><span class="line">  <span class="keyword">FROM</span> #TempPerfIntensiveTable tp)pr</span><br><span class="line"><span class="keyword">WHERE</span> pr.<span class="keyword">ROWNUM</span> <span class="keyword">BETWEEN</span> :<span class="keyword">skip</span> <span class="keyword">AND</span> :take + :<span class="keyword">skip</span>;</span></span><br><span class="line"><span class="comment">-- end of second query</span></span><br></pre></td></tr></table></figure>
-<p>These queries need to be executed by calling <code>session.CreateSQLQuery(query).SetInt32.....</code> This stuff is not specific to 
-NHibernate, I just put it out there to help future searchers :)</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="ciktr991300ak1fnymguf6lod" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-deploy-asp-net-mvc-applications-using-psexec-and-git" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" class="article-date">
-  <time datetime="2011-02-04T00:00:00.000Z" itemprop="datePublished">2011-02-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/">deploy asp net mvc applications using psexec and git</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="external">rake/albacore</a>
-tasks to compile the asp.net mvc application on the remote server and update the 
-database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="external">fluent migrator</a>.</p>
-<p>Whenever I need to deploy I do the following:  </p>
-<ol>
-<li>RDP into the remote server</li>
-<li>Open git bash =&gt; cd to the repository’s directory =&gt; do a <code>git fetch</code> and <code>git merge origin/master</code></li>
-<li>And then run <code>rake compile</code> (to compile the latest changes) and finally <code>rake db:migrate</code>(to update the database if there are any db changes)</li>
-</ol>
-<p>Even though rake and fluentmigrator make this pretty painless. It’s still a pain
-to rdp and do this stuff. So, I came up with a couple of batch scripts to make
-this process even simpler. Now I have two batch files in the root directory of
-my git repo:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#deploy.bat</span></span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> fetch &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> reset --hard HEAD &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> merge origin/master &amp;&amp; </span><br><span class="line">rake compile &amp;&amp; </span><br><span class="line">rake db:migrate</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#remote_deploy.bat</span></span><br><span class="line">psexec \\example.com -u userfoo -w <span class="string">"c:\repos\foobar"</span> <span class="string">"c:\repos\foobar\deploy.bat"</span></span><br></pre></td></tr></table></figure>
-<p>The code should be self explanatory. All we are doing is, instead of running the
-command manually automating them.</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="ciktr98yo008j1fny1naq81sk" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-software-developer-s-obsession-with-ninjas-and-rockstars" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" class="article-date">
-  <time datetime="2011-01-21T00:00:00.000Z" itemprop="datePublished">2011-01-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/">software developer&#39;s obsession with ninjas and rockstars</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>We software developers are so obsessed with trying to be cool that we forget who
-we are. I am sure many of you have seen phrases like <em>javascript ninja/C# ninja/
-php rockstar developer (with a silhouette of a rockstar)</em> on various websites.  </p>
-<p><strong>Think about what these phrases mean for a second.</strong>  </p>
-<p>Why the hell would I call myself a javascript ninja, instead of a javascript developer or a javascript hacker?  </p>
-<p>Is it because javascript <em>ninja</em> sounds cooler?  </p>
-<p>Does it mean that I would rather be a <em>ninja</em> than a javascript <em>developer</em>?  </p>
-<p>I get pissed off whenever I see a guy who gets his body peirced or calls himself 
-a rockstar developer or calls himself some ninja just to look cool.  </p>
-<p>We are not ninjas or rockstars, we are programmers/developers/hackers and we
-need to be proud of that. Intel gets this right: <em>Our rock stars are’nt like your
-rockstars</em>.</p>
-<iframe title="YouTube video player" class="youtube-player" type="text/html" width="589" height="472" src="http://www.youtube.com/embed/q-8GVi2Fdi4?rel=0" frameborder="0">
-</iframe>
-
-<hr>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="ciktr98jf001s1fny4dgps8w8" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" class="article-date">
-  <time datetime="2011-01-21T00:00:00.000Z" itemprop="datePublished">2011-01-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/">a simple rake task to ping google, bing, and yahoo about a change in your sitemap</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>There is an easy way to notify google, bing and yahoo whenever you add content
-to your site or blog. All of them expose a url which when called with your
-sitemap’s url updates their indexes. This fact is known to most developers, I
-just wanted to share a simple rake task, which automates this. I use it to ping these 
-search engines whenever I write a new blog post.  </p>
-<p>All it’s doing is looping over all the search engines’ urls and using curl to
-ping them.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="constant">Sitemap</span> = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></span><br><span class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></span><br><span class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></span><br><span class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</span><br><span class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</span><br><span class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> |url|</span><br><span class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;<span class="constant">Sitemap</span>&#125;</span>`</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="ciktr990n00a31fnybohnoazs" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-use-malcolmx-to-search-for-domain-names-from-the-command-line" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" class="article-date">
-  <time datetime="2010-12-25T00:00:00.000Z" itemprop="datePublished">2010-12-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/">use malcolmx to search for domain names from the command line</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The other day I stumbled upon <a href="http://instantdomainsearch.com/" target="_blank" rel="external">instantdomainsearch.com</a>. 
-It’s <em>the</em> best among the domain name checking apps I have used till now. It’s very
-zippy and has a clean interface. </p>
-<p>It has just one limitation, it allows you to search domains <em>one</em> at a time. And
-if you have a bunch of domain names which you want to check in one go, you can’t
-do it. So, I slapped together a <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">gem: MalcolmX</a> which allows us
-to check for multiple domain names in one go. You can checkout it’s <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">code on
-github</a>. Once you install it using <code>gem
-install malcolmx</code> you can check for multiple domain names like this:</p>
-<pre><code>malcolmx cosmicvent minhajuddin myfunkyfreakydomain
-</code></pre>
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="ciktr98h9000w1fny6xslsoqc" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -1372,23 +1338,23 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
       <ul>
         
           <li>
-            <a href="/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/">How to open the most recent file created in Vim</a>
+            <a href="/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/">Algorithm to compute downtime of a service/server</a>
           </li>
         
           <li>
-            <a href="/2016/02/17/script-your-tmux-to-maximize-awesome/">Script your tmux to maximize awesome!</a>
+            <a href="/2016/05/20/elixir-io-inspect-to-debug-pipelines/">Elixir IO.inspect to debug pipelines</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/">How to extract images from a pdf and reduce their size</a>
+            <a href="/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/">How to store temporary data and share it with your background processor</a>
           </li>
         
           <li>
-            <a href="/2016/02/10/a-very-simple-environment-loader-for-ruby/">A very simple environment loader for ruby</a>
+            <a href="/2016/03/09/subdomains-to-restrict-from-your-saas-app/">Subdomains to restrict from your SaaS app</a>
           </li>
         
           <li>
-            <a href="/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/">How to fix guard crashing your tmux server</a>
+            <a href="/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/">Script to cleanup old directories on a linux server</a>
           </li>
         
       </ul>
@@ -1402,7 +1368,7 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/dry/" style="font-size: 10px;">DRY</a> <a href="/tags/duplication/" style="font-size: 10px;">Duplication</a> <a href="/tags/erb/" style="font-size: 10px;">ERB</a> <a href="/tags/environment-loader/" style="font-size: 10px;">Environment Loader</a> <a href="/tags/guard/" style="font-size: 10px;">Guard</a> <a href="/tags/heroku/" style="font-size: 10px;">Heroku</a> <a href="/tags/how-to/" style="font-size: 10px;">How To</a> <a href="/tags/how-to/" style="font-size: 10px;">How to</a> <a href="/tags/pdf/" style="font-size: 10px;">PDF</a> <a href="/tags/rails-migrations/" style="font-size: 10px;">Rails Migrations</a> <a href="/tags/static-site-generator/" style="font-size: 10px;">Static Site Generator</a> <a href="/tags/static-sites/" style="font-size: 10px;">Static Sites</a> <a href="/tags/tip/" style="font-size: 10px;">Tip</a> <a href="/tags/tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/vim/" style="font-size: 10px;">Vim</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automate/" style="font-size: 10px;">automate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/bookmarklet/" style="font-size: 12.5px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/drag-and-drop/" style="font-size: 10px;">drag-and-drop</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 12.5px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 17.5px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/gtimelog/" style="font-size: 10px;">gtimelog</a> <a href="/tags/hack/" style="font-size: 15px;">hack</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 15px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mutt/" style="font-size: 10px;">mutt</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/rspec/" style="font-size: 12.5px;">rspec</a> <a href="/tags/ruby/" style="font-size: 15px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/script/" style="font-size: 10px;">script</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/submodules/" style="font-size: 10px;">submodules</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 12.5px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12.5px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
+      <a href="/tags/dry/" style="font-size: 10px;">DRY</a> <a href="/tags/debug/" style="font-size: 10px;">Debug</a> <a href="/tags/duplication/" style="font-size: 10px;">Duplication</a> <a href="/tags/erb/" style="font-size: 10px;">ERB</a> <a href="/tags/elixir/" style="font-size: 10px;">Elixir</a> <a href="/tags/environment-loader/" style="font-size: 10px;">Environment Loader</a> <a href="/tags/guard/" style="font-size: 10px;">Guard</a> <a href="/tags/heroku/" style="font-size: 10px;">Heroku</a> <a href="/tags/how-to/" style="font-size: 10px;">How To</a> <a href="/tags/how-to/" style="font-size: 10px;">How to</a> <a href="/tags/pdf/" style="font-size: 10px;">PDF</a> <a href="/tags/pipelines/" style="font-size: 10px;">Pipelines</a> <a href="/tags/rails-migrations/" style="font-size: 10px;">Rails Migrations</a> <a href="/tags/redis/" style="font-size: 10px;">Redis</a> <a href="/tags/restricted-subdomains/" style="font-size: 10px;">Restricted Subdomains</a> <a href="/tags/ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/saas-tip/" style="font-size: 10px;">SaaS Tip</a> <a href="/tags/static-site-generator/" style="font-size: 10px;">Static Site Generator</a> <a href="/tags/static-sites/" style="font-size: 10px;">Static Sites</a> <a href="/tags/tip/" style="font-size: 10px;">Tip</a> <a href="/tags/tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/vim/" style="font-size: 10px;">Vim</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 12.5px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automate/" style="font-size: 10px;">automate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 17.5px;">bash</a> <a href="/tags/bookmarklet/" style="font-size: 12.5px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/cleanup/" style="font-size: 10px;">cleanup</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/downtime-calculation/" style="font-size: 10px;">downtime calculation</a> <a href="/tags/drag-and-drop/" style="font-size: 10px;">drag-and-drop</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 12.5px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 17.5px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/gtimelog/" style="font-size: 10px;">gtimelog</a> <a href="/tags/hack/" style="font-size: 15px;">hack</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 15px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mutt/" style="font-size: 10px;">mutt</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/rspec/" style="font-size: 12.5px;">rspec</a> <a href="/tags/ruby/" style="font-size: 15px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/script/" style="font-size: 10px;">script</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/submodules/" style="font-size: 10px;">submodules</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 12.5px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12.5px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
     </div>
   </div>
 
@@ -1411,7 +1377,7 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1420,7 +1386,7 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/dry/">DRY</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/duplication/">Duplication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/erb/">ERB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment-loader/">Environment Loader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/guard/">Guard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heroku/">Heroku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How To</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How to</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">PDF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails-migrations/">Rails Migrations</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-sites/">Static Sites</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">Tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automate/">automate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curl/">curl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtimelog/">gtimelog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mutt/">mutt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/script/">script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/">submodules</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/dry/">DRY</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/duplication/">Duplication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/erb/">ERB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elixir/">Elixir</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment-loader/">Environment Loader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/guard/">Guard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heroku/">Heroku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How To</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How to</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">PDF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pipelines/">Pipelines</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails-migrations/">Rails Migrations</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restricted-subdomains/">Restricted Subdomains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">Ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/saas-tip/">SaaS Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-sites/">Static Sites</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">Tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automate/">automate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleanup/">cleanup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curl/">curl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/downtime-calculation/">downtime calculation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtimelog/">gtimelog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mutt/">mutt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/script/">script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/">submodules</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1470,11 +1436,11 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
 
 

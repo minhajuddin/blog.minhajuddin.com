@@ -24,7 +24,7 @@
   
   <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
   
 <!-- Google Analytics -->
 <script type="text/javascript">
@@ -85,6 +85,363 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-how-to-hookup-nginx-with-startssl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/03/11/how-to-hookup-nginx-with-startssl/" class="article-date">
+  <time datetime="2011-03-11T00:00:00.000Z" itemprop="datePublished">2011-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/03/11/how-to-hookup-nginx-with-startssl/">how to hookup nginx with startssl</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>This is a note-to-self</em> </p>
+<p><a href="http://www.startssl.com" target="_blank" rel="external">StartSSL</a> is a certification authority which gives away <em>free</em> SSL certificates valid for one year (after which you can renew it again for <em>free</em>). They are simply awesome. Anyway, this blog post documents how you can setup an ssl cert on an nginx server using the start ssl free cert.</p>
+<ul>
+<li>Signup for a <a href="http://www.startssl.com" target="_blank" rel="external">StartSSL</a> account . StartSSL doesn’t give you a username and password, it gives you a client certificate instead (Use firefox to do signup). Make sure to <a href="https://www.startssl.com/?app=25#4" target="_blank" rel="external">back up</a> the client cert.</li>
+<li>SSH into your server and run the following commands:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">openssl genrsa -des3 -out server.key.secure 2048</div><div class="line">openssl rsa -in server.key.secure -out server.key</div><div class="line">openssl req -new -key server.key -out server.csr</div></pre></td></tr></table></figure>
+<ul>
+<li>On startssl browse to the <em>control panel</em> and then to the <em>validations wizard</em> and validate the domain for which you want to generate your ssl.</li>
+<li>Now go to the <em>certificates wizard</em> tab in the <em>control panel</em> and create a <em>web server ssl certificate</em>. Skip the first step and paste your <code>server.csr</code> file in the next step. Finish the rest of the steps of this wizard.</li>
+<li>Browse to the <em>tool box</em> in the <em>control panel</em> and click on <em>retrieve certificate</em>. Copy your certificate and paste it into a file called <code>server.crt</code> on the server.</li>
+<li>Download <a href="http://www.startssl.com/certs/sub.class1.server.ca.pem" target="_blank" rel="external">sub.class1.server.ca.pem</a> to your server.</li>
+<li>Now run <code>cat sub.class1.server.ca.pem &gt;&gt; server.crt</code> to append the intermediate certificate to your cert.</li>
+<li>Run the commands:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo cp server.crt /etc/ssl/example.com.crt</div><div class="line">sudo cp server.key /etc/ssl/example.com.key</div></pre></td></tr></table></figure>
+<ul>
+<li>Change your nginx conf to:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">server &#123;</div><div class="line">      .</div><div class="line">      .</div><div class="line">      listen 80;</div><div class="line">      listen 443 ssl;</div><div class="line">      ssl on;</div><div class="line">      ssl_certificate /etc/ssl/example.com.crt;</div><div class="line">      ssl_certificate_key /etc/ssl/example.com.key;</div><div class="line">      .</div><div class="line">      .</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>Restart your nginx server</li>
+</ul>
+<p>###References###</p>
+<ul>
+<li><a href="http://stephen.mcquay.me/blog/detail/30/" target="_blank" rel="external">nginx and startssl</a></li>
+<li><a href="http://www.digicert.com/ssl-certificate-installation-nginx.htm" target="_blank" rel="external">SSL Certificate Installation - Nginx Server</a></li>
+</ul>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="ciqtjx1a9005323qpixvkpek0" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post--pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" class="article-date">
+  <time datetime="2011-02-11T00:00:00.000Z" itemprop="datePublished">2011-02-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/">pagination for performance intensive queries using nhibernate and sql server temporary tables</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Pagination is a solved problem. A simple google search shows up <em>11,200,000</em> results. Whoa!
+The basic implementation is simple. To paginate a result set you run two
+almost <em>identical</em> queries, one which fetches the count of the result set. The
+other which <em>skips</em> and <em>takes</em> the desired slice from the result set. </p>
+<p>This is fine in most of the cases, But, when your query is very performance intensive, you
+just can’t afford to run the same query twice. I ran into a similar situation
+recently and was searching for a decent approach to solve this problem, and
+then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="external">Temporary tables in SQL Server</a>.
+Once I knew about them the solution became very simple. It still needs execution
+of two queries but it doesn’t run the performance intesive query twice. See for
+yourself:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">-- first query</span></div><div class="line"><span class="keyword">SELECT</span> pi.*</div><div class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable</div><div class="line"><span class="keyword">FROM</span></div><div class="line">  .. a <span class="number">100</span> JOINS <span class="keyword">or</span> SPATIAL FUNCTIONS ...;</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</div><div class="line"><span class="keyword">FROM</span> </div><div class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable;</div><div class="line"></div><div class="line"><span class="comment">-- end of first query</span></div><div class="line"></div><div class="line"><span class="comment">-- second query</span></div><div class="line"><span class="comment">-- :skip and :take are sql parameters for pagination</span></div><div class="line"><span class="keyword">SELECT</span> pr.* <span class="keyword">FROM</span> </div><div class="line">(<span class="keyword">SELECT</span> tp.*, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> tp.Id) <span class="keyword">AS</span> <span class="keyword">ROWNUM</span></div><div class="line">  <span class="keyword">FROM</span> #TempPerfIntensiveTable tp)pr</div><div class="line"><span class="keyword">WHERE</span> pr.ROWNUM <span class="keyword">BETWEEN</span> :<span class="keyword">skip</span> <span class="keyword">AND</span> :take + :<span class="keyword">skip</span>;</div><div class="line"><span class="comment">-- end of second query</span></div></pre></td></tr></table></figure>
+<p>These queries need to be executed by calling <code>session.CreateSQLQuery(query).SetInt32.....</code> This stuff is not specific to 
+NHibernate, I just put it out there to help future searchers :)</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="ciqtjx14l000y23qpu1irbnqk" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-deploy-asp-net-mvc-applications-using-psexec-and-git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" class="article-date">
+  <time datetime="2011-02-04T00:00:00.000Z" itemprop="datePublished">2011-02-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/">deploy asp net mvc applications using psexec and git</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="external">rake/albacore</a>
+tasks to compile the asp.net mvc application on the remote server and update the 
+database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="external">fluent migrator</a>.</p>
+<p>Whenever I need to deploy I do the following:  </p>
+<ol>
+<li>RDP into the remote server</li>
+<li>Open git bash =&gt; cd to the repository’s directory =&gt; do a <code>git fetch</code> and <code>git merge origin/master</code></li>
+<li>And then run <code>rake compile</code> (to compile the latest changes) and finally <code>rake db:migrate</code>(to update the database if there are any db changes)</li>
+</ol>
+<p>Even though rake and fluentmigrator make this pretty painless. It’s still a pain
+to rdp and do this stuff. So, I came up with a couple of batch scripts to make
+this process even simpler. Now I have two batch files in the root directory of
+my git repo:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#deploy.bat</span></div><div class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> fetch &amp;&amp; </div><div class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> reset --hard HEAD &amp;&amp; </div><div class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> merge origin/master &amp;&amp; </div><div class="line">rake compile &amp;&amp; </div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#remote_deploy.bat</span></div><div class="line">psexec \\example.com -u userfoo -w <span class="string">"c:\repos\foobar"</span> <span class="string">"c:\repos\foobar\deploy.bat"</span></div></pre></td></tr></table></figure>
+<p>The code should be self explanatory. All we are doing is, instead of running the
+command manually automating them.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="ciqtjx180003923qpjun65g42" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" class="article-date">
+  <time datetime="2011-01-21T00:00:00.000Z" itemprop="datePublished">2011-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/">a simple rake task to ping google, bing, and yahoo about a change in your sitemap</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There is an easy way to notify google, bing and yahoo whenever you add content
+to your site or blog. All of them expose a url which when called with your
+sitemap’s url updates their indexes. This fact is known to most developers, I
+just wanted to share a simple rake task, which automates this. I use it to ping these 
+search engines whenever I write a new blog post.  </p>
+<p>All it’s doing is looping over all the search engines’ urls and using curl to
+ping them.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">Sitemap = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></div><div class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></div><div class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></div><div class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</div><div class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</div><div class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> <span class="params">|url|</span></div><div class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;Sitemap&#125;</span>`</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="ciqtjx166001m23qpzxc85a1q" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-software-developer-s-obsession-with-ninjas-and-rockstars" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" class="article-date">
+  <time datetime="2011-01-21T00:00:00.000Z" itemprop="datePublished">2011-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/">software developer&#39;s obsession with ninjas and rockstars</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>We software developers are so obsessed with trying to be cool that we forget who
+we are. I am sure many of you have seen phrases like <em>javascript ninja/C# ninja/
+php rockstar developer (with a silhouette of a rockstar)</em> on various websites.  </p>
+<p><strong>Think about what these phrases mean for a second.</strong>  </p>
+<p>Why the hell would I call myself a javascript ninja, instead of a javascript developer or a javascript hacker?  </p>
+<p>Is it because javascript <em>ninja</em> sounds cooler?  </p>
+<p>Does it mean that I would rather be a <em>ninja</em> than a javascript <em>developer</em>?  </p>
+<p>I get pissed off whenever I see a guy who gets his body peirced or calls himself 
+a rockstar developer or calls himself some ninja just to look cool.  </p>
+<p>We are not ninjas or rockstars, we are programmers/developers/hackers and we
+need to be proud of that. Intel gets this right: <em>Our rock stars are’nt like your
+rockstars</em>.</p>
+<iframe title="YouTube video player" class="youtube-player" type="text/html" width="589" height="472" src="http://www.youtube.com/embed/q-8GVi2Fdi4?rel=0" frameborder="0">
+</iframe>
+
+<hr>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="ciqtjx1g300ah23qp7umaheva" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-use-malcolmx-to-search-for-domain-names-from-the-command-line" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" class="article-date">
+  <time datetime="2010-12-25T00:00:00.000Z" itemprop="datePublished">2010-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/">use malcolmx to search for domain names from the command line</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The other day I stumbled upon <a href="http://instantdomainsearch.com/" target="_blank" rel="external">instantdomainsearch.com</a>. 
+It’s <em>the</em> best among the domain name checking apps I have used till now. It’s very
+zippy and has a clean interface. </p>
+<p>It has just one limitation, it allows you to search domains <em>one</em> at a time. And
+if you have a bunch of domain names which you want to check in one go, you can’t
+do it. So, I slapped together a <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">gem: MalcolmX</a> which allows us
+to check for multiple domain names in one go. You can checkout it’s <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">code on
+github</a>. Once you install it using <code>gem
+install malcolmx</code> you can check for multiple domain names like this:</p>
+<pre><code>malcolmx cosmicvent minhajuddin myfunkyfreakydomain
+</code></pre>
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="ciqtjx1gy00bh23qpuhe10tag" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-the-problem-with-yet-another-x" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2010/12/23/the-problem-with-yet-another-x/" class="article-date">
@@ -126,7 +483,7 @@ Or think about asking a guy to help you with “Yet Another Something”, Why wo
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="ciktr98i500171fnyevuj6sjq" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="ciqtjx1gk00b023qp3de95t5o" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -183,7 +540,7 @@ should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux"
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="ciktr98j1001o1fny386f32ks" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="ciqtjx1gb00an23qpw8sbemgi" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -225,7 +582,7 @@ untracked files</a></p>
 <hr>
 <p>Whenever I merge stuff from my colleagues, I end up with a bunch of <strong>*.orig</strong> files.
 So, I created a simple rake task which deletes all the untracked files.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">desc <span class="string">'deletes untracked files'</span></span><br><span class="line">task <span class="string">'git:del'</span> <span class="keyword">do</span></span><br><span class="line">  files = <span class="string">`git status -s`</span></span><br><span class="line">  files.lines.each <span class="keyword">do</span> |f|</span><br><span class="line">    <span class="keyword">next</span> <span class="keyword">unless</span> f.start_with? <span class="string">'??'</span></span><br><span class="line">    f = f.gsub(<span class="string">'??'</span>, <span class="string">''</span>).strip</span><br><span class="line">    <span class="constant">File</span>.delete(f)</span><br><span class="line">    puts <span class="string">"deleted =&gt; <span class="subst">#&#123;f&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">desc <span class="string">'deletes untracked files'</span></div><div class="line">task <span class="string">'git:del'</span> <span class="keyword">do</span></div><div class="line">  files = <span class="string">`git status -s`</span></div><div class="line">  files.lines.each <span class="keyword">do</span> <span class="params">|f|</span></div><div class="line">    <span class="keyword">next</span> <span class="keyword">unless</span> f.start_with? <span class="string">'??'</span></div><div class="line">    f = f.gsub(<span class="string">'??'</span>, <span class="string">''</span>).strip</div><div class="line">    File.delete(f)</div><div class="line">    puts <span class="string">"deleted =&gt; <span class="subst">#&#123;f&#125;</span>"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>This will permanently delete <strong>all</strong> untracked files from your working copy, so
 use it with care! :)</p>
 
@@ -237,7 +594,7 @@ use it with care! :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="ciktr98n1003r1fnyiq8nz7v6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="ciqtjx1e8008f23qpsy6jfwci" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -299,7 +656,7 @@ checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="ciktr98vc007h1fnys25r921q" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="ciqtjx19p004m23qp2zttwqal" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -353,7 +710,7 @@ clone the repo and start banging out code :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="ciktr98n5003s1fnykzqvoef1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="ciqtjx1ea008g23qpzwam6qzq" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -419,7 +776,7 @@ push as much as you want, you won’t be pestered for your password anymore :)</
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="ciktr98nu003v1fnygnc4118s" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="ciqtjx1dv008b23qpe2vtx9jl" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -460,7 +817,7 @@ page with the connect link, enter the username and password and then submit the 
 I know just reading the above text makes me sleepy and it’s such a distraction.</p>
 <p>So, I wrote a small script which reconnects the router if it has disconnected.
 you can use it if you have the same problem ;)</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">"net/http"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"uri"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'base64'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(page, method = <span class="string">'get'</span>, form_data = <span class="keyword">nil</span>)</span></span></span><br><span class="line">  uri = <span class="constant">URI</span>.parse(<span class="string">"http://router<span class="subst">#&#123;page&#125;</span>"</span>)</span><br><span class="line">  http = <span class="constant">Net::HTTP</span>.new(uri.host, uri.port)</span><br><span class="line">  request = method == <span class="string">'get'</span> ? <span class="constant">Net::HTTP::Get</span>.new(uri.request_uri) <span class="symbol">:</span> <span class="constant">Net::HTTP::Post</span>.new(uri.request_uri)</span><br><span class="line">  request.set_form_data(form_data) <span class="keyword">if</span> form_data</span><br><span class="line">  request.basic_auth(<span class="string">"username"</span>, <span class="string">"password"</span>)</span><br><span class="line">  http.request(request)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect</span></span></span><br><span class="line">  connect_url = <span class="string">'/webconfig/quick_start/connect.html/action_qstart_connect?qstart_pppIntf=pppoe_0_35&amp;qstart_pppUserName=username&amp;qstart_pppPassword=password&amp;submit_Connect=Connect'</span></span><br><span class="line">  res = request(<span class="string">'/webconfig/wan/wan.html'</span>)</span><br><span class="line">  <span class="keyword">unless</span> res.body.match <span class="string">"Disconnect"</span></span><br><span class="line">    puts <span class="string">'disconnected, connecting ....'</span></span><br><span class="line">    res = request(connect_url)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    puts <span class="string">'connected'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="keyword">true</span>)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    connect</span><br><span class="line">  <span class="keyword">rescue</span></span><br><span class="line">    puts <span class="variable">$!</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  sleep <span class="number">5</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">"net/http"</span></div><div class="line"><span class="keyword">require</span> <span class="string">"uri"</span></div><div class="line"><span class="keyword">require</span> <span class="string">'base64'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(page, method = <span class="string">'get'</span>, form_data = <span class="literal">nil</span>)</span></span></div><div class="line">  uri = URI.parse(<span class="string">"http://router<span class="subst">#&#123;page&#125;</span>"</span>)</div><div class="line">  http = Net::HTTP.new(uri.host, uri.port)</div><div class="line">  request = method == <span class="string">'get'</span> ? Net::HTTP::Get.new(uri.request_uri) : Net::HTTP::Post.new(uri.request_uri)</div><div class="line">  request.set_form_data(form_data) <span class="keyword">if</span> form_data</div><div class="line">  request.basic_auth(<span class="string">"username"</span>, <span class="string">"password"</span>)</div><div class="line">  http.request(request)</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect</span></span></div><div class="line">  connect_url = <span class="string">'/webconfig/quick_start/connect.html/action_qstart_connect?qstart_pppIntf=pppoe_0_35&amp;qstart_pppUserName=username&amp;qstart_pppPassword=password&amp;submit_Connect=Connect'</span></div><div class="line">  res = request(<span class="string">'/webconfig/wan/wan.html'</span>)</div><div class="line">  <span class="keyword">unless</span> res.body.match <span class="string">"Disconnect"</span></div><div class="line">    puts <span class="string">'disconnected, connecting ....'</span></div><div class="line">    res = request(connect_url)</div><div class="line">  <span class="keyword">else</span></div><div class="line">    puts <span class="string">'connected'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">while</span>(<span class="literal">true</span>)</div><div class="line">  <span class="keyword">begin</span></div><div class="line">    connect</div><div class="line">  <span class="keyword">rescue</span></div><div class="line">    puts $!</div><div class="line">  <span class="keyword">end</span></div><div class="line">  sleep <span class="number">5</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 
         
       
@@ -470,7 +827,7 @@ you can use it if you have the same problem ;)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="ciktr98rv005o1fny008uirlc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="ciqtjx1bo006e23qpi54skjhc" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -515,7 +872,7 @@ title, and the layout is the minimum, Here you are typing the title again.</li>
 </ul>
 <p>It’s not a big deal, but it’s still annoying. So, I came up with a small ruby
 script called new.rb, which basically automates this stuff.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></span><br><span class="line"><span class="comment"># which is the title of the blog post</span></span><br><span class="line"><span class="comment"># e.g. command:</span></span><br><span class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Some constants</span></span><br><span class="line"><span class="constant">TEMPLATE</span> = <span class="string">"template.markdown"</span></span><br><span class="line"><span class="constant">TARGET_DIR</span> = <span class="string">"_posts"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the title which was passed as an argument</span></span><br><span class="line">title = <span class="constant">ARGV</span>[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># Get the filename</span></span><br><span class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</span><br><span class="line">filename = <span class="string">"<span class="subst">#&#123; <span class="constant">Time</span>.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </span><br><span class="line">filepath = <span class="constant">File</span>.join(<span class="constant">TARGET_DIR</span>, filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a copy of the template with the title replaced</span></span><br><span class="line">new_post = <span class="constant">File</span>.read(<span class="constant">TEMPLATE</span>)</span><br><span class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write out the file to the target directory</span></span><br><span class="line">new_post_file = <span class="constant">File</span>.open(filepath, <span class="string">'w'</span>)</span><br><span class="line">new_post_file.puts new_post</span><br><span class="line">new_post_file.close</span><br><span class="line"></span><br><span class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"></div><div class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></div><div class="line"><span class="comment"># which is the title of the blog post</span></div><div class="line"><span class="comment"># e.g. command:</span></div><div class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></div><div class="line"></div><div class="line"><span class="comment"># Some constants</span></div><div class="line">TEMPLATE = <span class="string">"template.markdown"</span></div><div class="line">TARGET_DIR = <span class="string">"_posts"</span></div><div class="line"></div><div class="line"><span class="comment"># Get the title which was passed as an argument</span></div><div class="line">title = ARGV[<span class="number">0</span>]</div><div class="line"><span class="comment"># Get the filename</span></div><div class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</div><div class="line">filename = <span class="string">"<span class="subst">#&#123; Time.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </div><div class="line">filepath = File.join(TARGET_DIR, filename)</div><div class="line"></div><div class="line"><span class="comment"># Create a copy of the template with the title replaced</span></div><div class="line">new_post = File.read(TEMPLATE)</div><div class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</div><div class="line"></div><div class="line"><span class="comment"># Write out the file to the target directory</span></div><div class="line">new_post_file = File.open(filepath, <span class="string">'w'</span>)</div><div class="line">new_post_file.puts new_post</div><div class="line">new_post_file.close</div><div class="line"></div><div class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></div></pre></td></tr></table></figure>
 <p><a href="http://gist.github.com/604999#comments" target="_blank" rel="external">Download the gist</a></p>
 
         
@@ -526,7 +883,7 @@ script called new.rb, which basically automates this stuff.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="ciktr98vf007i1fnyv6zn6yfu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="ciqtjx19o004l23qpwg38w7ij" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -586,7 +943,7 @@ of predefined tasks which you can use to manager your gems.</li>
 <li>The file where you need to put your ruby code is  <code>lib/fixnum_extensions.rb</code> 
 my file has the code below in it:</li>
 </ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#This is a contrived example but it's fine</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(number)</span></span></span><br><span class="line">    number + <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(number)</span></span></span><br><span class="line">    number - <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(number)</span></span></span><br><span class="line">    number * <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">div</span><span class="params">(number)</span></span></span><br><span class="line">    number / <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#This is a contrived example but it's fine</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(number)</span></span></div><div class="line">    number + <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(number)</span></span></div><div class="line">    number - <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(number)</span></span></div><div class="line">    number * <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">div</span><span class="params">(number)</span></span></div><div class="line">    number / <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 <ul>
 <li>Now you need to open up the Rakefile and add a <em>description</em> and <em>summary</em>
 instead of the TODOs.</li>
@@ -604,7 +961,7 @@ gem file <code>fixnum_extensions-0.0.0.gem</code>.</li>
 code in a nice gem package. To install it, just run the command <code>gem install
 pkg/fixnum_extensions-0.0.0.gem</code></p>
 <p>To test it out open an irb session and run the following commands</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fixnum_extensions'</span></span><br><span class="line"><span class="number">1</span>.add(<span class="number">2</span>).mul(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'fixnum_extensions'</span></div><div class="line"><span class="number">1</span>.add(<span class="number">2</span>).mul(<span class="number">3</span>)</div></pre></td></tr></table></figure>
 <p>  Jeweler adds a lot of nifty tasks which are great, to check them out just run
   <code>rake -T</code></p>
 
@@ -616,7 +973,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="ciktr98yx008p1fny3uppdr4q" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="ciqtjx18b003f23qpbs2f8364" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -652,7 +1009,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
     <div class="article-entry" itemprop="articleBody">
       
         <p>Before you read this blog entry please read <a href="http://tom.preston-werner.com/2009/05/19/the-git-parable.html" target="_blank" rel="external">The git parable</a>. It is a nice read to understand the need and reason for git.</p>
-<h2 id="basic-commands"><a href="#basic-commands" class="headerlink" title="basic commands"></a>basic commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#create the repository, first thing when creating a project</span></span><br><span class="line">git init </span><br><span class="line"></span><br><span class="line"><span class="comment">#shows you the current status of your repository</span></span><br><span class="line">git status </span><br><span class="line"></span><br><span class="line"><span class="comment">#adds files or directories to the staging area</span></span><br><span class="line">git add filename </span><br><span class="line"></span><br><span class="line"><span class="comment">#commits the changes from the staging area to the repository</span></span><br><span class="line">git commit -m <span class="string">'commit message'</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment">#shows the repositories graph</span></span><br><span class="line">gitk --all </span><br><span class="line"></span><br><span class="line"><span class="comment"># to check the commits</span></span><br><span class="line">git <span class="built_in">log</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># get the last commit info</span></span><br><span class="line">git <span class="built_in">log</span> -<span class="number">1</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># file which stores the ignore file patterns</span></span><br><span class="line">.gitignore </span><br><span class="line"></span><br><span class="line"><span class="comment">#to checkout a commit</span></span><br><span class="line">git checkout SHA1ID </span><br><span class="line"></span><br><span class="line"><span class="comment">#to check the differences between working dir and latest commit</span></span><br><span class="line">git diff </span><br><span class="line"></span><br><span class="line"><span class="comment">#diff between those two commits</span></span><br><span class="line">git diff commit_id1 commit_id2 </span><br><span class="line"></span><br><span class="line"><span class="comment">#server #to push to a server</span></span><br><span class="line">git push </span><br><span class="line"></span><br><span class="line"><span class="comment">#to manager remotes</span></span><br><span class="line">git remote </span><br><span class="line"></span><br><span class="line"><span class="comment"># to get the latest commits</span></span><br><span class="line">git fetch</span><br></pre></td></tr></table></figure>
+<h2 id="basic-commands"><a href="#basic-commands" class="headerlink" title="basic commands"></a>basic commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#create the repository, first thing when creating a project</span></div><div class="line">git init </div><div class="line"></div><div class="line"><span class="comment">#shows you the current status of your repository</span></div><div class="line">git status </div><div class="line"></div><div class="line"><span class="comment">#adds files or directories to the staging area</span></div><div class="line">git add filename </div><div class="line"></div><div class="line"><span class="comment">#commits the changes from the staging area to the repository</span></div><div class="line">git commit -m <span class="string">'commit message'</span>  </div><div class="line"></div><div class="line"><span class="comment">#shows the repositories graph</span></div><div class="line">gitk --all </div><div class="line"></div><div class="line"><span class="comment"># to check the commits</span></div><div class="line">git <span class="built_in">log</span> </div><div class="line"></div><div class="line"><span class="comment"># get the last commit info</span></div><div class="line">git <span class="built_in">log</span> -1 </div><div class="line"></div><div class="line"><span class="comment"># file which stores the ignore file patterns</span></div><div class="line">.gitignore </div><div class="line"></div><div class="line"><span class="comment">#to checkout a commit</span></div><div class="line">git checkout SHA1ID </div><div class="line"></div><div class="line"><span class="comment">#to check the differences between working dir and latest commit</span></div><div class="line">git diff </div><div class="line"></div><div class="line"><span class="comment">#diff between those two commits</span></div><div class="line">git diff commit_id1 commit_id2 </div><div class="line"></div><div class="line"><span class="comment">#server #to push to a server</span></div><div class="line">git push </div><div class="line"></div><div class="line"><span class="comment">#to manager remotes</span></div><div class="line">git remote </div><div class="line"></div><div class="line"><span class="comment"># to get the latest commits</span></div><div class="line">git fetch</div></pre></td></tr></table></figure>
 <p><em>I’ll update this post with more examples as I get the time</em></p>
 
         
@@ -663,7 +1020,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="ciktr98w6007u1fny8eiatvo2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="ciqtjx199004423qp4mbqvsud" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/29/git-basic-commands/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -703,7 +1060,7 @@ You can use the following file as a post-update hook to update your jekyll blog.
 <p>So, let’s say your git repository is named <em>example.com</em>, browse to /home/git/repositories/example.com/hooks and create
 a file with the name <em>post-update</em>, copy the content below to your <em>post-update</em> file. That’s it you are set, the next
 time you push to your git repo, your blog will be automatically published.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#post-update</span></span><br><span class="line"><span class="built_in">unset</span> GIT_DIR &amp;&amp; <span class="built_in">cd</span> /var/www/blogs/example.com &amp;&amp; git pull &amp;&amp; jekyll</span><br><span class="line"><span class="comment">#/var/www/blogs/example.com is where your blog's repo is cloned</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"finished deployment"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#post-update</span></div><div class="line"><span class="built_in">unset</span> GIT_DIR &amp;&amp; <span class="built_in">cd</span> /var/www/blogs/example.com &amp;&amp; git pull &amp;&amp; jekyll</div><div class="line"><span class="comment">#/var/www/blogs/example.com is where your blog's repo is cloned</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"finished deployment"</span></div></pre></td></tr></table></figure>
 <p>Below are a couple of problems I ran into and how I fixed them:</p>
 <ul>
 <li>File permissions issue <em>cannot write to .git/FETCH_HEAD</em>, you’ll get this error if the ‘git’ user doesn’t have write privileges to your blog’s cloned directory, you can fix it by giving write permissions to your git user to this directory</li>
@@ -718,7 +1075,7 @@ time you push to your git repo, your blog will be automatically published.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="ciktr98nc003t1fny1iqjp08p" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="ciqtjx1e2008d23qpq6neisnx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -762,7 +1119,7 @@ zipped file with the source code to your <code>$HOME/.rvm/archives/</code> direc
 then run <code>rvm install &lt;ruby-version&gt;</code>. This will install the desired ruby
 version skipping the download and using the file present in the archives
 direcotry.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">cp ruby-enterprise-<span class="number">1.8</span>.<span class="number">7</span>-<span class="number">2010.02</span>.tar.gz /home/minhajuddin/.rvm/archives</span><br><span class="line">rvm install ree-<span class="number">1.8</span>.<span class="number">7</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">cp ruby-enterprise-1.8.7-2010.02.tar.gz /home/minhajuddin/.rvm/archives</div><div class="line">rvm install ree-1.8.7</div></pre></td></tr></table></figure>
 
         
       
@@ -772,7 +1129,7 @@ direcotry.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/" data-id="ciktr98qj00511fny3g55ijwh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/" data-id="ciqtjx1cb007723qpucq3voto" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -833,15 +1190,15 @@ that’s the case you don’t need anything for the first step.</p>
 needed by rvm to compile ruby</p>
 </li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get install curl git-core bison build-essential zlib1g-dev libssl-dev libreadline6-dev libxml2-dev autoconf libxslt1-dev libpq-dev postgresql</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo apt-get install curl git-core bison build-essential zlib1g-dev libssl-dev libreadline6-dev libxml2-dev autoconf libxslt1-dev libpq-dev postgresql</div></pre></td></tr></table></figure>
 <ol>
 <li>Install <a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="external">RVM</a> by running the following:</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</div></pre></td></tr></table></figure>
 <ol>
 <li>Fix your <code>.bashrc</code>.</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="comment">#replace the following which is usually found on line 6</span></span><br><span class="line"> [ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></span><br><span class="line"><span class="comment"># with </span></span><br><span class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></span><br><span class="line"><span class="comment"># also put the following line at the end of the file</span></span><br><span class="line">[[ <span class="operator">-s</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> <span class="comment">#replace the following which is usually found on line 6</span></div><div class="line"> [ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></div><div class="line"><span class="comment"># with </span></div><div class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></div><div class="line"><span class="comment"># also put the following line at the end of the file</span></div><div class="line">[[ <span class="_">-s</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
 <ol>
 <li>Finally change the ownership of “~/.gem” using <code>sudo chown minhajuddin
 /home/minhajuddin/.gems</code></li>
@@ -862,7 +1219,7 @@ enjoyable.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/" data-id="ciktr98tq006q1fnyftfzv5so" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/" data-id="ciqtjx1aj005c23qpx5dr8y1x" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -935,402 +1292,9 @@ wordpress :) ).</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/06/28/jekyll-the-programmers-blog-engine/" data-id="ciktr98q7004v1fny0mqvtids" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/28/jekyll-the-programmers-blog-engine/" data-id="ciqtjx1cf007b23qpdkcbelsi" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/06/28/jekyll-the-programmers-blog-engine/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/06/06/redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze/" class="article-date">
-  <time datetime="2010-06-06T00:00:00.000Z" itemprop="datePublished">2010-06-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/06/06/redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze/">Redirector - A simple rack application which makes redirection of multiple domains a breeze</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The last couple of months I have been dabbling in all kinds of Ruby web frameworks. The choice of web frameworks in ruby is really amazing.</p>
-<p>The other day, I had registered a couple of domains for one of my projects. And, I wanted to setup redirects of the ‘*.org’ and ‘*.net’ domains to the ‘*.com’ domain. 
-I searched around a bit to see if there was a simple way to do this. But, I didn’t find any simple solution. 
-If I hadn’t known any ruby frameworks, I would have hacked a bunch of php files and would have setup directories for each of the redirects. But, 
-I have been digging ruby for a while now, and I am lovin’ it :)</p>
-<p>So, I thought I could use rack to build a small app which would redirect domains based on a configuration file. The initial code I came up with was very simple. 
-Below are the contents of the <code>config.ru</code> file</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">app = proc <span class="keyword">do</span> |env|</span><br><span class="line">  [<span class="number">302</span>, &#123;<span class="string">'Content-Type'</span> =&gt; <span class="string">'text'</span>,<span class="string">'Location'</span> =&gt; <span class="string">'cosmicvent.com'</span>&#125;, [<span class="string">'302 found'</span>] ]</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">run app</span><br></pre></td></tr></table></figure>
-<p>Just four lines of code to get our redirect stuff working!
-All I had to do now was to somehow get the status, and location of redirects through some configuration file. I fired up <em>irb</em> and played around with <em>yaml</em> a bit. It’s a child’s play to get yaml working with ruby. The final code looks something like below:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#config.ru:</span></span><br><span class="line"><span class="keyword">require</span> <span class="constant">File</span>.join(<span class="constant">File</span>.dirname(__FILE_<span class="number">_</span>), <span class="string">'lib/redirector'</span>)</span><br><span class="line"></span><br><span class="line">use <span class="constant">Rack::ContentLength</span></span><br><span class="line">use <span class="constant">Debugger</span>, <span class="keyword">false</span></span><br><span class="line"></span><br><span class="line">app = proc <span class="keyword">do</span> |env|</span><br><span class="line">  app = <span class="constant">Redirector</span>.new()</span><br><span class="line">  status, headers, response = app.call(env)</span><br><span class="line">  [ status, headers, response ] </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">run app</span><br><span class="line"></span><br><span class="line"><span class="comment">#lib/redirector.rb:</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'yaml'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Redirector</span></span></span><br><span class="line"></span><br><span class="line">  <span class="variable">@@config</span> = <span class="constant">YAML::</span>load(<span class="constant">File</span>.open(<span class="string">'config.yaml'</span>))</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">config</span></span></span><br><span class="line">    <span class="variable">@@config</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(env)</span></span></span><br><span class="line">    host_config = get_host_config(env[<span class="string">'HTTP_HOST'</span>])</span><br><span class="line">    [host_config[<span class="string">'status'</span>], &#123;<span class="string">'Content-Type'</span> =&gt; <span class="string">'text'</span>,<span class="string">'Location'</span> =&gt; host_config[<span class="string">'location'</span>]&#125;, get_host_response( host_config ) ]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_host_response</span><span class="params">(host_config)</span></span></span><br><span class="line">    <span class="string">"<span class="subst">#&#123;host_config[<span class="string">'status'</span>]&#125;</span> moved. The document has moved to <span class="subst">#&#123;host_config[<span class="string">'location'</span>]&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">get_host_config</span><span class="params">(host)</span></span></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">@@config</span>[host] <span class="keyword">if</span> <span class="variable">@@config</span>[host]</span><br><span class="line">    raise <span class="string">"Configuration for <span class="subst">#&#123;host&#125;</span> not available"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Debugger</span></span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(app, debug)</span></span></span><br><span class="line">    <span class="variable">@app</span> = app</span><br><span class="line">    <span class="variable">@debug</span> = debug</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(env)</span></span></span><br><span class="line">    <span class="keyword">if</span> <span class="variable">@debug</span></span><br><span class="line">      puts <span class="string">'==== Config information ===='</span></span><br><span class="line">      puts <span class="constant">Redirector</span>.config.inspect</span><br><span class="line">      puts <span class="string">'============================'</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="variable">@app</span>.call(env)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>That’s all, now all I had to do was set it up on my ubuntu server using ‘phusion passenger’. 
-You can download all the code from <a href="http://github.com/minhajuddin/redirector" title="A simple rack application which makes redirection of multiple domains a breeze." target="_blank" rel="external">
-http://github.com/minhajuddin/redirector</a>. Below, is a part of my config.yaml file.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;cosmicvent.net:&#10;  status: 301&#10;  location: &#39;http://cosmicvent.com&#39;&#10;&#10;cosmicvent.org:&#10;  status: 301&#10;  location: &#39;http://cosmicvent.com&#39;&#10;&#10;www.cosmicvent.net:&#10;  status: 301&#10;  location: &#39;http://cosmicvent.com&#39;&#10;&#10;www.cosmicvent.org:&#10;  status: 301&#10;  location: &#39;http://cosmicvent.com&#39;&#10;&#10;www.cosmicvent.com:&#10;  status: 301&#10;  location: &#39;http://cosmicvent.com&#39;</span><br></pre></td></tr></table></figure>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/06/06/redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze/" data-id="ciktr98mb003d1fnypom4m6ib" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2010/06/06/redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-asp-net-mvc-with-mono" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/12/12/asp-net-mvc-with-mono/" class="article-date">
-  <time datetime="2009-12-12T00:00:00.000Z" itemprop="datePublished">2009-12-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/12/12/asp-net-mvc-with-mono/">Get a Hello World ASP.NET MVC app up on Mono</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The other day I was trying to get started with Mono using ASP.NET MVC. 
-  As usual I googled and found a useful post on it 
-  <a title="http://beyondfocus.com/mono/asp-net-mvc-on-mono-two-options-for-the-ide-crowd/" href="http://beyondfocus.com/mono/asp-net-mvc-on-mono-two-options-for-the-ide-crowd/" target="_blank" rel="external">
-    http://beyondfocus.com/mono/asp-net-mvc-on-mono-two-options-for-the-ide-crowd/</a> .
-  But, the post assumes you already know how to deploy an asp.net app on Mono. 
-  Anyway here is my attempt to make it easier for folks to hop onto Mono.</p>  <p>&#160;</p><br><p>Alright, so all I am trying to do here is get the ASP.NET MVC 1.0 default template up and running on Mono. 
-  There are a few things you need, to get this working:</p>  <ol><br>  <li>You need to download a Virtual Machine image from <a title="http://www.go-mono.com/mono-downloads/download.html" href="http://www.go-mono.com/mono-downloads/download.html" target="_blank" rel="external">http://www.go-mono.com/mono-downloads/download.html</a> 
-    OR install Mono 2.4, apache, mono_mod, and xsp if you already have a linux machine up and running.</li><br>  <li>Visual Studio with ASP.NET MVC 1.0 installed.</li> </ol>  <p>Now, once you have these pre-requisites, </p>  <ol><br>  <li>Fire up your vs and create a new ASP.NET MVC 1.0 project. 
-    Change whatever text you want to in the template, Here is how mine looks on my machine:
-    <a href="http://minhajuddin.com/wp-content/uploads/2009/12/image.png">
-      <img style="border-bottom: 0px; border-left: 0px; display: block; float: none; margin-left: auto; border-top: 0px; margin-right: auto; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0303b04d2e0300000f/image_thumb.png" width="571" height="230">
-    </a></li>    <li>Publish this application to a folder, say d:\binaries\mono_mvc. and then copy it to your Mono linux machine, copy it to the /srv/www/ folder.<br>    <br>      <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image1.png">
-      <img style="border-bottom: 0px; border-left: 0px; display: block; float: none; margin-left: auto; border-top: 0px; margin-right: auto; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0403b04d2e03000010/image_thumb1.png" width="271" height="132"></a><br>    <br></li>    <li>Once you’ve done that, head over to the <a title="http://go-mono.com/config-mod-mono/" href="http://go-mono.com/config-mod-mono/" target="_blank" rel="external">
-      http://go-mono.com/config-mod-mono/</a> to create your mod_mono configuration file. Fill out all the necessary details and click on the 
-    Download button to download your newly configuration file.<br>    <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image2.png">
-      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0503b04d2e03000011/image_thumb2.png" width="581" height="700"></a>
-    <br></li>    <li>Copy this new configuration file to the /etc/apache2/conf.d/ directory on your linux machine.<br>    <br>      <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image3.png">
-      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0703b04d2e03000012/image_thumb3.png" width="580" height="105"></a><br>    <br></li>    <li>The last thing you need to do is restart your apache server     <br><br>    <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image4.png">
-      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0803b04d2e03000013/image_thumb4.png" width="587" height="74">
-    </a> </li>    <li>Now you can browse to <a href="http://localhost/&lt;your_application_name&amp;gt" target="_blank" rel="external">http://localhost/&lt;your_application_name&amp;gt</a>; to see your asp.net mvc application in it’s full glory :)<br>    <br>      <br><a href="http://minhajuddin.com/wp-content/uploads/2009/12/image5.png">
-      <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" border="0" alt="image" src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd0903b04d2e03000014/image_thumb5.png" width="586" height="261"></a>&#160; 
-    <br></li> </ol>  <p>This is obviously a contrived example, but you can see how easy it is to deploy an asp.net mvc application to a 
-  linux box running apache and Mono. This is no more complicated than deploying a web app on a Windows box, and all props go to the 
-  <a href="http://www.mono-project.com/Main_Page" target="_blank">Mono guys</a> for making Mono easier to use with every release. 
-  I hope to dive in deeper into Mono real soon and I’ll share my experiences with you guys.&#160;&#160; </p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/12/12/asp-net-mvc-with-mono/" data-id="ciktr98zq009c1fnyj6d0pnf2" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2009/12/12/asp-net-mvc-with-mono/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-sitemaplite-adding-html-helpers" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/09/20/sitemaplite-adding-html-helpers/" class="article-date">
-  <time datetime="2009-09-20T00:00:00.000Z" itemprop="datePublished">2009-09-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/09/20/sitemaplite-adding-html-helpers/">SiteMapLite, Adding Html helpers</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>This might actually be my first open source project coming to fruition. I have created a lot of special Abandon-ware (Special in that they were abandoned before completion).   </p>
-<p>Anyway, things are looking good with SiteMapLite. In today’s iteration I have added a nice MenuHelper to help us render the main navigation bar. 
-It also has a nice Cached SiteMap service which wraps around the actual SiteMap service and caches it nicely, so that the text files are not read and parsed for each request.   </p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">MenuHelper</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">RenderMainNav</span>(<span class="params"><span class="keyword">this</span> HtmlHelper helper</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> RenderMainNav(helper, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">RenderMainNav</span>(<span class="params"><span class="keyword">this</span> HtmlHelper helper, <span class="keyword">object</span> htmlAttributes</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> nodes = CachedSiteMapService.Service.GetNodesForRole(<span class="string">"Administrator"</span>);</span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">        sb.Append(<span class="string">"&lt;ul "</span>);</span><br><span class="line"></span><br><span class="line">        AppendHtmlAttributes(sb, htmlAttributes);</span><br><span class="line"></span><br><span class="line">        sb.Append(<span class="string">"&gt;"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">foreach</span> (<span class="keyword">var</span> node <span class="keyword">in</span> nodes) &#123;</span><br><span class="line">            sb.AppendFormat(<span class="string">"&lt;li&gt;&lt;a href='/&#123;0&#125;/&#123;1&#125;' title=&#123;2&#125;&gt;&#123;2&#125;&lt;/a&gt;&lt;/li&gt;\r\n"</span>, node.Controller, node.Action, node.Title);</span><br><span class="line">        &#125;</span><br><span class="line">        sb.Append(<span class="string">"&lt;/ul&gt;"</span>);</span><br><span class="line">        <span class="keyword">return</span> sb.ToString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AppendHtmlAttributes</span>(<span class="params">StringBuilder sb, <span class="keyword">object</span> htmlAttributes</span>) </span>&#123;</span><br><span class="line">        PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(htmlAttributes);</span><br><span class="line">        <span class="keyword">foreach</span> (PropertyDescriptor property <span class="keyword">in</span> properties) &#123;</span><br><span class="line">            sb.AppendFormat(<span class="string">" &#123;0&#125;='&#123;1&#125;' "</span>, property.Name.Trim(<span class="string">'@'</span>)<span class="comment">/* Remove the @ if the attribute is @class */</span>, property.GetValue(htmlAttributes));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>If you see, this MenuHelper just uses the CachedSiteMapService.Service instance to get the nodes for the role 
-Administrator. As of now, we have hard coded the role to Administrator. In a future iteration, We’ll write code so that it uses the role of current session. 
-This code creates a simple list of urls and it appends any html attributes passed in input parameter to the ul html attribute. 
-<a href="http://github.com/minhajuddin/sitemaplite" target="_blank" rel="external">Checkout the updated SiteMapLite code at GitHub</a>.</p>
-<p>Till next time</p>
-<p>[ <a href="http://twitter.com/minhajuddin" target="_blank" rel="external">@minhajuddin</a> ]</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/09/20/sitemaplite-adding-html-helpers/" data-id="ciktr98jl001t1fny4lcgmml3" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2009/09/20/sitemaplite-adding-html-helpers/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-birth-of-sitemaplite-aspnetmvc-sitemap-provider" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/" class="article-date">
-  <time datetime="2009-09-18T00:00:00.000Z" itemprop="datePublished">2009-09-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/">The Birth of SiteMapLite (ASP.NET MVC Sitemap provider)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Alright, the last post about the json sitemap provider got some people interested in this utility. So, I thought of improving the code a bit more before actually coding up the 
-Html helpers to render the navigation links. So, here we go. ( I named this utility <strong>SiteMapLite</strong> so that it’s easy to reference it, 
-If you’ve got a better name leave it in the comments ;) )  </p>
-<p>When you think about a sitemap there are a few things which come to mind</p>
-<ol>
-<li>The Nodes: Sitemaps are all about nodes, where each node is a hyperlink pointing to a resource, In our code we have a class called the 
-<strong>SiteMapNode</strong> which represents a single node in a SiteMap. </li>
-</ol>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">SiteMapNode</span> &#123;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">int</span> Id &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> Action &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> Controller &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> Title &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">string</span> Role &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> ParentId &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">public</span> IEnumerable&lt;SiteMapNode&gt; Children;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">bool</span> <span class="title">IsInRole</span>(<span class="params"><span class="keyword">string</span> role</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (Role == <span class="keyword">null</span> || Role.Trim().Length == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> count = Role.Split(<span class="string">','</span>).Count(x =&gt; x.Trim().Equals(role, StringComparison.OrdinalIgnoreCase));</span><br><span class="line">            <span class="keyword">return</span> count != <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">virtual</span> <span class="keyword">bool</span> IsRootNode &#123;</span><br><span class="line">            <span class="keyword">get</span> &#123; <span class="keyword">return</span> ParentId == <span class="number">0</span>; &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li><p>The Hierarchy: Once you have all the nodes you would want the SiteMap to be laid out in a hierarchical fashion, So you would have a root node(s) which would then have children nodes, and those children nodes might have their own children. In our project, this hierarchy is represented by a simple list of SiteMapNodes. This list would have just the root nodes. </p>
-</li>
-<li><p>You might be thinking how we can fashion the whole hierarchy by just using a simple list of root nodes, where do the children nodes go? The answer to that, is, every root node has a it’s own list of children nodes, that is how we store the hierarchy in SiteMapLite. Now the HtmlHelper which is to be created just has to take the list of root nodes and render the main navigation bar. And then based on the current node, render it’s second level navigation and so on. </p>
-</li>
-</ol>
-<p>Now that we understand the basics of sitemaps, we can take a look at the architecture of our code. I have applied a few <a href="http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod" target="_blank" rel="external">SOLID</a> techniques to make the code more extensible. Take a look at the following class diagram to get a feel of the architecture.</p>
-<p>&#160;</p>
-
-<p><img style="border-right-width: 0px; display: block; float: none; border-top-width: 0px; border-bottom-width: 0px; margin-left: auto; border-left-width: 0px; margin-right: auto" title="SiteMapLite" border="0" alt="SiteMapLite" src="/images/SiteMapLite.png" width="501" height="404"></p>
-
-<p>We have made the code more generic and flexible by moving the responsibility of reading the sitemap data to an interface called ISiteMapReader, 
-Now, we can create any custom implementation of the ISiteMapReader which could read data from a json flat file or an XML file or a database or a webservice, 
-and the code in the SiteMapService doesn’t have to change even by a tiny bit to utilize these SiteMapReaders. Now the responsibility of the 
-SiteMapReader is just to retrieve all the SiteMapNodes from the persistence medium and return them in their raw form (without any grouping). 
-The job of Grouping the nodes into a set of root nodes and wiring up their child references is done by the ISiteMapService. The only method which the 
-Html helper would use would be the <em>GetNodesForRole </em>method. This method would return a list of root nodes which are accessible to the input role. 
-This gives us a solid foundation to create our HtmlHelpers and extend the code base as we like without changing existing code. 
-I know I haven’t explained the whole code, but by now you should have have a big picture of the whole project. 
-To understand the code further, download the code from <a href="http://github.com/minhajuddin/sitemaplite" target="_blank" rel="external">http://github.com/minhajuddin/sitemaplite</a> . 
-In a future blog post, I’ll create a few HtmlHelpers to render a basic navigation dashboard.</p>
-<p>Till next time</p>
-<p>[ <a href="http://twitter.com/minhajuddin" target="_blank" rel="external">@minhajuddin</a> ]</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/" data-id="ciktr98za00931fnyc112yrrl" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-json-sitemap-provider-for-asp-net-mvc" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/09/08/json-sitemap-provider-for-asp-net-mvc/" class="article-date">
-  <time datetime="2009-09-08T00:00:00.000Z" itemprop="datePublished">2009-09-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/09/08/json-sitemap-provider-for-asp-net-mvc/">Enter the JSON SiteMap provider for ASP.NET MVC</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The other day (a week ago) I was trying to get a nice menu show up in one of my ASP.NET MVC projects, I had seen <a href="http://blog.maartenballiauw.be" target="_blank" rel="external">Maarten Balliauw</a>‘s 
-<a href="http://mvcsitemap.codeplex.com/" target="_blank" rel="external">ASP.NET MVC SiteMap provider</a> before. I thought I could just download the binaries, do some configuration and be done with it. 
-But it turned out to be a lot more than that ;) . Well for starters, the asp.net mvc sitemap provider used the Authorize attribute to do the security trimming. 
-Now in our application we used a different way to do authorization. In fact we had all the url’s mapped to authorized roles using in database table. 
-So, there was no easy way for me to get this working in our project (I guess today the mvc sitemap provider has a way to customize the way the role based trimming is done). 
-That’s when I thought I should come up with my own mvc sitemap, I said to myself “How hard can it really be?” :)  </p>
-<p>To get an idea of what I was after, I downloaded the code of the <a href="http://mvcsitemap.codeplex.com/" target="_blank" rel="external">mvc sitemap provider from codeplex</a> and got coding on my new sitemap provider. 
-I don’t really like XML and all the gunk it comes with so I planned to use a different medium to store info about mvc sitemap nodes (.. part of the reason for not using XML 
-is that I am not an expert at parsing XML ;) ). I really like JSON, so I decided to use a JSON file to store the info about the urls and their associated roles. 
-I came up with a simple layout and saved the file as sitemap.json, the file initially looked like this: </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">[ &#123;<span class="string">'Id'</span>:<span class="number">1</span>,<span class="string">'Action'</span>:<span class="string">'Index'</span>,<span class="string">'Controller'</span>:<span class="string">'Home'</span>,<span class="string">'Title'</span>:<span class="string">'HOME'</span>,<span class="string">'ParentId'</span>:<span class="number">0</span>,<span class="string">'Role'</span>:<span class="string">'Anonymous,Administrator,Dashboard'</span>&#125;, </span><br><span class="line">&#123;<span class="string">'Id'</span>:<span class="number">2</span>,<span class="string">'Action'</span>:<span class="string">'About'</span>,<span class="string">'Controller'</span>:<span class="string">'Home'</span>,<span class="string">'Title'</span>:<span class="string">'About Us'</span>,<span class="string">'ParentId'</span>:<span class="number">1</span>,<span class="string">'Role'</span>:<span class="string">'Anonymous,Administrator,Dashboard'</span>&#125;, </span><br><span class="line">&#123;<span class="string">'Id'</span>:<span class="number">3</span>,<span class="string">'Action'</span>:<span class="string">'Faq'</span>,<span class="string">'Controller'</span>:<span class="string">'Home'</span>,<span class="string">'Title'</span>:<span class="string">'Faqs'</span>,<span class="string">'ParentId'</span>:<span class="number">1</span>,<span class="string">'Role'</span>:<span class="string">'Anonymous,Administrator,Dashboard'</span>&#125;, </span><br><span class="line">&#123;<span class="string">'Id'</span>:<span class="number">4</span>,<span class="string">'Action'</span>:<span class="string">'Contact'</span>,<span class="string">'Controller'</span>:<span class="string">'Home'</span>,<span class="string">'Title'</span>:<span class="string">'Contact Us'</span>,<span class="string">'ParentId'</span>:<span class="number">1</span>,<span class="string">'Role'</span>:<span class="string">'Anonymous,Administrator,Dashboard'</span>&#125;, </span><br><span class="line">&#123;<span class="string">'Id'</span>:<span class="number">5</span>,<span class="string">'Action'</span>:<span class="string">'Index'</span>,<span class="string">'Controller'</span>:<span class="string">'Dashboard'</span>,<span class="string">'Title'</span>:<span class="string">'Dashboard'</span>,<span class="string">'ParentId'</span>:<span class="number">0</span>,<span class="string">'Role'</span>:<span class="string">'Administrator'</span>&#125;, </span><br><span class="line">&#123;<span class="string">'Id'</span>:<span class="number">6</span>,<span class="string">'Action'</span>:<span class="string">'FunkyReport'</span>,<span class="string">'Controller'</span>:<span class="string">'Dashboard'</span>,<span class="string">'Title'</span>:<span class="string">'Funky Report'</span>,<span class="string">'ParentId'</span>:<span class="number">5</span>,<span class="string">'Role'</span>:<span class="string">'Administrator'</span>&#125;, </span><br><span class="line">&#123;<span class="string">'Id'</span>:<span class="number">7</span>,<span class="string">'Action'</span>:<span class="string">'Stats'</span>,<span class="string">'Controller'</span>:<span class="string">'Dashboard'</span>,<span class="string">'Title'</span>:<span class="string">'My Stats'</span>,<span class="string">'ParentId'</span>:<span class="number">5</span>,<span class="string">'Role'</span>:<span class="string">'Administrator'</span>&#125;, </span><br><span class="line">&#123;<span class="string">'Id'</span>:<span class="number">8</span>,<span class="string">'Action'</span>:<span class="string">'Stats'</span>,<span class="string">'Controller'</span>:<span class="string">'Administrator'</span>,<span class="string">'Title'</span>:<span class="string">'My Stats'</span>,<span class="string">'ParentId'</span>:<span class="number">0</span>,<span class="string">'Role'</span>:<span class="string">'Administrator'</span>&#125; ]</span><br></pre></td></tr></table></figure>
-<p>As you can see, each object in this array is a node. And each node has information about the ‘Action’, the ‘Controller’, the ‘Title’, a comma separated list of ‘Roles’, an ‘Id’ 
-(to uniquely identify a node) and a ‘ParentId’ (to create a parent child relationship among the nodes. I know it doesn’t look good but 
-I’ve chosen this so that it’s easy to parse stuff. I am using the <a href="http://www.codeplex.com/Json" target="_blank" rel="external">JSON.NET library</a> to do the JSON parsing, it’s a very easy to use library to serialize or deserialize objects. With that aside, 
-I created a couple of methods which would read the file and create a list of nodes and group them up. Take a look at them:</p>
-<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Init</span>(<span class="params"><span class="keyword">string</span> rawJsonData</span>) </span>&#123; </span><br><span class="line">  JsonNodes = DeSerialize(rawJsonData); </span><br><span class="line">&#125; </span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> IList&lt;JsonNode&gt; <span class="title">DeSerialize</span>(<span class="params"><span class="keyword">string</span> rawJson</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">var</span> nodes = JsonConvert.DeserializeObject&lt;IList&lt;JsonNode&gt;&gt;(rawJson); </span><br><span class="line">  <span class="keyword">return</span> nodes; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> IEnumerable&lt;JsonNode&gt; <span class="title">GroupNodes</span>(<span class="params">IList&lt;JsonNode&gt; nodes</span>) </span>&#123; </span><br><span class="line">  <span class="comment">//get root nodes </span></span><br><span class="line">  <span class="keyword">var</span> rootNodes = nodes.Where(x =&gt; x.ParentId == <span class="number">0</span>).ToList(); </span><br><span class="line">  <span class="comment">//WL("Grouping &#123;0&#125; nodes in total and &#123;1&#125; root nodes", nodes.Count, rootNodes.Count()); </span></span><br><span class="line">  <span class="comment">//populate child nodes for each root node </span></span><br><span class="line">  <span class="keyword">foreach</span> (<span class="keyword">var</span> node <span class="keyword">in</span> rootNodes) &#123; </span><br><span class="line">    <span class="keyword">var</span> children = nodes.Where(x =&gt; x.ParentId == node.Id).ToList(); </span><br><span class="line">    <span class="comment">//WL("Assigning &#123;0&#125; children to &#123;1&#125; node", children == null ? -1 : children.Count(), node.Title); </span></span><br><span class="line">    node.Children = children; </span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">return</span> rootNodes; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The code is pretty self explanatory. All I am doing is getting a list of nodes, and then grouping them up. 
-Once I group them it’s just a matter of getting all the nodes, formatting them and printing it out to the screen, I’ll post another blog entry about the menu rendering in a couple of days, 
-<a href="http://github.com/minhajuddin/sitemaplite/tree/master" target="_blank" rel="external">This is where you can grab the code for the JsonSiteMapProvider</a></p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/09/08/json-sitemap-provider-for-asp-net-mvc/" data-id="ciktr98py004t1fny06w0hu39" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2009/09/08/json-sitemap-provider-for-asp-net-mvc/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-easily-get-an-asp-net-website-offline" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/09/01/easily-get-an-asp-net-website-offline/" class="article-date">
-  <time datetime="2009-09-01T00:00:00.000Z" itemprop="datePublished">2009-09-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/09/01/easily-get-an-asp-net-website-offline/">Quick and Dirty way to get an ASP.NET website offline</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I never thought that I was gonna write code for an ASP.NET Webforms project again. I’ve been creating all my projects in ASP.NET MVC since it hit beta.
-But, I guess Webforms is really good at some stuff, Coming up with quick and dirty web apps :)</p>
-<p>Alright, So, I’ve got a web application which was created in ASP.NET MVC. The administrators of this web app want to control when the site is up. 
-It’s basically a webapp for processing some stuff which happens only at day time. 
-So, they don’t want the users (their agents) to go around and mess with the site during the night time or as soon as they get out of the office. 
-We already had a nice web app with an administrator console through which the admins can do a lot of stuff like adding/de-activating users etc,. 
-The administrators wanted a feature through which they could bring the site down or up using their admin page. A simple search showed up a lot of interesting articles, 
-<a href="http://www.west-wind.com/WebLog/posts/6397.aspx" target="_blank" rel="external">This one by Rick Strahl</a> documents how you can take down an app, and bring it up without 
-using “app_offline.htm” files. I didn’t want to take that route, because I think
-the app_offline way is the best, because it shuts down the application and
-unloads the application domain, You can find some more interesting info about it
-in <a href="http://weblogs.asp.net/scottgu/archive/2005/10/06/426755.aspx" target="_blank" rel="external">this post by Scott Gu</a>.
-Now, the downside of using this kind of approach is that, once the application is down, there is no way to bring it up using the same site.</p>
-<p>Now, let’s see how we can use this nifty little feature which is available for asp.net 2.0+ apps to come up with an admin page through which we can take the site down or bring it back up.</p>
-<p>1) The first thing you need to do is create a basic Webforms website or Web application from Visual Studio. 
-On the default page you would want a few textboxes, radio buttons and a submit button, which looks like</p>
-<p><img class="aligncenter size-full wp-image-25" title="site_admin_blog_post1" src="/images/site_admin_blog_post1.PNG" alt="site_admin_blog_post1" width="316" height="175"></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">%@</span> <span class="attribute">Page</span> <span class="attribute">Language</span>=<span class="value">"C#"</span> <span class="attribute">AutoEventWireup</span>=<span class="value">"true"</span> <span class="attribute">CodeBehind</span>=<span class="value">"Default.aspx.cs"</span> </span><br><span class="line"><span class="attribute">Inherits</span>=<span class="value">"Cosmicvent.SiteAdmin._Default"</span> %&gt;</span></span><br><span class="line">  Site Admin</span><br><span class="line"><span class="tag">&lt;<span class="title">form</span> <span class="attribute">id</span>=<span class="value">"form1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"UserName"</span>&gt;</span></span><br><span class="line">        UserName:<span class="tag">&lt;/<span class="title">label</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="title">label</span> <span class="attribute">for</span>=<span class="value">"Password"</span>&gt;</span></span><br><span class="line">        Password:<span class="tag">&lt;/<span class="title">label</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>2) This is the fragment of code which creates this GUI, Nothing too fancy.</p>
-<p>3) Once we have that, it’s basically an exercise in creating some code which does the user/password matching and creates an app_offline.htm file in the right location.</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">using System;</span><br><span class="line">using System.IO;</span><br><span class="line">using System.Web.Security;</span><br><span class="line"></span><br><span class="line">namespace Cosmicvent.SiteAdmin &#123;</span><br><span class="line">    public partial class _Default : System.Web.UI.Page &#123;</span><br><span class="line">        private const string VALID_USERNAME = "administrator";</span><br><span class="line">        private const string VALID_HASHED_PASSWORD = "8D31D551A44B2DE3DFFA85842ABF38A8ACF14775";</span><br><span class="line">        private const string APP_OFFLINE_PATH = @"C:\";</span><br><span class="line">        private const string APP_OFFLINE_BACKUP_NAME = "app_offline.htm.bak";</span><br><span class="line">        private const string APP_OFFLINE_FILE_NAME = "app_offline.htm";</span><br><span class="line">        private const string APP_OFFLINE_CONTENT = @"</span><br><span class="line">            The site has been taken offline for Maintenance</span><br><span class="line">&lt;h2&gt;The site has been taken offline for maintenance&lt;/h2&gt;</span><br><span class="line">We are sorry for the incovenience. Please check back again some time later</span><br><span class="line"></span><br><span class="line">                &lt;!--</span><br><span class="line">                      Here is some junk data for you IE !!!</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">Go to http://minhajuddin.com</span><br><span class="line">                 --&gt;</span><br><span class="line">            ";</span><br><span class="line"></span><br><span class="line">        protected void Page_Load(object sender, EventArgs e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        protected void SubmitButton_Click(object sender, EventArgs e) &#123;</span><br><span class="line">            if (UserIsValid()) &#123;</span><br><span class="line">                string backupFilePath = Path.Combine(APP_OFFLINE_PATH, APP_OFFLINE_BACKUP_NAME);</span><br><span class="line">                string appOfflineFilePath = Path.Combine(APP_OFFLINE_PATH, APP_OFFLINE_FILE_NAME);</span><br><span class="line">                if (TakeOfflineRadioButton.Checked) &#123;</span><br><span class="line">                    //create or rename the backup file</span><br><span class="line">                    if (File.Exists(backupFilePath) &amp;&amp; !File.Exists(appOfflineFilePath)) &#123;</span><br><span class="line">                        //rename</span><br><span class="line">                        RenameFile(backupFilePath, appOfflineFilePath);</span><br><span class="line">                    &#125; else if (!File.Exists(appOfflineFilePath)) &#123;</span><br><span class="line">                        //create</span><br><span class="line">                        CreateAppOffline(appOfflineFilePath);</span><br><span class="line">                    &#125;</span><br><span class="line">                    output.InnerText = &amp;amp;quot;Site taken down successfully&amp;amp;quot;;</span><br><span class="line">                &#125; else if (BringUpOnlineRadioButton.Checked) &#123;</span><br><span class="line">                    //rename the app_ofline file</span><br><span class="line">                    if (File.Exists(appOfflineFilePath)) &#123;</span><br><span class="line">                        //rename</span><br><span class="line">                        RenameFile(appOfflineFilePath, backupFilePath);</span><br><span class="line">                    &#125;</span><br><span class="line">                    output.InnerText = "Site brought up successfully";</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                output.InnerText = "Invalid username or password";</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void CreateAppOffline(string appOfflineFilePath) &#123;</span><br><span class="line">            using (StreamWriter streamWriter = File.CreateText(appOfflineFilePath)) &#123;</span><br><span class="line">                streamWriter.Write(APP_OFFLINE_CONTENT);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private void RenameFile(string backupFilePath, string appOfflineFilePath) &#123;</span><br><span class="line">            File.Move(backupFilePath, appOfflineFilePath);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private bool UserIsValid() &#123;</span><br><span class="line">            return VALID_USERNAME.Equals(UserName.Text, StringComparison.OrdinalIgnoreCase) &amp;&amp;</span><br><span class="line">                   VALID_HASHED_PASSWORD.Equals(Hash(Password.Text), StringComparison.OrdinalIgnoreCase);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private string Hash(string text) &#123;</span><br><span class="line">            return FormsAuthentication.HashPasswordForStoringInConfigFile(text, "SHA1");</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The code is pretty much self explanatory, Hope it helps someone.
-You just have to be careful about a couple of things:</p>
-<ol>
-<li>You still have to run this on a different website</li>
-<li>You need to give the right privileges on the directory APP_OFFLINE_PATH to the user which runs the IIS worker process. For IIS7 this is the NETWORK SERVICE user by default.</li>
-</ol>
-<p>And before I forget, You can get the source code for this project from my git repository hosted on <a href="http://github.com" target="_blank" rel="external">github</a> at <a href="http://github.com/minhajuddin/blog_demos/tree/master" target="_blank" rel="external">http://github.com/minhajuddin/blog_demos/tree/master</a></p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/09/01/easily-get-an-asp-net-website-offline/" data-id="ciktr98y6008d1fnyp6eb94nb" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2009/09/01/easily-get-an-asp-net-website-offline/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -1387,23 +1351,23 @@ You just have to be careful about a couple of things:</p>
       <ul>
         
           <li>
-            <a href="/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/">How to open the most recent file created in Vim</a>
+            <a href="/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/">Algorithm to compute downtime of a service/server</a>
           </li>
         
           <li>
-            <a href="/2016/02/17/script-your-tmux-to-maximize-awesome/">Script your tmux to maximize awesome!</a>
+            <a href="/2016/05/20/elixir-io-inspect-to-debug-pipelines/">Elixir IO.inspect to debug pipelines</a>
           </li>
         
           <li>
-            <a href="/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/">How to extract images from a pdf and reduce their size</a>
+            <a href="/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/">How to store temporary data and share it with your background processor</a>
           </li>
         
           <li>
-            <a href="/2016/02/10/a-very-simple-environment-loader-for-ruby/">A very simple environment loader for ruby</a>
+            <a href="/2016/03/09/subdomains-to-restrict-from-your-saas-app/">Subdomains to restrict from your SaaS app</a>
           </li>
         
           <li>
-            <a href="/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/">How to fix guard crashing your tmux server</a>
+            <a href="/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/">Script to cleanup old directories on a linux server</a>
           </li>
         
       </ul>
@@ -1417,7 +1381,7 @@ You just have to be careful about a couple of things:</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/dry/" style="font-size: 10px;">DRY</a> <a href="/tags/duplication/" style="font-size: 10px;">Duplication</a> <a href="/tags/erb/" style="font-size: 10px;">ERB</a> <a href="/tags/environment-loader/" style="font-size: 10px;">Environment Loader</a> <a href="/tags/guard/" style="font-size: 10px;">Guard</a> <a href="/tags/heroku/" style="font-size: 10px;">Heroku</a> <a href="/tags/how-to/" style="font-size: 10px;">How To</a> <a href="/tags/how-to/" style="font-size: 10px;">How to</a> <a href="/tags/pdf/" style="font-size: 10px;">PDF</a> <a href="/tags/rails-migrations/" style="font-size: 10px;">Rails Migrations</a> <a href="/tags/static-site-generator/" style="font-size: 10px;">Static Site Generator</a> <a href="/tags/static-sites/" style="font-size: 10px;">Static Sites</a> <a href="/tags/tip/" style="font-size: 10px;">Tip</a> <a href="/tags/tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/vim/" style="font-size: 10px;">Vim</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automate/" style="font-size: 10px;">automate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 15px;">bash</a> <a href="/tags/bookmarklet/" style="font-size: 12.5px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/drag-and-drop/" style="font-size: 10px;">drag-and-drop</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 12.5px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 17.5px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/gtimelog/" style="font-size: 10px;">gtimelog</a> <a href="/tags/hack/" style="font-size: 15px;">hack</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 15px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mutt/" style="font-size: 10px;">mutt</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/rspec/" style="font-size: 12.5px;">rspec</a> <a href="/tags/ruby/" style="font-size: 15px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/script/" style="font-size: 10px;">script</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/submodules/" style="font-size: 10px;">submodules</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 12.5px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12.5px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
+      <a href="/tags/dry/" style="font-size: 10px;">DRY</a> <a href="/tags/debug/" style="font-size: 10px;">Debug</a> <a href="/tags/duplication/" style="font-size: 10px;">Duplication</a> <a href="/tags/erb/" style="font-size: 10px;">ERB</a> <a href="/tags/elixir/" style="font-size: 10px;">Elixir</a> <a href="/tags/environment-loader/" style="font-size: 10px;">Environment Loader</a> <a href="/tags/guard/" style="font-size: 10px;">Guard</a> <a href="/tags/heroku/" style="font-size: 10px;">Heroku</a> <a href="/tags/how-to/" style="font-size: 10px;">How To</a> <a href="/tags/how-to/" style="font-size: 10px;">How to</a> <a href="/tags/pdf/" style="font-size: 10px;">PDF</a> <a href="/tags/pipelines/" style="font-size: 10px;">Pipelines</a> <a href="/tags/rails-migrations/" style="font-size: 10px;">Rails Migrations</a> <a href="/tags/redis/" style="font-size: 10px;">Redis</a> <a href="/tags/restricted-subdomains/" style="font-size: 10px;">Restricted Subdomains</a> <a href="/tags/ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/saas-tip/" style="font-size: 10px;">SaaS Tip</a> <a href="/tags/static-site-generator/" style="font-size: 10px;">Static Site Generator</a> <a href="/tags/static-sites/" style="font-size: 10px;">Static Sites</a> <a href="/tags/tip/" style="font-size: 10px;">Tip</a> <a href="/tags/tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/vim/" style="font-size: 10px;">Vim</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 12.5px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automate/" style="font-size: 10px;">automate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 17.5px;">bash</a> <a href="/tags/bookmarklet/" style="font-size: 12.5px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/cleanup/" style="font-size: 10px;">cleanup</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/downtime-calculation/" style="font-size: 10px;">downtime calculation</a> <a href="/tags/drag-and-drop/" style="font-size: 10px;">drag-and-drop</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 12.5px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 17.5px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/gtimelog/" style="font-size: 10px;">gtimelog</a> <a href="/tags/hack/" style="font-size: 15px;">hack</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 15px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mutt/" style="font-size: 10px;">mutt</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/rspec/" style="font-size: 12.5px;">rspec</a> <a href="/tags/ruby/" style="font-size: 15px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/script/" style="font-size: 10px;">script</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/submodules/" style="font-size: 10px;">submodules</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 12.5px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12.5px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
     </div>
   </div>
 
@@ -1426,7 +1390,7 @@ You just have to be careful about a couple of things:</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1435,7 +1399,7 @@ You just have to be careful about a couple of things:</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/dry/">DRY</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/duplication/">Duplication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/erb/">ERB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment-loader/">Environment Loader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/guard/">Guard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heroku/">Heroku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How To</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How to</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">PDF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails-migrations/">Rails Migrations</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-sites/">Static Sites</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">Tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automate/">automate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curl/">curl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtimelog/">gtimelog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mutt/">mutt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/script/">script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/">submodules</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/dry/">DRY</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/duplication/">Duplication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/erb/">ERB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elixir/">Elixir</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment-loader/">Environment Loader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/guard/">Guard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heroku/">Heroku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How To</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How to</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">PDF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pipelines/">Pipelines</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails-migrations/">Rails Migrations</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restricted-subdomains/">Restricted Subdomains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">Ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/saas-tip/">SaaS Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-sites/">Static Sites</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">Tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automate/">automate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleanup/">cleanup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curl/">curl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/downtime-calculation/">downtime calculation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtimelog/">gtimelog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mutt/">mutt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/script/">script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/">submodules</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1485,11 +1449,11 @@ You just have to be careful about a couple of things:</p>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script src="/js/script.js"></script>
 
 
 

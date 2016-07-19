@@ -1,0 +1,33 @@
+<!doctype html>
+<title>Simple Timer</title>
+
+<h1 style="text-align: center;padding-top: 40px;">Timer <span id="time">...</span></h1>
+
+<script type="text/javascript" charset="utf-8">
+(function() {
+  "use strict";
+
+  var op = document.getElementById('time'),
+    start = new Date();
+
+
+  //http://stackoverflow.com/a/1322830/24105
+  function interval(totalSec) {
+    var hours = parseInt(totalSec / 3600) % 24;
+    var minutes = parseInt(totalSec / 60) % 60;
+    var seconds = totalSec % 60;
+
+    var result = hours + "h " + minutes + "m " + Math.round(seconds) + "s";
+
+    return result;
+  }
+
+  function tick() {
+    var formattedTime = interval((new Date() - start) / 1000);
+    op.innerHTML = formattedTime;
+    document.title = formattedTime;
+    setTimeout(tick, 1000);
+  }
+  tick()
+})()
+</script>
