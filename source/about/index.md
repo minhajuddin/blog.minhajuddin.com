@@ -32,7 +32,10 @@ processes as diverse as *Data Warehousing* and *Live Vehicle tracking*.
     - A snippet sharing web app: https://github.com/minhajuddin/gosnip
 
 ### Contact Me
-<form action="http://getsimpleform.com/messages?form_api_token=475339605245a246498c3b1d364a845b" method="post"><input type='hidden' name='redirect_to' value='http://minhajuddin.com/thank-you/' /><input type='text' id='name' name='name' placeholder='Your Name' />
+<form action="https://liveformhq.com/form/84cef83c-1a99-4266-9a5d-555d0ff5a29d" method="POST" accept-charset="utf-8">
+  <input type='hidden' name='_redirect' value='http://minhajuddin.com/thank-you/' />
+
+  <input type='text' id='name' name='name' placeholder='Your Name' />
   <br >
   <input type='text' id='email' name='email' placeholder='Your Email' />
   <br >
