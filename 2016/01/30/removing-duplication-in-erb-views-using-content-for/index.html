@@ -17,7 +17,7 @@ e.g.
 The easy way is to duplicate the code. But that causes problems with maintainability.
 e.g.
 123">
-<meta property="og:updated_time" content="2016-09-17T11:25:54.000Z">
+<meta property="og:updated_time" content="2016-09-17T11:32:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Removing duplication in ERB views using content_for">
 <meta name="twitter:description" content="While writing code to show themes in Zammu, I had to show the same button in two places on the same page.
@@ -52,6 +52,14 @@ ga('send', 'pageview');
 
 
   
+
+  <script>
+    function enableSubmit() {
+      var btn = document.getElementById('form_submit'),
+        btn.disabled = false,
+        btn.title = '';
+    }
+  </script>
 </head>
 
 <body>
@@ -139,7 +147,7 @@ The changed code is:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/" data-id="cit73z09o008v1dnzia68adjh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/" data-id="cit747nz900921drsdngeazm6" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/#disqus_thread" class="article-comment-link">Comments</a>
       
