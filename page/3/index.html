@@ -122,12 +122,68 @@ Make it overwrite the old output or insert before the previous output</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="ciqtjx192003w23qptr0t031c" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cit6vwzqv003w1es3a95hpvki" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
+  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
+<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
+<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
+<p>The setup contains two parts.</p>
+<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#~/.scripts/runinbg</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#Script to run a command in background redirecting the</span></div><div class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</div><div class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></div><div class="line"><span class="built_in">shift</span></div><div class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1 &amp;</div><div class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></div><div class="line"><span class="comment">#when the test is complete</span></div><div class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></div></pre></td></tr></table></figure>
+<p>###2. Vim function to call this script with the current filename
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">RunSpecs</span><span class="params">()</span></span></div><div class="line">  :silent!!runinbg bundle exec rspec % <span class="comment">"you can tweak this to your liking</span></div><div class="line">  redraw! <span class="comment">"without this the screen goes blank</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line"></div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-d&gt;</span> :<span class="keyword">call</span> RunSpecs()<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure></p>
+<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
+<p>Update: Added a version with notification</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cit6vwzzp009f1es3hl0u4z4t" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   </div>
@@ -185,68 +241,12 @@ Make it overwrite the old output or insert before the previous output</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="ciqtjx1fh009r23qphqvjk8gf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cit6vx00c00a81es3pp2s4a13" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
-  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
-<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
-<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
-<p>The setup contains two parts.</p>
-<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#~/.scripts/runinbg</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#Script to run a command in background redirecting the</span></div><div class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</div><div class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></div><div class="line"><span class="built_in">shift</span></div><div class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1 &amp;</div><div class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></div><div class="line"><span class="comment">#when the test is complete</span></div><div class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></div></pre></td></tr></table></figure>
-<p>###2. Vim function to call this script with the current filename
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">RunSpecs</span><span class="params">()</span></span></div><div class="line">  :silent!!runinbg bundle exec rspec % <span class="comment">"you can tweak this to your liking</span></div><div class="line">  redraw! <span class="comment">"without this the screen goes blank</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line"></div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-d&gt;</span> :<span class="keyword">call</span> RunSpecs()<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure></p>
-<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
-<p>Update: Added a version with notification</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="ciqtjx1f7009f23qpgzo53hlw" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   </div>
@@ -332,12 +332,59 @@ software product.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="ciqtjx1go00b223qpvsz0a5mj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cit6vx01800az1es3qzrgfgod" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/barefooters/">barefooters</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/india/">india</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">software</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
+  <time datetime="2012-11-30T00:00:00.000Z" itemprop="datePublished">2012-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cit6vwzv100701es3tlnmf9v1" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </footer>
   </div>
@@ -385,59 +432,12 @@ software product.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="ciqtjx170002i23qpsssbfj7j" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cit6vwzo1002h1es3zqfh7e6u" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/godoc/">godoc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/upstart/">upstart</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
-  <time datetime="2012-11-30T00:00:00.000Z" itemprop="datePublished">2012-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="ciqtjx1c0006v23qpm9xjqw6z" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </footer>
   </div>
@@ -489,62 +489,12 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="ciqtjx1h200bj23qpy1b6xe34" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cit6vx01u00bi1es326wbe3xx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/inotify/">inotify</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/watch/">watch</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-nifty-script-to-keep-your-local-git-repositories-up-to-date" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" class="article-date">
-  <time datetime="2012-10-29T00:00:00.000Z" itemprop="datePublished">2012-10-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/">Nifty script to keep your local git repositories up to date</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>A lot of times when I try to hack on my code, I find that my git repository doesn’t have the latest commits. And in a lot of these instances I don’t have an internet connection (either because I am  at a client’s location or because there is a power cut). Here is a little script which I use to keep all my local repos up to date automatically.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#location: $HOME/.scripts/git-update</span></div><div class="line">ROOT_DIR=<span class="string">"<span class="variable">$HOME</span>/r"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> repo <span class="keyword">in</span> $(ls <span class="variable">$ROOT_DIR</span>)</div><div class="line"><span class="keyword">do</span></div><div class="line">  <span class="built_in">cd</span> <span class="string">"<span class="variable">$ROOT_DIR</span>/<span class="variable">$repo</span>"</span></div><div class="line">  <span class="keyword">for</span> remote <span class="keyword">in</span> $(git remote)</div><div class="line">  <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"fetching <span class="variable">$repo</span> <span class="variable">$remote</span>"</span></div><div class="line">    git fetch <span class="variable">$remote</span></div><div class="line">  <span class="keyword">done</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#crontab entry</span></div><div class="line">@reboot /bin/bash <span class="_">-l</span> -c <span class="string">'cd /home/minhajuddin/ &amp;&amp; $HOME/.scripts/git-update'</span></div></pre></td></tr></table></figure>
-<p>The git-update script should be pretty self explantory. I am looking at all the dirs under my “repos root dir” and for each of those I am finding the remotes and fetching them one at a time. The crontab entry on the other hand makes sure that every time I start my computer this script is executed. Also, I can run <code>git update</code> whenever I am online to get fetch all the new commits for my repos.</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="ciqtjx1dd008023qp4rimsmme" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automatic/">automatic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
 
     </footer>
   </div>
@@ -595,12 +545,62 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="ciqtjx1b4005v23qpb2mhyrjj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cit6vwztq005y1es3yny029rr" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/authenticate/">authenticate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/console/">console</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devise/">devise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/production/">production</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-nifty-script-to-keep-your-local-git-repositories-up-to-date" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" class="article-date">
+  <time datetime="2012-10-29T00:00:00.000Z" itemprop="datePublished">2012-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/">Nifty script to keep your local git repositories up to date</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A lot of times when I try to hack on my code, I find that my git repository doesn’t have the latest commits. And in a lot of these instances I don’t have an internet connection (either because I am  at a client’s location or because there is a power cut). Here is a little script which I use to keep all my local repos up to date automatically.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#location: $HOME/.scripts/git-update</span></div><div class="line">ROOT_DIR=<span class="string">"<span class="variable">$HOME</span>/r"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> repo <span class="keyword">in</span> $(ls <span class="variable">$ROOT_DIR</span>)</div><div class="line"><span class="keyword">do</span></div><div class="line">  <span class="built_in">cd</span> <span class="string">"<span class="variable">$ROOT_DIR</span>/<span class="variable">$repo</span>"</span></div><div class="line">  <span class="keyword">for</span> remote <span class="keyword">in</span> $(git remote)</div><div class="line">  <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"fetching <span class="variable">$repo</span> <span class="variable">$remote</span>"</span></div><div class="line">    git fetch <span class="variable">$remote</span></div><div class="line">  <span class="keyword">done</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#crontab entry</span></div><div class="line">@reboot /bin/bash <span class="_">-l</span> -c <span class="string">'cd /home/minhajuddin/ &amp;&amp; $HOME/.scripts/git-update'</span></div></pre></td></tr></table></figure>
+<p>The git-update script should be pretty self explantory. I am looking at all the dirs under my “repos root dir” and for each of those I am finding the remotes and fetching them one at a time. The crontab entry on the other hand makes sure that every time I start my computer this script is executed. Also, I can run <code>git update</code> whenever I am online to get fetch all the new commits for my repos.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cit6vwzwm007z1es3drl8ax2f" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automatic/">automatic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
 
     </footer>
   </div>
@@ -647,7 +647,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="ciqtjx151001723qpxo1050bp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="cit6vwzkz00161es3im3roghv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -705,7 +705,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="ciqtjx15a001e23qped0irtf2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="cit6vwzl7001d1es36tscu2xn" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -755,7 +755,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="ciqtjx19h004e23qp7rw9yccf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="cit6vwzrm004d1es35y303uml" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -813,7 +813,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="ciqtjx1c5007123qp4ms0rt63" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="cit6vwzuw006v1es3a7pk881w" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -864,7 +864,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="ciqtjx1hk00bw23qp7dfjoruz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cit6vx02800bu1es3tdr7sgvs" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -915,7 +915,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="ciqtjx16h001y23qp44gf50ns" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cit6vwzm600201es30l70v7us" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -962,7 +962,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="ciqtjx163001j23qp5fg1genj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="cit6vwzle001j1es3e1c3t1pt" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1009,7 +1009,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="ciqtjx1h600bq23qp4gtpg47k" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="cit6vx01y00bp1es3u9z9ovya" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1057,7 +1057,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/07/03/my-substance-template/" data-id="ciqtjx1d7007v23qpv00qu16j" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/07/03/my-substance-template/" data-id="cit6vwzwh007u1es3l457qa1q" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/07/03/my-substance-template/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1116,7 +1116,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="ciqtjx1am005d23qpoziw5fsu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="cit6vwzt7005c1es3ol7bz8mm" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1166,7 +1166,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/" data-id="ciqtjx1cu007m23qpqg9g2zsy" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/" data-id="cit6vwzw4007l1es3j2k7neuv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/#disqus_thread" class="article-comment-link">Comments</a>
       
