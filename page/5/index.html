@@ -144,7 +144,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cit6wal0q005a1dp8eayvp142" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cit73z05x00521dnzywkuvuu3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -202,7 +202,7 @@ NHibernate, I just put it out there to help future searchers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cit6wakwc000y1dp8eig74ra5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cit73z01a000y1dnz50gslpx6" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -263,9 +263,61 @@ command manually automating them.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cit6wakyq00391dp8qgw6tzpg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cit73z04200391dnz2ehajbjr" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" class="article-date">
+  <time datetime="2011-01-21T00:00:00.000Z" itemprop="datePublished">2011-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/">a simple rake task to ping google, bing, and yahoo about a change in your sitemap</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>There is an easy way to notify google, bing and yahoo whenever you add content
+to your site or blog. All of them expose a url which when called with your
+sitemap’s url updates their indexes. This fact is known to most developers, I
+just wanted to share a simple rake task, which automates this. I use it to ping these 
+search engines whenever I write a new blog post.  </p>
+<p>All it’s doing is looping over all the search engines’ urls and using curl to
+ping them.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">Sitemap = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></div><div class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></div><div class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></div><div class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</div><div class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</div><div class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> <span class="params">|url|</span></div><div class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;Sitemap&#125;</span>`</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cit73z01w001i1dnzcrk1rr5m" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -323,61 +375,9 @@ rockstars</em>.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="cit6wal6600ag1dp895ky1vul" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="cit73z0b900ag1dnzcck5drxo" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" class="article-date">
-  <time datetime="2011-01-21T00:00:00.000Z" itemprop="datePublished">2011-01-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/">a simple rake task to ping google, bing, and yahoo about a change in your sitemap</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>There is an easy way to notify google, bing and yahoo whenever you add content
-to your site or blog. All of them expose a url which when called with your
-sitemap’s url updates their indexes. This fact is known to most developers, I
-just wanted to share a simple rake task, which automates this. I use it to ping these 
-search engines whenever I write a new blog post.  </p>
-<p>All it’s doing is looping over all the search engines’ urls and using curl to
-ping them.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">Sitemap = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></div><div class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></div><div class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></div><div class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</div><div class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</div><div class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> <span class="params">|url|</span></div><div class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;Sitemap&#125;</span>`</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cit6wakwv001i1dp81c5b0umr" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -429,7 +429,7 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="cit6wal7a00bh1dp84re7zgsc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="cit73z0c700bh1dnze6jkao42" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -483,7 +483,7 @@ Or think about asking a guy to help you with “Yet Another Something”, Why wo
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="cit6wal6x00b61dp8wfa59ve2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="cit73z0bu00b61dnzpsvesc5d" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -540,7 +540,7 @@ should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux"
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cit6wal6g00ap1dp8y2sk8wws" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cit73z0bi00ap1dnz5aax33j0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -594,7 +594,7 @@ use it with care! :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cit6wal48008e1dp83zdaexsv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cit73z08z008f1dnzj6faoy42" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -656,7 +656,7 @@ checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="cit6wal02004l1dp8aapbmgh7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="cit73z05g004l1dnzqg70tz80" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -710,7 +710,7 @@ clone the repo and start banging out code :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="cit6wal4e008m1dp8x1hoftui" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="cit73z08x008e1dnzgdueme65" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -776,7 +776,7 @@ push as much as you want, you won’t be pestered for your password anymore :)</
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cit6wal41008a1dp8pmgv88gi" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cit73z08q008a1dnzyvy00jlm" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -827,7 +827,7 @@ you can use it if you have the same problem ;)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cit6wal1k006e1dp8sn5603am" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cit73z06r006e1dnzkdtgpc1x" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -883,7 +883,7 @@ script called new.rb, which basically automates this stuff.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cit6wal00004k1dp8s4qo2afp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cit73z05d004k1dnzbo3w4dnz" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -973,7 +973,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cit6wakyi00331dp8gpoa3s21" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cit73z03u00331dnzfltn8cva" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1020,7 +1020,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="cit6wakzo00471dp89iekfkm6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="cit73z05300471dnzb2tbk8lv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/29/git-basic-commands/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1075,7 +1075,7 @@ time you push to your git repo, your blog will be automatically published.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="cit6wal44008c1dp8hpv1zn91" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="cit73z08u008c1dnzmhjvg011" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1129,7 +1129,7 @@ direcotry.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/" data-id="cit6wal2800761dp8psslfs63" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/" data-id="cit73z07g00761dnzw146nfv9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1219,7 +1219,7 @@ enjoyable.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/" data-id="cit6wal0s005b1dp8sum2x9l3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/" data-id="cit73z064005b1dnzh8sbb7qv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1292,7 +1292,7 @@ wordpress :) ).</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/06/28/jekyll-the-programmers-blog-engine/" data-id="cit6wal2c007a1dp8hdrzi4uz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/28/jekyll-the-programmers-blog-engine/" data-id="cit73z07l007a1dnzmqyq5tcq" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/06/28/jekyll-the-programmers-blog-engine/#disqus_thread" class="article-comment-link">Comments</a>
       
