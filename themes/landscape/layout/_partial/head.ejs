@@ -36,4 +36,12 @@
   <% if (page.screencast) { %>
     <%- css('/static/asciinema-player.css') %>
   <% } %>
+
+  <script>
+    function enableSubmit() {
+      var btn = document.getElementById('form_submit'),
+        btn.disabled = false,
+        btn.title = '';
+    }
+  </script>
 </head>

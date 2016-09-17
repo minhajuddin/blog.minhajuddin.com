@@ -33,7 +33,6 @@ processes as diverse as *Data Warehousing* and *Live Vehicle tracking*.
 
 ### Contact Me
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<script>function enableSubmit(){var a=document.getElementById('form_submit');a.disabled=!1,a.title=''}</script>
 <form action="https://liveformhq.com/form/84cef83c-1a99-4266-9a5d-555d0ff5a29d" method="POST" accept-charset="utf-8">
   <input type='hidden' name='_redirect' value='http://minhajuddin.com/thank-you/' />
 
