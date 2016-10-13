@@ -122,7 +122,7 @@ ga('send', 'pageview');
 <p>To generate the LE keys run the following</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /usr/share/nginx/letsencrypt</div><div class="line"><span class="comment"># generate the certificate</span></div><div class="line">sudo letsencrypt certonly --webroot=/usr/share/nginx/letsencrypt --domain cosmicvent.com --domain www.cosmicvent.com</div><div class="line"><span class="comment"># reload nginx</span></div><div class="line">sudo <span class="built_in">kill</span> <span class="_">-s</span> HUP $(cat /var/run/nginx.pid)</div></pre></td></tr></table></figure>
 <p>Put the following in your crontab
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo crontab <span class="_">-e</span></div><div class="line">@weekly /usr/bin/letsencrypt &amp;&gt; /tmp/letsencrypt.log</div></pre></td></tr></table></figure></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo crontab <span class="_">-e</span></div><div class="line">@weekly /usr/bin/letsencrypt &amp;&gt; /tmp/letsencrypt.log; sudo <span class="built_in">kill</span> <span class="_">-s</span> HUP $(cat /var/run/nginx.pid)</div></pre></td></tr></table></figure></p>
 
         
       
@@ -132,7 +132,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ciu7wq1if007i1eqm3z0gghp3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ciu7wupbm007i1eo7dc0c2zn1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -221,7 +221,7 @@ Downtime = 1 + 5</li>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="ciu7wq1b7001v1eqmff56ptvs" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="ciu7wup6c001v1eo73bdiwkex" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -274,7 +274,7 @@ Just insert <code>|&gt; IO.inspect</code> between your pipelines.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="ciu7wq1e3003p1eqm0xxmxnw3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="ciu7wup8b003p1eo7payo8gqb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -330,7 +330,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="ciu7wq1h0006f1eqmpp46pznu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="ciu7wupaj006f1eo7onuaav6f" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -381,7 +381,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="ciu7wq1m100ar1eqms54xtzmg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="ciu7wupf500ar1eo7z4zoz6zw" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -430,7 +430,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="ciu7wq1kx009r1eqm3lksjpke" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="ciu7wupe9009r1eo7xkhc8e77" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -480,7 +480,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="ciu7wq1ji008k1eqmsodvn8rn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="ciu7wupcu008k1eo7xs0ukzd2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -536,7 +536,7 @@ function finds a home in your <code>~/.bashrc</code> :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="ciu7wq1g4005l1eqmxkpbtw13" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="ciu7wup9w005l1eo7wfc0e09t" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -616,7 +616,7 @@ Do yourself a favor and use tmux.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="ciu7wq1l700a21eqmh79fj59g" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="ciu7wupei00a21eo7d96ypdpe" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -670,7 +670,7 @@ Do yourself a favor and use tmux.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/" data-id="ciu7wq1fc004o1eqm14t893kk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/" data-id="ciu7wup98004o1eo7iqyt0y5c" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -725,7 +725,7 @@ snippet of code which does most of what you want.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/" data-id="ciu7wq1b1001s1eqmn5qyoxdh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/" data-id="ciu7wup68001s1eo7po0vr39u" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -778,7 +778,7 @@ should be good.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/" data-id="ciu7wq1fe004r1eqmyvy3csie" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/" data-id="ciu7wup9b004r1eo7r3bx465h" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -827,7 +827,7 @@ should be good.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/" data-id="ciu7wq1gn00681eqm1n8ttn53" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/" data-id="ciu7wupac00681eo7xxcilpba" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -882,7 +882,7 @@ for static content. Heck, it even supports building of websites automatically us
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/" data-id="ciu7wq1ly00ao1eqmti6rk9gm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/" data-id="ciu7wupf200ao1eo75sg8lgho" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -936,7 +936,7 @@ The changed code is:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/" data-id="ciu7wq1k900921eqmw0imkfka" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/" data-id="ciu7wupdm00921eo7rzor4jns" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1008,7 +1008,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/" data-id="ciu7wq1ib007d1eqmhympm7c1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/" data-id="ciu7wupbi007d1eo7p9i37o1e" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1056,7 +1056,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/" data-id="ciu7wq1a9000z1eqmoqhxsoqw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/" data-id="ciu7wup5m000z1eo7uv7jtxm2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1104,7 +1104,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/18/drag-and-drop-works-with-the-terminal-too/" data-id="ciu7wq1dh003a1eqmkab46q9b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/18/drag-and-drop-works-with-the-terminal-too/" data-id="ciu7wup7t003a1eo7hb742gfz" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/18/drag-and-drop-works-with-the-terminal-too/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1151,7 +1151,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/" data-id="ciu7wq1ga005u1eqmqvlktqhh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/" data-id="ciu7wupa1005u1eo7tq8vptbv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1201,7 +1201,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/" data-id="ciu7wq1hc006o1eqmbo9p49bq" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/" data-id="ciu7wupaq006o1eo7851jlcgn" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/#disqus_thread" class="article-comment-link">Comments</a>
       

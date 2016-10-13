@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="Create a file called /etc/nginx/le_redirect_include.conf
 12345678910# intercept the challengeslocation &amp;apos;/.well-known/acme-challenge&amp;apos; &amp;#123;  default_type &amp;quot;text/plain&amp;quot;;  root /usr/s">
-<meta property="og:updated_time" content="2016-10-13T05:30:36.000Z">
+<meta property="og:updated_time" content="2016-10-13T05:34:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lets encrypt auto renewal for ubuntu and nginx">
 <meta name="twitter:description" content="Create a file called /etc/nginx/le_redirect_include.conf
@@ -124,7 +124,7 @@ ga('send', 'pageview');
 <p>To generate the LE keys run the following</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sudo mkdir -p /usr/share/nginx/letsencrypt</div><div class="line"><span class="comment"># generate the certificate</span></div><div class="line">sudo letsencrypt certonly --webroot=/usr/share/nginx/letsencrypt --domain cosmicvent.com --domain www.cosmicvent.com</div><div class="line"><span class="comment"># reload nginx</span></div><div class="line">sudo <span class="built_in">kill</span> <span class="_">-s</span> HUP $(cat /var/run/nginx.pid)</div></pre></td></tr></table></figure>
 <p>Put the following in your crontab
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo crontab <span class="_">-e</span></div><div class="line">@weekly /usr/bin/letsencrypt &amp;&gt; /tmp/letsencrypt.log</div></pre></td></tr></table></figure></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo crontab <span class="_">-e</span></div><div class="line">@weekly /usr/bin/letsencrypt &amp;&gt; /tmp/letsencrypt.log; sudo <span class="built_in">kill</span> <span class="_">-s</span> HUP $(cat /var/run/nginx.pid)</div></pre></td></tr></table></figure></p>
 
         
       
@@ -141,7 +141,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ciu7wq1if007i1eqm3z0gghp3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ciu7wupbm007i1eo7dc0c2zn1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/#disqus_thread" class="article-comment-link">Comments</a>
       
