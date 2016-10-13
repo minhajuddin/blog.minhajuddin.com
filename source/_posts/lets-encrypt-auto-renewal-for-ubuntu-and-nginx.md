@@ -43,5 +43,5 @@ sudo kill -s HUP $(cat /var/run/nginx.pid)
 Put the following in your crontab
 ~~~sh
 $ sudo crontab -e
-@weekly /usr/bin/letsencrypt &> /tmp/letsencrypt.log
+@weekly /usr/bin/letsencrypt &> /tmp/letsencrypt.log; sudo kill -s HUP $(cat /var/run/nginx.pid)
 ~~~
