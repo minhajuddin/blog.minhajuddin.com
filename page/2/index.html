@@ -93,6 +93,56 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-if-you-have-an-api-make-it-curlable" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/13/if-you-have-an-api-make-it-curlable/" class="article-date">
+  <time datetime="2016-01-13T12:37:05.000Z" itemprop="datePublished">2016-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/13/if-you-have-an-api-make-it-curlable/">If you have an API make it curlable</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it.</p>
+<p>Take an example of the below API call, it is from a <a href="https://stripe.com/blog/accept-ach-payments" target="_blank" rel="external">stripe blog post demonstrating their use of ACH payments</a>. See how easy it is to read and understand the call? Why can’t all APIs be like this?</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">curl https://api.stripe.com/v1/charges \</div><div class="line">  -u sk_<span class="built_in">test</span>_BQokikJOvBiI2HlWgH4olfQ2: \</div><div class="line">  <span class="_">-d</span> amount=250000 \</div><div class="line">  <span class="_">-d</span> currency=usd \</div><div class="line">  <span class="_">-d</span> description=<span class="string">"Corp Site License 2016"</span> \</div><div class="line">  <span class="_">-d</span> customer=cus_7hyNnNEjxYuJOE \</div><div class="line">  <span class="_">-d</span> <span class="built_in">source</span>=ba_17SYQs2eZvKYlo2CcV8BfFGz</div></pre></td></tr></table></figure>
+<p><strong>Anyway, if you are trying to design an API, Please, for the love of all that is holy make it curlable</strong></p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/" data-id="ciurew45h006u1dpljr2f8l22" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/api/">api</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/curl/">curl</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/design/">design</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-how-to-get-a-git-archive-including-submodules" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/01/10/how-to-get-a-git-archive-including-submodules/" class="article-date">
@@ -126,7 +176,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/" data-id="ciu7wup9f004w1eo7pvjn3vf2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/" data-id="ciurew43n00521dplkrvjgq6b" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -174,7 +224,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/" data-id="ciu7wup80003h1eo7qp7i3458" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/" data-id="ciurew41e003o1dplbga74vmo" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -222,7 +272,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/" data-id="ciu7wupd9008u1eo7r18leozr" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/" data-id="ciurew48a00901dpldvvewpv9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -274,7 +324,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/" data-id="ciu7wup7o00341eo7f39ioms5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/" data-id="ciurew40p003b1dplsz4o192p" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -327,7 +377,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/" data-id="ciu7wupen00a91eo76d7rnni5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/" data-id="ciurew49t00af1dpliwfm61n3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -379,7 +429,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/" data-id="ciu7wupfb00ax1eo747ckdlc1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/" data-id="ciurew4aw00b31dplc8dxpjvz" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -430,7 +480,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/" data-id="ciu7wuped009w1eo7q0yetvt1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/" data-id="ciurew49g00a21dple2w5mwl3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -478,12 +528,98 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" data-id="ciu7wupci008c1eo7vl7x5r8d" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" data-id="ciurew47e008i1dpl8mm7q3rp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/import/">import</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">postgresql,</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-cloud-computing" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/19/cloud-computing/" class="article-date">
+  <time datetime="2013-05-19T00:00:00.000Z" itemprop="datePublished">2013-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/19/cloud-computing/">Cloud Computing / Virtualization</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Cloud computing is mostly a buzzword. In the old days when people wanted a
+server to put run their software on it (like a website), they used to order a
+dedicated (also called bare metal) server with a hosting company (like
+rackspace.com), these companies would setup a server with your configuration and
+then give you access to it so that you could put your software and use it anyway
+you want. This usually would take days and the server companies needed upfront
+payments for setup and monthly fees for server costs. So, if you wanted to put a
+website for a week for a small conference you would have to pay for the setup
+and the fee for the minimum rent duration (which would typically be a month).</p>
+<p>With this kind of setup it used to be hard for website developers/maintainers to
+scale their website. Scaling usually means adding more servers to your setup or
+adding more resources (CPUs/RAM etc,.) to your existing servers, to be able to
+handle an increase in traffic to your website or software.</p>
+<p>With the advancement of technologies, and with the inception of virtualization,
+hosting providers have become more flexible. Virtualization technologies allow
+you to have any number of ‘virtual servers’ running on any number of
+‘real/physical servers’. So, you can have one real computer running two ‘virtual servers’, one
+might be a linux operating system and another a windows operating system
+simultaneously. Virtualization is useful because not all servers run at their
+full capacity all the time. So, if there are two ‘virtual servers’ running on
+one physical server, they share their resources (CPU, RAM etc,.) and since they
+are not using all their resources all the time, the resources can be shared. The
+important thing about virtualization is that you can create as many virtual
+servers as you want (as long as your hardware can handle the load) very easily.
+So, this has allowed hosting providers to setup huge clusters of hardware
+running virtualized servers on top of them. So, now if you want a virtual
+server, it will be ready at the click of a button. You can even create a virtual
+server, increase its RAM size by running a simple command. This allows web
+developers and administrators to automatically increase the number of servers
+when their is an increase in traffic and shutdown servers when there is less
+traffic. And since you only pay for the amount of time your servers are running
+and not by months, you can have efficient setups without wasting your money. If
+you had a supermarket wouldn’t it be awesome if you had 100 checkout lanes when
+you had a huge amount of customers (on weekends) and only 1 when there are no
+customers? Virtualization/Cloud computing allows web administrators to do this.</p>
+<p>More information can be found here: </p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cloud_computing" target="_blank" rel="external">https://en.wikipedia.org/wiki/Cloud_computing</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Virtualization" target="_blank" rel="external">https://en.wikipedia.org/wiki/Virtualization</a></li>
+</ul>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="ciurew40e00341dpllqkla911" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/05/19/cloud-computing/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cloud-computing/">cloud-computing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualization/">virtualization</a></li></ul>
 
     </footer>
   </div>
@@ -604,98 +740,12 @@ Connection: keep-alive
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="ciu7wupam006k1eo7vtzwwhi2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="ciurew45a006q1dplprjrc414" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/05/19/http/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-cloud-computing" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/05/19/cloud-computing/" class="article-date">
-  <time datetime="2013-05-19T00:00:00.000Z" itemprop="datePublished">2013-05-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/05/19/cloud-computing/">Cloud Computing / Virtualization</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Cloud computing is mostly a buzzword. In the old days when people wanted a
-server to put run their software on it (like a website), they used to order a
-dedicated (also called bare metal) server with a hosting company (like
-rackspace.com), these companies would setup a server with your configuration and
-then give you access to it so that you could put your software and use it anyway
-you want. This usually would take days and the server companies needed upfront
-payments for setup and monthly fees for server costs. So, if you wanted to put a
-website for a week for a small conference you would have to pay for the setup
-and the fee for the minimum rent duration (which would typically be a month).</p>
-<p>With this kind of setup it used to be hard for website developers/maintainers to
-scale their website. Scaling usually means adding more servers to your setup or
-adding more resources (CPUs/RAM etc,.) to your existing servers, to be able to
-handle an increase in traffic to your website or software.</p>
-<p>With the advancement of technologies, and with the inception of virtualization,
-hosting providers have become more flexible. Virtualization technologies allow
-you to have any number of ‘virtual servers’ running on any number of
-‘real/physical servers’. So, you can have one real computer running two ‘virtual servers’, one
-might be a linux operating system and another a windows operating system
-simultaneously. Virtualization is useful because not all servers run at their
-full capacity all the time. So, if there are two ‘virtual servers’ running on
-one physical server, they share their resources (CPU, RAM etc,.) and since they
-are not using all their resources all the time, the resources can be shared. The
-important thing about virtualization is that you can create as many virtual
-servers as you want (as long as your hardware can handle the load) very easily.
-So, this has allowed hosting providers to setup huge clusters of hardware
-running virtualized servers on top of them. So, now if you want a virtual
-server, it will be ready at the click of a button. You can even create a virtual
-server, increase its RAM size by running a simple command. This allows web
-developers and administrators to automatically increase the number of servers
-when their is an increase in traffic and shutdown servers when there is less
-traffic. And since you only pay for the amount of time your servers are running
-and not by months, you can have efficient setups without wasting your money. If
-you had a supermarket wouldn’t it be awesome if you had 100 checkout lanes when
-you had a huge amount of customers (on weekends) and only 1 when there are no
-customers? Virtualization/Cloud computing allows web administrators to do this.</p>
-<p>More information can be found here: </p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Cloud_computing" target="_blank" rel="external">https://en.wikipedia.org/wiki/Cloud_computing</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Virtualization" target="_blank" rel="external">https://en.wikipedia.org/wiki/Virtualization</a></li>
-</ul>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="ciu7wup7g002x1eo7knryba4e" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/05/19/cloud-computing/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cloud-computing/">cloud-computing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualization/">virtualization</a></li></ul>
 
     </footer>
   </div>
@@ -746,88 +796,12 @@ customers? Virtualization/Cloud computing allows web administrators to do this.<
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="ciu7wup6l00261eo71ccipsvs" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="ciurew3yx002d1dplkzdgadmn" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eager-load/">eager-load</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/templates/">templates</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-brute-force" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/19/brute-force/" class="article-date">
-  <time datetime="2013-02-19T00:00:00.000Z" itemprop="datePublished">2013-02-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/19/brute-force/">Brute force</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I am planning to participate in the Google Code Jam this year.
-And I have been working on the <a href="https://code.google.com/codejam/contests.html" target="_blank" rel="external">practice problems</a>. 
-It’s been fun, It’s a great feeling when you are able to solve a challenging
-problem after spending time on it.</p>
-<p>My strategy for solving problems is simple: First I try the brute force
-approach, Once I have a solution, I start thinking of a more efficient way to do it. I have since realized that spending some time thinking  about the problem before butting your head against it is way more helpful. When I reached the <a href="https://code.google.com/codejam/contest/32016/dashboard" target="_blank" rel="external">Minimum Scalar Product</a> problem. </p>
-<blockquote>
-<p>You are given two vectors v1=(x1,x2,…,xn) and v2=(y1,y2,…,yn). The 
-scalar product of these vectors is a single number, calculated as x1y1+x2y2+…+xnyn.</p>
-<p>Suppose you are allowed to permute the coordinates of each vector as you wish.
-Choose two permutations such that the scalar product of your two new vectors is 
-the smallest possible, and output that minimum scalar product.</p>
-</blockquote>
-<p>I thought for a moment and came up with the idea that I needed all possible combinations
-of the first vector with a constant ordered second vector. This algorithm had an order
-of O(n!). I just jumped into coding and started solving it. Here is
-the ugly mess of code I came up with: </p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinimumScalarProduct</span></span></div><div class="line">  <span class="comment">#naive solution O(n!)</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">distribute</span><span class="params">(x, y)</span></span></div><div class="line">    <span class="comment">#puts "DISTRIBUTING: #&#123;x.length&#125;, #&#123;y.length&#125;"</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">1</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]] ],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">2</span></div><div class="line">      <span class="comment">#puts "TIME TO GO HOME"</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]],  [x[<span class="number">1</span>],y[<span class="number">1</span>]]],</div><div class="line">        [ [x[<span class="number">1</span>],y[<span class="number">0</span>]],  [x[<span class="number">0</span>],y[<span class="number">1</span>]]],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line">    cumulative_dist = []</div><div class="line">    <span class="comment">#puts "LEN: #&#123;x.length-1&#125;"</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..x.length-<span class="number">1</span>)</div><div class="line">      <span class="comment">#puts "LETS BREAK IT DOWN #&#123;i&#125;"</span></div><div class="line">      xi = x[i]</div><div class="line">      yi = y.first</div><div class="line">      newx = x.clone</div><div class="line">      newx.delete_at(i)</div><div class="line">      newy = y.clone</div><div class="line">      newy.delete_at(<span class="number">0</span>)</div><div class="line">      dist = distribute(newx, newy)</div><div class="line">      dist.each <span class="keyword">do</span><span class="params">|d|</span></div><div class="line">        d.unshift([xi,yi])</div><div class="line">      <span class="keyword">end</span></div><div class="line">      cumulative_dist += dist</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">return</span> cumulative_dist</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">smallest_vector</span><span class="params">(x,y)</span></span></div><div class="line">    dist = distribute(x,y)</div><div class="line"></div><div class="line">    <span class="comment">#dist.each do |d|</span></div><div class="line">      <span class="comment">#puts d.map&#123;|a| "#&#123;a[0]&#125;*#&#123;a[1]&#125;"&#125;.join(" + ")</span></div><div class="line">    <span class="comment">#end</span></div><div class="line">    <span class="comment">#puts '=================================================='</span></div><div class="line">    <span class="comment">#return</span></div><div class="line"></div><div class="line">    dist =  dist.map <span class="keyword">do</span> <span class="params">|d|</span></div><div class="line">      d.map&#123;<span class="params">|a|</span> a[<span class="number">0</span>]*a[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, el|</span> memo + el&#125;</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="comment">#puts dist.join(";")</span></div><div class="line">    dist.sort.first</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">lines = File.readlines(ARGV.first).map(&amp;<span class="symbol">:chomp</span>)</div><div class="line">no_of_cases = lines.shift.to_i</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..no_of_cases-<span class="number">1</span>)</div><div class="line">  <span class="keyword">begin</span></div><div class="line">    n = lines.shift</div><div class="line">    xa = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    ya = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    <span class="comment">#MinimumScalarProduct.smallest_vector(xa, ya)</span></div><div class="line">    puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;MinimumScalarProduct.smallest_vector(xa, ya)&#125;</span>"</span></div><div class="line">  <span class="keyword">rescue</span> StandardError =&gt; ex</div><div class="line">    STDERR.puts <span class="string">"At i: <span class="subst">#&#123;i&#125;</span>"</span></div><div class="line">    STDERR.puts <span class="string">"n:<span class="subst">#&#123;n&#125;</span>, xa: <span class="subst">#&#123;xa.inspect&#125;</span>, ya: <span class="subst">#&#123;ya.inspect&#125;</span>"</span></div><div class="line">    STDERR.puts ex</div><div class="line">    STDERR.puts ex.backtrace</div><div class="line">    exit</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p><a href="https://substancehq.s3.amazonaws.com/static_asset/512393734c01e92c45000b78/A-small-practice.in.txt" target="_blank" rel="external">Here is an example test file</a> 
-if you want to try it.</p>
-<p>Then, I started actually thinking about the problem. After a few minutes it
-became clear to me that all I had to do, to get a minimum product, was order the 
-two vectors in opposing orders of magnitude. And with this
-understanding I could solve it much more easily and with an algorithm with an order of O(nlogn).</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">lines = File.readlines(ARGV.first <span class="params">||</span> <span class="string">'A-small-practice.in'</span>).map&#123;<span class="params">|x|</span> x.chomp&#125;</div><div class="line"></div><div class="line">t = lines.shift.to_i</div><div class="line"></div><div class="line">(<span class="number">0</span>..t-<span class="number">1</span>).each <span class="keyword">do</span> <span class="params">|i|</span></div><div class="line">  lines.shift</div><div class="line">  xa = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort <span class="comment">#O(n log(n))</span></div><div class="line">  ya = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort.reverse <span class="comment">#O(n log(n))</span></div><div class="line">  min =  xa.zip(ya).map&#123;<span class="params">|x|</span>  x[<span class="number">0</span>] * x[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, x|</span> memo + x&#125; <span class="comment">#O(n)</span></div><div class="line">  puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;min&#125;</span>"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>In the past I have used brute force to solve problems where the time didn’t
-matter (I could always move it to a background process if the time mattered),
-but it’s a nice feeling to be able to be able to solve problems by simply
-thinking. Sometimes we(software developers) are so addicted to the quick
-feedback cycle of coding that we fail to spend time thinking of the problem/solution.</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="ciu7wup7c002q1eo7s2m11za4" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/02/19/brute-force/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brute-force/">brute-force</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solving/">solving</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
 
     </footer>
   </div>
@@ -898,12 +872,135 @@ as hers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="ciu7wup8l00421eo7ocig18no" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="ciurew41x00481dplz7pruat1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time-overlap/">time-overlap</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-brute-force" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/02/19/brute-force/" class="article-date">
+  <time datetime="2013-02-19T00:00:00.000Z" itemprop="datePublished">2013-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/02/19/brute-force/">Brute force</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I am planning to participate in the Google Code Jam this year.
+And I have been working on the <a href="https://code.google.com/codejam/contests.html" target="_blank" rel="external">practice problems</a>. 
+It’s been fun, It’s a great feeling when you are able to solve a challenging
+problem after spending time on it.</p>
+<p>My strategy for solving problems is simple: First I try the brute force
+approach, Once I have a solution, I start thinking of a more efficient way to do it. I have since realized that spending some time thinking  about the problem before butting your head against it is way more helpful. When I reached the <a href="https://code.google.com/codejam/contest/32016/dashboard" target="_blank" rel="external">Minimum Scalar Product</a> problem. </p>
+<blockquote>
+<p>You are given two vectors v1=(x1,x2,…,xn) and v2=(y1,y2,…,yn). The 
+scalar product of these vectors is a single number, calculated as x1y1+x2y2+…+xnyn.</p>
+<p>Suppose you are allowed to permute the coordinates of each vector as you wish.
+Choose two permutations such that the scalar product of your two new vectors is 
+the smallest possible, and output that minimum scalar product.</p>
+</blockquote>
+<p>I thought for a moment and came up with the idea that I needed all possible combinations
+of the first vector with a constant ordered second vector. This algorithm had an order
+of O(n!). I just jumped into coding and started solving it. Here is
+the ugly mess of code I came up with: </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinimumScalarProduct</span></span></div><div class="line">  <span class="comment">#naive solution O(n!)</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">distribute</span><span class="params">(x, y)</span></span></div><div class="line">    <span class="comment">#puts "DISTRIBUTING: #&#123;x.length&#125;, #&#123;y.length&#125;"</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">1</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]] ],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">2</span></div><div class="line">      <span class="comment">#puts "TIME TO GO HOME"</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]],  [x[<span class="number">1</span>],y[<span class="number">1</span>]]],</div><div class="line">        [ [x[<span class="number">1</span>],y[<span class="number">0</span>]],  [x[<span class="number">0</span>],y[<span class="number">1</span>]]],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line">    cumulative_dist = []</div><div class="line">    <span class="comment">#puts "LEN: #&#123;x.length-1&#125;"</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..x.length-<span class="number">1</span>)</div><div class="line">      <span class="comment">#puts "LETS BREAK IT DOWN #&#123;i&#125;"</span></div><div class="line">      xi = x[i]</div><div class="line">      yi = y.first</div><div class="line">      newx = x.clone</div><div class="line">      newx.delete_at(i)</div><div class="line">      newy = y.clone</div><div class="line">      newy.delete_at(<span class="number">0</span>)</div><div class="line">      dist = distribute(newx, newy)</div><div class="line">      dist.each <span class="keyword">do</span><span class="params">|d|</span></div><div class="line">        d.unshift([xi,yi])</div><div class="line">      <span class="keyword">end</span></div><div class="line">      cumulative_dist += dist</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">return</span> cumulative_dist</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">smallest_vector</span><span class="params">(x,y)</span></span></div><div class="line">    dist = distribute(x,y)</div><div class="line"></div><div class="line">    <span class="comment">#dist.each do |d|</span></div><div class="line">      <span class="comment">#puts d.map&#123;|a| "#&#123;a[0]&#125;*#&#123;a[1]&#125;"&#125;.join(" + ")</span></div><div class="line">    <span class="comment">#end</span></div><div class="line">    <span class="comment">#puts '=================================================='</span></div><div class="line">    <span class="comment">#return</span></div><div class="line"></div><div class="line">    dist =  dist.map <span class="keyword">do</span> <span class="params">|d|</span></div><div class="line">      d.map&#123;<span class="params">|a|</span> a[<span class="number">0</span>]*a[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, el|</span> memo + el&#125;</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="comment">#puts dist.join(";")</span></div><div class="line">    dist.sort.first</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">lines = File.readlines(ARGV.first).map(&amp;<span class="symbol">:chomp</span>)</div><div class="line">no_of_cases = lines.shift.to_i</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..no_of_cases-<span class="number">1</span>)</div><div class="line">  <span class="keyword">begin</span></div><div class="line">    n = lines.shift</div><div class="line">    xa = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    ya = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    <span class="comment">#MinimumScalarProduct.smallest_vector(xa, ya)</span></div><div class="line">    puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;MinimumScalarProduct.smallest_vector(xa, ya)&#125;</span>"</span></div><div class="line">  <span class="keyword">rescue</span> StandardError =&gt; ex</div><div class="line">    STDERR.puts <span class="string">"At i: <span class="subst">#&#123;i&#125;</span>"</span></div><div class="line">    STDERR.puts <span class="string">"n:<span class="subst">#&#123;n&#125;</span>, xa: <span class="subst">#&#123;xa.inspect&#125;</span>, ya: <span class="subst">#&#123;ya.inspect&#125;</span>"</span></div><div class="line">    STDERR.puts ex</div><div class="line">    STDERR.puts ex.backtrace</div><div class="line">    exit</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p><a href="https://substancehq.s3.amazonaws.com/static_asset/512393734c01e92c45000b78/A-small-practice.in.txt" target="_blank" rel="external">Here is an example test file</a> 
+if you want to try it.</p>
+<p>Then, I started actually thinking about the problem. After a few minutes it
+became clear to me that all I had to do, to get a minimum product, was order the 
+two vectors in opposing orders of magnitude. And with this
+understanding I could solve it much more easily and with an algorithm with an order of O(nlogn).</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">lines = File.readlines(ARGV.first <span class="params">||</span> <span class="string">'A-small-practice.in'</span>).map&#123;<span class="params">|x|</span> x.chomp&#125;</div><div class="line"></div><div class="line">t = lines.shift.to_i</div><div class="line"></div><div class="line">(<span class="number">0</span>..t-<span class="number">1</span>).each <span class="keyword">do</span> <span class="params">|i|</span></div><div class="line">  lines.shift</div><div class="line">  xa = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort <span class="comment">#O(n log(n))</span></div><div class="line">  ya = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort.reverse <span class="comment">#O(n log(n))</span></div><div class="line">  min =  xa.zip(ya).map&#123;<span class="params">|x|</span>  x[<span class="number">0</span>] * x[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, x|</span> memo + x&#125; <span class="comment">#O(n)</span></div><div class="line">  puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;min&#125;</span>"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>In the past I have used brute force to solve problems where the time didn’t
+matter (I could always move it to a background process if the time mattered),
+but it’s a nice feeling to be able to be able to solve problems by simply
+thinking. Sometimes we(software developers) are so addicted to the quick
+feedback cycle of coding that we fail to spend time thinking of the problem/solution.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="ciurew407002x1dpldctkf1ka" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/02/19/brute-force/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brute-force/">brute-force</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solving/">solving</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-review-of-the-books-ive-read" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/02/09/review-of-the-books-ive-read/" class="article-date">
+  <time datetime="2013-02-09T00:00:00.000Z" itemprop="datePublished">2013-02-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/02/09/review-of-the-books-ive-read/">Review of the books I&#39;ve read</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Review</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="ciurew48z009m1dpl0l3a3fu2" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/books/">books</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/">review</a></li></ul>
 
     </footer>
   </div>
@@ -967,59 +1064,12 @@ an unconscious player in a game of hide and seek with your words</strong></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="ciu7wupd3008n1eo7ovl88v31" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="ciurew481008t1dpl8w3oq1gg" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/communication/">communication</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/raw/">raw</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sugar-coat/">sugar-coat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-review-of-the-books-ive-read" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/09/review-of-the-books-ive-read/" class="article-date">
-  <time datetime="2013-02-09T00:00:00.000Z" itemprop="datePublished">2013-02-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/09/review-of-the-books-ive-read/">Review of the books I&#39;ve read</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Review</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="ciu7wupe0009g1eo78wvnhkcy" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/books/">books</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/">review</a></li></ul>
 
     </footer>
   </div>
@@ -1063,7 +1113,7 @@ an unconscious player in a game of hide and seek with your words</strong></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" data-id="ciu7wupb800771eo7fgka15lk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" data-id="ciurew45z007d1dpleyi576n7" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1155,7 +1205,7 @@ possible.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="ciu7wupft00bg1eo7gnrv4zon" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="ciurew4bu00bm1dplopajkyv4" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/01/tossing-a-bottle/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1206,7 +1256,7 @@ possible.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="ciu7wup64001m1eo70pdgl5bv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="ciurew3y5001t1dplyqcwskag" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1303,66 +1353,12 @@ R &lt;= Commands to run on reviewer&apos;s computer
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="ciu7wup8r00481eo7qt22w5dz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="ciurew428004e1dpl79wq3zjp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/workflow/">workflow</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-resisting-the-temptation-to-be-clever" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/01/18/resisting-the-temptation-to-be-clever/" class="article-date">
-  <time datetime="2013-01-18T00:00:00.000Z" itemprop="datePublished">2013-01-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/01/18/resisting-the-temptation-to-be-clever/">Resisting the temptation to be clever</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>The temptation to be clever while programming is very high. You want to show off or use your mad skills to create the most clever piece of code. It gives you a sense of satisfaction which very few things do. However, I’ve found like most people that it’s not the best thing to do for the long term maintainability of projects.</p>
-<p><img src="https://substancehq.s3.amazonaws.com/static_asset/50f94ccb03b04d32da0007fe/temptation-to-be-clever.jpg" alt="The temptation to be clever while programming is too damn high"></p>
-<p>Languages like ruby, being very powerful, make this very easy. Like they say <em>with great power comes great responsibilty</em>. So, this is some advice for young devs: <strong>Create the cleverest piece of code in your personal, fun projects to satiate your hunger, but when it comes to projects for customers, you owe it to them to be sensible and write mundane code</strong></p>
-<p>Here is a small example of clever vs mundane code.</p>
-<p>###Clever code
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></div><div class="line">  [<span class="symbol">:street</span>, <span class="symbol">:city</span>, <span class="symbol">:state</span>, <span class="symbol">:zip</span>].any?&#123;<span class="params">|method|</span> customer.send(method).<span class="literal">nil</span>? <span class="params">||</span> customer.send(method).squish.empty? &#125;</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>###Mundane code
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">address_is_empty?</span><span class="params">(customer)</span></span></div><div class="line">  [customer.street, customer.city, customer.state, customer.zip].any?&#123;<span class="params">|prop|</span> prop.<span class="literal">nil</span>? <span class="params">||</span> prop.squish.empty? &#125;</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="ciu7wupds00991eo7m88xcssz" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/clever-code/">clever-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mundane-code/">mundane-code</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/temptation/">temptation</a></li></ul>
 
     </footer>
   </div>
@@ -1418,6 +1414,10 @@ R &lt;= Commands to run on reviewer&apos;s computer
       <ul>
         
           <li>
+            <a href="/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/">A simple ticker to receive tick events for every interval in Elixir</a>
+          </li>
+        
+          <li>
             <a href="/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/">Lets encrypt auto renewal for ubuntu and nginx</a>
           </li>
         
@@ -1433,10 +1433,6 @@ R &lt;= Commands to run on reviewer&apos;s computer
             <a href="/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/">How to store temporary data and share it with your background processor</a>
           </li>
         
-          <li>
-            <a href="/2016/03/09/subdomains-to-restrict-from-your-saas-app/">Subdomains to restrict from your SaaS app</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1448,7 +1444,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/auto-renew/" style="font-size: 10px;">Auto renew</a> <a href="/tags/dry/" style="font-size: 10px;">DRY</a> <a href="/tags/debug/" style="font-size: 10px;">Debug</a> <a href="/tags/duplication/" style="font-size: 10px;">Duplication</a> <a href="/tags/erb/" style="font-size: 10px;">ERB</a> <a href="/tags/elixir/" style="font-size: 10px;">Elixir</a> <a href="/tags/environment-loader/" style="font-size: 10px;">Environment Loader</a> <a href="/tags/guard/" style="font-size: 10px;">Guard</a> <a href="/tags/heroku/" style="font-size: 10px;">Heroku</a> <a href="/tags/how-to/" style="font-size: 10px;">How To</a> <a href="/tags/how-to/" style="font-size: 10px;">How to</a> <a href="/tags/lets-encrypt/" style="font-size: 10px;">Lets encrypt</a> <a href="/tags/nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/pdf/" style="font-size: 10px;">PDF</a> <a href="/tags/pipelines/" style="font-size: 10px;">Pipelines</a> <a href="/tags/rails-migrations/" style="font-size: 10px;">Rails Migrations</a> <a href="/tags/redis/" style="font-size: 10px;">Redis</a> <a href="/tags/restricted-subdomains/" style="font-size: 10px;">Restricted Subdomains</a> <a href="/tags/ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/saas-tip/" style="font-size: 10px;">SaaS Tip</a> <a href="/tags/static-site-generator/" style="font-size: 10px;">Static Site Generator</a> <a href="/tags/static-sites/" style="font-size: 10px;">Static Sites</a> <a href="/tags/tip/" style="font-size: 10px;">Tip</a> <a href="/tags/tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/vim/" style="font-size: 10px;">Vim</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 12.5px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automate/" style="font-size: 10px;">automate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 17.5px;">bash</a> <a href="/tags/bookmarklet/" style="font-size: 12.5px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/cleanup/" style="font-size: 10px;">cleanup</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/downtime-calculation/" style="font-size: 10px;">downtime calculation</a> <a href="/tags/drag-and-drop/" style="font-size: 10px;">drag-and-drop</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 12.5px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 17.5px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/gtimelog/" style="font-size: 10px;">gtimelog</a> <a href="/tags/hack/" style="font-size: 15px;">hack</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 15px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mutt/" style="font-size: 10px;">mutt</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/rspec/" style="font-size: 12.5px;">rspec</a> <a href="/tags/ruby/" style="font-size: 15px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/script/" style="font-size: 10px;">script</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/submodules/" style="font-size: 10px;">submodules</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 12.5px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12.5px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
+      <a href="/tags/auto-renew/" style="font-size: 10px;">Auto renew</a> <a href="/tags/dry/" style="font-size: 10px;">DRY</a> <a href="/tags/debug/" style="font-size: 10px;">Debug</a> <a href="/tags/duplication/" style="font-size: 10px;">Duplication</a> <a href="/tags/erb/" style="font-size: 10px;">ERB</a> <a href="/tags/elixir/" style="font-size: 12.5px;">Elixir</a> <a href="/tags/environment-loader/" style="font-size: 10px;">Environment Loader</a> <a href="/tags/go/" style="font-size: 10px;">Go</a> <a href="/tags/guard/" style="font-size: 10px;">Guard</a> <a href="/tags/heroku/" style="font-size: 10px;">Heroku</a> <a href="/tags/how-to/" style="font-size: 10px;">How To</a> <a href="/tags/how-to/" style="font-size: 10px;">How to</a> <a href="/tags/lets-encrypt/" style="font-size: 10px;">Lets encrypt</a> <a href="/tags/nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/pdf/" style="font-size: 10px;">PDF</a> <a href="/tags/pipelines/" style="font-size: 10px;">Pipelines</a> <a href="/tags/rails-migrations/" style="font-size: 10px;">Rails Migrations</a> <a href="/tags/redis/" style="font-size: 10px;">Redis</a> <a href="/tags/restricted-subdomains/" style="font-size: 10px;">Restricted Subdomains</a> <a href="/tags/ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/saas-tip/" style="font-size: 10px;">SaaS Tip</a> <a href="/tags/static-site-generator/" style="font-size: 10px;">Static Site Generator</a> <a href="/tags/static-sites/" style="font-size: 10px;">Static Sites</a> <a href="/tags/ticker/" style="font-size: 10px;">Ticker</a> <a href="/tags/tip/" style="font-size: 10px;">Tip</a> <a href="/tags/tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/vim/" style="font-size: 10px;">Vim</a> <a href="/tags/ajax/" style="font-size: 10px;">ajax,</a> <a href="/tags/algorithm/" style="font-size: 12.5px;">algorithm</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/api/" style="font-size: 10px;">api</a> <a href="/tags/authenticate/" style="font-size: 10px;">authenticate</a> <a href="/tags/automate/" style="font-size: 10px;">automate</a> <a href="/tags/automatic/" style="font-size: 10px;">automatic</a> <a href="/tags/banshee/" style="font-size: 10px;">banshee,</a> <a href="/tags/barefooters/" style="font-size: 10px;">barefooters</a> <a href="/tags/bash/" style="font-size: 17.5px;">bash</a> <a href="/tags/bookmarklet/" style="font-size: 12.5px;">bookmarklet</a> <a href="/tags/books/" style="font-size: 10px;">books</a> <a href="/tags/brute-force/" style="font-size: 10px;">brute-force</a> <a href="/tags/ci/" style="font-size: 10px;">ci</a> <a href="/tags/cleanup/" style="font-size: 10px;">cleanup</a> <a href="/tags/clever-code/" style="font-size: 10px;">clever-code</a> <a href="/tags/cloud-computing/" style="font-size: 10px;">cloud-computing</a> <a href="/tags/command-t/" style="font-size: 10px;">command-t</a> <a href="/tags/communication/" style="font-size: 10px;">communication</a> <a href="/tags/console/" style="font-size: 10px;">console</a> <a href="/tags/coreos/" style="font-size: 10px;">coreos</a> <a href="/tags/curl/" style="font-size: 10px;">curl</a> <a href="/tags/design/" style="font-size: 10px;">design</a> <a href="/tags/devise/" style="font-size: 10px;">devise</a> <a href="/tags/diff/" style="font-size: 10px;">diff</a> <a href="/tags/difficulty/" style="font-size: 10px;">difficulty</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/downtime-calculation/" style="font-size: 10px;">downtime calculation</a> <a href="/tags/drag-and-drop/" style="font-size: 10px;">drag-and-drop</a> <a href="/tags/eager-load/" style="font-size: 10px;">eager-load</a> <a href="/tags/ecommerce/" style="font-size: 10px;">ecommerce</a> <a href="/tags/elastic-object/" style="font-size: 10px;">elastic object</a> <a href="/tags/experiment/" style="font-size: 10px;">experiment</a> <a href="/tags/explore/" style="font-size: 10px;">explore</a> <a href="/tags/fear/" style="font-size: 10px;">fear</a> <a href="/tags/flash/" style="font-size: 10px;">flash,</a> <a href="/tags/for-sohel/" style="font-size: 12.5px;">for-sohel</a> <a href="/tags/form/" style="font-size: 10px;">form</a> <a href="/tags/free-lunch/" style="font-size: 10px;">free-lunch</a> <a href="/tags/getsimpleform/" style="font-size: 10px;">getsimpleform</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/go/" style="font-size: 17.5px;">go</a> <a href="/tags/godoc/" style="font-size: 10px;">godoc</a> <a href="/tags/gtimelog/" style="font-size: 10px;">gtimelog</a> <a href="/tags/hack/" style="font-size: 15px;">hack</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/import/" style="font-size: 10px;">import</a> <a href="/tags/india/" style="font-size: 10px;">india</a> <a href="/tags/inotify/" style="font-size: 10px;">inotify</a> <a href="/tags/javascript/" style="font-size: 15px;">javascript</a> <a href="/tags/jquery/" style="font-size: 10px;">jquery</a> <a href="/tags/learn/" style="font-size: 15px;">learn</a> <a href="/tags/learn-go/" style="font-size: 10px;">learn-go</a> <a href="/tags/lego/" style="font-size: 10px;">lego</a> <a href="/tags/linux/" style="font-size: 10px;">linux</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/metaprogramming/" style="font-size: 10px;">metaprogramming</a> <a href="/tags/mundane-code/" style="font-size: 10px;">mundane-code</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mutt/" style="font-size: 10px;">mutt</a> <a href="/tags/open-struct/" style="font-size: 10px;">open struct</a> <a href="/tags/perception/" style="font-size: 10px;">perception,</a> <a href="/tags/postgresql/" style="font-size: 10px;">postgresql,</a> <a href="/tags/production/" style="font-size: 10px;">production</a> <a href="/tags/prompt/" style="font-size: 10px;">prompt</a> <a href="/tags/ps1/" style="font-size: 10px;">ps1</a> <a href="/tags/rails/" style="font-size: 20px;">rails</a> <a href="/tags/raw/" style="font-size: 10px;">raw</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/reverse/" style="font-size: 10px;">reverse</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/rspec/" style="font-size: 12.5px;">rspec</a> <a href="/tags/ruby/" style="font-size: 15px;">ruby</a> <a href="/tags/rvm/" style="font-size: 10px;">rvm</a> <a href="/tags/script/" style="font-size: 10px;">script</a> <a href="/tags/server/" style="font-size: 10px;">server</a> <a href="/tags/shiny/" style="font-size: 10px;">shiny,</a> <a href="/tags/simpleform/" style="font-size: 10px;">simpleform</a> <a href="/tags/sleep/" style="font-size: 10px;">sleep</a> <a href="/tags/software/" style="font-size: 10px;">software</a> <a href="/tags/solving/" style="font-size: 10px;">solving</a> <a href="/tags/submodules/" style="font-size: 10px;">submodules</a> <a href="/tags/substance/" style="font-size: 10px;">substance</a> <a href="/tags/sugar-coat/" style="font-size: 10px;">sugar-coat</a> <a href="/tags/template/" style="font-size: 10px;">template</a> <a href="/tags/templates/" style="font-size: 10px;">templates</a> <a href="/tags/temptation/" style="font-size: 10px;">temptation</a> <a href="/tags/terminal/" style="font-size: 10px;">terminal</a> <a href="/tags/thinking/" style="font-size: 10px;">thinking</a> <a href="/tags/time/" style="font-size: 12.5px;">time</a> <a href="/tags/time-overlap/" style="font-size: 10px;">time-overlap</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/todo-list/" style="font-size: 10px;">todo-list</a> <a href="/tags/update/" style="font-size: 10px;">update</a> <a href="/tags/upstart/" style="font-size: 10px;">upstart</a> <a href="/tags/usability/" style="font-size: 10px;">usability,</a> <a href="/tags/util/" style="font-size: 10px;">util</a> <a href="/tags/utility/" style="font-size: 12.5px;">utility</a> <a href="/tags/ux/" style="font-size: 10px;">ux</a> <a href="/tags/viewer/" style="font-size: 10px;">viewer</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/virtualization/" style="font-size: 10px;">virtualization</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/workflow/" style="font-size: 10px;">workflow</a> <a href="/tags/xclip/" style="font-size: 10px;">xclip</a>
     </div>
   </div>
 
@@ -1457,7 +1453,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -1466,7 +1462,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/auto-renew/">Auto renew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dry/">DRY</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/duplication/">Duplication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/erb/">ERB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elixir/">Elixir</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment-loader/">Environment Loader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/guard/">Guard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heroku/">Heroku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How To</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How to</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lets-encrypt/">Lets encrypt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">PDF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pipelines/">Pipelines</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails-migrations/">Rails Migrations</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restricted-subdomains/">Restricted Subdomains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">Ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/saas-tip/">SaaS Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-sites/">Static Sites</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">Tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automate/">automate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleanup/">cleanup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curl/">curl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/downtime-calculation/">downtime calculation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtimelog/">gtimelog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mutt/">mutt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/script/">script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/">submodules</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/auto-renew/">Auto renew</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dry/">DRY</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/debug/">Debug</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/duplication/">Duplication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/erb/">ERB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elixir/">Elixir</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/environment-loader/">Environment Loader</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">Go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/guard/">Guard</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/heroku/">Heroku</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How To</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/how-to/">How to</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lets-encrypt/">Lets encrypt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pdf/">PDF</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pipelines/">Pipelines</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails-migrations/">Rails Migrations</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restricted-subdomains/">Restricted Subdomains</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">Ruby</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/saas-tip/">SaaS Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-site-generator/">Static Site Generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-sites/">Static Sites</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ticker/">Ticker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/">Tip</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">Tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">Vim</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax/">ajax,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/">algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/api/">api</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authenticate/">authenticate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automate/">automate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/automatic/">automatic</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/banshee/">banshee,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/barefooters/">barefooters</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bash/">bash</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bookmarklet/">bookmarklet</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/books/">books</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/brute-force/">brute-force</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci/">ci</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cleanup/">cleanup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/clever-code/">clever-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloud-computing/">cloud-computing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/command-t/">command-t</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/communication/">communication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/console/">console</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coreos/">coreos</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/curl/">curl</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design/">design</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devise/">devise</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/diff/">diff</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/difficulty/">difficulty</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/downtime-calculation/">downtime calculation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/drag-and-drop/">drag-and-drop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eager-load/">eager-load</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ecommerce/">ecommerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elastic-object/">elastic object</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/experiment/">experiment</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/explore/">explore</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fear/">fear</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flash/">flash,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/for-sohel/">for-sohel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/form/">form</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/free-lunch/">free-lunch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/getsimpleform/">getsimpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/godoc/">godoc</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gtimelog/">gtimelog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hack/">hack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hash/">hash</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/">http</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/import/">import</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/india/">india</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/inotify/">inotify</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jquery/">jquery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn-go/">learn-go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lego/">lego</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metaprogramming/">metaprogramming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mundane-code/">mundane-code</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mutt/">mutt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/open-struct/">open struct</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/perception/">perception,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/postgresql/">postgresql,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/production/">production</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/prompt/">prompt</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ps1/">ps1</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rails/">rails</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raw/">raw</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reverse/">reverse</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/">review</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rspec/">rspec</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ruby/">ruby</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rvm/">rvm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/script/">script</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/server/">server</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shiny/">shiny,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/simpleform/">simpleform</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sleep/">sleep</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/software/">software</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/solving/">solving</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/">submodules</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/substance/">substance</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sugar-coat/">sugar-coat</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/template/">template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/templates/">templates</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/temptation/">temptation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/terminal/">terminal</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinking/">thinking</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time/">time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/time-overlap/">time-overlap</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tmux/">tmux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/todo-list/">todo-list</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/update/">update</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/upstart/">upstart</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/usability/">usability,</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/util/">util</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/utility/">utility</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ux/">ux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/viewer/">viewer</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/">vim</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/">virtualization</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/">watch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workflow/">workflow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xclip/">xclip</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
