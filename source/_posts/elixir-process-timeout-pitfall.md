@@ -57,3 +57,50 @@ with timeouts is not just a `Task.await` away.
 
 I have coded an example app with proper timeout handling and parallel processing at https://github.com/minhajuddin/parallel_elixir_workers
 Check it out.
+
+### Addendum
+I posted this on [the elixirforum](https://elixirforum.com/t/elixir-task-timeout-pitfall/2192/11) and got some feedback about it.
+
+~~~elixir
+tasks = Enum.map 1..10, fn id ->
+  Task.async(HardWorker, :work, [id])
+end
+
+# at this point all tasks are running in parallel
+
+Enum.map(tasks, fn task ->
+  Task.await(task, @total_timeout)
+end)
+~~~
+
+Let us take another look at the relevant code. Now, let us say that this is spawning
+processes P1 to P10 in that order. Let's say tasks T1 to T10 are created for these processes.
+Now all these tasks are running concurrently.
+
+Now, in the second `Enum.map`, in the first iteration the task is set to T1,
+so T1 has to finish before 1 second otherwise this code will timeout. However,
+while T1 is running T2..T10 are also running. So, when this code runs for T2 and
+waits for 1 second, T2 had been running for 2s. So, effectively T1 would be given
+a time of 1 second, T2 a time of 2 seconds and T3 a time of 3 seconds and so on.
+
+This may be what you want. However, if you want all the tasks to finish executing within 1 second.
+You shouldn't use `Task.await`. You can use `Task.yield_many` which takes a list of tasks
+and allows you to specify a timeout after which it returns with the results of whatever
+processes finished. The [documentation for Task.yield_many](http://elixir-lang.org/docs/stable/elixir/Task.html#yield_many/2) has a very good
+example on how to use it.
+
+[@benwilson512 has a good example on this](https://elixirforum.com/t/elixir-task-timeout-pitfall/2192/7?u=minhajuddin)
+
+> ..suppose you wrote the following code:
+
+~~~elixir
+task = Task.async(fn -> Process.sleep(:infinity) end)
+
+Process.sleep(5_000)
+Task.await(task, 5_000)
+~~~
+
+> How long before it times out? 10 seconds of course. But this is obvious and expected.
+> This is exactly what you're doing by making the Task.await calls consecutive.
+> It's just that instead of sleeping in the main process you're waiting on a different task.
+> Task.await is blocking, this is expected.
