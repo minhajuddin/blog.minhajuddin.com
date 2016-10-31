@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="If you taken a look at Elixir, you may have come across something like the below code
 1234567891011121314151617181920212223242526272829defmodule HardWorker do  def work(id) do    Process.sleep(id * 90">
-<meta property="og:updated_time" content="2016-10-31T11:52:57.000Z">
+<meta property="og:updated_time" content="2016-10-31T11:58:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elixir process timeout pitfall">
 <meta name="twitter:description" content="If you taken a look at Elixir, you may have come across something like the below code
@@ -129,6 +129,8 @@ here is that <code>Task.await</code> is called on 10 tasks and if the 10 tasks f
 at the end of 1s, 2s, … 10s This code will run just fine.</p>
 <p>This is a completely made up example but it should show you that running in parallel
 with timeouts is not just a <code>Task.await</code> away.</p>
+<p>I have coded an example app with proper timeout handling and parallel processing at <a href="https://github.com/minhajuddin/parallel_elixir_workers" target="_blank" rel="external">https://github.com/minhajuddin/parallel_elixir_workers</a>
+Check it out.</p>
 
         
       
@@ -145,7 +147,7 @@ with timeouts is not just a <code>Task.await</code> away.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ciuy0b4bn00421emtvry6rkzb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ciuy0hv1g00421gs3osy7giji" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/#disqus_thread" class="article-comment-link">Comments</a>
       
