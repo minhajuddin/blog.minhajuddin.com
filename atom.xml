@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://minhajuddin.com/"/>
-  <updated>2016-10-31T11:58:13.000Z</updated>
+  <updated>2016-10-31T17:19:48.000Z</updated>
   <id>http://minhajuddin.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/"/>
     <id>http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/</id>
     <published>2016-10-31T17:13:12.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;If you taken a look at Elixir, you may have come across something like the below code&lt;/p&gt;
 &lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;HardWorker&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;work&lt;/span&gt;&lt;/span&gt;(id) &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Process.sleep(id * &lt;span class=&quot;number&quot;&gt;900&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;&lt;span class=&quot;symbol&quot;&gt;:done&lt;/span&gt;, id&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Runner&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;variable&quot;&gt;@total_timeout&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;us, &lt;span class=&quot;number&quot;&gt;_&lt;/span&gt;&amp;#125; = &lt;span class=&quot;symbol&quot;&gt;:timer&lt;/span&gt;.tc &amp;amp;work/&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    IO.puts &lt;span class=&quot;string&quot;&gt;&quot;ELAPSED_TIME: &lt;span class=&quot;subst&quot;&gt;#&amp;#123;us/&lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;&amp;#125;&lt;/span&gt;&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;work&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tasks = Enum.map &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;..&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;fn&lt;/span&gt; id -&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      Task.async(HardWorker, &lt;span class=&quot;symbol&quot;&gt;:work&lt;/span&gt;, [id])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Enum.map(tasks, &lt;span class=&quot;keyword&quot;&gt;fn&lt;/span&gt; task -&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      Task.await(task, &lt;span class=&quot;variable&quot;&gt;@total_timeout&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Runner.run&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -36,6 +36,32 @@ at the end of 1s, 2s, … 10s This code will run just fine.&lt;/p&gt;
 with timeouts is not just a &lt;code&gt;Task.await&lt;/code&gt; away.&lt;/p&gt;
 &lt;p&gt;I have coded an example app with proper timeout handling and parallel processing at &lt;a href=&quot;https://github.com/minhajuddin/parallel_elixir_workers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/minhajuddin/parallel_elixir_workers&lt;/a&gt;
 Check it out.&lt;/p&gt;
+&lt;h3 id=&quot;Addendum&quot;&gt;&lt;a href=&quot;#Addendum&quot; class=&quot;headerlink&quot; title=&quot;Addendum&quot;&gt;&lt;/a&gt;Addendum&lt;/h3&gt;&lt;p&gt;I posted this on &lt;a href=&quot;https://elixirforum.com/t/elixir-task-timeout-pitfall/2192/11&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;the elixirforum&lt;/a&gt; and got some feedback about it.&lt;/p&gt;
+&lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;tasks = Enum.map &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;..&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;fn&lt;/span&gt; id -&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Task.async(HardWorker, &lt;span class=&quot;symbol&quot;&gt;:work&lt;/span&gt;, [id])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# at this point all tasks are running in parallel&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Enum.map(tasks, &lt;span class=&quot;keyword&quot;&gt;fn&lt;/span&gt; task -&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  Task.await(task, &lt;span class=&quot;variable&quot;&gt;@total_timeout&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Let us take another look at the relevant code. Now, let us say that this is spawning
+processes P1 to P10 in that order. Let’s say tasks T1 to T10 are created for these processes.
+Now all these tasks are running concurrently.&lt;/p&gt;
+&lt;p&gt;Now, in the second &lt;code&gt;Enum.map&lt;/code&gt;, in the first iteration the task is set to T1,
+so T1 has to finish before 1 second otherwise this code will timeout. However,
+while T1 is running T2..T10 are also running. So, when this code runs for T2 and
+waits for 1 second, T2 had been running for 2s. So, effectively T1 would be given
+a time of 1 second, T2 a time of 2 seconds and T3 a time of 3 seconds and so on.&lt;/p&gt;
+&lt;p&gt;This may be what you want. However, if you want all the tasks to finish executing within 1 second.
+You shouldn’t use &lt;code&gt;Task.await&lt;/code&gt;. You can use &lt;code&gt;Task.yield_many&lt;/code&gt; which takes a list of tasks
+and allows you to specify a timeout after which it returns with the results of whatever
+processes finished. The &lt;a href=&quot;http://elixir-lang.org/docs/stable/elixir/Task.html#yield_many/2&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;documentation for Task.yield_many&lt;/a&gt; has a very good
+example on how to use it.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://elixirforum.com/t/elixir-task-timeout-pitfall/2192/7?u=minhajuddin&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;@benwilson512 has a good example on this&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;..suppose you wrote the following code:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;task = Task.async(&lt;span class=&quot;keyword&quot;&gt;fn&lt;/span&gt; -&amp;gt; Process.sleep(&lt;span class=&quot;symbol&quot;&gt;:infinity&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Process.sleep(&lt;span class=&quot;number&quot;&gt;5_000&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Task.await(task, &lt;span class=&quot;number&quot;&gt;5_000&lt;/span&gt;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;blockquote&gt;
+&lt;p&gt;How long before it times out? 10 seconds of course. But this is obvious and expected.
+This is exactly what you’re doing by making the Task.await calls consecutive.
+It’s just that instead of sleeping in the main process you’re waiting on a different task.
+Task.await is blocking, this is expected.&lt;/p&gt;
+&lt;/blockquote&gt;
 </content>
     
     <summary type="html">
@@ -61,7 +87,7 @@ Check it out.&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/"/>
     <id>http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/</id>
     <published>2016-10-28T11:22:24.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;I love pianobar. However, until yesterday I hated pausing and moving to the next video
 using pianobar. I had a small terminal dedicated for pianobar and every time I had to
@@ -96,7 +122,7 @@ using pianobar. I had a small terminal dedicated f
     <link href="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/"/>
     <id>http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/</id>
     <published>2016-10-27T15:57:00.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;I love pandora, However, I live in India where pandora is doesn’t stream.
 I got around this by proxying over socks5. Here is how you can do it.&lt;/p&gt;
@@ -132,7 +158,7 @@ I got around this by proxying over socks5. Here is how you can
     <link href="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/"/>
     <id>http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/</id>
     <published>2016-10-27T02:26:07.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;Go has very utilitarian ticker methods, for instance check: &lt;a href=&quot;https://gobyexample.com/tickers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gobyexample.com/tickers&lt;/a&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; main&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;time&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;fmt&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Tickers use a similar mechanism to timers: a&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// channel that is sent values. Here we&#39;ll use the&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// `range` builtin on the channel to iterate over&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// the values as they arrive every 500ms.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ticker := time.NewTicker(time.Millisecond * &lt;span class=&quot;number&quot;&gt;500&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; t := &lt;span class=&quot;keyword&quot;&gt;range&lt;/span&gt; ticker.C &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            fmt.Println(&lt;span class=&quot;string&quot;&gt;&quot;Tick at&quot;&lt;/span&gt;, t)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Tickers can be stopped like timers. Once a ticker&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// is stopped it won&#39;t receive any more values on its&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// channel. We&#39;ll stop ours after 1600ms.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    time.Sleep(time.Millisecond * &lt;span class=&quot;number&quot;&gt;1600&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ticker.Stop()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    fmt.Println(&lt;span class=&quot;string&quot;&gt;&quot;Ticker stopped&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -170,7 +196,7 @@ some code for every interval of &lt;code&gt;time&lt;/code&gt;. However, the code
     <link href="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/"/>
     <id>http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/</id>
     <published>2016-10-13T10:27:16.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;Create a file called &lt;code&gt;/etc/nginx/le_redirect_include.conf&lt;/code&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;# intercept the challenges&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;location &amp;apos;/.well-known/acme-challenge&amp;apos; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  default_type &amp;quot;text/plain&amp;quot;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  root /usr/share/nginx/letsencrypt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# redirect all traffic to the https version&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;location / &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  return 301 https://$host$request_uri;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -203,7 +229,7 @@ some code for every interval of &lt;code&gt;time&lt;/code&gt;. However, the code
     <link href="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/"/>
     <id>http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/</id>
     <published>2016-07-05T08:43:42.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;I am working on an open source side project called &lt;a href=&quot;http://webmonitorhq.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;webmonitorhq.com&lt;/a&gt;
 It notifies you when your service goes down. It also stores the events when a service goes down
@@ -268,7 +294,7 @@ Downtime = 1 + 5&lt;/li&gt;
     <link href="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/"/>
     <id>http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/</id>
     <published>2016-05-20T15:16:42.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;While writing multiple pipelines, you may want to debug the intermediate values.
 Just insert &lt;code&gt;|&amp;gt; IO.inspect&lt;/code&gt; between your pipelines.&lt;/p&gt;
@@ -300,7 +326,7 @@ Just insert &lt;code&gt;|&amp;gt; IO.inspect&lt;/code&gt; between your p
     <link href="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/"/>
     <id>http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/</id>
     <published>2016-03-11T18:40:36.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;In my current project, I had to store some temporary data for a user and let a few background
 processors have access to it. I wrote something small with a dependency on Redis which does the job.&lt;/p&gt;
@@ -333,7 +359,7 @@ processors have access to it. I wrote somet
     <link href="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/"/>
     <id>http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/</id>
     <published>2016-03-09T16:13:49.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;Many SaaS apps allow users to host their websites under their root domain, e.g. GitHub allows you to host your sites using GitHub Pages under the &lt;code&gt;.github.io&lt;/code&gt; domain.&lt;/p&gt;
 &lt;p&gt;Here is a list of subdomains which you should reserve while building your own SaaS product.&lt;/p&gt;
@@ -360,7 +386,7 @@ processors have access to it. I wrote somet
     <link href="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/"/>
     <id>http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/</id>
     <published>2016-03-08T12:23:39.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;Here is a simple script which can cleanup directories older than &lt;code&gt;x&lt;/code&gt; days on your server
 It is useful for freeing up space by removing temporary directories on your server&lt;/p&gt;
@@ -388,7 +414,7 @@ It is useful for freeing up space by
     <link href="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/"/>
     <id>http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/</id>
     <published>2016-03-03T09:24:46.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;Aaron Patterson wrote &lt;a href=&quot;https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;a very nice article on how he does deubgging&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here is some more code to make your debugging easier.&lt;/p&gt;
@@ -410,7 +436,7 @@ It is useful for freeing up space by
     <link href="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/"/>
     <id>http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/</id>
     <published>2016-02-19T19:14:11.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;When working with Static Site Blogs, you end up creating files with very long
 names for your blog posts. For example, this very post has a filename
@@ -449,7 +475,7 @@ names for your blog posts. For example, this very post has
     <link href="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/"/>
     <id>http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/</id>
     <published>2016-02-17T20:21:23.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://tmux.github.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;tmux&lt;/a&gt; is an awesome terminal multiplexer. I have been
 an Xmonad user about 4 years, and everytime I heard about tmux in the past I
@@ -508,7 +534,7 @@ an Xmonad user
     <link href="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/"/>
     <id>http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/</id>
     <published>2016-02-16T13:14:05.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Extract the images into a temporary folder. Twiddle with the quality value to reduce the size.&lt;/p&gt;
@@ -538,7 +564,7 @@ an Xmonad user
     <link href="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/"/>
     <id>http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/</id>
     <published>2016-02-10T21:11:18.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;There are &lt;a href=&quot;https://github.com/laserlemon/figaro&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;many&lt;/a&gt; &lt;a href=&quot;https://github.com/bkeepers/dotenv&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gems&lt;/a&gt;
 which do app configuration loading for ruby.
@@ -567,7 +593,7 @@ snippet of code which does most of what you want.&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/"/>
     <id>http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/</id>
     <published>2016-02-06T14:39:08.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/guard/guard&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Guard&lt;/a&gt; is an awesome rubygem which allows livereload among other things.
 However, when I run guard in tmux it was crashing all my tmux sessions. I guess
@@ -596,7 +622,7 @@ should be good.&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/"/>
     <id>http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/</id>
     <published>2016-02-03T11:50:03.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: &lt;a href=&quot;http://www.andrews-corner.org/mutt.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.andrews-corner.org/mutt.html&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;However, I had to hit &lt;code&gt;I&lt;/code&gt; to make mutt fetch the email, Here is a crontab entry I setup to automatically retreive the email every minute.&lt;/p&gt;
@@ -621,7 +647,7 @@ should be good.&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/"/>
     <id>http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/</id>
     <published>2016-02-01T22:38:12.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;I &lt;a href=&quot;http://blog.teamtreehouse.com/deploy-static-site-heroku#comment-170888&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;see&lt;/a&gt; &lt;a href=&quot;https://github.com/roperzh/heroku-buildpack-hugo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;many&lt;/a&gt;
 &lt;a href=&quot;https://github.com/spf13/hugo/issues/293&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;posts&lt;/a&gt; &lt;a href=&quot;http://byenary.com/blog/2015/04/02/setting-up-a-blog-with-hugo-and-heroku/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;on the internet&lt;/a&gt;
@@ -650,7 +676,7 @@ for static content. Heck, it even supports building of websites automatically us
     <link href="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/"/>
     <id>http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/</id>
     <published>2016-01-30T18:56:35.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;While writing code to show themes in Zammu, I had to show the same button in two places on the same page.
 The easy way is to duplicate the code. But that causes problems with maintainability.&lt;/p&gt;
@@ -683,7 +709,7 @@ The easy way is to duplicate th
     <link href="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/"/>
     <id>http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/</id>
     <published>2016-01-27T12:06:52.000Z</published>
-    <updated>2016-10-31T11:58:13.000Z</updated>
+    <updated>2016-10-31T17:19:48.000Z</updated>
     
     <content type="html">&lt;p&gt;Static Site Generators are awesome because of their speed and robustness.&lt;/p&gt;
 &lt;p&gt;There are &lt;a href=&quot;https://middlemanapp.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;many&lt;/a&gt; &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;static&lt;/a&gt; &lt;a href=&quot;http://gohugo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;site&lt;/a&gt; &lt;a href=&quot;http://octopress.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;generators&lt;/a&gt;.&lt;/p&gt;

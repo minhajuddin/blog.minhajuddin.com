@@ -129,6 +129,32 @@ at the end of 1s, 2s, … 10s This code will run just fine.</p>
 with timeouts is not just a <code>Task.await</code> away.</p>
 <p>I have coded an example app with proper timeout handling and parallel processing at <a href="https://github.com/minhajuddin/parallel_elixir_workers" target="_blank" rel="external">https://github.com/minhajuddin/parallel_elixir_workers</a>
 Check it out.</p>
+<h3 id="Addendum"><a href="#Addendum" class="headerlink" title="Addendum"></a>Addendum</h3><p>I posted this on <a href="https://elixirforum.com/t/elixir-task-timeout-pitfall/2192/11" target="_blank" rel="external">the elixirforum</a> and got some feedback about it.</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">tasks = Enum.map <span class="number">1</span>..<span class="number">10</span>, <span class="keyword">fn</span> id -&gt;</div><div class="line">  Task.async(HardWorker, <span class="symbol">:work</span>, [id])</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment"># at this point all tasks are running in parallel</span></div><div class="line"></div><div class="line">Enum.map(tasks, <span class="keyword">fn</span> task -&gt;</div><div class="line">  Task.await(task, <span class="variable">@total_timeout</span>)</div><div class="line"><span class="keyword">end</span>)</div></pre></td></tr></table></figure>
+<p>Let us take another look at the relevant code. Now, let us say that this is spawning
+processes P1 to P10 in that order. Let’s say tasks T1 to T10 are created for these processes.
+Now all these tasks are running concurrently.</p>
+<p>Now, in the second <code>Enum.map</code>, in the first iteration the task is set to T1,
+so T1 has to finish before 1 second otherwise this code will timeout. However,
+while T1 is running T2..T10 are also running. So, when this code runs for T2 and
+waits for 1 second, T2 had been running for 2s. So, effectively T1 would be given
+a time of 1 second, T2 a time of 2 seconds and T3 a time of 3 seconds and so on.</p>
+<p>This may be what you want. However, if you want all the tasks to finish executing within 1 second.
+You shouldn’t use <code>Task.await</code>. You can use <code>Task.yield_many</code> which takes a list of tasks
+and allows you to specify a timeout after which it returns with the results of whatever
+processes finished. The <a href="http://elixir-lang.org/docs/stable/elixir/Task.html#yield_many/2" target="_blank" rel="external">documentation for Task.yield_many</a> has a very good
+example on how to use it.</p>
+<p><a href="https://elixirforum.com/t/elixir-task-timeout-pitfall/2192/7?u=minhajuddin" target="_blank" rel="external">@benwilson512 has a good example on this</a></p>
+<blockquote>
+<p>..suppose you wrote the following code:</p>
+</blockquote>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">task = Task.async(<span class="keyword">fn</span> -&gt; Process.sleep(<span class="symbol">:infinity</span>) <span class="keyword">end</span>)</div><div class="line"></div><div class="line">Process.sleep(<span class="number">5_000</span>)</div><div class="line">Task.await(task, <span class="number">5_000</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>How long before it times out? 10 seconds of course. But this is obvious and expected.
+This is exactly what you’re doing by making the Task.await calls consecutive.
+It’s just that instead of sleeping in the main process you’re waiting on a different task.
+Task.await is blocking, this is expected.</p>
+</blockquote>
 
         
       
@@ -138,7 +164,7 @@ Check it out.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ciuy0hv1g00421gs3osy7giji" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ciuybzfph00451donngoghhr6" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -194,7 +220,7 @@ So, now whenever I hit the right hotkey it types the letter ‘p’ in the tmux 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="ciuy0hv2a00511gs3un2cpget" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="ciuybzfr700541donyopung03" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -249,7 +275,7 @@ I got around this by proxying over socks5. Here is how you can do it.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/" data-id="ciuy0hv4600741gs362t46kmn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/" data-id="ciuybzfup00771dontf1zygv1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -309,7 +335,7 @@ some code for every interval of <code>time</code>. However, the code below doesn
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/" data-id="ciuy0huz0001j1gs3nqz3gnns" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/" data-id="ciuybzfkh001m1donmjm2bvnl" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -363,7 +389,7 @@ some code for every interval of <code>time</code>. However, the code below doesn
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ciuy0hv55008a1gs3kxshr3r4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ciuybzfwk008d1don5sdo96ot" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -452,7 +478,7 @@ Downtime = 1 + 5</li>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="ciuy0huzf00221gs36sk7a36l" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="ciuybzfm800221donw4gu9ajn" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -505,7 +531,7 @@ Just insert <code>|&gt; IO.inspect</code> between your pipelines.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="ciuy0hv1c003w1gs3t6dqyjxm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="ciuybzfpb003z1don8rdo5cd8" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -561,7 +587,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="ciuy0hv43006z1gs39r1bygfu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="ciuybzful00721donb0n0mxat" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -612,7 +638,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="ciuy0hv8l00bj1gs34i1izpf4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="ciuybzg2g00bm1don2zmfgyu5" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -661,7 +687,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="ciuy0hv7i00aj1gs3dh1rnoxn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="ciuybzg0o00am1dondrp7z4pb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -711,7 +737,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="ciuy0hv64009c1gs3hj1ti7hl" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="ciuybzfyn009f1dont34037lk" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -767,7 +793,7 @@ function finds a home in your <code>~/.bashrc</code> :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="ciuy0hv3f00651gs3enfypblc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="ciuybzfss00681donvour1lx2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -847,7 +873,7 @@ Do yourself a favor and use tmux.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="ciuy0hv7u00au1gs3j2612l0h" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="ciuybzg1700ax1dongieq4n0d" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -901,7 +927,7 @@ Do yourself a favor and use tmux.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/" data-id="ciuy0hv2h00591gs3t254jvai" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/" data-id="ciuybzfrk005c1don60z8o6vi" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -956,7 +982,7 @@ snippet of code which does most of what you want.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/" data-id="ciuy0huzc001z1gs3eslk3oof" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/" data-id="ciuybzfmh00271donbltk44gh" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1009,7 +1035,7 @@ should be good.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/" data-id="ciuy0hv2j005c1gs307y5lxxw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/" data-id="ciuybzfrq005f1don2t8l9680" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1058,7 +1084,7 @@ should be good.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/" data-id="ciuy0hv3t006s1gs3q0dsajz5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/" data-id="ciuybzfu1006v1donzxytkow8" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1113,7 +1139,7 @@ for static content. Heck, it even supports building of websites automatically us
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/" data-id="ciuy0hv8g00bg1gs3m1kxlbv1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/" data-id="ciuybzg2900bj1don4zy3xvy7" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1167,7 +1193,7 @@ The changed code is:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/" data-id="ciuy0hv6q009u1gs38zml7lel" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/" data-id="ciuybzfzi009x1donb3a2ogh5" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1239,7 +1265,7 @@ I am using a dumb way to notate placeholder, we’ll use <code>_PAGE_TITLE</code
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/" data-id="ciuy0hv5000851gs3cexpqhya" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/" data-id="ciuybzfw700881donilc69out" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/27/lets-build-a-dumb-static-site-generator/#disqus_thread" class="article-comment-link">Comments</a>
       

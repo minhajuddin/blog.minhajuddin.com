@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="If you taken a look at Elixir, you may have come across something like the below code
 1234567891011121314151617181920212223242526272829defmodule HardWorker do  def work(id) do    Process.sleep(id * 90">
-<meta property="og:updated_time" content="2016-10-31T11:58:13.000Z">
+<meta property="og:updated_time" content="2016-10-31T17:19:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elixir process timeout pitfall">
 <meta name="twitter:description" content="If you taken a look at Elixir, you may have come across something like the below code
@@ -131,6 +131,32 @@ at the end of 1s, 2s, … 10s This code will run just fine.</p>
 with timeouts is not just a <code>Task.await</code> away.</p>
 <p>I have coded an example app with proper timeout handling and parallel processing at <a href="https://github.com/minhajuddin/parallel_elixir_workers" target="_blank" rel="external">https://github.com/minhajuddin/parallel_elixir_workers</a>
 Check it out.</p>
+<h3 id="Addendum"><a href="#Addendum" class="headerlink" title="Addendum"></a>Addendum</h3><p>I posted this on <a href="https://elixirforum.com/t/elixir-task-timeout-pitfall/2192/11" target="_blank" rel="external">the elixirforum</a> and got some feedback about it.</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">tasks = Enum.map <span class="number">1</span>..<span class="number">10</span>, <span class="keyword">fn</span> id -&gt;</div><div class="line">  Task.async(HardWorker, <span class="symbol">:work</span>, [id])</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment"># at this point all tasks are running in parallel</span></div><div class="line"></div><div class="line">Enum.map(tasks, <span class="keyword">fn</span> task -&gt;</div><div class="line">  Task.await(task, <span class="variable">@total_timeout</span>)</div><div class="line"><span class="keyword">end</span>)</div></pre></td></tr></table></figure>
+<p>Let us take another look at the relevant code. Now, let us say that this is spawning
+processes P1 to P10 in that order. Let’s say tasks T1 to T10 are created for these processes.
+Now all these tasks are running concurrently.</p>
+<p>Now, in the second <code>Enum.map</code>, in the first iteration the task is set to T1,
+so T1 has to finish before 1 second otherwise this code will timeout. However,
+while T1 is running T2..T10 are also running. So, when this code runs for T2 and
+waits for 1 second, T2 had been running for 2s. So, effectively T1 would be given
+a time of 1 second, T2 a time of 2 seconds and T3 a time of 3 seconds and so on.</p>
+<p>This may be what you want. However, if you want all the tasks to finish executing within 1 second.
+You shouldn’t use <code>Task.await</code>. You can use <code>Task.yield_many</code> which takes a list of tasks
+and allows you to specify a timeout after which it returns with the results of whatever
+processes finished. The <a href="http://elixir-lang.org/docs/stable/elixir/Task.html#yield_many/2" target="_blank" rel="external">documentation for Task.yield_many</a> has a very good
+example on how to use it.</p>
+<p><a href="https://elixirforum.com/t/elixir-task-timeout-pitfall/2192/7?u=minhajuddin" target="_blank" rel="external">@benwilson512 has a good example on this</a></p>
+<blockquote>
+<p>..suppose you wrote the following code:</p>
+</blockquote>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">task = Task.async(<span class="keyword">fn</span> -&gt; Process.sleep(<span class="symbol">:infinity</span>) <span class="keyword">end</span>)</div><div class="line"></div><div class="line">Process.sleep(<span class="number">5_000</span>)</div><div class="line">Task.await(task, <span class="number">5_000</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>How long before it times out? 10 seconds of course. But this is obvious and expected.
+This is exactly what you’re doing by making the Task.await calls consecutive.
+It’s just that instead of sleeping in the main process you’re waiting on a different task.
+Task.await is blocking, this is expected.</p>
+</blockquote>
 
         
       
@@ -147,7 +173,7 @@ Check it out.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ciuy0hv1g00421gs3osy7giji" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ciuybzfph00451donngoghhr6" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/#disqus_thread" class="article-comment-link">Comments</a>
       
