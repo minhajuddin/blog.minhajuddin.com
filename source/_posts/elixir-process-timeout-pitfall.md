@@ -54,3 +54,6 @@ at the end of 1s, 2s, ... 10s This code will run just fine.
 
 This is a completely made up example but it should show you that running in parallel
 with timeouts is not just a `Task.await` away.
+
+I have coded an example app with proper timeout handling and parallel processing at https://github.com/minhajuddin/parallel_elixir_workers
+Check it out.
