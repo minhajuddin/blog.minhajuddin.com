@@ -24,7 +24,7 @@ tags:
   9. We'll be running our builds on the production server
 
 ## 1. Install the prerequisites on the server (on server)
-[Install elixir](http://elixir-lang.org/install.html), [git](https://help.ubuntu.com/lts/serverguide/git.html), 
+[Install elixir](http://elixir-lang.org/install.html), [git](https://help.ubuntu.com/lts/serverguide/git.html),
 [postgresql](https://help.ubuntu.com/community/PostgreSQL) and [nodejs](https://nodejs.org/en/download/package-manager/)
 
 ```sh
@@ -161,6 +161,8 @@ use Mix.Config
 config :simple, Simple.Endpoint,
   secret_key_base: "RgeM4Dt8kl3yyf47K1DXWr8mgANzOL9TNOOiCknZM8LLDeSdS1ia5Vc2HkmKhy68"
   http: [port: 4010],
+  server: true, # <=== this is very important
+  root: "/opt/www/slugex",
   url: [host: "slugex.com", port: 443],
   cache_static_manifest: "priv/static/manifest.json"
 
@@ -217,7 +219,15 @@ mix ecto.create
 
 ## 9. TODO: Configuration using conform
 
+## 10. TODO: database backups to S3
+## 10. TODO: uptime monitoring of websites using uptime monitor
+## 10. TODO: email via SES
+## 10. TODO: db seeds
+## 10. TODO: nginx caching basics, static assets large expirations
+## 10. TODO: remote console for debugging
+sudo letsencrypt certonly --webroot -w /opt/www/webmonitor/public/ -d webmonitorhq.com  --webroot -w /opt/www/webmonitor/public/ -d www.webmonitorhq.com
 
+## 11. Check SSL certificate: https://www.sslshopper.com/ssl-checker.html
 
 ### Common mistakes/errors
  1. SSH errors
