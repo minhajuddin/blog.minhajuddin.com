@@ -120,7 +120,7 @@ This is really bad data quality, the data that is being sent should have consist
 Either uppper, lower, or capitalized, but consistent. Anyway, this provider was sending data will all kinds of mixed case keys.</p>
 <p>Here is some elixir code that I wrote to get keys using a case insensitive match.
 There is an issue on the <a href="https://github.com/devinus/poison/issues/44" target="_blank" rel="external">Poison decoder project</a> which should render this useless, however till that is fixed you can use the code below:</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">CaseInsensitiveGetIn</span></span> <span class="keyword">do</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">ci_get_in</span></span>(<span class="keyword">nil</span>, <span class="number">_</span>), <span class="symbol">do:</span> <span class="keyword">nil</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">ci_get_in</span></span>(map, [key]) <span class="keyword">do</span></div><div class="line">    &#123;_key, val&#125; = Enum.find(map, &amp;key_lookup(&amp;<span class="number">1</span>, key))</div><div class="line">    val</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">ci_get_in</span></span>(map, [key|rest]) <span class="keyword">do</span></div><div class="line">    current_level_map = ci_get_in(map, [key])</div><div class="line">    ci_get_in current_level_map, rest</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">key_lookup</span></span>(&#123;k, _v&#125;, key) <span class="keyword">when</span> is_binary(k) <span class="keyword">do</span></div><div class="line">    String.downcase(k) == String.downcase(key)</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">ExUnit.start</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">CaseInsensitiveGetInTest</span></span> <span class="keyword">do</span></div><div class="line">  <span class="keyword">use</span> ExUnit.Case</div><div class="line">  import CaseInsensitiveGetIn</div><div class="line"></div><div class="line">  test <span class="string">"gets an exact key"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>&#125;, ~w(name)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets capitalized key in map"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"Name"</span> =&gt; <span class="string">"Mujju"</span>&#125;, ~w(name)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets capitalized input key in map"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"Name"</span> =&gt; <span class="string">"Mujju"</span>&#125;, ~w(Name)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets mixed input key in map"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"NaME"</span> =&gt; <span class="string">"Mujju"</span>&#125;, ~w(nAme)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets an exact deep key"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"sister"</span> =&gt; %&#123;<span class="string">"name"</span> =&gt; <span class="string">"Zainu"</span>&#125;&#125;, ~w(sister name)) == <span class="string">"Zainu"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets an mixed case deep map key"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"sisTER"</span> =&gt; %&#123;<span class="string">"naME"</span> =&gt; <span class="string">"Zainu"</span>&#125;&#125;, ~w(sister name)) == <span class="string">"Zainu"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets an mixed case deep key"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"sisTER"</span> =&gt; %&#123;<span class="string">"naME"</span> =&gt; <span class="string">"Zainu"</span>&#125;&#125;, ~w(sIStER NAme)) == <span class="string">"Zainu"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets a very deep key"</span> <span class="keyword">do</span></div><div class="line">    map = %&#123;</div><div class="line">      <span class="string">"aB"</span> =&gt; %&#123;</div><div class="line">        <span class="string">"BC"</span> =&gt; <span class="number">7</span>,</div><div class="line">        <span class="string">"c"</span> =&gt; %&#123;<span class="string">"DD"</span> =&gt; <span class="symbol">:foo</span>, <span class="string">"Cassandra"</span> =&gt; <span class="symbol">:awesome</span>, <span class="string">"MOO"</span> =&gt; %&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>&#125;&#125;</div><div class="line">      &#125;&#125;</div><div class="line">    assert ci_get_in(map, ~w(ab bc)) == <span class="number">7</span></div><div class="line">    assert ci_get_in(map, ~w(ab c dd)) == <span class="symbol">:foo</span></div><div class="line">    assert ci_get_in(map, ~w(ab c moo name)) == <span class="string">"Mujju"</span></div><div class="line"></div><div class="line">    assert ci_get_in(map, ~w(ab Bc)) == <span class="number">7</span></div><div class="line">    assert ci_get_in(map, ~w(ab C dD)) == <span class="symbol">:foo</span></div><div class="line">    assert ci_get_in(map, ~w(ab C mOo nAMe)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">CaseInsensitiveGetIn</span></span> <span class="keyword">do</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">ci_get_in</span></span>(<span class="keyword">nil</span>, <span class="number">_</span>), <span class="symbol">do:</span> <span class="keyword">nil</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">ci_get_in</span></span>(&#123;_k, val&#125;, []), <span class="symbol">do:</span> val</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">ci_get_in</span></span>(&#123;_k, val&#125;, key), <span class="symbol">do:</span> ci_get_in val, key</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">ci_get_in</span></span>(map, [key|rest]) <span class="keyword">do</span></div><div class="line">    current_level_map = Enum.find(map, &amp;key_lookup(&amp;<span class="number">1</span>, key))</div><div class="line">    ci_get_in current_level_map, rest</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">key_lookup</span></span>(&#123;k, _v&#125;, key) <span class="keyword">when</span> is_binary(k) <span class="keyword">do</span></div><div class="line">    String.downcase(k) == String.downcase(key)</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">ExUnit.start</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">CaseInsensitiveGetInTest</span></span> <span class="keyword">do</span></div><div class="line">  <span class="keyword">use</span> ExUnit.Case</div><div class="line">  import CaseInsensitiveGetIn</div><div class="line"></div><div class="line">  test <span class="string">"gets an exact key"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>&#125;, ~w(name)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets capitalized key in map"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"Name"</span> =&gt; <span class="string">"Mujju"</span>&#125;, ~w(name)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets capitalized input key in map"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"Name"</span> =&gt; <span class="string">"Mujju"</span>&#125;, ~w(Name)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets mixed input key in map"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"NaME"</span> =&gt; <span class="string">"Mujju"</span>&#125;, ~w(nAme)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets an exact deep key"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"sister"</span> =&gt; %&#123;<span class="string">"name"</span> =&gt; <span class="string">"Zainu"</span>&#125;&#125;, ~w(sister name)) == <span class="string">"Zainu"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets an mixed case deep map key"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"sisTER"</span> =&gt; %&#123;<span class="string">"naME"</span> =&gt; <span class="string">"Zainu"</span>&#125;&#125;, ~w(sister name)) == <span class="string">"Zainu"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets an mixed case deep key"</span> <span class="keyword">do</span></div><div class="line">    assert ci_get_in(%&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"sisTER"</span> =&gt; %&#123;<span class="string">"naME"</span> =&gt; <span class="string">"Zainu"</span>&#125;&#125;, ~w(sIStER NAme)) == <span class="string">"Zainu"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  test <span class="string">"gets a very deep key"</span> <span class="keyword">do</span></div><div class="line">    map = %&#123;</div><div class="line">      <span class="string">"aB"</span> =&gt; %&#123;</div><div class="line">        <span class="string">"BC"</span> =&gt; <span class="number">7</span>,</div><div class="line">        <span class="string">"c"</span> =&gt; %&#123;<span class="string">"DD"</span> =&gt; <span class="symbol">:foo</span>, <span class="string">"Cassandra"</span> =&gt; <span class="symbol">:awesome</span>, <span class="string">"MOO"</span> =&gt; %&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>&#125;&#125;</div><div class="line">      &#125;&#125;</div><div class="line">    assert ci_get_in(map, ~w(ab bc)) == <span class="number">7</span></div><div class="line">    assert ci_get_in(map, ~w(ab c dd)) == <span class="symbol">:foo</span></div><div class="line">    assert ci_get_in(map, ~w(ab c moo name)) == <span class="string">"Mujju"</span></div><div class="line"></div><div class="line">    assert ci_get_in(map, ~w(ab Bc)) == <span class="number">7</span></div><div class="line">    assert ci_get_in(map, ~w(ab C dD)) == <span class="symbol">:foo</span></div><div class="line">    assert ci_get_in(map, ~w(ab C mOo nAMe)) == <span class="string">"Mujju"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
 
         
       
@@ -130,7 +130,7 @@ There is an issue on the <a href="https://github.com/devinus/poison/issues/44" t
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/" data-id="cixsu70oy003a1dsbrdc22c8q" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/" data-id="cixsuyly6003a1dnj0kkws7v7" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -185,7 +185,7 @@ Here is a script I created which prints all the possible nodes in the input file
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/" data-id="cixsu70x300bo1dsb1bkzpo9o" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/" data-id="cixsuym7800bo1dnjm357zplt" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -233,7 +233,7 @@ Here is a script I created which prints all the possible nodes in the input file
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/" data-id="cixsu70ol002w1dsbfnixeb2n" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/" data-id="cixsuylxs002w1dnjfs3vxrow" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -295,7 +295,7 @@ I wanted to show my blog’s content on the home page, It is pretty straightforw
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/" data-id="cixsu70tf007x1dsb34myl11q" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/" data-id="cixsuym2f007x1dnj2hcdbk1z" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -389,7 +389,7 @@ paste it in the server’s config/prod.secret.exs secret</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" data-id="cixsu70r5005v1dsbjzwqmqig" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" data-id="cixsuym0g005n1dnjo93pneh4" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -440,7 +440,7 @@ a binary and returns their bits</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/" data-id="cixsu70r1005n1dsb3gco4mj9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/" data-id="cixsuym0q005z1dnjbdkb3a3e" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -526,7 +526,7 @@ Task.await is blocking, this is expected.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="cixsu70q1004g1dsbbqhgpyvy" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="cixsuylze004g1dnjz0xevxyb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -582,7 +582,7 @@ So, now whenever I hit the right hotkey it types the letter ‘p’ in the tmux 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="cixsu70qv005f1dsbobmu1n9l" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="cixsuym09005f1dnjgu1kgn7h" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -637,7 +637,7 @@ I got around this by proxying over socks5. Here is how you can do it.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/" data-id="cixsu70ts008d1dsb42xfl6lb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/" data-id="cixsuym3n00891dnjgr10cdcw" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -697,7 +697,7 @@ some code for every interval of <code>time</code>. However, the code below doesn
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/" data-id="cixsu70l8001j1dsba896h5pq" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/" data-id="cixsuylvo001j1dnj8yqtyg4q" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -751,7 +751,7 @@ some code for every interval of <code>time</code>. However, the code below doesn
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="cixsu70up00991dsbmhkwo5gn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="cixsuym4r009f1dnjut2eqrj5" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -840,7 +840,7 @@ Downtime = 1 + 5</li>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="cixsu70n100221dsbpbn6kmvk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="cixsuylwz00221dnj4koo6mnm" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -893,7 +893,7 @@ Just insert <code>|&gt; IO.inspect</code> between your pipelines.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="cixsu70pv00491dsb8wbrfrnb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="cixsuylz800491dnjpqqm7ak1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -949,7 +949,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="cixsu70tl00841dsbx1x1n1kf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="cixsuym2l00841dnjq0i5qg4v" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1000,7 +1000,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="cixsu70y400cu1dsb7lw63ead" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="cixsuym8e00cw1dnjq8btb5my" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1049,7 +1049,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="cixsu70xa00bx1dsbjy1f1ez0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="cixsuym7g00bx1dnjfl7zysie" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1099,7 +1099,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="cixsu70vy00ah1dsbbrvxoq07" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="cixsuym6200ah1dnj0ahk2mfm" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1155,7 +1155,7 @@ function finds a home in your <code>~/.bashrc</code> :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="cixsu70sc007m1dsbjbcpzuj9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="cixsuym1q00731dnju8atjlsi" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1235,7 +1235,7 @@ Do yourself a favor and use tmux.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="cixsu70xj00c81dsbit21kj4d" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="cixsuym7p00c81dnj130k1dj5" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1289,7 +1289,7 @@ Do yourself a favor and use tmux.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/" data-id="cixsu70rb00671dsbrg6rh6do" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/" data-id="cixsuym0w00671dnjap5xhu1v" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/#disqus_thread" class="article-comment-link">Comments</a>
       
