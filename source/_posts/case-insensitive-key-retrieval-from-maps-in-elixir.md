@@ -18,13 +18,11 @@ There is an issue on the [Poison decoder project](https://github.com/devinus/poi
 defmodule CaseInsensitiveGetIn do
   def ci_get_in(nil, _), do: nil
 
-  def ci_get_in(map, [key]) do
-    {_key, val} = Enum.find(map, &key_lookup(&1, key))
-    val
-  end
+  def ci_get_in({_k, val}, []), do: val
+  def ci_get_in({_k, val}, key), do: ci_get_in val, key
 
   def ci_get_in(map, [key|rest]) do
-    current_level_map = ci_get_in(map, [key])
+    current_level_map = Enum.find(map, &key_lookup(&1, key))
     ci_get_in current_level_map, rest
   end
 
