@@ -11,41 +11,6 @@ tags:
 
 ### If you find issues or can improve this guide, please create a pull request at:
 
-## 0. Assumptions
-# TODO: make these assumptions in the form a table
-  1. Our local computer is an ubuntu machine with ruby, git and elixir installed.
-  2. We are deploying to a server whose hostname is `slugex.com`
-  3. The server process runs under a user called `slugex`
-  4. The server is an ubuntu machine which has git, postgresql, elixir, nginx and nodejs installed
-  5. We'll be running our app server behind nginx
-  6. We'll be setting up SSL using letsencrypt
-  7. We'll be using distillery to do the deploys
-  8. We'll be using git tags to tag releases?
-  9. We'll be running our builds on the production server
-
-## 1. Install the prerequisites on the server (on server)
-[Install elixir](http://elixir-lang.org/install.html), [git](https://help.ubuntu.com/lts/serverguide/git.html),
-[postgresql](https://help.ubuntu.com/community/PostgreSQL) and [nodejs](https://nodejs.org/en/download/package-manager/)
-
-```sh
-## commands to be executed on our server
-# elixir and erlang
-wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
-sudo dpkg -i erlang-solutions_1.0_all.deb
-sudo apt-get update
-sudo apt-get install esl-erlang
-sudo apt-get install elixir
-
-# git
-sudo apt-get install git
-
-# postgresql
-sudo apt-get install postgresql postgresql-contrib
-
-# nodejs
-curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-sudo apt-get install -y nodejs
-```
 
 ## 2. Setup the server
 We'll be running our server under the user called `slugex`. So, we first need
