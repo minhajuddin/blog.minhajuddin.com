@@ -60,10 +60,12 @@ The part about vim is partially true, in that once it *clicks* everything falls 
 Notepad is an editor which is very easy to use, but if you compare it to programming languages it has the capability of a calculator. You put your cursor in a place type stuff and that is all.
 **Vim lets you speak to it, in an intelligent way** Anyway, I am rambling at this point.
 
-The reason I am writing this blog post in the middle of the night is because many people ask me "How should I setup vim?", I'd love to have it look/work like yours. And many times I [point them to my vimrc](https://github.com/minhajuddin/vimrc/blob/master/vimrc).
+The reason I am writing this blog post in the middle of the night is because many people ask me "How should I setup vim?", I'd love to have it look/work like yours.
+And many times I [point them to my vimrc](https://github.com/minhajuddin/vimrc/blob/master/vimrc).
 However, if you are planning on learning vim, don't go there. Start with the following `~/.vimrc`
 
 ```viml
+
 set nocompatible
 
 " plugins
@@ -83,6 +85,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+
 ```
 
 That is all, no more no less.
