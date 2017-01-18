@@ -52,7 +52,7 @@ This is really the power of vim, vim was built for text editing and it is the be
 
 There is a very popular learning curve graph about vim
 
-{%asset_img editor-learning-curve.png Editor learning curves}
+{%asset_img editor-learning-curve.png Editor learning curves%}
 [Source](https://blogs.msdn.microsoft.com/steverowe/2004/11/17/code-editor-learning-curves/)
 
 The part about vim is partially true, in that once it *clicks* everything falls into place.
