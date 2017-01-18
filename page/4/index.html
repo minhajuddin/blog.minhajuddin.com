@@ -93,56 +93,6 @@ ga('send', 'pageview');
         <section id="main">
           
   
-    <article id="post-nifty-script-to-keep-your-local-git-repositories-up-to-date" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" class="article-date">
-  <time datetime="2012-10-29T00:00:00.000Z" itemprop="datePublished">2012-10-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/">Nifty script to keep your local git repositories up to date</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>A lot of times when I try to hack on my code, I find that my git repository doesn’t have the latest commits. And in a lot of these instances I don’t have an internet connection (either because I am  at a client’s location or because there is a power cut). Here is a little script which I use to keep all my local repos up to date automatically.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#location: $HOME/.scripts/git-update</span></div><div class="line">ROOT_DIR=<span class="string">"<span class="variable">$HOME</span>/r"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> repo <span class="keyword">in</span> $(ls <span class="variable">$ROOT_DIR</span>)</div><div class="line"><span class="keyword">do</span></div><div class="line">  <span class="built_in">cd</span> <span class="string">"<span class="variable">$ROOT_DIR</span>/<span class="variable">$repo</span>"</span></div><div class="line">  <span class="keyword">for</span> remote <span class="keyword">in</span> $(git remote)</div><div class="line">  <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"fetching <span class="variable">$repo</span> <span class="variable">$remote</span>"</span></div><div class="line">    git fetch <span class="variable">$remote</span></div><div class="line">  <span class="keyword">done</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#crontab entry</span></div><div class="line">@reboot /bin/bash <span class="_">-l</span> -c <span class="string">'cd /home/minhajuddin/ &amp;&amp; $HOME/.scripts/git-update'</span></div></pre></td></tr></table></figure>
-<p>The git-update script should be pretty self explantory. I am looking at all the dirs under my “repos root dir” and for each of those I am finding the remotes and fetching them one at a time. The crontab entry on the other hand makes sure that every time I start my computer this script is executed. Also, I can run <code>git update</code> whenever I am online to get fetch all the new commits for my repos.</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="ciy3bzt3400ah1epnuhb9yu6n" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automatic/">automatic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
     <article id="post-how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" class="article-date">
@@ -184,12 +134,62 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="ciy3bzswc007u1epna08qwgxg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="ciy3c14lh007u1et7i6md38zt" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/authenticate/">authenticate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/console/">console</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/devise/">devise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/production/">production</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-nifty-script-to-keep-your-local-git-repositories-up-to-date" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" class="article-date">
+  <time datetime="2012-10-29T00:00:00.000Z" itemprop="datePublished">2012-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/">Nifty script to keep your local git repositories up to date</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A lot of times when I try to hack on my code, I find that my git repository doesn’t have the latest commits. And in a lot of these instances I don’t have an internet connection (either because I am  at a client’s location or because there is a power cut). Here is a little script which I use to keep all my local repos up to date automatically.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#location: $HOME/.scripts/git-update</span></div><div class="line">ROOT_DIR=<span class="string">"<span class="variable">$HOME</span>/r"</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> repo <span class="keyword">in</span> $(ls <span class="variable">$ROOT_DIR</span>)</div><div class="line"><span class="keyword">do</span></div><div class="line">  <span class="built_in">cd</span> <span class="string">"<span class="variable">$ROOT_DIR</span>/<span class="variable">$repo</span>"</span></div><div class="line">  <span class="keyword">for</span> remote <span class="keyword">in</span> $(git remote)</div><div class="line">  <span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"fetching <span class="variable">$repo</span> <span class="variable">$remote</span>"</span></div><div class="line">    git fetch <span class="variable">$remote</span></div><div class="line">  <span class="keyword">done</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#crontab entry</span></div><div class="line">@reboot /bin/bash <span class="_">-l</span> -c <span class="string">'cd /home/minhajuddin/ &amp;&amp; $HOME/.scripts/git-update'</span></div></pre></td></tr></table></figure>
+<p>The git-update script should be pretty self explantory. I am looking at all the dirs under my “repos root dir” and for each of those I am finding the remotes and fetching them one at a time. The crontab entry on the other hand makes sure that every time I start my computer this script is executed. Also, I can run <code>git update</code> whenever I am online to get fetch all the new commits for my repos.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="ciy3c14oq00ah1et7rlcsji6d" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/automatic/">automatic</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/update/">update</a></li></ul>
 
     </footer>
   </div>
@@ -236,7 +236,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="ciy3bzski00161epnpgvb4yvy" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="ciy3c14fl00161et721bww0hr" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -294,7 +294,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="ciy3bzsko001d1epnwl0xkvhf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="ciy3c14fr001d1et7v5e8x21f" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -344,7 +344,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="ciy3bzssm005g1epn1kac0266" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="ciy3c14jp005f1et7lsrsyq4a" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -402,7 +402,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="ciy3bzt0u009g1epnr4pe3apz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="ciy3c14ne00961et7lfh3ol2k" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -453,7 +453,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="ciy3bzt7d00ek1epnsawkqe7q" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="ciy3c14sk00ek1et7ocx6t5bx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -504,7 +504,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="ciy3bzsn4002h1epna2x6wgej" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="ciy3c14h3002h1et70khldjdb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -551,7 +551,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="ciy3bzsmb00201epnozeimhmz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="ciy3c14gn00201et7pk4h7uqq" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -598,7 +598,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="ciy3bzt7900ef1epnxtjndsvo" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="ciy3c14sg00ef1et701ya63um" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -646,7 +646,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/07/03/my-substance-template/" data-id="ciy3bzt2x00ac1epn257069bv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/07/03/my-substance-template/" data-id="ciy3c14on00ac1et7i0ppd56a" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/07/03/my-substance-template/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -705,7 +705,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="ciy3bzsw0007l1epnwisnz532" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="ciy3c14ky00741et74zlk8r3q" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -755,7 +755,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/" data-id="ciy3bzt2f00a31epns5cw7ye7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/" data-id="ciy3c14of00a31et7k8ofd8lj" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -813,7 +813,7 @@ your html to haml.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="ciy3bzstf005w1epnqfcjowcd" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="ciy3c14k5005w1et77hcjzpt2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -875,7 +875,7 @@ login to servers using a command like <code>ssh myserver</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/" data-id="ciy3bzt2500a11epnak1qrujf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/" data-id="ciy3c14oa00a11et7gc3yu2qx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -922,7 +922,7 @@ of site rendering.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/" data-id="ciy3bzt6i00dw1epnvsxw7gmi" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/" data-id="ciy3c14rs00dx1et78u909eao" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -980,7 +980,7 @@ created a small ruby script which nags you to get back to work :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/" data-id="ciy3bzt2b00a21epn617omqxl" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/" data-id="ciy3c14od00a21et7mtkywubf" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1031,7 +1031,7 @@ on terminal and it will do a global search and replace of all the files in the r
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/" data-id="ciy3bzt5b00cl1epnihnse6nl" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/" data-id="ciy3c14ql00cl1et7ozbqjlzv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1080,7 +1080,7 @@ demonstrates that:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/" data-id="ciy3bzsr0004j1epn4v5fihek" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/" data-id="ciy3c14j0004j1et70nek0zvu" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1136,7 +1136,7 @@ perform the above step for your <em>git user</em>.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/" data-id="ciy3bzss500581epn3rajb0in" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/" data-id="ciy3c14ji00581et7l0ab4bfg" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/#disqus_thread" class="article-comment-link">Comments</a>
       
