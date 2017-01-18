@@ -204,7 +204,7 @@ Connection: keep-alive
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="ciy3busbl008v1dqe77d8nlx9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="ciy3bzszv008v1epnld6pxqwj" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/05/19/http/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -290,7 +290,7 @@ customers? Virtualization/Cloud computing allows web administrators to do this.<
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="ciy3bus46003s1dqewokd7to9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="ciy3bzspb003s1epnjmno6bme" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/05/19/cloud-computing/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -346,88 +346,12 @@ customers? Virtualization/Cloud computing allows web administrators to do this.<
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="ciy3bus2c002n1dqes4xfbccr" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="ciy3bzsnc002n1epnv2b5w2xp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eager-load/">eager-load</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/templates/">templates</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-brute-force" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/19/brute-force/" class="article-date">
-  <time datetime="2013-02-19T00:00:00.000Z" itemprop="datePublished">2013-02-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/19/brute-force/">Brute force</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I am planning to participate in the Google Code Jam this year.
-And I have been working on the <a href="https://code.google.com/codejam/contests.html" target="_blank" rel="external">practice problems</a>. 
-It’s been fun, It’s a great feeling when you are able to solve a challenging
-problem after spending time on it.</p>
-<p>My strategy for solving problems is simple: First I try the brute force
-approach, Once I have a solution, I start thinking of a more efficient way to do it. I have since realized that spending some time thinking  about the problem before butting your head against it is way more helpful. When I reached the <a href="https://code.google.com/codejam/contest/32016/dashboard" target="_blank" rel="external">Minimum Scalar Product</a> problem. </p>
-<blockquote>
-<p>You are given two vectors v1=(x1,x2,…,xn) and v2=(y1,y2,…,yn). The 
-scalar product of these vectors is a single number, calculated as x1y1+x2y2+…+xnyn.</p>
-<p>Suppose you are allowed to permute the coordinates of each vector as you wish.
-Choose two permutations such that the scalar product of your two new vectors is 
-the smallest possible, and output that minimum scalar product.</p>
-</blockquote>
-<p>I thought for a moment and came up with the idea that I needed all possible combinations
-of the first vector with a constant ordered second vector. This algorithm had an order
-of O(n!). I just jumped into coding and started solving it. Here is
-the ugly mess of code I came up with: </p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinimumScalarProduct</span></span></div><div class="line">  <span class="comment">#naive solution O(n!)</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">distribute</span><span class="params">(x, y)</span></span></div><div class="line">    <span class="comment">#puts "DISTRIBUTING: #&#123;x.length&#125;, #&#123;y.length&#125;"</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">1</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]] ],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">2</span></div><div class="line">      <span class="comment">#puts "TIME TO GO HOME"</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]],  [x[<span class="number">1</span>],y[<span class="number">1</span>]]],</div><div class="line">        [ [x[<span class="number">1</span>],y[<span class="number">0</span>]],  [x[<span class="number">0</span>],y[<span class="number">1</span>]]],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line">    cumulative_dist = []</div><div class="line">    <span class="comment">#puts "LEN: #&#123;x.length-1&#125;"</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..x.length-<span class="number">1</span>)</div><div class="line">      <span class="comment">#puts "LETS BREAK IT DOWN #&#123;i&#125;"</span></div><div class="line">      xi = x[i]</div><div class="line">      yi = y.first</div><div class="line">      newx = x.clone</div><div class="line">      newx.delete_at(i)</div><div class="line">      newy = y.clone</div><div class="line">      newy.delete_at(<span class="number">0</span>)</div><div class="line">      dist = distribute(newx, newy)</div><div class="line">      dist.each <span class="keyword">do</span><span class="params">|d|</span></div><div class="line">        d.unshift([xi,yi])</div><div class="line">      <span class="keyword">end</span></div><div class="line">      cumulative_dist += dist</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">return</span> cumulative_dist</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">smallest_vector</span><span class="params">(x,y)</span></span></div><div class="line">    dist = distribute(x,y)</div><div class="line"></div><div class="line">    <span class="comment">#dist.each do |d|</span></div><div class="line">      <span class="comment">#puts d.map&#123;|a| "#&#123;a[0]&#125;*#&#123;a[1]&#125;"&#125;.join(" + ")</span></div><div class="line">    <span class="comment">#end</span></div><div class="line">    <span class="comment">#puts '=================================================='</span></div><div class="line">    <span class="comment">#return</span></div><div class="line"></div><div class="line">    dist =  dist.map <span class="keyword">do</span> <span class="params">|d|</span></div><div class="line">      d.map&#123;<span class="params">|a|</span> a[<span class="number">0</span>]*a[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, el|</span> memo + el&#125;</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="comment">#puts dist.join(";")</span></div><div class="line">    dist.sort.first</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">lines = File.readlines(ARGV.first).map(&amp;<span class="symbol">:chomp</span>)</div><div class="line">no_of_cases = lines.shift.to_i</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..no_of_cases-<span class="number">1</span>)</div><div class="line">  <span class="keyword">begin</span></div><div class="line">    n = lines.shift</div><div class="line">    xa = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    ya = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    <span class="comment">#MinimumScalarProduct.smallest_vector(xa, ya)</span></div><div class="line">    puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;MinimumScalarProduct.smallest_vector(xa, ya)&#125;</span>"</span></div><div class="line">  <span class="keyword">rescue</span> StandardError =&gt; ex</div><div class="line">    STDERR.puts <span class="string">"At i: <span class="subst">#&#123;i&#125;</span>"</span></div><div class="line">    STDERR.puts <span class="string">"n:<span class="subst">#&#123;n&#125;</span>, xa: <span class="subst">#&#123;xa.inspect&#125;</span>, ya: <span class="subst">#&#123;ya.inspect&#125;</span>"</span></div><div class="line">    STDERR.puts ex</div><div class="line">    STDERR.puts ex.backtrace</div><div class="line">    exit</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p><a href="https://substancehq.s3.amazonaws.com/static_asset/512393734c01e92c45000b78/A-small-practice.in.txt" target="_blank" rel="external">Here is an example test file</a> 
-if you want to try it.</p>
-<p>Then, I started actually thinking about the problem. After a few minutes it
-became clear to me that all I had to do, to get a minimum product, was order the 
-two vectors in opposing orders of magnitude. And with this
-understanding I could solve it much more easily and with an algorithm with an order of O(nlogn).</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">lines = File.readlines(ARGV.first <span class="params">||</span> <span class="string">'A-small-practice.in'</span>).map&#123;<span class="params">|x|</span> x.chomp&#125;</div><div class="line"></div><div class="line">t = lines.shift.to_i</div><div class="line"></div><div class="line">(<span class="number">0</span>..t-<span class="number">1</span>).each <span class="keyword">do</span> <span class="params">|i|</span></div><div class="line">  lines.shift</div><div class="line">  xa = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort <span class="comment">#O(n log(n))</span></div><div class="line">  ya = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort.reverse <span class="comment">#O(n log(n))</span></div><div class="line">  min =  xa.zip(ya).map&#123;<span class="params">|x|</span>  x[<span class="number">0</span>] * x[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, x|</span> memo + x&#125; <span class="comment">#O(n)</span></div><div class="line">  puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;min&#125;</span>"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>In the past I have used brute force to solve problems where the time didn’t
-matter (I could always move it to a background process if the time mattered),
-but it’s a nice feeling to be able to be able to solve problems by simply
-thinking. Sometimes we(software developers) are so addicted to the quick
-feedback cycle of coding that we fail to spend time thinking of the problem/solution.</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="ciy3bus3o003d1dqepxswkysl" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/02/19/brute-force/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brute-force/">brute-force</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solving/">solving</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
 
     </footer>
   </div>
@@ -498,12 +422,135 @@ as hers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="ciy3bus5y00541dqeuz7j7ptn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="ciy3bzsrx00541epnjciotxm9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time-overlap/">time-overlap</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-brute-force" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/02/19/brute-force/" class="article-date">
+  <time datetime="2013-02-19T00:00:00.000Z" itemprop="datePublished">2013-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/02/19/brute-force/">Brute force</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I am planning to participate in the Google Code Jam this year.
+And I have been working on the <a href="https://code.google.com/codejam/contests.html" target="_blank" rel="external">practice problems</a>. 
+It’s been fun, It’s a great feeling when you are able to solve a challenging
+problem after spending time on it.</p>
+<p>My strategy for solving problems is simple: First I try the brute force
+approach, Once I have a solution, I start thinking of a more efficient way to do it. I have since realized that spending some time thinking  about the problem before butting your head against it is way more helpful. When I reached the <a href="https://code.google.com/codejam/contest/32016/dashboard" target="_blank" rel="external">Minimum Scalar Product</a> problem. </p>
+<blockquote>
+<p>You are given two vectors v1=(x1,x2,…,xn) and v2=(y1,y2,…,yn). The 
+scalar product of these vectors is a single number, calculated as x1y1+x2y2+…+xnyn.</p>
+<p>Suppose you are allowed to permute the coordinates of each vector as you wish.
+Choose two permutations such that the scalar product of your two new vectors is 
+the smallest possible, and output that minimum scalar product.</p>
+</blockquote>
+<p>I thought for a moment and came up with the idea that I needed all possible combinations
+of the first vector with a constant ordered second vector. This algorithm had an order
+of O(n!). I just jumped into coding and started solving it. Here is
+the ugly mess of code I came up with: </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinimumScalarProduct</span></span></div><div class="line">  <span class="comment">#naive solution O(n!)</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">distribute</span><span class="params">(x, y)</span></span></div><div class="line">    <span class="comment">#puts "DISTRIBUTING: #&#123;x.length&#125;, #&#123;y.length&#125;"</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">1</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]] ],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">2</span></div><div class="line">      <span class="comment">#puts "TIME TO GO HOME"</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]],  [x[<span class="number">1</span>],y[<span class="number">1</span>]]],</div><div class="line">        [ [x[<span class="number">1</span>],y[<span class="number">0</span>]],  [x[<span class="number">0</span>],y[<span class="number">1</span>]]],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line">    cumulative_dist = []</div><div class="line">    <span class="comment">#puts "LEN: #&#123;x.length-1&#125;"</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..x.length-<span class="number">1</span>)</div><div class="line">      <span class="comment">#puts "LETS BREAK IT DOWN #&#123;i&#125;"</span></div><div class="line">      xi = x[i]</div><div class="line">      yi = y.first</div><div class="line">      newx = x.clone</div><div class="line">      newx.delete_at(i)</div><div class="line">      newy = y.clone</div><div class="line">      newy.delete_at(<span class="number">0</span>)</div><div class="line">      dist = distribute(newx, newy)</div><div class="line">      dist.each <span class="keyword">do</span><span class="params">|d|</span></div><div class="line">        d.unshift([xi,yi])</div><div class="line">      <span class="keyword">end</span></div><div class="line">      cumulative_dist += dist</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">return</span> cumulative_dist</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">smallest_vector</span><span class="params">(x,y)</span></span></div><div class="line">    dist = distribute(x,y)</div><div class="line"></div><div class="line">    <span class="comment">#dist.each do |d|</span></div><div class="line">      <span class="comment">#puts d.map&#123;|a| "#&#123;a[0]&#125;*#&#123;a[1]&#125;"&#125;.join(" + ")</span></div><div class="line">    <span class="comment">#end</span></div><div class="line">    <span class="comment">#puts '=================================================='</span></div><div class="line">    <span class="comment">#return</span></div><div class="line"></div><div class="line">    dist =  dist.map <span class="keyword">do</span> <span class="params">|d|</span></div><div class="line">      d.map&#123;<span class="params">|a|</span> a[<span class="number">0</span>]*a[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, el|</span> memo + el&#125;</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="comment">#puts dist.join(";")</span></div><div class="line">    dist.sort.first</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">lines = File.readlines(ARGV.first).map(&amp;<span class="symbol">:chomp</span>)</div><div class="line">no_of_cases = lines.shift.to_i</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..no_of_cases-<span class="number">1</span>)</div><div class="line">  <span class="keyword">begin</span></div><div class="line">    n = lines.shift</div><div class="line">    xa = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    ya = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    <span class="comment">#MinimumScalarProduct.smallest_vector(xa, ya)</span></div><div class="line">    puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;MinimumScalarProduct.smallest_vector(xa, ya)&#125;</span>"</span></div><div class="line">  <span class="keyword">rescue</span> StandardError =&gt; ex</div><div class="line">    STDERR.puts <span class="string">"At i: <span class="subst">#&#123;i&#125;</span>"</span></div><div class="line">    STDERR.puts <span class="string">"n:<span class="subst">#&#123;n&#125;</span>, xa: <span class="subst">#&#123;xa.inspect&#125;</span>, ya: <span class="subst">#&#123;ya.inspect&#125;</span>"</span></div><div class="line">    STDERR.puts ex</div><div class="line">    STDERR.puts ex.backtrace</div><div class="line">    exit</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p><a href="https://substancehq.s3.amazonaws.com/static_asset/512393734c01e92c45000b78/A-small-practice.in.txt" target="_blank" rel="external">Here is an example test file</a> 
+if you want to try it.</p>
+<p>Then, I started actually thinking about the problem. After a few minutes it
+became clear to me that all I had to do, to get a minimum product, was order the 
+two vectors in opposing orders of magnitude. And with this
+understanding I could solve it much more easily and with an algorithm with an order of O(nlogn).</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">lines = File.readlines(ARGV.first <span class="params">||</span> <span class="string">'A-small-practice.in'</span>).map&#123;<span class="params">|x|</span> x.chomp&#125;</div><div class="line"></div><div class="line">t = lines.shift.to_i</div><div class="line"></div><div class="line">(<span class="number">0</span>..t-<span class="number">1</span>).each <span class="keyword">do</span> <span class="params">|i|</span></div><div class="line">  lines.shift</div><div class="line">  xa = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort <span class="comment">#O(n log(n))</span></div><div class="line">  ya = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort.reverse <span class="comment">#O(n log(n))</span></div><div class="line">  min =  xa.zip(ya).map&#123;<span class="params">|x|</span>  x[<span class="number">0</span>] * x[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, x|</span> memo + x&#125; <span class="comment">#O(n)</span></div><div class="line">  puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;min&#125;</span>"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>In the past I have used brute force to solve problems where the time didn’t
+matter (I could always move it to a background process if the time mattered),
+but it’s a nice feeling to be able to be able to solve problems by simply
+thinking. Sometimes we(software developers) are so addicted to the quick
+feedback cycle of coding that we fail to spend time thinking of the problem/solution.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="ciy3bzsop003d1epnbcb4un52" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/02/19/brute-force/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brute-force/">brute-force</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solving/">solving</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-review-of-the-books-ive-read" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/02/09/review-of-the-books-ive-read/" class="article-date">
+  <time datetime="2013-02-09T00:00:00.000Z" itemprop="datePublished">2013-02-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/02/09/review-of-the-books-ive-read/">Review of the books I&#39;ve read</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Review</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="ciy3bzt4r00bx1epnv2m34rlq" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/books/">books</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/">review</a></li></ul>
 
     </footer>
   </div>
@@ -567,59 +614,12 @@ an unconscious player in a game of hide and seek with your words</strong></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="ciy3busel00ay1dqeh2png0ry" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="ciy3bzt3v00ay1epnqck8svi7" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/communication/">communication</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/raw/">raw</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sugar-coat/">sugar-coat</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-review-of-the-books-ive-read" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/09/review-of-the-books-ive-read/" class="article-date">
-  <time datetime="2013-02-09T00:00:00.000Z" itemprop="datePublished">2013-02-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/09/review-of-the-books-ive-read/">Review of the books I&#39;ve read</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Review</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="ciy3busfu00br1dqefj9j3b7m" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/books/">books</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/">review</a></li></ul>
 
     </footer>
   </div>
@@ -663,63 +663,12 @@ an unconscious player in a game of hide and seek with your words</strong></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" data-id="ciy3buscb009i1dqeb6thoczp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" data-id="ciy3bzt0p009d1epnugkanzff" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bookmarklet/">bookmarklet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-a-usable-bash-prompt" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/01/a-usable-bash-prompt/" class="article-date">
-  <time datetime="2013-02-01T00:00:00.000Z" itemprop="datePublished">2013-02-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/01/a-usable-bash-prompt/">A usable bash prompt</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="external">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#~/.bashrc</span></div><div class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></div></pre></td></tr></table></figure>
-<p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="external">excellent archlinux wiki</a></p>
-<p>Screenshot:
-<img src="https://substancehq.s3.amazonaws.com/static_asset/510bb12e03b04d32da00233b/Selection_047.jpeg" alt="Screenshot"></p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="ciy3bus1m00231dqelmca2n17" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prompt/">prompt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ps1/">ps1</a></li></ul>
 
     </footer>
   </div>
@@ -806,12 +755,63 @@ possible.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="ciy3busiw00dz1dqe6l15zlrb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="ciy3bzt6t00e01epnecpq7rcn" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/01/tossing-a-bottle/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/experiment/">experiment</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/explore/">explore</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fear/">fear</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-a-usable-bash-prompt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/02/01/a-usable-bash-prompt/" class="article-date">
+  <time datetime="2013-02-01T00:00:00.000Z" itemprop="datePublished">2013-02-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/02/01/a-usable-bash-prompt/">A usable bash prompt</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="external">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#~/.bashrc</span></div><div class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></div></pre></td></tr></table></figure>
+<p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="external">excellent archlinux wiki</a></p>
+<p>Screenshot:
+<img src="https://substancehq.s3.amazonaws.com/static_asset/510bb12e03b04d32da00233b/Selection_047.jpeg" alt="Screenshot"></p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="ciy3bzsmi00231epnoh14tq30" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/prompt/">prompt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ps1/">ps1</a></li></ul>
 
     </footer>
   </div>
@@ -903,7 +903,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="ciy3bus67005a1dqegf9ezqjc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/" data-id="ciy3bzss800591epni0fh8rob" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/31/git-workflow-for-projects-with-multiple-developers/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -957,7 +957,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="ciy3busfl00bk1dqecansobgk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/" data-id="ciy3bzt4f00bk1epn6s0araqw" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/18/resisting-the-temptation-to-be-clever/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1005,7 +1005,7 @@ R &lt;= Commands to run on reviewer&apos;s computer
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="ciy3bus88006v1dqep90pntbu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="ciy3bzsul006t1epni5z5jagk" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1057,68 +1057,12 @@ Make it overwrite the old output or insert before the previous output</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="ciy3bus5q004y1dqe2n092ef9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="ciy3bzsrl004y1epnht2l3ieo" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn/">learn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
-  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
-<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
-<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
-<p>The setup contains two parts.</p>
-<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#~/.scripts/runinbg</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#Script to run a command in background redirecting the</span></div><div class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</div><div class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></div><div class="line"><span class="built_in">shift</span></div><div class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1 &amp;</div><div class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></div><div class="line"><span class="comment">#when the test is complete</span></div><div class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></div></pre></td></tr></table></figure>
-<p>###2. Vim function to call this script with the current filename
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">RunSpecs</span><span class="params">()</span></span></div><div class="line">  :silent!!runinbg bundle exec rspec % <span class="comment">"you can tweak this to your liking</span></div><div class="line">  redraw! <span class="comment">"without this the screen goes blank</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line"></div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-d&gt;</span> :<span class="keyword">call</span> RunSpecs()<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure></p>
-<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
-<p>Update: Added a version with notification</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="ciy3busg300bx1dqeyhs6t0yf" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   </div>
@@ -1176,12 +1120,68 @@ Make it overwrite the old output or insert before the previous output</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="ciy3bushc00cz1dqert1wqssh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="ciy3bzt5n00cz1epn6o9fxth1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
+  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
+<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
+<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
+<p>The setup contains two parts.</p>
+<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#~/.scripts/runinbg</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#Script to run a command in background redirecting the</span></div><div class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</div><div class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></div><div class="line"><span class="built_in">shift</span></div><div class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1 &amp;</div><div class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></div><div class="line"><span class="comment">#when the test is complete</span></div><div class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></div></pre></td></tr></table></figure>
+<p>###2. Vim function to call this script with the current filename
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">RunSpecs</span><span class="params">()</span></span></div><div class="line">  :silent!!runinbg bundle exec rspec % <span class="comment">"you can tweak this to your liking</span></div><div class="line">  redraw! <span class="comment">"without this the screen goes blank</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line"></div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-d&gt;</span> :<span class="keyword">call</span> RunSpecs()<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure></p>
+<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
+<p>Update: Added a version with notification</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="ciy3bzt4n00bs1epnwjpe5t23" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   </div>
@@ -1267,7 +1267,7 @@ software product.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="ciy3busig00dp1dqer9dztwdn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="ciy3bzt6d00dp1epny8plh2ls" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1314,7 +1314,7 @@ software product.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="ciy3busc3009b1dqeghnz3tb8" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="ciy3bzt0d00961epn08g9thzu" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1367,7 +1367,7 @@ software product.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="ciy3bus31002y1dqeu2czwvq9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="ciy3bzsnx002y1epn2kqo9dv3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1424,7 +1424,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="ciy3busje00e81dqebjqm4bsb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="ciy3bzt7200e81epnhf238x3i" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/#disqus_thread" class="article-comment-link">Comments</a>
       
