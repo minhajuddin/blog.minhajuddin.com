@@ -5,19 +5,22 @@
   
   <title>How to deploy a simple phoenix app on a single server using distillery | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="If you find issues or can improve this guide, please create a pull request at:0. AssumptionsTODO: make these assumptions in the form a table
-Our local computer is an ubuntu machine with ruby, git and">
+  <meta name="description" content="If you find issues or can improve this guide, please create a pull request at:2. Setup the serverWe’ll be running our server under the user called slugex. So, we first need
+to create that user.
+123456">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to deploy a simple phoenix app on a single server using distillery">
 <meta property="og:url" content="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="If you find issues or can improve this guide, please create a pull request at:0. AssumptionsTODO: make these assumptions in the form a table
-Our local computer is an ubuntu machine with ruby, git and">
-<meta property="og:updated_time" content="2017-01-18T07:29:26.000Z">
+<meta property="og:description" content="If you find issues or can improve this guide, please create a pull request at:2. Setup the serverWe’ll be running our server under the user called slugex. So, we first need
+to create that user.
+123456">
+<meta property="og:updated_time" content="2017-01-18T07:53:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to deploy a simple phoenix app on a single server using distillery">
-<meta name="twitter:description" content="If you find issues or can improve this guide, please create a pull request at:0. AssumptionsTODO: make these assumptions in the form a table
-Our local computer is an ubuntu machine with ruby, git and">
+<meta name="twitter:description" content="If you find issues or can improve this guide, please create a pull request at:2. Setup the serverWe’ll be running our server under the user called slugex. So, we first need
+to create that user.
+123456">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -117,21 +120,7 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at"><a href="#If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at" class="headerlink" title="If you find issues or can improve this guide, please create a pull request at:"></a>If you find issues or can improve this guide, please create a pull request at:</h3><h2 id="0-Assumptions"><a href="#0-Assumptions" class="headerlink" title="0. Assumptions"></a>0. Assumptions</h2><h1 id="TODO-make-these-assumptions-in-the-form-a-table"><a href="#TODO-make-these-assumptions-in-the-form-a-table" class="headerlink" title="TODO: make these assumptions in the form a table"></a>TODO: make these assumptions in the form a table</h1><ol>
-<li>Our local computer is an ubuntu machine with ruby, git and elixir installed.</li>
-<li>We are deploying to a server whose hostname is <code>slugex.com</code></li>
-<li>The server process runs under a user called <code>slugex</code></li>
-<li>The server is an ubuntu machine which has git, postgresql, elixir, nginx and nodejs installed</li>
-<li>We’ll be running our app server behind nginx</li>
-<li>We’ll be setting up SSL using letsencrypt</li>
-<li>We’ll be using distillery to do the deploys</li>
-<li>We’ll be using git tags to tag releases?</li>
-<li>We’ll be running our builds on the production server</li>
-</ol>
-<h2 id="1-Install-the-prerequisites-on-the-server-on-server"><a href="#1-Install-the-prerequisites-on-the-server-on-server" class="headerlink" title="1. Install the prerequisites on the server (on server)"></a>1. Install the prerequisites on the server (on server)</h2><p><a href="http://elixir-lang.org/install.html" target="_blank" rel="external">Install elixir</a>, <a href="https://help.ubuntu.com/lts/serverguide/git.html" target="_blank" rel="external">git</a>,
-<a href="https://help.ubuntu.com/community/PostgreSQL" target="_blank" rel="external">postgresql</a> and <a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">nodejs</a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## commands to be executed on our server</span></div><div class="line"><span class="comment"># elixir and erlang</span></div><div class="line">wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb</div><div class="line">sudo dpkg -i erlang-solutions_1.0_all.deb</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install esl-erlang</div><div class="line">sudo apt-get install elixir</div><div class="line"></div><div class="line"><span class="comment"># git</span></div><div class="line">sudo apt-get install git</div><div class="line"></div><div class="line"><span class="comment"># postgresql</span></div><div class="line">sudo apt-get install postgresql postgresql-contrib</div><div class="line"></div><div class="line"><span class="comment"># nodejs</span></div><div class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_7.x | sudo -E bash -</div><div class="line">sudo apt-get install -y nodejs</div></pre></td></tr></table></figure>
-<h2 id="2-Setup-the-server"><a href="#2-Setup-the-server" class="headerlink" title="2. Setup the server"></a>2. Setup the server</h2><p>We’ll be running our server under the user called <code>slugex</code>. So, we first need
+        <h3 id="If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at"><a href="#If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at" class="headerlink" title="If you find issues or can improve this guide, please create a pull request at:"></a>If you find issues or can improve this guide, please create a pull request at:</h3><h2 id="2-Setup-the-server"><a href="#2-Setup-the-server" class="headerlink" title="2. Setup the server"></a>2. Setup the server</h2><p>We’ll be running our server under the user called <code>slugex</code>. So, we first need
 to create that user.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## commands to be executed on our server</span></div><div class="line">APP_USER=slugex</div><div class="line"></div><div class="line"><span class="comment"># create prent dir for our home</span></div><div class="line">sudo mkdir -p /opt/www</div><div class="line"><span class="comment"># create the user</span></div><div class="line">sudo useradd --home <span class="string">"/opt/www/<span class="variable">$APP_USER</span>"</span> --create-home --shell /bin/bash <span class="variable">$APP_USER</span></div><div class="line"><span class="comment"># create the postgresql role for our user</span></div><div class="line">sudo -u postgres createuser --echo --no-createrole --no-superuser --createdb <span class="variable">$APP_USER</span></div></pre></td></tr></table></figure>
 <h2 id="3-Install-the-git-deploy-rubygem-on-our-local-computer"><a href="#3-Install-the-git-deploy-rubygem-on-our-local-computer" class="headerlink" title="3. Install the git-deploy rubygem on our local computer"></a>3. Install the git-deploy rubygem on our local computer</h2><p>We’ll be using the <a href="https://github.com/mislav/git-deploy" target="_blank" rel="external">git-deploy</a> rubygem to
@@ -181,7 +170,7 @@ paste it in the server’s config/prod.secret.exs secret</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" data-id="ciy2n94zj005x1emhb6ll2ovn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" data-id="ciy2nivud005x1dr1kkn6ozka" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/#disqus_thread" class="article-comment-link">Comments</a>
       

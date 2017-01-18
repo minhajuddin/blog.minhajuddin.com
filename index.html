@@ -152,7 +152,7 @@ Now, you have a nice way of automatically managing versions. The patch version i
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/" data-id="ciy2n94tu001q1emhha3n0pqb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/" data-id="ciy2nivqs001q1dr1zcwpe1fu" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -204,7 +204,7 @@ There is an issue on the <a href="https://github.com/devinus/poison/issues/44" t
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/" data-id="ciy2n94vv003k1emhe79ft55s" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/" data-id="ciy2nivs9003k1dr1cuqa1s11" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -259,7 +259,7 @@ Here is a script I created which prints all the possible nodes in the input file
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/" data-id="ciy2n95aq00by1emhxauh2r77" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/" data-id="ciy2niw0400by1dr137nitt88" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -307,7 +307,7 @@ Here is a script I created which prints all the possible nodes in the input file
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/" data-id="ciy2n94vk00361emhfpd0gcvg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/" data-id="ciy2nivry00361dr11jtoxvxj" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -369,7 +369,7 @@ I wanted to show my blog’s content on the home page, It is pretty straightforw
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/" data-id="ciy2n954900871emhuqdzauvv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/" data-id="ciy2nivwq00871dr1y5pz4omh" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -406,21 +406,7 @@ I wanted to show my blog’s content on the home page, It is pretty straightforw
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at"><a href="#If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at" class="headerlink" title="If you find issues or can improve this guide, please create a pull request at:"></a>If you find issues or can improve this guide, please create a pull request at:</h3><h2 id="0-Assumptions"><a href="#0-Assumptions" class="headerlink" title="0. Assumptions"></a>0. Assumptions</h2><h1 id="TODO-make-these-assumptions-in-the-form-a-table"><a href="#TODO-make-these-assumptions-in-the-form-a-table" class="headerlink" title="TODO: make these assumptions in the form a table"></a>TODO: make these assumptions in the form a table</h1><ol>
-<li>Our local computer is an ubuntu machine with ruby, git and elixir installed.</li>
-<li>We are deploying to a server whose hostname is <code>slugex.com</code></li>
-<li>The server process runs under a user called <code>slugex</code></li>
-<li>The server is an ubuntu machine which has git, postgresql, elixir, nginx and nodejs installed</li>
-<li>We’ll be running our app server behind nginx</li>
-<li>We’ll be setting up SSL using letsencrypt</li>
-<li>We’ll be using distillery to do the deploys</li>
-<li>We’ll be using git tags to tag releases?</li>
-<li>We’ll be running our builds on the production server</li>
-</ol>
-<h2 id="1-Install-the-prerequisites-on-the-server-on-server"><a href="#1-Install-the-prerequisites-on-the-server-on-server" class="headerlink" title="1. Install the prerequisites on the server (on server)"></a>1. Install the prerequisites on the server (on server)</h2><p><a href="http://elixir-lang.org/install.html" target="_blank" rel="external">Install elixir</a>, <a href="https://help.ubuntu.com/lts/serverguide/git.html" target="_blank" rel="external">git</a>,
-<a href="https://help.ubuntu.com/community/PostgreSQL" target="_blank" rel="external">postgresql</a> and <a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">nodejs</a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## commands to be executed on our server</span></div><div class="line"><span class="comment"># elixir and erlang</span></div><div class="line">wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb</div><div class="line">sudo dpkg -i erlang-solutions_1.0_all.deb</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install esl-erlang</div><div class="line">sudo apt-get install elixir</div><div class="line"></div><div class="line"><span class="comment"># git</span></div><div class="line">sudo apt-get install git</div><div class="line"></div><div class="line"><span class="comment"># postgresql</span></div><div class="line">sudo apt-get install postgresql postgresql-contrib</div><div class="line"></div><div class="line"><span class="comment"># nodejs</span></div><div class="line">curl <span class="_">-s</span>L https://deb.nodesource.com/setup_7.x | sudo -E bash -</div><div class="line">sudo apt-get install -y nodejs</div></pre></td></tr></table></figure>
-<h2 id="2-Setup-the-server"><a href="#2-Setup-the-server" class="headerlink" title="2. Setup the server"></a>2. Setup the server</h2><p>We’ll be running our server under the user called <code>slugex</code>. So, we first need
+        <h3 id="If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at"><a href="#If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at" class="headerlink" title="If you find issues or can improve this guide, please create a pull request at:"></a>If you find issues or can improve this guide, please create a pull request at:</h3><h2 id="2-Setup-the-server"><a href="#2-Setup-the-server" class="headerlink" title="2. Setup the server"></a>2. Setup the server</h2><p>We’ll be running our server under the user called <code>slugex</code>. So, we first need
 to create that user.</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">## commands to be executed on our server</span></div><div class="line">APP_USER=slugex</div><div class="line"></div><div class="line"><span class="comment"># create prent dir for our home</span></div><div class="line">sudo mkdir -p /opt/www</div><div class="line"><span class="comment"># create the user</span></div><div class="line">sudo useradd --home <span class="string">"/opt/www/<span class="variable">$APP_USER</span>"</span> --create-home --shell /bin/bash <span class="variable">$APP_USER</span></div><div class="line"><span class="comment"># create the postgresql role for our user</span></div><div class="line">sudo -u postgres createuser --echo --no-createrole --no-superuser --createdb <span class="variable">$APP_USER</span></div></pre></td></tr></table></figure>
 <h2 id="3-Install-the-git-deploy-rubygem-on-our-local-computer"><a href="#3-Install-the-git-deploy-rubygem-on-our-local-computer" class="headerlink" title="3. Install the git-deploy rubygem on our local computer"></a>3. Install the git-deploy rubygem on our local computer</h2><p>We’ll be using the <a href="https://github.com/mislav/git-deploy" target="_blank" rel="external">git-deploy</a> rubygem to
@@ -463,7 +449,7 @@ paste it in the server’s config/prod.secret.exs secret</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" data-id="ciy2n94zj005x1emhb6ll2ovn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" data-id="ciy2nivud005x1dr1kkn6ozka" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -514,7 +500,7 @@ a binary and returns their bits</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/" data-id="ciy2n94zu00691emh259or268" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/" data-id="ciy2nivui00691dr1dqtclj88" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -600,7 +586,7 @@ Task.await is blocking, this is expected.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ciy2n94xh004q1emhqluc9s9g" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ciy2nivtc004q1dr1ahmf0cdm" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -656,7 +642,7 @@ So, now whenever I hit the right hotkey it types the letter ‘p’ in the tmux 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="ciy2n94z9005p1emh2ys90sgt" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="ciy2nivu6005p1dr1e5t9b1hg" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -711,7 +697,7 @@ I got around this by proxying over socks5. Here is how you can do it.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/" data-id="ciy2n954u008j1emhpr94t9ue" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/" data-id="ciy2nivx0008j1dr1jnfk5y2l" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -771,7 +757,7 @@ some code for every interval of <code>time</code>. However, the code below doesn
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/" data-id="ciy2n94tp001j1emht6g8pjtk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/" data-id="ciy2nivq8001j1dr1yyma38ng" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -825,7 +811,7 @@ some code for every interval of <code>time</code>. However, the code below doesn
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ciy2n956p009p1emhzyjj6i0g" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ciy2nivy2009p1dr1k144rcqe" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -914,7 +900,7 @@ Downtime = 1 + 5</li>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="ciy2n94ut002c1emh6oz9h03j" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="ciy2nivr8002c1dr1g2qdhdvb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -967,7 +953,7 @@ Just insert <code>|&gt; IO.inspect</code> between your pipelines.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="ciy2n94xa004k1emhj5b7izkw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="ciy2nivt9004k1dr1kn2q0k0n" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1023,7 +1009,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="ciy2n954i008e1emhpq6vbhqt" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="ciy2nivwu008e1dr1aia7jhz3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1074,7 +1060,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="ciy2n95br00d61emh4m8k4p48" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="ciy2niw1500d61dr1wboxnvw0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1123,7 +1109,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="ciy2n95av00c71emh7bdkm9ii" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="ciy2niw0a00c71dr1p2pkuk9z" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1173,7 +1159,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="ciy2n959000ar1emhgfzmi5o0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="ciy2nivz200ar1dr1ug1t7pg8" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1229,7 +1215,7 @@ function finds a home in your <code>~/.bashrc</code> :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="ciy2n951a007d1emhhw1foxqr" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="ciy2nivv9007d1dr14giafndk" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1309,7 +1295,7 @@ Do yourself a favor and use tmux.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="ciy2n95b400ci1emh4dbueivg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="ciy2niw0j00ci1dr12m0nb4a8" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/#disqus_thread" class="article-comment-link">Comments</a>
       
