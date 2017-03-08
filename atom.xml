@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://minhajuddin.com/"/>
-  <updated>2017-02-27T07:54:59.000Z</updated>
+  <updated>2017-03-08T06:11:23.000Z</updated>
   <id>http://minhajuddin.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://minhajuddin.com/2017/02/13/getting-started-with-elm/"/>
     <id>http://minhajuddin.com/2017/02/13/getting-started-with-elm/</id>
     <published>2017-02-13T14:00:17.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;I had a good time presenting a talk about “Getting Started with Elm” at the awesome &lt;a href=&quot;https://www.meetup.com/nghyderabad/events/237337105/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;nghyderabad&lt;/a&gt;
 The audience was very interactive and the food was great. Shout out to &lt;a href=&quot;http://www.fissionlabs.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Fission Labs&lt;/a&gt; for the awesome venue!&lt;/p&gt;
@@ -56,7 +56,7 @@ The audience was very interactive and the food was great. Shout out to &lt;a hre
     <link href="http://minhajuddin.com/2017/02/09/how-to-fix-ecto-duplicate-name-migrations-error/"/>
     <id>http://minhajuddin.com/2017/02/09/how-to-fix-ecto-duplicate-name-migrations-error/</id>
     <published>2017-02-09T18:36:37.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;If you run into the following error while running your Ecto migrations&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ReleaseTasks.migrate
@@ -94,7 +94,7 @@ By restricting it to run 1 migration at a time you won’t run into this issue.&
     <link href="http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/"/>
     <id>http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/</id>
     <published>2017-02-02T16:14:42.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://stedolan.github.io/jq/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jq&lt;/a&gt; is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml.
 The following is a short ruby script which does a tiny tiny (did I say tiny?) bit of what jq does for xml. Hope you find it useful.&lt;/p&gt;
@@ -119,7 +119,7 @@ The following is a short ruby script which does a tiny tiny (did I say tiny?) bi
     <link href="http://minhajuddin.com/2017/01/24/key-transformation-after-decoding-json-in-elixir/"/>
     <id>http://minhajuddin.com/2017/01/24/key-transformation-after-decoding-json-in-elixir/</id>
     <published>2017-01-24T13:36:26.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;In a previous blog post we saw how to do &lt;a href=&quot;http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/&quot;&gt;case insensitive retrieval from maps&lt;/a&gt;.
 A better solution for this if there are many key lookups is to transform the input by lower casing all the keys just after decoding. The solution from the blog post would iterate over each &lt;code&gt;{key, value}&lt;/code&gt; pair till it found the desired key.
@@ -150,7 +150,7 @@ However a proper map lookup doesn’t iterate over the keys but uses a hashing a
     <link href="http://minhajuddin.com/2017/01/19/how-to-learn-vim-properly/"/>
     <id>http://minhajuddin.com/2017/01/19/how-to-learn-vim-properly/</id>
     <published>2017-01-19T00:16:17.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;Vim is the editor of my choice, I love it a lot. I try to find vim bindings everywhere I can,
 A few apps which have good vim bindings&lt;/p&gt;
@@ -214,7 +214,7 @@ A few apps which have good vim bindings&lt;/p&gt;
     <link href="http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/"/>
     <id>http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/</id>
     <published>2017-01-18T12:44:32.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;Mix has the notion of versions built into it. If you open up a mix file you’ll see a line like below:&lt;/p&gt;
 &lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# mix.exs&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Webmonitor&lt;/span&gt;&lt;/span&gt;.Mixfile &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;use&lt;/span&gt; Mix.Project&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;project&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    [&lt;span class=&quot;symbol&quot;&gt;app:&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;:webmonitor&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &lt;span class=&quot;symbol&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;0.1.0&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# ...&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -271,7 +271,7 @@ Now, you have a nice way of automatically managing versions. The patch version i
     <link href="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/"/>
     <id>http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/</id>
     <published>2017-01-11T16:27:40.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;I ran into an issue with inconsistent naming of keys in one of my provider’s json.
 This is really bad data quality, the data that is being sent should have consistent key names.
@@ -304,7 +304,7 @@ This is really bad data quality, the data that is bein
     <link href="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/"/>
     <id>http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/</id>
     <published>2017-01-05T16:22:24.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;While working with XML data, you often don’t find the WSDL files and may end up
 manually working through the document to understand its structure. At my current project
@@ -340,7 +340,7 @@ manually working through the document to understand its s
     <link href="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/"/>
     <id>http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/</id>
     <published>2016-12-23T17:02:14.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;Bash completion is very handy for cli tools. You can set it up very easily for &lt;code&gt;mix&lt;/code&gt; using the following script.&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#!/bin/bash&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of it&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# mix bash completion script&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;complete_mix_command() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  [ -f mix.exs ] || exit 0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  mix help --search &amp;quot;$2&amp;quot;| cut -f1 -d&amp;apos;#&amp;apos; | cut -f2 -d&amp;apos; &amp;apos;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  return $?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;complete -C complete_mix_command -o default mix&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -367,7 +367,7 @@ manually working through the document to understand its s
     <link href="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/"/>
     <id>http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/</id>
     <published>2016-12-22T08:19:24.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;I recently released &lt;a href=&quot;https://liveformhq.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LiveForm&lt;/a&gt; which is a service which gives you form endpoints (I’d love to have you check it out :) )
 I wanted to show my blog’s content on the home page, It is pretty straightforward with the rich ruby ecosystem.&lt;/p&gt;
@@ -407,7 +407,7 @@ I wanted to show my blog’s content on the home page, It is pretty straightforw
     <link href="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/"/>
     <id>http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/</id>
     <published>2016-11-13T16:09:14.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at&quot;&gt;&lt;a href=&quot;#If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at&quot; class=&quot;headerlink&quot; title=&quot;If you find issues or can improve this guide, please create a pull request at:&quot;&gt;&lt;/a&gt;If you find issues or can improve this guide, please create a pull request at:&lt;/h3&gt;&lt;h2 id=&quot;2-Setup-the-server&quot;&gt;&lt;a href=&quot;#2-Setup-the-server&quot; class=&quot;headerlink&quot; title=&quot;2. Setup the server&quot;&gt;&lt;/a&gt;2. Setup the server&lt;/h2&gt;&lt;p&gt;We’ll be running our server under the user called &lt;code&gt;slugex&lt;/code&gt;. So, we first need
 to create that user.&lt;/p&gt;
@@ -471,7 +471,7 @@ paste it in the server’s config/prod.secret.exs secret&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/"/>
     <id>http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/</id>
     <published>2016-11-01T10:58:50.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;Erlang and by extension Elixir have powerful pattern matching constructs, which
 allow you to easily extract bits from a binary. Here is an example which takes
@@ -503,7 +503,7 @@ allow you to easily extract bits from a binary. Here is a
     <link href="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/"/>
     <id>http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/</id>
     <published>2016-10-31T17:13:12.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;If you taken a look at Elixir, you may have come across something like the below code&lt;/p&gt;
 &lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;HardWorker&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;work&lt;/span&gt;&lt;/span&gt;(id) &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Process.sleep(id * &lt;span class=&quot;number&quot;&gt;900&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;&lt;span class=&quot;symbol&quot;&gt;:done&lt;/span&gt;, id&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Runner&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;variable&quot;&gt;@total_timeout&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;us, &lt;span class=&quot;number&quot;&gt;_&lt;/span&gt;&amp;#125; = &lt;span class=&quot;symbol&quot;&gt;:timer&lt;/span&gt;.tc &amp;amp;work/&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    IO.puts &lt;span class=&quot;string&quot;&gt;&quot;ELAPSED_TIME: &lt;span class=&quot;subst&quot;&gt;#&amp;#123;us/&lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;&amp;#125;&lt;/span&gt;&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;work&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tasks = Enum.map &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;..&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;fn&lt;/span&gt; id -&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      Task.async(HardWorker, &lt;span class=&quot;symbol&quot;&gt;:work&lt;/span&gt;, [id])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Enum.map(tasks, &lt;span class=&quot;keyword&quot;&gt;fn&lt;/span&gt; task -&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      Task.await(task, &lt;span class=&quot;variable&quot;&gt;@total_timeout&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Runner.run&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -570,7 +570,7 @@ Task.await is blocking, this is expected.&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/"/>
     <id>http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/</id>
     <published>2016-10-28T11:22:24.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;I love pianobar. However, until yesterday I hated pausing and moving to the next video
 using pianobar. I had a small terminal dedicated for pianobar and every time I had to
@@ -605,7 +605,7 @@ using pianobar. I had a small terminal dedicated f
     <link href="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/"/>
     <id>http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/</id>
     <published>2016-10-27T15:57:00.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;I love pandora, However, I live in India where pandora is doesn’t stream.
 I got around this by proxying over socks5. Here is how you can do it.&lt;/p&gt;
@@ -641,7 +641,7 @@ I got around this by proxying over socks5. Here is how you can
     <link href="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/"/>
     <id>http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/</id>
     <published>2016-10-27T02:26:07.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;Go has very utilitarian ticker methods, for instance check: &lt;a href=&quot;https://gobyexample.com/tickers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gobyexample.com/tickers&lt;/a&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; main&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;time&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;fmt&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Tickers use a similar mechanism to timers: a&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// channel that is sent values. Here we&#39;ll use the&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// `range` builtin on the channel to iterate over&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// the values as they arrive every 500ms.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ticker := time.NewTicker(time.Millisecond * &lt;span class=&quot;number&quot;&gt;500&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; t := &lt;span class=&quot;keyword&quot;&gt;range&lt;/span&gt; ticker.C &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            fmt.Println(&lt;span class=&quot;string&quot;&gt;&quot;Tick at&quot;&lt;/span&gt;, t)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Tickers can be stopped like timers. Once a ticker&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// is stopped it won&#39;t receive any more values on its&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// channel. We&#39;ll stop ours after 1600ms.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    time.Sleep(time.Millisecond * &lt;span class=&quot;number&quot;&gt;1600&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ticker.Stop()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    fmt.Println(&lt;span class=&quot;string&quot;&gt;&quot;Ticker stopped&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -679,7 +679,7 @@ some code for every interval of &lt;code&gt;time&lt;/code&gt;. However, the code
     <link href="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/"/>
     <id>http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/</id>
     <published>2016-10-13T10:27:16.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;Create a file called &lt;code&gt;/etc/nginx/le_redirect_include.conf&lt;/code&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;# intercept the challenges&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;location &amp;apos;/.well-known/acme-challenge&amp;apos; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  default_type &amp;quot;text/plain&amp;quot;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  root /usr/share/nginx/letsencrypt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# redirect all traffic to the https version&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;location / &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  return 301 https://$host$request_uri;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -712,7 +712,7 @@ some code for every interval of &lt;code&gt;time&lt;/code&gt;. However, the code
     <link href="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/"/>
     <id>http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/</id>
     <published>2016-07-05T08:43:42.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;I am working on an open source side project called &lt;a href=&quot;http://webmonitorhq.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;webmonitorhq.com&lt;/a&gt;
 It notifies you when your service goes down. It also stores the events when a service goes down
@@ -777,7 +777,7 @@ Downtime = 1 + 5&lt;/li&gt;
     <link href="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/"/>
     <id>http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/</id>
     <published>2016-05-20T15:16:42.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;While writing multiple pipelines, you may want to debug the intermediate values.
 Just insert &lt;code&gt;|&amp;gt; IO.inspect&lt;/code&gt; between your pipelines.&lt;/p&gt;
@@ -809,7 +809,7 @@ Just insert &lt;code&gt;|&amp;gt; IO.inspect&lt;/code&gt; between your p
     <link href="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/"/>
     <id>http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/</id>
     <published>2016-03-11T18:40:36.000Z</published>
-    <updated>2017-02-27T07:54:59.000Z</updated>
+    <updated>2017-03-08T06:11:23.000Z</updated>
     
     <content type="html">&lt;p&gt;In my current project, I had to store some temporary data for a user and let a few background
 processors have access to it. I wrote something small with a dependency on Redis which does the job.&lt;/p&gt;
