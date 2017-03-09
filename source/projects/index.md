@@ -5,6 +5,9 @@ date: 2016-01-17 00:03:10
 I have built a lot of products and worked on a lot of customer projects in my time as a Programmer.
 Here is a list of the interesting ones.
 
+## [statictrain](http://www.statictrain.com)
+This project is still under development. It makes static site generators more accessible to the general public.
+
 ## [zammu](https://zammu.in)
 I am still building [zammu.in](https://zammu.in), It is a service which allows you to setup [Automatic Deployments for your static sites](https://zammu.in). It supports many static site generators (e.g. [Hugo](https://zammu.in/hugo), [Hexo](https://zammu.in/hexo)). It pulls code from Github, Builds the static site and pushes it to Github Pages.
 
