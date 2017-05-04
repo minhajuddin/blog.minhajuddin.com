@@ -93,6 +93,62 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
+  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
+<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
+<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
+<p>The setup contains two parts.</p>
+<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#~/.scripts/runinbg</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#Script to run a command in background redirecting the</span></div><div class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</div><div class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></div><div class="line"><span class="built_in">shift</span></div><div class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1 &amp;</div><div class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></div><div class="line"><span class="comment">#when the test is complete</span></div><div class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></div></pre></td></tr></table></figure>
+<p>###2. Vim function to call this script with the current filename
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">RunSpecs</span><span class="params">()</span></span></div><div class="line">  :silent!!runinbg bundle exec rspec % <span class="comment">"you can tweak this to your liking</span></div><div class="line">  redraw! <span class="comment">"without this the screen goes blank</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line"></div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-d&gt;</span> :<span class="keyword">call</span> RunSpecs()<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure></p>
+<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
+<p>Update: Added a version with notification</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cj2apgjyp00cz1emt6esiz6lb" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-simple-ci-with-git-hooks-for-your-rails-projects" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" class="article-date">
@@ -141,68 +197,12 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cj06w7ci200e11ds1byhmws0m" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/" data-id="cj2apgjzh00e11emtcg1a060w" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/12/25/simple-ci-with-git-hooks-for-your-rails-projects/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ci/">ci</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-run-specs-tests-from-within-vim-without-blocking-your-flow" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" class="article-date">
-  <time datetime="2012-12-25T00:00:00.000Z" itemprop="datePublished">2012-12-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/">Run specs/tests from within vim without blocking your flow</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Everyone knows how great <code>Guard</code> is for running tests automatically. However, I hit <code>:w</code> involuntarily all the time, I’ve spent so much time in <code>vim</code> that I cannot go even a few seconds without hitting <code>:w</code>. I even do it in text areas on web pages, But I digress. Because of this, I unintentionally trigger my specs even before I complete them. </p>
-<p>I have seen <a href="http://joshuadavey.com/2012/01/10/faster-tdd-feedback-with-tmux-tslime-vim-and-turbux/" target="_blank" rel="external">many</a> <a href="http://teamcoding.com/blog/vim_tmux_and_rspec" target="_blank" rel="external">people</a> <a href="http://henrik.nyh.se/2012/07/tests-on-demand-using-vimux-and-turbux-with-spork-and-guard/" target="_blank" rel="external">use tmux</a> to get it working on demand. However, I use <a href="http://xmonad.org/" target="_blank" rel="external">xmonad</a> and I don’t want to learn another app to tile/organize my terminals. I can do them easily in xmonad. </p>
-<p>So, my first attempt was to create a daemon in go which would listen for new commands on a unix domain socket. I almost finished it (You can check it here: <a href="https://github.com/minhajuddin/cmdrunner" target="_blank" rel="external">https://github.com/minhajuddin/cmdrunner</a>). However, it seemed too much work for something simple. We all know that we can run a command in background on linux by appending an <code>&amp;</code> to the end. My final setup turned out to be much simpler than I anticipated. Too much thinking cost me a couple of hours. </p>
-<p>The setup contains two parts.</p>
-<p>###1. A script to run commands in background by redirecting the stderr and stdout properly</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#~/.scripts/runinbg</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#Script to run a command in background redirecting the</span></div><div class="line"><span class="comment">#STDERR and STDOUT to /tmp/runinbg.log in a background task</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$(date +%Y-%m-%d:%H:%M:%S)</span>: started running <span class="variable">$@</span>"</span> &gt;&gt; /tmp/runinbg.log</div><div class="line">cmd=<span class="string">"<span class="variable">$1</span>"</span></div><div class="line"><span class="built_in">shift</span></div><div class="line"><span class="variable">$cmd</span> <span class="string">"<span class="variable">$@</span>"</span> 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1 &amp;</div><div class="line"><span class="comment">#comment out the above line and use the line below to get get a notification</span></div><div class="line"><span class="comment">#when the test is complete</span></div><div class="line"><span class="comment">#($cmd "$@" 1&gt;&gt; /tmp/runinbg.log 2&gt;&amp;1; notify-send --urgency=low -i "$([ $? = 0 ] &amp;&amp; echo terminal || echo error)" "$rawcmd")&amp;&gt;/dev/null &amp;</span></div></pre></td></tr></table></figure>
-<p>###2. Vim function to call this script with the current filename
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">RunSpecs</span><span class="params">()</span></span></div><div class="line">  :silent!!runinbg bundle exec rspec % <span class="comment">"you can tweak this to your liking</span></div><div class="line">  redraw! <span class="comment">"without this the screen goes blank</span></div><div class="line"><span class="keyword">endfunction</span></div><div class="line"></div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-d&gt;</span> :<span class="keyword">call</span> RunSpecs()<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure></p>
-<p>You can check the log of your tests by running <code>tail -f /tmp/runinbg.log</code></p>
-<p>Update: Added a version with notification</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/" data-id="cj06w7ch900cz1ds16joaja9v" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2012/12/25/run-specs-tests-from-within-vim-without-blocking-your-flow/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   </div>
@@ -288,59 +288,12 @@ software product.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cj06w7civ00er1ds19mkfmmp2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/" data-id="cj2apgk0c00er1emt28w8fbkr" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/12/08/the-island-of-barefooters/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/barefooters/">barefooters</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/india/">india</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/software/">software</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
-  <time datetime="2012-11-30T00:00:00.000Z" itemprop="datePublished">2012-11-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cj06w7ce100a21ds1ehtt4pe1" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </footer>
   </div>
@@ -388,12 +341,59 @@ software product.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cj06w7c6q00331ds196vtvezo" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cj2apgjoy00321emtyv0np4cg" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/godoc/">godoc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/upstart/">upstart</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-implementing-a-basic-redis-client-in-go-part-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" class="article-date">
+  <time datetime="2012-11-30T00:00:00.000Z" itemprop="datePublished">2012-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/">Implementing a basic redis client in go - part 1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <iframe src="http://player.vimeo.com/video/54622804" width="940px" height="700px" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen></iframe>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" data-id="cj2apgjvq00a21emt8vje5xmk" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/">go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/learn-go/">learn-go</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </footer>
   </div>
@@ -445,7 +445,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cj06w7cjl00fa1ds1xjyl8vc0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" data-id="cj2apgk1200fa1emtm73nune9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -501,7 +501,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cj06w7cc4008l1ds1mfnavtnp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cj2apgju1008l1emtpu74iehz" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -551,7 +551,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cj06w7cft00bj1ds13r715pt7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/" data-id="cj2apgjx900be1emt1fg3f1of" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/29/nifty-script-to-keep-your-local-git-repositories-up-to-date/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -603,7 +603,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="cj06w7c5c001b1ds18dooxj3e" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/" data-id="cj2apgjnv001h1emtbx40l4kb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/10/a-better-compare-products-in-web-applications/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -661,7 +661,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="cj06w7c5g001i1ds150wz5b6w" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/" data-id="cj2apgjnp001b1emt4im6phzq" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/03/a-few-simple-hacks-to-get-up-feeling-less-groggy/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -711,7 +711,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="cj06w7c8w005r1ds1h77zcpv7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/" data-id="cj2apgjqz005s1emtd4mfzz2c" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/29/github-is-not-really-free-for-your-public-open-source-projects/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -769,7 +769,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="cj06w7cdx009x1ds1ednmgu5e" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/" data-id="cj2apgjvn009x1emtjbfreboj" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/28/implementation-of-a-fraction-of-jquery-to-learn-javascript/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -820,7 +820,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cj06w7cjv00fm1ds1t24cwska" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cj2apgk1e00fn1emt79enq7f7" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -871,7 +871,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cj06w7c6a002m1ds1ottci1gx" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cj2apgjol002m1emtg08mlfr2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -918,7 +918,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="cj06w7c5w00251ds1q1svg5wz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="cj2apgjo800251emtmay3hoqx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -965,7 +965,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="cj06w7cjq00fh1ds1u0fbqz0b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="cj2apgk1700fh1emtcsejj3w3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1013,7 +1013,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/07/03/my-substance-template/" data-id="cj06w7cfp00be1ds1r4jl2utj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/07/03/my-substance-template/" data-id="cj2apgjxd00bk1emtfmj27xpf" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/07/03/my-substance-template/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1072,7 +1072,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="cj06w7cbk007v1ds10a6hhm86" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="cj2apgjtf007v1emt2hkb8w71" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1122,7 +1122,7 @@ You need <code>inotify-tools</code> to get this to work. You can install it on u
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/" data-id="cj06w7cfe00b51ds1sx8x4r3h" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/" data-id="cj2apgjx100b61emtm4pesyq4" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1180,7 +1180,7 @@ your html to haml.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="cj06w7c9m00681ds1g8gqob0g" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="cj2apgjrh00681emtcay10ltr" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
