@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://minhajuddin.com/"/>
-  <updated>2017-05-18T09:30:09.000Z</updated>
+  <updated>2017-06-07T19:44:32.000Z</updated>
   <id>http://minhajuddin.com/</id>
   
   <author>
@@ -16,11 +16,91 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Optimal order for adding lists in Elixir</title>
+    <link href="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/"/>
+    <id>http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/</id>
+    <published>2017-06-08T00:41:50.000Z</published>
+    <updated>2017-06-07T19:44:32.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Lists are the bread and butter of a functional language and Elixir is no different.&lt;/p&gt;
+&lt;p&gt;Elixir uses linked lists to represent lists. Which means, if a list is &lt;code&gt;n&lt;/code&gt; elements long it will
+take &lt;code&gt;n&lt;/code&gt; dereferences to get to the last element of the list. This understanding is very important
+for writing efficient code in Elixir. Because of this adding to the head of a list is nearly instantaneous.&lt;/p&gt;
+&lt;h2 id=&quot;Adding-to-the-beginning-of-a-list&quot;&gt;&lt;a href=&quot;#Adding-to-the-beginning-of-a-list&quot; class=&quot;headerlink&quot; title=&quot;Adding to the beginning of a list&quot;&gt;&lt;/a&gt;Adding to the beginning of a list&lt;/h2&gt;&lt;p&gt;Let us take the following list as an example:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;el1 -&amp;gt; el2 -&amp;gt; el3 -&amp;gt; el4
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;It has 4 elements and &lt;code&gt;el1&lt;/code&gt; is the head of the list. To add a new element &lt;code&gt;el0&lt;/code&gt;
+to the beginning of the list, All you need to do is create a node to store &lt;code&gt;el0&lt;/code&gt;
+and set its &lt;code&gt;next&lt;/code&gt; pointer to &lt;code&gt;el1&lt;/code&gt;. This changes the representation to:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;el0 -&amp;gt; el1 -&amp;gt; el2 -&amp;gt; el3 -&amp;gt; el4
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now, one thing to note is: if a previous variable has a reference to &lt;code&gt;el1&lt;/code&gt; it will
+still have a reference to the earlier 4 element list. So, we are not &lt;em&gt;mutating/chaning&lt;/em&gt; the existing list/references.&lt;/p&gt;
+&lt;h2 id=&quot;Adding-to-the-end-of-a-list&quot;&gt;&lt;a href=&quot;#Adding-to-the-end-of-a-list&quot; class=&quot;headerlink&quot; title=&quot;Adding to the end of a list&quot;&gt;&lt;/a&gt;Adding to the end of a list&lt;/h2&gt;&lt;p&gt;However, adding something to the end is not the same. Let us take the previous example:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;el1 -&amp;gt; el2 -&amp;gt; el3 -&amp;gt; el4
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Now, if this list is referenced by a binding &lt;code&gt;foo&lt;/code&gt;. And if we want to create a new list &lt;code&gt;bar&lt;/code&gt; with a new element &lt;code&gt;el5&lt;/code&gt; at the end.
+We can’t just traverse the list, create a new node with value &lt;code&gt;el5&lt;/code&gt; and set a reference from &lt;code&gt;el4&lt;/code&gt; to &lt;code&gt;el5&lt;/code&gt;.
+If we did that, the reference &lt;code&gt;foo&lt;/code&gt; would also get a new element at the end. And this is not how Elixir/Erlang work. The BEAM
+does not allow mutation to existing data. So, to work within this framework, we have to create a &lt;em&gt;brand new&lt;/em&gt; list containing
+a copy of all elements &lt;code&gt;el1..el4&lt;/code&gt; and a new node &lt;code&gt;el5&lt;/code&gt;. That is why adding elements to the tail of a linked list is slow in Elixir.
+Because we end up copying the list and appending a new element.&lt;/p&gt;
+&lt;p&gt;Now, with this understanding. Let us think of the most efficient way of combining two lists when the order of elements doesn’t matter.
+For instance, when you send http requests using &lt;code&gt;httpoison&lt;/code&gt; the order of the headers doesn’t matter.
+So, when you have the following implementations available:&lt;/p&gt;
+&lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# ...&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# A: First list is small most of the time&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;@default_headers&lt;/span&gt; [&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;content-type&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;authorization&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Bearer Foo&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;accept&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&amp;#125;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;get&lt;/span&gt;&lt;/span&gt;(url, headers \\ []) &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  headers ++ &lt;span class=&quot;variable&quot;&gt;@default_headers&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# B: Second list is small most of the time&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;variable&quot;&gt;@default_headers&lt;/span&gt; [&amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;content-type&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;authorization&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Bearer Foo&quot;&lt;/span&gt;&amp;#125;, &amp;#123;&lt;span class=&quot;string&quot;&gt;&quot;accept&quot;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;application/json&quot;&lt;/span&gt;&amp;#125;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;get&lt;/span&gt;&lt;/span&gt;(url, headers \\ []) &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;variable&quot;&gt;@default_headers&lt;/span&gt; ++ headers&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# ...&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Pick the one where the first list has lesser elements. In this example that would be the &lt;strong&gt;A&lt;/strong&gt; implementation.&lt;/p&gt;
+&lt;p&gt;I did a quick benchmark just for kicks (Full code available at &lt;a href=&quot;https://github.com/minhajuddin/bench_list_cat&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/minhajuddin/bench_list_cat&lt;/a&gt;):&lt;/p&gt;
+&lt;h2 id=&quot;Benchmark&quot;&gt;&lt;a href=&quot;#Benchmark&quot; class=&quot;headerlink&quot; title=&quot;Benchmark&quot;&gt;&lt;/a&gt;Benchmark&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;Elixir 1.4.4
+Erlang 20.0-rc2
+Benchmark suite executing with the following configuration:
+warmup: 2.00 s
+time: 5.00 s
+parallel: 1
+inputs: none specified
+Estimated total run time: 14.00 s
+
+
+Benchmarking big_list_first...
+Benchmarking small_list_first...
+
+Name                       ips        average  deviation         median
+small_list_first        6.49 K       0.154 ms   ±371.63%      0.0560 ms
+big_list_first       0.00313 K      319.87 ms    ±37.78%      326.10 ms
+
+Comparison:
+small_list_first        6.49 K
+big_list_first       0.00313 K - 2077.49x slower
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Code-used-for-benchmarking&quot;&gt;&lt;a href=&quot;#Code-used-for-benchmarking&quot; class=&quot;headerlink&quot; title=&quot;Code used for benchmarking&quot;&gt;&lt;/a&gt;Code used for benchmarking&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;small_list = Enum.to_list(1..10_000)
+big_list = Enum.to_list(1..10_000_000)
+
+Benchee.run(%{
+  &amp;quot;small_list_first&amp;quot; =&amp;gt; fn -&amp;gt; small_list ++ big_list end,
+  &amp;quot;big_list_first&amp;quot; =&amp;gt; fn -&amp;gt; big_list ++ small_list end
+})
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;Note-that-this-is-an-outrageous-benchmark-no-one-is-adding-lists-containing-10-million-elements-this-way-But-it-demonstrates-my-point&quot;&gt;&lt;a href=&quot;#Note-that-this-is-an-outrageous-benchmark-no-one-is-adding-lists-containing-10-million-elements-this-way-But-it-demonstrates-my-point&quot; class=&quot;headerlink&quot; title=&quot;Note that this is an outrageous benchmark, no one is adding lists containing 10 million elements this way ;). But it demonstrates my point.&quot;&gt;&lt;/a&gt;Note that this is an outrageous benchmark, no one is adding lists containing 10 million elements this way ;). But it demonstrates my point.&lt;/h2&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Lists are the bread and butter of a functional language and Elixir is no different.&lt;/p&gt;
+&lt;p&gt;Elixir uses linked lists to represent lists. W
+    
+    </summary>
+    
+    
+      <category term="Elixir" scheme="http://minhajuddin.com/tags/elixir/"/>
+    
+      <category term="Lists" scheme="http://minhajuddin.com/tags/lists/"/>
+    
+      <category term="Order" scheme="http://minhajuddin.com/tags/order/"/>
+    
+      <category term="Concatenate" scheme="http://minhajuddin.com/tags/concatenate/"/>
+    
+  </entry>
+  
+  <entry>
     <title>How to pass a multi line copy sql to psql</title>
     <link href="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/"/>
     <id>http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/</id>
     <published>2017-05-18T14:56:01.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;I have been working with a lot of ETL stuff lately and have to import/export data
 from our postgresql database frequently.&lt;/p&gt;
@@ -55,7 +135,7 @@ from our postgresql database frequently.&lt;/p&gt;
     <link href="http://minhajuddin.com/2017/03/12/how-to-debug-view-phoenix-channel-network-traffic-in-google-chrome/"/>
     <id>http://minhajuddin.com/2017/03/12/how-to-debug-view-phoenix-channel-network-traffic-in-google-chrome/</id>
     <published>2017-03-12T21:46:40.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;When you open Google Chrome’s Network tab, you don’t see the traffic for websockets.
 I spent quite some time trying to see the messages between my browser and the phoenix server.
@@ -90,7 +170,7 @@ I spent quite some time trying to see the messages b
     <link href="http://minhajuddin.com/2017/03/11/3-things-that-are-needed-to-make-a-successful-product/"/>
     <id>http://minhajuddin.com/2017/03/11/3-things-that-are-needed-to-make-a-successful-product/</id>
     <published>2017-03-11T21:00:11.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;In my 10 years in the software industry. I have create a number of products and have worked
 on a lot of projects. Looking back at the products/projects that have been successful, one this
@@ -129,7 +209,7 @@ on a lot of projects. Looking back at the pro
     <link href="http://minhajuddin.com/2017/02/13/getting-started-with-elm/"/>
     <id>http://minhajuddin.com/2017/02/13/getting-started-with-elm/</id>
     <published>2017-02-13T14:00:17.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;I had a good time presenting a talk about “Getting Started with Elm” at the awesome &lt;a href=&quot;https://www.meetup.com/nghyderabad/events/237337105/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;nghyderabad&lt;/a&gt;
 The audience was very interactive and the food was great. Shout out to &lt;a href=&quot;http://www.fissionlabs.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Fission Labs&lt;/a&gt; for the awesome venue!&lt;/p&gt;
@@ -165,7 +245,7 @@ The audience was very interactive and the food was great. Shout out to &lt;a hre
     <link href="http://minhajuddin.com/2017/02/09/how-to-fix-ecto-duplicate-name-migrations-error/"/>
     <id>http://minhajuddin.com/2017/02/09/how-to-fix-ecto-duplicate-name-migrations-error/</id>
     <published>2017-02-09T18:36:37.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;If you run into the following error while running your Ecto migrations&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;ReleaseTasks.migrate
@@ -203,7 +283,7 @@ By restricting it to run 1 migration at a time you won’t run into this issue.&
     <link href="http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/"/>
     <id>http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/</id>
     <published>2017-02-02T16:14:42.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://stedolan.github.io/jq/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jq&lt;/a&gt; is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml.
 The following is a short ruby script which does a tiny tiny (did I say tiny?) bit of what jq does for xml. Hope you find it useful.&lt;/p&gt;
@@ -228,7 +308,7 @@ The following is a short ruby script which does a tiny tiny (did I say tiny?) bi
     <link href="http://minhajuddin.com/2017/01/24/key-transformation-after-decoding-json-in-elixir/"/>
     <id>http://minhajuddin.com/2017/01/24/key-transformation-after-decoding-json-in-elixir/</id>
     <published>2017-01-24T13:36:26.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;In a previous blog post we saw how to do &lt;a href=&quot;http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/&quot;&gt;case insensitive retrieval from maps&lt;/a&gt;.
 A better solution for this if there are many key lookups is to transform the input by lower casing all the keys just after decoding. The solution from the blog post would iterate over each &lt;code&gt;{key, value}&lt;/code&gt; pair till it found the desired key.
@@ -259,7 +339,7 @@ However a proper map lookup doesn’t iterate over the keys but uses a hashing a
     <link href="http://minhajuddin.com/2017/01/19/how-to-learn-vim-properly/"/>
     <id>http://minhajuddin.com/2017/01/19/how-to-learn-vim-properly/</id>
     <published>2017-01-19T00:16:17.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;Vim is the editor of my choice, I love it a lot. I try to find vim bindings everywhere I can,
 A few apps which have good vim bindings&lt;/p&gt;
@@ -323,7 +403,7 @@ A few apps which have good vim bindings&lt;/p&gt;
     <link href="http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/"/>
     <id>http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/</id>
     <published>2017-01-18T12:44:32.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;Mix has the notion of versions built into it. If you open up a mix file you’ll see a line like below:&lt;/p&gt;
 &lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# mix.exs&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Webmonitor&lt;/span&gt;&lt;/span&gt;.Mixfile &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;use&lt;/span&gt; Mix.Project&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;project&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    [&lt;span class=&quot;symbol&quot;&gt;app:&lt;/span&gt; &lt;span class=&quot;symbol&quot;&gt;:webmonitor&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;     &lt;span class=&quot;symbol&quot;&gt;version:&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;0.1.0&quot;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# ...&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -380,7 +460,7 @@ Now, you have a nice way of automatically managing versions. The patch version i
     <link href="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/"/>
     <id>http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/</id>
     <published>2017-01-11T16:27:40.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;I ran into an issue with inconsistent naming of keys in one of my provider’s json.
 This is really bad data quality, the data that is being sent should have consistent key names.
@@ -413,7 +493,7 @@ This is really bad data quality, the data that is bein
     <link href="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/"/>
     <id>http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/</id>
     <published>2017-01-05T16:22:24.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;While working with XML data, you often don’t find the WSDL files and may end up
 manually working through the document to understand its structure. At my current project
@@ -449,7 +529,7 @@ manually working through the document to understand its s
     <link href="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/"/>
     <id>http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/</id>
     <published>2016-12-23T17:02:14.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;Bash completion is very handy for cli tools. You can set it up very easily for &lt;code&gt;mix&lt;/code&gt; using the following script.&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#!/bin/bash&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of it&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# mix bash completion script&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;complete_mix_command() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  [ -f mix.exs ] || exit 0&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  mix help --search &amp;quot;$2&amp;quot;| cut -f1 -d&amp;apos;#&amp;apos; | cut -f2 -d&amp;apos; &amp;apos;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  return $?&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;complete -C complete_mix_command -o default mix&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -476,7 +556,7 @@ manually working through the document to understand its s
     <link href="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/"/>
     <id>http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/</id>
     <published>2016-12-22T08:19:24.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;I recently released &lt;a href=&quot;https://liveformhq.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;LiveForm&lt;/a&gt; which is a service which gives you form endpoints (I’d love to have you check it out :) )
 I wanted to show my blog’s content on the home page, It is pretty straightforward with the rich ruby ecosystem.&lt;/p&gt;
@@ -516,7 +596,7 @@ I wanted to show my blog’s content on the home page, It is pretty straightforw
     <link href="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/"/>
     <id>http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/</id>
     <published>2016-11-13T16:09:14.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;h3 id=&quot;If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at&quot;&gt;&lt;a href=&quot;#If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at&quot; class=&quot;headerlink&quot; title=&quot;If you find issues or can improve this guide, please create a pull request at:&quot;&gt;&lt;/a&gt;If you find issues or can improve this guide, please create a pull request at:&lt;/h3&gt;&lt;h2 id=&quot;2-Setup-the-server&quot;&gt;&lt;a href=&quot;#2-Setup-the-server&quot; class=&quot;headerlink&quot; title=&quot;2. Setup the server&quot;&gt;&lt;/a&gt;2. Setup the server&lt;/h2&gt;&lt;p&gt;We’ll be running our server under the user called &lt;code&gt;slugex&lt;/code&gt;. So, we first need
 to create that user.&lt;/p&gt;
@@ -580,7 +660,7 @@ paste it in the server’s config/prod.secret.exs secret&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/"/>
     <id>http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/</id>
     <published>2016-11-01T10:58:50.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;Erlang and by extension Elixir have powerful pattern matching constructs, which
 allow you to easily extract bits from a binary. Here is an example which takes
@@ -612,7 +692,7 @@ allow you to easily extract bits from a binary. Here is a
     <link href="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/"/>
     <id>http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/</id>
     <published>2016-10-31T17:13:12.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;If you taken a look at Elixir, you may have come across something like the below code&lt;/p&gt;
 &lt;figure class=&quot;highlight elixir&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;26&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;27&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;28&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;29&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;HardWorker&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;work&lt;/span&gt;&lt;/span&gt;(id) &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Process.sleep(id * &lt;span class=&quot;number&quot;&gt;900&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;&lt;span class=&quot;symbol&quot;&gt;:done&lt;/span&gt;, id&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Runner&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;variable&quot;&gt;@total_timeout&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;run&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;us, &lt;span class=&quot;number&quot;&gt;_&lt;/span&gt;&amp;#125; = &lt;span class=&quot;symbol&quot;&gt;:timer&lt;/span&gt;.tc &amp;amp;work/&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    IO.puts &lt;span class=&quot;string&quot;&gt;&quot;ELAPSED_TIME: &lt;span class=&quot;subst&quot;&gt;#&amp;#123;us/&lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;&amp;#125;&lt;/span&gt;&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;work&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;do&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    tasks = Enum.map &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;..&lt;span class=&quot;number&quot;&gt;10&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;fn&lt;/span&gt; id -&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      Task.async(HardWorker, &lt;span class=&quot;symbol&quot;&gt;:work&lt;/span&gt;, [id])&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    Enum.map(tasks, &lt;span class=&quot;keyword&quot;&gt;fn&lt;/span&gt; task -&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      Task.await(task, &lt;span class=&quot;variable&quot;&gt;@total_timeout&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Runner.run&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -679,7 +759,7 @@ Task.await is blocking, this is expected.&lt;/p&gt;
     <link href="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/"/>
     <id>http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/</id>
     <published>2016-10-28T11:22:24.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;I love pianobar. However, until yesterday I hated pausing and moving to the next video
 using pianobar. I had a small terminal dedicated for pianobar and every time I had to
@@ -714,7 +794,7 @@ using pianobar. I had a small terminal dedicated f
     <link href="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/"/>
     <id>http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/</id>
     <published>2016-10-27T15:57:00.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;I love pandora, However, I live in India where pandora is doesn’t stream.
 I got around this by proxying over socks5. Here is how you can do it.&lt;/p&gt;
@@ -750,7 +830,7 @@ I got around this by proxying over socks5. Here is how you can
     <link href="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/"/>
     <id>http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/</id>
     <published>2016-10-27T02:26:07.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
+    <updated>2017-06-07T19:44:32.000Z</updated>
     
     <content type="html">&lt;p&gt;Go has very utilitarian ticker methods, for instance check: &lt;a href=&quot;https://gobyexample.com/tickers&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://gobyexample.com/tickers&lt;/a&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight go&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;11&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;12&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;13&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;14&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;15&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;16&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;17&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;18&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;19&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;20&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;21&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;22&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;23&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;24&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;25&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;package&lt;/span&gt; main&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;time&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&quot;fmt&quot;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Tickers use a similar mechanism to timers: a&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// channel that is sent values. Here we&#39;ll use the&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// `range` builtin on the channel to iterate over&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// the values as they arrive every 500ms.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ticker := time.NewTicker(time.Millisecond * &lt;span class=&quot;number&quot;&gt;500&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;func&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt;&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt; t := &lt;span class=&quot;keyword&quot;&gt;range&lt;/span&gt; ticker.C &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;            fmt.Println(&lt;span class=&quot;string&quot;&gt;&quot;Tick at&quot;&lt;/span&gt;, t)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// Tickers can be stopped like timers. Once a ticker&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// is stopped it won&#39;t receive any more values on its&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;comment&quot;&gt;// channel. We&#39;ll stop ours after 1600ms.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    time.Sleep(time.Millisecond * &lt;span class=&quot;number&quot;&gt;1600&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    ticker.Stop()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    fmt.Println(&lt;span class=&quot;string&quot;&gt;&quot;Ticker stopped&quot;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -780,39 +860,6 @@ some code for every interval of &lt;code&gt;time&lt;/code&gt;. However, the code
       <category term="Ticker" scheme="http://minhajuddin.com/tags/ticker/"/>
     
       <category term="Elixir" scheme="http://minhajuddin.com/tags/elixir/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Lets encrypt auto renewal for ubuntu and nginx</title>
-    <link href="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/"/>
-    <id>http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/</id>
-    <published>2016-10-13T10:27:16.000Z</published>
-    <updated>2017-05-18T09:30:09.000Z</updated>
-    
-    <content type="html">&lt;p&gt;Create a file called &lt;code&gt;/etc/nginx/le_redirect_include.conf&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;# intercept the challenges&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;location &amp;apos;/.well-known/acme-challenge&amp;apos; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  default_type &amp;quot;text/plain&amp;quot;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  root /usr/share/nginx/letsencrypt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;# redirect all traffic to the https version&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;location / &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  return 301 https://$host$request_uri;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;In your redirect block include this file&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;server &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  server_name www.liveformhq.com liveformhq.com;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  include /etc/nginx/le_redirect_include.conf;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;To generate the LE keys run the following&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;sudo mkdir -p /usr/share/nginx/letsencrypt&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# generate the certificate&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo letsencrypt certonly --webroot=/usr/share/nginx/letsencrypt --domain cosmicvent.com --domain www.cosmicvent.com&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;# reload nginx&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sudo &lt;span class=&quot;built_in&quot;&gt;kill&lt;/span&gt; &lt;span class=&quot;_&quot;&gt;-s&lt;/span&gt; HUP $(cat /var/run/nginx.pid)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Put the following in your crontab
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ sudo crontab &lt;span class=&quot;_&quot;&gt;-e&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;@weekly /usr/bin/letsencrypt &amp;amp;&amp;gt; /tmp/letsencrypt.log; sudo &lt;span class=&quot;built_in&quot;&gt;kill&lt;/span&gt; &lt;span class=&quot;_&quot;&gt;-s&lt;/span&gt; HUP $(cat /var/run/nginx.pid)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Create a file called &lt;code&gt;/etc/nginx/le_redirect_include.conf&lt;/code&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;
-    
-    </summary>
-    
-    
-      <category term="Lets encrypt" scheme="http://minhajuddin.com/tags/lets-encrypt/"/>
-    
-      <category term="Auto renew" scheme="http://minhajuddin.com/tags/auto-renew/"/>
-    
-      <category term="Nginx" scheme="http://minhajuddin.com/tags/nginx/"/>
     
   </entry>
   
