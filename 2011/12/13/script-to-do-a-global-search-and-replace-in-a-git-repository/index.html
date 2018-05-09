@@ -5,22 +5,17 @@
   
   <title>script to do a global search and replace in a git repository | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="There are many instances where I had to replace some variable name in all my files.
-I use a small script to do this, Hope it helps you too.
-12345678910111213141516#!/bin/bash#~/.scripts/git-sub#Author">
+  <meta name="description" content="There are many instances where I had to replace some variable name in all my files. I use a small script to do this, Hope it helps you too. 12345678910111213141516#!/bin/bash#~/.scripts/git-sub#Author">
 <meta property="og:type" content="article">
 <meta property="og:title" content="script to do a global search and replace in a git repository">
 <meta property="og:url" content="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="There are many instances where I had to replace some variable name in all my files.
-I use a small script to do this, Hope it helps you too.
-12345678910111213141516#!/bin/bash#~/.scripts/git-sub#Author">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="There are many instances where I had to replace some variable name in all my files. I use a small script to do this, Hope it helps you too. 12345678910111213141516#!/bin/bash#~/.scripts/git-sub#Author">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="script to do a global search and replace in a git repository">
-<meta name="twitter:description" content="There are many instances where I had to replace some variable name in all my files.
-I use a small script to do this, Hope it helps you too.
-12345678910111213141516#!/bin/bash#~/.scripts/git-sub#Author">
+<meta name="twitter:description" content="There are many instances where I had to replace some variable name in all my files. I use a small script to do this, Hope it helps you too. 12345678910111213141516#!/bin/bash#~/.scripts/git-sub#Author">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -122,7 +117,7 @@ ga('send', 'pageview');
       
         <p>There are many instances where I had to replace some variable name in all my files.
 I use a small script to do this, Hope it helps you too.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#~/.scripts/git-sub</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin &lt;minhajuddin@cosmicvent.com&gt;</span></div><div class="line"><span class="comment">#script which does a global search and replace in the git repository</span></div><div class="line"><span class="comment">#it takes two arguments</span></div><div class="line"><span class="comment">#e.g. git sub OLD NEW</span></div><div class="line"></div><div class="line">old=<span class="variable">$1</span></div><div class="line">new=<span class="variable">$2</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> file <span class="keyword">in</span> $(git grep <span class="variable">$old</span> | cut <span class="_">-d</span><span class="string">':'</span>  <span class="_">-f</span> 1 | uniq)</div><div class="line"><span class="keyword">do</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"replacing '<span class="variable">$old</span>' with '<span class="variable">$new</span>' in '<span class="variable">$file</span>'"</span></div><div class="line">  sed -i <span class="_">-e</span> <span class="string">"s/<span class="variable">$old</span>/<span class="variable">$new</span>/g"</span> <span class="variable">$file</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#~/.scripts/git-sub</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin &lt;minhajuddin@cosmicvent.com&gt;</span></span><br><span class="line"><span class="comment">#script which does a global search and replace in the git repository</span></span><br><span class="line"><span class="comment">#it takes two arguments</span></span><br><span class="line"><span class="comment">#e.g. git sub OLD NEW</span></span><br><span class="line"></span><br><span class="line">old=<span class="variable">$1</span></span><br><span class="line">new=<span class="variable">$2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> $(git grep <span class="variable">$old</span> | cut -d<span class="string">':'</span>  -f 1 | uniq)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"replacing '<span class="variable">$old</span>' with '<span class="variable">$new</span>' in '<span class="variable">$file</span>'"</span></span><br><span class="line">  sed -i -e <span class="string">"s/<span class="variable">$old</span>/<span class="variable">$new</span>/g"</span> <span class="variable">$file</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p>Just remember to add it to a directory which is in the <code>$PATH</code>. I have it in my
 <code>~/.scripts</code> directory which is included in the <code>$PATH</code>. Name it <code>git-sub</code> and give it
 executable permissions using <code>chmod +x ~/.scripts/git-sub</code>. Now, you can just call <code>git sub old_var new_var</code>
@@ -143,7 +138,7 @@ on terminal and it will do a global search and replace of all the files in the r
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/" data-id="cj8vm47rm00ej1dmudngbz476" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/" data-id="cjgyxnmcv006ofmbgrvidmt7i" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -297,7 +292,7 @@ on terminal and it will do a global search and replace of all the files in the r
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

@@ -5,22 +5,17 @@
   
   <title>rake task to delete untracked files in git | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuy
-has reminded me once again that I should GTFT (Google the f*** thing) before
-creating a task. Thanks for the tip SomeGuy :).">
+  <meta name="description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuy has reminded me once again that I should GTFT (Google the f*** thing) before creating a task. Thanks for the tip SomeGuy :).">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rake task to delete untracked files in git">
 <meta property="og:url" content="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuy
-has reminded me once again that I should GTFT (Google the f*** thing) before
-creating a task. Thanks for the tip SomeGuy :).">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuy has reminded me once again that I should GTFT (Google the f*** thing) before creating a task. Thanks for the tip SomeGuy :).">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rake task to delete untracked files in git">
-<meta name="twitter:description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuy
-has reminded me once again that I should GTFT (Google the f*** thing) before
-creating a task. Thanks for the tip SomeGuy :).">
+<meta name="twitter:description" content="UPDATE I should have checked if git has a command for this. Anyway SomeGuy has reminded me once again that I should GTFT (Google the f*** thing) before creating a task. Thanks for the tip SomeGuy :).">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -122,12 +117,12 @@ ga('send', 'pageview');
       
         <p><strong>UPDATE</strong> I should have checked if git has a command for this. Anyway <em>SomeGuy</em>
 has reminded me once again that I should GTFT (Google the f*** thing) before
-creating a task. Thanks for the tip <em>SomeGuy</em> :). Long story short, use <code>git clean</code> to <a href="http://www.gitready.com/beginner/2009/01/16/cleaning-up-untracked-files.html" target="_blank" rel="external">cleanup
+creating a task. Thanks for the tip <em>SomeGuy</em> :). Long story short, use <code>git clean</code> to <a href="http://www.gitready.com/beginner/2009/01/16/cleaning-up-untracked-files.html" target="_blank" rel="noopener">cleanup
 untracked files</a></p>
 <hr>
 <p>Whenever I merge stuff from my colleagues, I end up with a bunch of <strong>*.orig</strong> files.
 So, I created a simple rake task which deletes all the untracked files.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">desc <span class="string">'deletes untracked files'</span></div><div class="line">task <span class="string">'git:del'</span> <span class="keyword">do</span></div><div class="line">  files = <span class="string">`git status -s`</span></div><div class="line">  files.lines.each <span class="keyword">do</span> <span class="params">|f|</span></div><div class="line">    <span class="keyword">next</span> <span class="keyword">unless</span> f.start_with? <span class="string">'??'</span></div><div class="line">    f = f.gsub(<span class="string">'??'</span>, <span class="string">''</span>).strip</div><div class="line">    File.delete(f)</div><div class="line">    puts <span class="string">"deleted =&gt; <span class="subst">#&#123;f&#125;</span>"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">desc <span class="string">'deletes untracked files'</span></span><br><span class="line">task <span class="string">'git:del'</span> <span class="keyword">do</span></span><br><span class="line">  files = <span class="string">`git status -s`</span></span><br><span class="line">  files.lines.each <span class="keyword">do</span> <span class="params">|f|</span></span><br><span class="line">    <span class="keyword">next</span> <span class="keyword">unless</span> f.start_with? <span class="string">'??'</span></span><br><span class="line">    f = f.gsub(<span class="string">'??'</span>, <span class="string">''</span>).strip</span><br><span class="line">    File.delete(f)</span><br><span class="line">    puts <span class="string">"deleted =&gt; <span class="subst">#&#123;f&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>This will permanently delete <strong>all</strong> untracked files from your working copy, so
 use it with care! :)</p>
 
@@ -146,7 +141,7 @@ use it with care! :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cj8vm47qa00cv1dmu04iprm6q" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cjgyxnmcf005zfmbgfvioexuh" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -300,7 +295,7 @@ use it with care! :)</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

@@ -5,22 +5,18 @@
   
   <title>xclip in a few lines of ruby | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Update: I happened to check the source code of the ‘clipboard’ gem and it turns out that it depends on xclip. So the code below is just nonsense.
-An xclip in a few lines of ruby
-123456789#!/usr/bin/en">
+  <meta name="description" content="Update: I happened to check the source code of the ‘clipboard’ gem and it turns out that it depends on xclip. So the code below is just nonsense. An xclip in a few lines of ruby 123456789#!/usr/bin/en">
+<meta name="keywords" content="ruby,utility,xclip">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xclip in a few lines of ruby">
 <meta property="og:url" content="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Update: I happened to check the source code of the ‘clipboard’ gem and it turns out that it depends on xclip. So the code below is just nonsense.
-An xclip in a few lines of ruby
-123456789#!/usr/bin/en">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Update: I happened to check the source code of the ‘clipboard’ gem and it turns out that it depends on xclip. So the code below is just nonsense. An xclip in a few lines of ruby 123456789#!/usr/bin/en">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xclip in a few lines of ruby">
-<meta name="twitter:description" content="Update: I happened to check the source code of the ‘clipboard’ gem and it turns out that it depends on xclip. So the code below is just nonsense.
-An xclip in a few lines of ruby
-123456789#!/usr/bin/en">
+<meta name="twitter:description" content="Update: I happened to check the source code of the ‘clipboard’ gem and it turns out that it depends on xclip. So the code below is just nonsense. An xclip in a few lines of ruby 123456789#!/usr/bin/en">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -122,9 +118,9 @@ ga('send', 'pageview');
       
         <p><strong>Update</strong>: I happened to check the source code of the ‘clipboard’ gem and it turns out that it depends on <strong>xclip</strong>. So the code below is just nonsense.</p>
 <p>An xclip in a few lines of ruby</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'clipboard'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> ARGV.empty?</div><div class="line">  Clipboard.copy ARGF.readlines.join(<span class="string">"\n"</span>)</div><div class="line"><span class="keyword">else</span></div><div class="line">  Clipboard.copy ARGV.join(<span class="string">' '</span>)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'clipboard'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ARGV.empty?</span><br><span class="line">  Clipboard.copy ARGF.readlines.join(<span class="string">"\n"</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  Clipboard.copy ARGV.join(<span class="string">' '</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>###Use cases</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#copy the html source of cosmicvent.com to clipboard</span></div><div class="line">curl <span class="_">-s</span> http://cosmicvent.com | xc </div><div class="line"></div><div class="line"><span class="comment">#copy date to clipboard</span></div><div class="line">xc $(date)</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#copy the html source of cosmicvent.com to clipboard</span></span><br><span class="line">curl -s http://cosmicvent.com | xc </span><br><span class="line"></span><br><span class="line"><span class="comment">#copy date to clipboard</span></span><br><span class="line">xc $(date)</span><br></pre></td></tr></table></figure>
 
         
       
@@ -141,7 +137,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cj8vm47ty00gi1dmug5zzqb1b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="cjgyxnmdn007rfmbgx0aw9d0r" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -297,7 +293,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

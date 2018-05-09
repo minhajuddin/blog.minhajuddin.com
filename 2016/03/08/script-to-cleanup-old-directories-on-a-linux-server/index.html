@@ -5,22 +5,18 @@
   
   <title>Script to cleanup old directories on a linux server | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Here is a simple script which can cleanup directories older than x days on your server
-It is useful for freeing up space by removing temporary directories on your server
-123456789101112131415161718192">
+  <meta name="description" content="Here is a simple script which can cleanup directories older than x days on your server It is useful for freeing up space by removing temporary directories on your server 123456789101112131415161718192">
+<meta name="keywords" content="server,bash,cleanup">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Script to cleanup old directories on a linux server">
 <meta property="og:url" content="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Here is a simple script which can cleanup directories older than x days on your server
-It is useful for freeing up space by removing temporary directories on your server
-123456789101112131415161718192">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Here is a simple script which can cleanup directories older than x days on your server It is useful for freeing up space by removing temporary directories on your server 123456789101112131415161718192">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Script to cleanup old directories on a linux server">
-<meta name="twitter:description" content="Here is a simple script which can cleanup directories older than x days on your server
-It is useful for freeing up space by removing temporary directories on your server
-123456789101112131415161718192">
+<meta name="twitter:description" content="Here is a simple script which can cleanup directories older than x days on your server It is useful for freeing up space by removing temporary directories on your server 123456789101112131415161718192">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -122,7 +118,7 @@ ga('send', 'pageview');
       
         <p>Here is a simple script which can cleanup directories older than <code>x</code> days on your server
 It is useful for freeing up space by removing temporary directories on your server</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="comment"># usage</span></div><div class="line"><span class="comment"># # deletes dirs inside /opt/builds which are older than 3 days</span></div><div class="line"><span class="comment"># delete-old-dirs.sh /opt/builds 3</span></div><div class="line"><span class="comment"># cron entry to run this every hour</span></div><div class="line"><span class="comment"># 0 * * * * /usr/bin/delete-old-dirs.sh /opt/builds 2 &gt;&gt; /tmp/delete.log 2&gt;&amp;1</span></div><div class="line"><span class="comment"># cron entry to run this every day</span></div><div class="line"><span class="comment"># 0 0 * * * /usr/bin/delete-old-dirs.sh /opt/builds 2 &gt;&gt; /tmp/delete.log 2&gt;&amp;1</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> ! [  <span class="variable">$#</span> <span class="_">-eq</span> 2 ]</div><div class="line"><span class="keyword">then</span></div><div class="line">cat &lt;&lt;EOS</div><div class="line">  Invalid arguments</div><div class="line">  Usage:</div><div class="line">    delete-old-dirs.sh /root/directory/to-look/<span class="keyword">for</span>-temp-dirs days-since-last-modification</div><div class="line">    e.g. &gt; delete-old-dirs.sh /opt/builds 3</div><div class="line">EOS</div><div class="line">  <span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line">root=<span class="variable">$1</span></div><div class="line">ctime=<span class="variable">$2</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> dir <span class="keyword">in</span> $(find <span class="variable">$root</span> -mindepth 1 -maxdepth 1 -type d -ctime +<span class="string">"<span class="variable">$ctime</span>"</span>)</div><div class="line"><span class="keyword">do</span></div><div class="line">  <span class="comment"># --format %n:filename, %A:access rights, %G:Group name of owner, %g: Group ID of owner, %U: User name of owner, %u: User ID of owner, %y: time of last data modification</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"removing: <span class="variable">$(stat --format="%n %A %G(%g)</span> %U(%u) %y"</span> <span class="string">"<span class="variable">$dir</span>"</span>)<span class="string">"</span></div><div class="line">  rm -rf "<span class="variable">$dir</span><span class="string">"</span></div><div class="line">done</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># usage</span></span><br><span class="line"><span class="comment"># # deletes dirs inside /opt/builds which are older than 3 days</span></span><br><span class="line"><span class="comment"># delete-old-dirs.sh /opt/builds 3</span></span><br><span class="line"><span class="comment"># cron entry to run this every hour</span></span><br><span class="line"><span class="comment"># 0 * * * * /usr/bin/delete-old-dirs.sh /opt/builds 2 &gt;&gt; /tmp/delete.log 2&gt;&amp;1</span></span><br><span class="line"><span class="comment"># cron entry to run this every day</span></span><br><span class="line"><span class="comment"># 0 0 * * * /usr/bin/delete-old-dirs.sh /opt/builds 2 &gt;&gt; /tmp/delete.log 2&gt;&amp;1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ! [  <span class="variable">$#</span> -eq 2 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">cat &lt;&lt;EOS</span><br><span class="line">  Invalid arguments</span><br><span class="line">  Usage:</span><br><span class="line">    delete-old-dirs.sh /root/directory/to-look/<span class="keyword">for</span>-temp-dirs days-since-last-modification</span><br><span class="line">    e.g. &gt; delete-old-dirs.sh /opt/builds 3</span><br><span class="line">EOS</span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">root=<span class="variable">$1</span></span><br><span class="line">ctime=<span class="variable">$2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> dir <span class="keyword">in</span> $(find <span class="variable">$root</span> -mindepth 1 -maxdepth 1 -<span class="built_in">type</span> d -ctime +<span class="string">"<span class="variable">$ctime</span>"</span>)</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment"># --format %n:filename, %A:access rights, %G:Group name of owner, %g: Group ID of owner, %U: User name of owner, %u: User ID of owner, %y: time of last data modification</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"removing: <span class="variable">$(stat --format="%n %A %G(%g)</span> %U(%u) %y"</span> <span class="string">"<span class="variable">$dir</span>"</span>)<span class="string">"</span></span><br><span class="line"><span class="string">  rm -rf "</span><span class="variable">$dir</span><span class="string">"</span></span><br><span class="line"><span class="string">done</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -139,7 +135,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="cj8vm47rf00e91dmugta2vih4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="cjgyxnmcs006kfmbg813f9jau" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -295,7 +291,7 @@ It is useful for freeing up space by removing temporary directories on your serv
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

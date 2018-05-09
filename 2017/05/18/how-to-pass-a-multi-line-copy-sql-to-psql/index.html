@@ -5,22 +5,18 @@
   
   <title>How to pass a multi line copy sql to psql | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I have been working with a lot of ETL stuff lately and have to import/export data
-from our postgresql database frequently.
-While writing a script recently, I found that psql doesn’t allow using the \C">
+  <meta name="description" content="I have been working with a lot of ETL stuff lately and have to import/export data from our postgresql database frequently. While writing a script recently, I found that psql doesn’t allow using the \C">
+<meta name="keywords" content="psql,Postgresql,Copy">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to pass a multi line copy sql to psql">
 <meta property="og:url" content="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I have been working with a lot of ETL stuff lately and have to import/export data
-from our postgresql database frequently.
-While writing a script recently, I found that psql doesn’t allow using the \C">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="I have been working with a lot of ETL stuff lately and have to import/export data from our postgresql database frequently. While writing a script recently, I found that psql doesn’t allow using the \C">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to pass a multi line copy sql to psql">
-<meta name="twitter:description" content="I have been working with a lot of ETL stuff lately and have to import/export data
-from our postgresql database frequently.
-While writing a script recently, I found that psql doesn’t allow using the \C">
+<meta name="twitter:description" content="I have been working with a lot of ETL stuff lately and have to import/export data from our postgresql database frequently. While writing a script recently, I found that psql doesn’t allow using the \C">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -128,7 +124,7 @@ The only workaround seemed to be squishing the sql into a single line.
 However, this makes it very difficult to read and modify the SQL. This is when bash came to my rescue :)</p>
 <p>Here is a hacky way to do use multiline SQL with <code>\COPY</code>.</p>
 <p>This just strips the newlines before sending it to psql. Have your cake and eat it too :)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment"># Using a file</span></div><div class="line">psql <span class="_">-f</span> &lt;(tr <span class="_">-d</span> <span class="string">'\n'</span> &lt; ~/s/test.sql )</div><div class="line"><span class="comment"># or</span></div><div class="line">psql &lt; &lt;(tr <span class="_">-d</span> <span class="string">'\n'</span> &lt; ~/s/test.sql )</div><div class="line"></div><div class="line"><span class="comment"># Putting the SQL using a HEREDOC</span></div><div class="line">cat &lt;&lt;SQL | tr <span class="_">-d</span> <span class="string">'\n'</span>  | \psql mydatabase</div><div class="line">\COPY (</div><div class="line">  SELECT</div><div class="line">    provider_id,</div><div class="line">    provider_name,</div><div class="line">    ...</div><div class="line">) TO <span class="string">'./out.tsv'</span> WITH( DELIMITER E<span class="string">'\t'</span>, NULL <span class="string">''</span>, )</div><div class="line">SQL</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># Using a file</span></span><br><span class="line">psql -f &lt;(tr -d <span class="string">'\n'</span> &lt; ~/s/test.sql )</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">psql &lt; &lt;(tr -d <span class="string">'\n'</span> &lt; ~/s/test.sql )</span><br><span class="line"></span><br><span class="line"><span class="comment"># Putting the SQL using a HEREDOC</span></span><br><span class="line">cat &lt;&lt;SQL | tr -d <span class="string">'\n'</span>  | \psql mydatabase</span><br><span class="line">\COPY (</span><br><span class="line">  SELECT</span><br><span class="line">    provider_id,</span><br><span class="line">    provider_name,</span><br><span class="line">    ...</span><br><span class="line">) TO <span class="string">'./out.tsv'</span> WITH( DELIMITER E<span class="string">'\t'</span>, NULL <span class="string">''</span>, )</span><br><span class="line">SQL</span><br></pre></td></tr></table></figure>
 
         
       
@@ -145,7 +141,7 @@ However, this makes it very difficult to read and modify the SQL. This is when b
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/" data-id="cj8vm47lx008r1dmu43ig3ci3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/" data-id="cjgyxnmar003zfmbgbaqg29w0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -301,7 +297,7 @@ However, this makes it very difficult to read and modify the SQL. This is when b
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

@@ -5,25 +5,17 @@
   
   <title>helper script to create new posts using jekyll | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
-and painful stuff. To create a blog post, you’ll have to do the following:
-
-Create a filename called 2010-">
+  <meta name="description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant  and painful stuff. To create a blog post, you’ll have to do the following:  Create a filename called 2010-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="helper script to create new posts using jekyll">
 <meta property="og:url" content="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
-and painful stuff. To create a blog post, you’ll have to do the following:
-
-Create a filename called 2010-">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant  and painful stuff. To create a blog post, you’ll have to do the following:  Create a filename called 2010-">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="helper script to create new posts using jekyll">
-<meta name="twitter:description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
-and painful stuff. To create a blog post, you’ll have to do the following:
-
-Create a filename called 2010-">
+<meta name="twitter:description" content="Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant  and painful stuff. To create a blog post, you’ll have to do the following:  Create a filename called 2010-">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -94,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -133,8 +125,8 @@ title, and the layout is the minimum, Here you are typing the title again.</li>
 </ul>
 <p>It’s not a big deal, but it’s still annoying. So, I came up with a small ruby
 script called new.rb, which basically automates this stuff.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"></div><div class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></div><div class="line"><span class="comment"># which is the title of the blog post</span></div><div class="line"><span class="comment"># e.g. command:</span></div><div class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></div><div class="line"></div><div class="line"><span class="comment"># Some constants</span></div><div class="line">TEMPLATE = <span class="string">"template.markdown"</span></div><div class="line">TARGET_DIR = <span class="string">"_posts"</span></div><div class="line"></div><div class="line"><span class="comment"># Get the title which was passed as an argument</span></div><div class="line">title = ARGV[<span class="number">0</span>]</div><div class="line"><span class="comment"># Get the filename</span></div><div class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</div><div class="line">filename = <span class="string">"<span class="subst">#&#123; Time.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </div><div class="line">filepath = File.join(TARGET_DIR, filename)</div><div class="line"></div><div class="line"><span class="comment"># Create a copy of the template with the title replaced</span></div><div class="line">new_post = File.read(TEMPLATE)</div><div class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</div><div class="line"></div><div class="line"><span class="comment"># Write out the file to the target directory</span></div><div class="line">new_post_file = File.open(filepath, <span class="string">'w'</span>)</div><div class="line">new_post_file.puts new_post</div><div class="line">new_post_file.close</div><div class="line"></div><div class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></div></pre></td></tr></table></figure>
-<p><a href="http://gist.github.com/604999#comments" target="_blank" rel="external">Download the gist</a></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></span><br><span class="line"><span class="comment"># which is the title of the blog post</span></span><br><span class="line"><span class="comment"># e.g. command:</span></span><br><span class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Some constants</span></span><br><span class="line">TEMPLATE = <span class="string">"template.markdown"</span></span><br><span class="line">TARGET_DIR = <span class="string">"_posts"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the title which was passed as an argument</span></span><br><span class="line">title = ARGV[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># Get the filename</span></span><br><span class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</span><br><span class="line">filename = <span class="string">"<span class="subst">#&#123; Time.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </span><br><span class="line">filepath = File.join(TARGET_DIR, filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a copy of the template with the title replaced</span></span><br><span class="line">new_post = File.read(TEMPLATE)</span><br><span class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write out the file to the target directory</span></span><br><span class="line">new_post_file = File.open(filepath, <span class="string">'w'</span>)</span><br><span class="line">new_post_file.puts new_post</span><br><span class="line">new_post_file.close</span><br><span class="line"></span><br><span class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://gist.github.com/604999#comments" target="_blank" rel="noopener">Download the gist</a></p>
 
         
       
@@ -151,7 +143,7 @@ script called new.rb, which basically automates this stuff.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cj8vm47jh00681dmuwq7pz4e1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cjgyxnm9x002yfmbghh43vjwa" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -305,7 +297,7 @@ script called new.rb, which basically automates this stuff.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

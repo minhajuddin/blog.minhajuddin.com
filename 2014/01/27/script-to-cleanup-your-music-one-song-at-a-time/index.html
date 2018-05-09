@@ -6,12 +6,14 @@
   <title>Script to cleanup your music one song at a time | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="I have a big library of music with a lot of songs I don’t like anymore or songs which were a part of an album from which there was one song which I liked. And whenever my music player starts playing t">
+<meta name="keywords" content="banshee,,music">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Script to cleanup your music one song at a time">
 <meta property="og:url" content="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/index.html">
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="I have a big library of music with a lot of songs I don’t like anymore or songs which were a part of an album from which there was one song which I liked. And whenever my music player starts playing t">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Script to cleanup your music one song at a time">
 <meta name="twitter:description" content="I have a big library of music with a lot of songs I don’t like anymore or songs which were a part of an album from which there was one song which I liked. And whenever my music player starts playing t">
@@ -85,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -115,9 +117,9 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>I have a big library of music with a lot of songs I don’t like anymore or songs which were a part of an album from which there was one song which I liked. And whenever my music player starts playing these songs, I hit a keyboard combo which goes to the next song. But these songs would be in my library just waiting to annoy me again. Here is a little ruby script which I wrote from an idea by my friend <a href="codingtales.com">Abdul Sattar</a>.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/home/minhajuddin/.rvm/rubies/ruby-1.9.3-p194/bin/ruby</span></div><div class="line"><span class="keyword">require</span> <span class="string">'uri'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'fileutils'</span></div><div class="line"></div><div class="line">song = <span class="string">`banshee --query-uri`</span>.chomp</div><div class="line">song = song.gsub(<span class="regexp">/uri:.*file:\/\//</span>,<span class="string">''</span>)</div><div class="line">song =  URI.decode(song)</div><div class="line"></div><div class="line">FileUtils.mv(song, <span class="string">'/home/minhajuddin/badmusic/'</span>)</div><div class="line">system(<span class="string">"/usr/bin/banshee --next"</span>)</div><div class="line">puts <span class="string">"Moved song '<span class="subst">#&#123;song&#125;</span>'"</span></div><div class="line"></div><div class="line"><span class="comment">#mv "$(ruby -e 'require "uri"; puts URI.decode(ARGV.join.gsub(/uri:file:\/\//,""))' $(banshee --query-uri))" /home/minhajuddin/badmusic/</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/home/minhajuddin/.rvm/rubies/ruby-1.9.3-p194/bin/ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'uri'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fileutils'</span></span><br><span class="line"></span><br><span class="line">song = <span class="string">`banshee --query-uri`</span>.chomp</span><br><span class="line">song = song.gsub(<span class="regexp">/uri:.*file:\/\//</span>,<span class="string">''</span>)</span><br><span class="line">song =  URI.decode(song)</span><br><span class="line"></span><br><span class="line">FileUtils.mv(song, <span class="string">'/home/minhajuddin/badmusic/'</span>)</span><br><span class="line">system(<span class="string">"/usr/bin/banshee --next"</span>)</span><br><span class="line">puts <span class="string">"Moved song '<span class="subst">#&#123;song&#125;</span>'"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#mv "$(ruby -e 'require "uri"; puts URI.decode(ARGV.join.gsub(/uri:file:\/\//,""))' $(banshee --query-uri))" /home/minhajuddin/badmusic/</span></span><br></pre></td></tr></table></figure>
 <p>I also have a keyboard shortcut bound to it which triggers it.</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">, ((modMask, xK_x     ), spawn <span class="string">"/home/minhajuddin/Dropbox/private/scripts/remove-current-song &amp;&gt; /tmp/log"</span>) <span class="comment">-- %! Remove music from library</span></div></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">, ((modMask, xK_x     ), spawn <span class="string">"/home/minhajuddin/Dropbox/private/scripts/remove-current-song &amp;&gt; /tmp/log"</span>) <span class="comment">-- %! Remove music from library</span></span><br></pre></td></tr></table></figure>
 <p>Now whenever banshee plays a song which I don’t like I can remove it from my library forever by just hitting ‘Windowx+x’</p>
 
         
@@ -135,7 +137,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/" data-id="cj8vm47ri00ee1dmum5lvvvug" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/" data-id="cjgyxnmcu006mfmbgwjhhiy0j" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -291,7 +293,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

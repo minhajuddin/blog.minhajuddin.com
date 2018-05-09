@@ -11,6 +11,7 @@
 <meta property="og:url" content="http://minhajuddin.com/page/6/index.html">
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="Some thoughts on writing simple code and other random ramblings.">
+<meta property="og:locale" content="English">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Simplicity">
 <meta name="twitter:description" content="Some thoughts on writing simple code and other random ramblings.">
@@ -84,7 +85,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -125,14 +126,14 @@ profile which will be used for all the profile <em>show</em> links automatically
 That’s it now your application has vanity urls, whenever someone clicks on a
 profile#show link they will be taken to /:slug. Obviously in this case the slug
 is assumed to be unique.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Funky::Application.routes.draw <span class="keyword">do</span></div><div class="line">  .</div><div class="line">  .</div><div class="line">  .</div><div class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</div><div class="line">  .</div><div class="line">  .</div><div class="line">  <span class="comment">#at the end of the routes file</span></div><div class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Funky::Application.routes.draw <span class="keyword">do</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="comment">#at the end of the routes file</span></span><br><span class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>###Update###
 One of the readers emailed me asking what the controller code would look like. Here it is:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#app/models/profile.rb</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> &lt; ActiveRecord::Base</span></div><div class="line">  <span class="comment">#should have a column called "slug"</span></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> &lt; ApplicationController</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></div><div class="line">    @profile = Profile.find_by_slug(params[<span class="symbol">:slug</span>])</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#app/models/profile.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  <span class="comment">#should have a column called "slug"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> &lt; ApplicationController</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></span><br><span class="line">    @profile = Profile.find_by_slug(params[<span class="symbol">:slug</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>###References###</p>
 <ul>
-<li><a href="http://guides.rubyonrails.org/routing.html#naming-routes" target="_blank" rel="external">http://guides.rubyonrails.org/routing.html#naming-routes</a></li>
-<li><a href="http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/" target="_blank" rel="external">http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/</a></li>
+<li><a href="http://guides.rubyonrails.org/routing.html#naming-routes" target="_blank" rel="noopener">http://guides.rubyonrails.org/routing.html#naming-routes</a></li>
+<li><a href="http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/" target="_blank" rel="noopener">http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/</a></li>
 </ul>
 
         
@@ -143,88 +144,9 @@ One of the readers emailed me asking what the controller code would look like. H
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="cj8vm47l5007u1dmuxbbnml0c" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="cjgyxnmag003ifmbgtm47p6zo" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-reminiscing-my-past" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/04/02/reminiscing-my-past/" class="article-date">
-  <time datetime="2011-04-02T00:00:00.000Z" itemprop="datePublished">2011-04-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/04/02/reminiscing-my-past/">reminiscing my past</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I consider myself a self-taught developer for the most part. 
-And, free screencasts where the next best thing to having a
-trainer for me. The importance of screencasts gets lost once you get a grip on
-programming and development. But, in the initial days when you don’t know anything
-about programming, having a human voice guide you can make all the difference in
-the world.</p>
-<p>Below is a list of screencasts/videos/books which helped me in my initial days of web development:</p>
-<ul>
-<li><a href="http://blogs.msdn.com/b/wsteele/archive/2005/11/07/489884.aspx" target="_blank" rel="external">ASP.NET Soup to Nuts</a> by <a href="http://blogs.msdn.com/b/wsteele/" target="_blank" rel="external">Bill Steele</a>. I learnt how things really worked on the world wide web here for the first time. The first couple of videos are relevant even for non-ASP.NET web devs.</li>
-<li><a href="http://blogs.msdn.com/b/wsteele/archive/2007/01/29/c-soup-to-nuts-webcast-links.aspx" target="_blank" rel="external">Visual C# Soup to Nuts</a> by the same Bill Steele. This is where I really learnt concepts about programming.</li>
-<li><a href="http://computerscience1.tv/2006/fall/" target="_blank" rel="external">Computer Science - E1 : Understanding Computers and the Internet</a> by <a href="http://www.cs.harvard.edu/malan/" target="_blank" rel="external">David Malan</a>. This course filled up a lot of gaps about computer science for me.</li>
-<li><a href="http://blog.wekeroad.com/2008/04/07/mvc-storefront-part-1" target="_blank" rel="external">ASP.NET MVC : Storefront series</a> by our very own <a href="http://wekeroad.com/" target="_blank" rel="external">Rob Conery</a>. This was the series of screencasts which made me truly understand what serious web-development was all about.</li>
-<li><a href="http://www.summerofnhibernate.com/" target="_blank" rel="external">Summer of NHibernate</a> by <a href="http://unhandled-exceptions.com/blog/index.php/about/" target="_blank" rel="external">Stephen Bohlen</a></li>
-<li><a href="http://www.dimecasts.net/" target="_blank" rel="external">Dimecasts</a> by <a href="http://devlicio.us/blogs/derik_whittaker/" target="_blank" rel="external">Derik Whittaker</a> and friends</li>
-<li><a href="http://railscasts.com/" target="_blank" rel="external">Railscasts</a> by <a href="http://workingwithrails.com/person/6491-ryan-bates" target="_blank" rel="external">Ryan Bates</a></li>
-<li><a href="http://headfirstlabs.com/books/hfooad/" target="_blank" rel="external">Head First OOA&amp;D</a> Although this book has examples in Java, it taught me a lot about the <a href="http://en.wikipedia.org/wiki/Solid_(object-oriented_design" target="_blank" rel="external">SOLID</a> OO principles and Object Oriented Design in general.</li>
-</ul>
-<p>I haven’t talked about my past on my blog. But, I had a secure and high paying job 
-at a big MNC called <a href="http://tcs.com" target="_blank" rel="external">TCS</a> from 2006 to 2008.
-I used to work as an ETL developer, designing <em>jobs</em> using a tool called
-<a href="http://en.wikipedia.org/wiki/IBM_InfoSphere_DataStage" target="_blank" rel="external">Datastage</a>. It was a
-niche skill and I was very good at it. The only problem was it didn’t give me an
-opportunity to program. Designing high performance ETL jobs was interesting but
-it never satisfied my hunger for <em>programming</em>. Anyway, I
-decided to leave my secure job and start my own gig around Aug 2008.
-My first programming job as a freelancer was fixing a <em>slow performing sql
-query</em>(btw, the problem it had was that it was doing a cartesian join instead of
-an inner join). I did it for $8(out of which I got $5, and the other $3 went to rentacoder.com), 
-but the satisfaction and confidence it gave me was priceless. 
-I have come a long way since then. I have developed atleast half a dozen high 
-quality web applications since then. And <em>I owe a lot of what I know to
-the gentlemen who devoted their time in spreading knowledge through screencasts, blog posts and books.</em></p>
-<p>I am planning to do a series of screencasts to look at ruby on rails development
-using ubuntu and post them on <a href="vimeo">vimeo</a>, hoping to help beginners.
-I’ll try and post atleast one video every week.</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="cj8vm47qo00da1dmuwuufpfv5" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2011/04/02/reminiscing-my-past/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -268,22 +190,22 @@ environment.</p>
 
 
 <h2 id="Notes-for-Session-1-Setup-an-ubuntu-machine-with-the-basic-software"><a href="#Notes-for-Session-1-Setup-an-ubuntu-machine-with-the-basic-software" class="headerlink" title="Notes for Session 1: Setup an ubuntu machine with the basic software"></a>Notes for Session 1: Setup an ubuntu machine with the basic software</h2><ol>
-<li><a href="http://www.ubuntu.com/desktop/get-ubuntu/download" target="_blank" rel="external">Download and install Ubuntu 10.10</a></li>
-<li><a href="https://github.com/joshfng/railsready" target="_blank" rel="external">Install Ruby and Rails via Rails Ready</a></li>
+<li><a href="http://www.ubuntu.com/desktop/get-ubuntu/download" target="_blank" rel="noopener">Download and install Ubuntu 10.10</a></li>
+<li><a href="https://github.com/joshfng/railsready" target="_blank" rel="noopener">Install Ruby and Rails via Rails Ready</a></li>
 <li>Setup gvim (which will be our primary editor)<ul>
 <li>Install through <em>software center</em></li>
 <li>While we are at it, let’s install gnome-do</li>
-<li>Finally let’s configure it: <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="external">https://github.com/minhajuddin/dotfiles</a></li>
+<li>Finally let’s configure it: <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="noopener">https://github.com/minhajuddin/dotfiles</a></li>
 </ul>
 </li>
-<li><a href="https://help.ubuntu.com/community/UsingTheTerminal" target="_blank" rel="external">Importance of the terminal https://help.ubuntu.com/community/UsingTheTerminal</a></li>
+<li><a href="https://help.ubuntu.com/community/UsingTheTerminal" target="_blank" rel="noopener">Importance of the terminal https://help.ubuntu.com/community/UsingTheTerminal</a></li>
 <li>Install rvm using railsready<pre><code>url:     https://github.com/joshfng/railsready
 command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/master/railsready.sh &amp;&amp; bash railsready.sh
 </code></pre></li>
 <li>Configure rvm and install ruby</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#replace the following which is usually found on line 6 of ~/.bashrc</span></div><div class="line">[ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></div><div class="line"><span class="comment"># with </span></div><div class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></div><div class="line"><span class="comment"># also put the following line at the end of the file</span></div><div class="line">[[ <span class="_">-s</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#replace the following which is usually found on line 6 of ~/.bashrc</span></span><br><span class="line">[ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></span><br><span class="line"><span class="comment"># with </span></span><br><span class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></span><br><span class="line"><span class="comment"># also put the following line at the end of the file</span></span><br><span class="line">[[ -s <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<ol start="7">
 <li>Install rails: gem install rails</li>
 </ol>
 <h2 id="Next-screencast"><a href="#Next-screencast" class="headerlink" title="Next screencast: "></a>Next screencast: </h2><p>How to build a simple rails application 
@@ -297,9 +219,88 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="cj8vm47r300du1dmu2brnnnil" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="cjgyxnmco006dfmbg9ggzxwyv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-reminiscing-my-past" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/02/reminiscing-my-past/" class="article-date">
+  <time datetime="2011-04-02T00:00:00.000Z" itemprop="datePublished">2011-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/02/reminiscing-my-past/">reminiscing my past</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I consider myself a self-taught developer for the most part. 
+And, free screencasts where the next best thing to having a
+trainer for me. The importance of screencasts gets lost once you get a grip on
+programming and development. But, in the initial days when you don’t know anything
+about programming, having a human voice guide you can make all the difference in
+the world.</p>
+<p>Below is a list of screencasts/videos/books which helped me in my initial days of web development:</p>
+<ul>
+<li><a href="http://blogs.msdn.com/b/wsteele/archive/2005/11/07/489884.aspx" target="_blank" rel="noopener">ASP.NET Soup to Nuts</a> by <a href="http://blogs.msdn.com/b/wsteele/" target="_blank" rel="noopener">Bill Steele</a>. I learnt how things really worked on the world wide web here for the first time. The first couple of videos are relevant even for non-ASP.NET web devs.</li>
+<li><a href="http://blogs.msdn.com/b/wsteele/archive/2007/01/29/c-soup-to-nuts-webcast-links.aspx" target="_blank" rel="noopener">Visual C# Soup to Nuts</a> by the same Bill Steele. This is where I really learnt concepts about programming.</li>
+<li><a href="http://computerscience1.tv/2006/fall/" target="_blank" rel="noopener">Computer Science - E1 : Understanding Computers and the Internet</a> by <a href="http://www.cs.harvard.edu/malan/" target="_blank" rel="noopener">David Malan</a>. This course filled up a lot of gaps about computer science for me.</li>
+<li><a href="http://blog.wekeroad.com/2008/04/07/mvc-storefront-part-1" target="_blank" rel="noopener">ASP.NET MVC : Storefront series</a> by our very own <a href="http://wekeroad.com/" target="_blank" rel="noopener">Rob Conery</a>. This was the series of screencasts which made me truly understand what serious web-development was all about.</li>
+<li><a href="http://www.summerofnhibernate.com/" target="_blank" rel="noopener">Summer of NHibernate</a> by <a href="http://unhandled-exceptions.com/blog/index.php/about/" target="_blank" rel="noopener">Stephen Bohlen</a></li>
+<li><a href="http://www.dimecasts.net/" target="_blank" rel="noopener">Dimecasts</a> by <a href="http://devlicio.us/blogs/derik_whittaker/" target="_blank" rel="noopener">Derik Whittaker</a> and friends</li>
+<li><a href="http://railscasts.com/" target="_blank" rel="noopener">Railscasts</a> by <a href="http://workingwithrails.com/person/6491-ryan-bates" target="_blank" rel="noopener">Ryan Bates</a></li>
+<li><a href="http://headfirstlabs.com/books/hfooad/" target="_blank" rel="noopener">Head First OOA&amp;D</a> Although this book has examples in Java, it taught me a lot about the <a href="http://en.wikipedia.org/wiki/Solid_(object-oriented_design" target="_blank" rel="noopener">SOLID</a> OO principles and Object Oriented Design in general.</li>
+</ul>
+<p>I haven’t talked about my past on my blog. But, I had a secure and high paying job 
+at a big MNC called <a href="http://tcs.com" target="_blank" rel="noopener">TCS</a> from 2006 to 2008.
+I used to work as an ETL developer, designing <em>jobs</em> using a tool called
+<a href="http://en.wikipedia.org/wiki/IBM_InfoSphere_DataStage" target="_blank" rel="noopener">Datastage</a>. It was a
+niche skill and I was very good at it. The only problem was it didn’t give me an
+opportunity to program. Designing high performance ETL jobs was interesting but
+it never satisfied my hunger for <em>programming</em>. Anyway, I
+decided to leave my secure job and start my own gig around Aug 2008.
+My first programming job as a freelancer was fixing a <em>slow performing sql
+query</em>(btw, the problem it had was that it was doing a cartesian join instead of
+an inner join). I did it for $8(out of which I got $5, and the other $3 went to rentacoder.com), 
+but the satisfaction and confidence it gave me was priceless. 
+I have come a long way since then. I have developed atleast half a dozen high 
+quality web applications since then. And <em>I owe a lot of what I know to
+the gentlemen who devoted their time in spreading knowledge through screencasts, blog posts and books.</em></p>
+<p>I am planning to do a series of screencasts to look at ruby on rails development
+using ubuntu and post them on <a href="vimeo">vimeo</a>, hoping to help beginners.
+I’ll try and post atleast one video every week.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="cjgyxnmcj0066fmbgsm0ki8rd" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/04/02/reminiscing-my-past/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -333,32 +334,32 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
     <div class="article-entry" itemprop="articleBody">
       
         <p><em>This is a note-to-self</em> </p>
-<p><a href="http://www.startssl.com" target="_blank" rel="external">StartSSL</a> is a certification authority which gives away <em>free</em> SSL certificates valid for one year (after which you can renew it again for <em>free</em>). They are simply awesome. Anyway, this blog post documents how you can setup an ssl cert on an nginx server using the start ssl free cert.</p>
+<p><a href="http://www.startssl.com" target="_blank" rel="noopener">StartSSL</a> is a certification authority which gives away <em>free</em> SSL certificates valid for one year (after which you can renew it again for <em>free</em>). They are simply awesome. Anyway, this blog post documents how you can setup an ssl cert on an nginx server using the start ssl free cert.</p>
 <ul>
-<li>Signup for a <a href="http://www.startssl.com" target="_blank" rel="external">StartSSL</a> account . StartSSL doesn’t give you a username and password, it gives you a client certificate instead (Use firefox to do signup). Make sure to <a href="https://www.startssl.com/?app=25#4" target="_blank" rel="external">back up</a> the client cert.</li>
+<li>Signup for a <a href="http://www.startssl.com" target="_blank" rel="noopener">StartSSL</a> account . StartSSL doesn’t give you a username and password, it gives you a client certificate instead (Use firefox to do signup). Make sure to <a href="https://www.startssl.com/?app=25#4" target="_blank" rel="noopener">back up</a> the client cert.</li>
 <li>SSH into your server and run the following commands:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">openssl genrsa -des3 -out server.key.secure 2048</div><div class="line">openssl rsa -in server.key.secure -out server.key</div><div class="line">openssl req -new -key server.key -out server.csr</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">openssl genrsa -des3 -out server.key.secure 2048</span><br><span class="line">openssl rsa -<span class="keyword">in</span> server.key.secure -out server.key</span><br><span class="line">openssl req -new -key server.key -out server.csr</span><br></pre></td></tr></table></figure>
 <ul>
 <li>On startssl browse to the <em>control panel</em> and then to the <em>validations wizard</em> and validate the domain for which you want to generate your ssl.</li>
 <li>Now go to the <em>certificates wizard</em> tab in the <em>control panel</em> and create a <em>web server ssl certificate</em>. Skip the first step and paste your <code>server.csr</code> file in the next step. Finish the rest of the steps of this wizard.</li>
 <li>Browse to the <em>tool box</em> in the <em>control panel</em> and click on <em>retrieve certificate</em>. Copy your certificate and paste it into a file called <code>server.crt</code> on the server.</li>
-<li>Download <a href="http://www.startssl.com/certs/sub.class1.server.ca.pem" target="_blank" rel="external">sub.class1.server.ca.pem</a> to your server.</li>
+<li>Download <a href="http://www.startssl.com/certs/sub.class1.server.ca.pem" target="_blank" rel="noopener">sub.class1.server.ca.pem</a> to your server.</li>
 <li>Now run <code>cat sub.class1.server.ca.pem &gt;&gt; server.crt</code> to append the intermediate certificate to your cert.</li>
 <li>Run the commands:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo cp server.crt /etc/ssl/example.com.crt</div><div class="line">sudo cp server.key /etc/ssl/example.com.key</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo cp server.crt /etc/ssl/example.com.crt</span><br><span class="line">sudo cp server.key /etc/ssl/example.com.key</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Change your nginx conf to:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">server &#123;</div><div class="line">      .</div><div class="line">      .</div><div class="line">      listen 80;</div><div class="line">      listen 443 ssl;</div><div class="line">      ssl on;</div><div class="line">      ssl_certificate /etc/ssl/example.com.crt;</div><div class="line">      ssl_certificate_key /etc/ssl/example.com.key;</div><div class="line">      .</div><div class="line">      .</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">      .</span><br><span class="line">      .</span><br><span class="line">      listen 80;</span><br><span class="line">      listen 443 ssl;</span><br><span class="line">      ssl on;</span><br><span class="line">      ssl_certificate /etc/ssl/example.com.crt;</span><br><span class="line">      ssl_certificate_key /etc/ssl/example.com.key;</span><br><span class="line">      .</span><br><span class="line">      .</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Restart your nginx server</li>
 </ul>
 <p>###References###</p>
 <ul>
-<li><a href="http://stephen.mcquay.me/blog/detail/30/" target="_blank" rel="external">nginx and startssl</a></li>
-<li><a href="http://www.digicert.com/ssl-certificate-installation-nginx.htm" target="_blank" rel="external">SSL Certificate Installation - Nginx Server</a></li>
+<li><a href="http://stephen.mcquay.me/blog/detail/30/" target="_blank" rel="noopener">nginx and startssl</a></li>
+<li><a href="http://www.digicert.com/ssl-certificate-installation-nginx.htm" target="_blank" rel="noopener">SSL Certificate Installation - Nginx Server</a></li>
 </ul>
 
         
@@ -369,7 +370,7 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cj8vm47l8007v1dmupvdtfwox" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cjgyxnmah003kfmbg5yie8jab" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -411,11 +412,11 @@ other which <em>skips</em> and <em>takes</em> the desired slice from the result 
 <p>This is fine in most of the cases, But, when your query is very performance intensive, you
 just can’t afford to run the same query twice. I ran into a similar situation
 recently and was searching for a decent approach to solve this problem, and
-then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="external">Temporary tables in SQL Server</a>.
+then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="noopener">Temporary tables in SQL Server</a>.
 Once I knew about them the solution became very simple. It still needs execution
 of two queries but it doesn’t run the performance intesive query twice. See for
 yourself:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">-- first query</span></div><div class="line"><span class="keyword">SELECT</span> pi.*</div><div class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable</div><div class="line"><span class="keyword">FROM</span></div><div class="line">  .. a <span class="number">100</span> JOINS <span class="keyword">or</span> SPATIAL FUNCTIONS ...;</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</div><div class="line"><span class="keyword">FROM</span> </div><div class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable;</div><div class="line"></div><div class="line"><span class="comment">-- end of first query</span></div><div class="line"></div><div class="line"><span class="comment">-- second query</span></div><div class="line"><span class="comment">-- :skip and :take are sql parameters for pagination</span></div><div class="line"><span class="keyword">SELECT</span> pr.* <span class="keyword">FROM</span> </div><div class="line">(<span class="keyword">SELECT</span> tp.*, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> tp.Id) <span class="keyword">AS</span> <span class="keyword">ROWNUM</span></div><div class="line">  <span class="keyword">FROM</span> #TempPerfIntensiveTable tp)pr</div><div class="line"><span class="keyword">WHERE</span> pr.ROWNUM <span class="keyword">BETWEEN</span> :<span class="keyword">skip</span> <span class="keyword">AND</span> :take + :<span class="keyword">skip</span>;</div><div class="line"><span class="comment">-- end of second query</span></div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- first query</span></span><br><span class="line"><span class="keyword">SELECT</span> pi.*</span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  .. a <span class="number">100</span> JOINS <span class="keyword">or</span> SPATIAL FUNCTIONS ...;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- end of first query</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- second query</span></span><br><span class="line"><span class="comment">-- :skip and :take are sql parameters for pagination</span></span><br><span class="line"><span class="keyword">SELECT</span> pr.* <span class="keyword">FROM</span> </span><br><span class="line">(<span class="keyword">SELECT</span> tp.*, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> tp.Id) <span class="keyword">AS</span> <span class="keyword">ROWNUM</span></span><br><span class="line">  <span class="keyword">FROM</span> #TempPerfIntensiveTable tp)pr</span><br><span class="line"><span class="keyword">WHERE</span> pr.ROWNUM <span class="keyword">BETWEEN</span> :<span class="keyword">skip</span> <span class="keyword">AND</span> :take + :<span class="keyword">skip</span>;</span><br><span class="line"><span class="comment">-- end of second query</span></span><br></pre></td></tr></table></figure>
 <p>These queries need to be executed by calling <code>session.CreateSQLQuery(query).SetInt32.....</code> This stuff is not specific to 
 NHibernate, I just put it out there to help future searchers :)</p>
 
@@ -427,7 +428,7 @@ NHibernate, I just put it out there to help future searchers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cj8vm47f9000y1dmuvf53q6eg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cjgyxnm81000ofmbgrlipduyp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -462,9 +463,9 @@ NHibernate, I just put it out there to help future searchers :)</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="external">rake/albacore</a>
+        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="noopener">rake/albacore</a>
 tasks to compile the asp.net mvc application on the remote server and update the 
-database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="external">fluent migrator</a>.</p>
+database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="noopener">fluent migrator</a>.</p>
 <p>Whenever I need to deploy I do the following:  </p>
 <ol>
 <li>RDP into the remote server</li>
@@ -475,8 +476,8 @@ database using <a href="https://github.com/schambers/fluentmigrator/" target="_b
 to rdp and do this stuff. So, I came up with a couple of batch scripts to make
 this process even simpler. Now I have two batch files in the root directory of
 my git repo:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#deploy.bat</span></div><div class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> fetch &amp;&amp; </div><div class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> reset --hard HEAD &amp;&amp; </div><div class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> merge origin/master &amp;&amp; </div><div class="line">rake compile &amp;&amp; </div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#remote_deploy.bat</span></div><div class="line">psexec \\example.com -u userfoo -w <span class="string">"c:\repos\foobar"</span> <span class="string">"c:\repos\foobar\deploy.bat"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#deploy.bat</span></span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> fetch &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> reset --hard HEAD &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> merge origin/master &amp;&amp; </span><br><span class="line">rake compile &amp;&amp; </span><br><span class="line">rake db:migrate</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#remote_deploy.bat</span></span><br><span class="line">psexec \\example.com -u userfoo -w <span class="string">"c:\repos\foobar"</span> <span class="string">"c:\repos\foobar\deploy.bat"</span></span><br></pre></td></tr></table></figure>
 <p>The code should be self explanatory. All we are doing is, instead of running the
 command manually automating them.</p>
 
@@ -488,7 +489,7 @@ command manually automating them.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cj8vm47hw00491dmudjut2mw2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cjgyxnm970021fmbgpy9fewzq" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -530,7 +531,7 @@ just wanted to share a simple rake task, which automates this. I use it to ping 
 search engines whenever I write a new blog post.  </p>
 <p>All it’s doing is looping over all the search engines’ urls and using curl to
 ping them.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">Sitemap = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></div><div class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></div><div class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></div><div class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</div><div class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</div><div class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> <span class="params">|url|</span></div><div class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;Sitemap&#125;</span>`</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Sitemap = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></span><br><span class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></span><br><span class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></span><br><span class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</span><br><span class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</span><br><span class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> <span class="params">|url|</span></span><br><span class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;Sitemap&#125;</span>`</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -540,7 +541,7 @@ ping them.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cj8vm47fu001n1dmuxok6xb3l" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cjgyxnm89000yfmbgfp9niys0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -600,7 +601,7 @@ rockstars</em>.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="cj8vm47s800f51dmuk344uk2x" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="cjgyxnmd2006xfmbg0sjykq03" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -635,13 +636,13 @@ rockstars</em>.</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The other day I stumbled upon <a href="http://instantdomainsearch.com/" target="_blank" rel="external">instantdomainsearch.com</a>. 
+        <p>The other day I stumbled upon <a href="http://instantdomainsearch.com/" target="_blank" rel="noopener">instantdomainsearch.com</a>. 
 It’s <em>the</em> best among the domain name checking apps I have used till now. It’s very
 zippy and has a clean interface. </p>
 <p>It has just one limitation, it allows you to search domains <em>one</em> at a time. And
 if you have a bunch of domain names which you want to check in one go, you can’t
-do it. So, I slapped together a <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">gem: MalcolmX</a> which allows us
-to check for multiple domain names in one go. You can checkout it’s <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="external">code on
+do it. So, I slapped together a <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="noopener">gem: MalcolmX</a> which allows us
+to check for multiple domain names in one go. You can checkout it’s <a href="https://github.com/minhajuddin/malcolmx" target="_blank" rel="noopener">code on
 github</a>. Once you install it using <code>gem
 install malcolmx</code> you can check for multiple domain names like this:</p>
 <pre><code>malcolmx cosmicvent minhajuddin myfunkyfreakydomain
@@ -654,7 +655,7 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="cj8vm47tc00g51dmu52htxdox" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="cjgyxnmdi007lfmbgfngh49yg" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -708,7 +709,7 @@ Or think about asking a guy to help you with “Yet Another Something”, Why wo
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="cj8vm47sx00fu1dmugownebyx" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="cjgyxnmda007cfmbgljf0lbh1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -755,7 +756,7 @@ investigate more and fix it. So, the next time your synergy server keeps
 crashing and you don’t find anything in the logs run it in foreground and see
 what’s going on :)</p>
 <p>By the way, the synergy binaries in the ubuntu repositories are very old, you
-should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux" target="_blank" rel="external">download the binaries from their site</a></p>
+should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux" target="_blank" rel="noopener">download the binaries from their site</a></p>
 
         
       
@@ -765,7 +766,7 @@ should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux"
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cj8vm47sk00fd1dmug423kc0n" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="cjgyxnmd60075fmbgq6w9vqoa" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -802,12 +803,12 @@ should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux"
       
         <p><strong>UPDATE</strong> I should have checked if git has a command for this. Anyway <em>SomeGuy</em>
 has reminded me once again that I should GTFT (Google the f*** thing) before
-creating a task. Thanks for the tip <em>SomeGuy</em> :). Long story short, use <code>git clean</code> to <a href="http://www.gitready.com/beginner/2009/01/16/cleaning-up-untracked-files.html" target="_blank" rel="external">cleanup
+creating a task. Thanks for the tip <em>SomeGuy</em> :). Long story short, use <code>git clean</code> to <a href="http://www.gitready.com/beginner/2009/01/16/cleaning-up-untracked-files.html" target="_blank" rel="noopener">cleanup
 untracked files</a></p>
 <hr>
 <p>Whenever I merge stuff from my colleagues, I end up with a bunch of <strong>*.orig</strong> files.
 So, I created a simple rake task which deletes all the untracked files.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">desc <span class="string">'deletes untracked files'</span></div><div class="line">task <span class="string">'git:del'</span> <span class="keyword">do</span></div><div class="line">  files = <span class="string">`git status -s`</span></div><div class="line">  files.lines.each <span class="keyword">do</span> <span class="params">|f|</span></div><div class="line">    <span class="keyword">next</span> <span class="keyword">unless</span> f.start_with? <span class="string">'??'</span></div><div class="line">    f = f.gsub(<span class="string">'??'</span>, <span class="string">''</span>).strip</div><div class="line">    File.delete(f)</div><div class="line">    puts <span class="string">"deleted =&gt; <span class="subst">#&#123;f&#125;</span>"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">desc <span class="string">'deletes untracked files'</span></span><br><span class="line">task <span class="string">'git:del'</span> <span class="keyword">do</span></span><br><span class="line">  files = <span class="string">`git status -s`</span></span><br><span class="line">  files.lines.each <span class="keyword">do</span> <span class="params">|f|</span></span><br><span class="line">    <span class="keyword">next</span> <span class="keyword">unless</span> f.start_with? <span class="string">'??'</span></span><br><span class="line">    f = f.gsub(<span class="string">'??'</span>, <span class="string">''</span>).strip</span><br><span class="line">    File.delete(f)</span><br><span class="line">    puts <span class="string">"deleted =&gt; <span class="subst">#&#123;f&#125;</span>"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>This will permanently delete <strong>all</strong> untracked files from your working copy, so
 use it with care! :)</p>
 
@@ -819,7 +820,7 @@ use it with care! :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cj8vm47qa00cv1dmu04iprm6q" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="cjgyxnmcf005zfmbgfvioexuh" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -856,7 +857,7 @@ use it with care! :)</p>
       
         <p>I have a Windows workstation and an Ubuntu laptop. And I use them simultaneously
 at work. Using two keyboards and mice can be a pain. And that’s when I
-found <a href="http://synergy-foss.org/" target="_blank" rel="external">Synergy</a>. Once you setup synergy you can use one keyboard/mouse to
+found <a href="http://synergy-foss.org/" target="_blank" rel="noopener">Synergy</a>. Once you setup synergy you can use one keyboard/mouse to
 manage both your computers. It works like a dual monitor setup, only that the
 other monitor is a different machine.</p>
 <p>I am a keyboard person and moving the mouse over to the next screen to use the
@@ -871,7 +872,7 @@ end
 </code></pre><p>Now when you hit Alt+k you’re active machine will be changed to the one on the
 right, Alt+j will change it to the one on the left. </p>
 <p>By the way, if you don’t know anything about synergy and want to get started with it,
-checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-steps/" target="_blank" rel="external">How to configure Synergy in six steps</a></p>
+checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-steps/" target="_blank" rel="noopener">How to configure Synergy in six steps</a></p>
 
         
       
@@ -881,7 +882,7 @@ checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="cj8vm47jj00691dmubd33so4f" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="cjgyxnm9y002zfmbgwpax57kj" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -917,15 +918,15 @@ checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-
     <div class="article-entry" itemprop="articleBody">
       
         <p>Lately I have been prototyping a lot. And the initial rails wireup with all my
-gems was becoming a pain. I checked out <a href="http://railswizard.org/" target="_blank" rel="external">RailsWizard</a> It’s an awesome app,
+gems was becoming a pain. I checked out <a href="http://railswizard.org/" target="_blank" rel="noopener">RailsWizard</a> It’s an awesome app,
 and for most of the requirements it would work right out of the box.</p>
 <p>I needed a template with a little more customization, so I created a rails
-project wired it up and put it on <a href="https://github.com/minhajuddin/r3t" target="_blank" rel="external">github</a>. So, now, whenever I need to do
+project wired it up and put it on <a href="https://github.com/minhajuddin/r3t" target="_blank" rel="noopener">github</a>. So, now, whenever I need to do
 some quick prototyping, I don’t get distracted by the initial wireup. I just
 clone the repo and start banging out code :)</p>
 <p>Here is a screenshot of the users page</p>
 <p><img src="http://imgur.com/jmalM.jpg" alt="r3t Rails Template Screenshot"></p>
-<p><a href="https://github.com/minhajuddin/r3t/zipball/master" target="_blank" rel="external">Download the template</a></p>
+<p><a href="https://github.com/minhajuddin/r3t/zipball/master" target="_blank" rel="noopener">Download the template</a></p>
 
         
       
@@ -935,7 +936,7 @@ clone the repo and start banging out code :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="cj8vm47q900cu1dmukzciv3hb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="cjgyxnmce005xfmbgw35c5fzj" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -978,7 +979,7 @@ of the many places where ubuntu shines, It remembers the passwords of my private
 keys in a keyring. Once you configure it, it doesn’t ask you for the password of
 your private key, it just works.</p>
 <p>If you want to do the same with windows, you’ll need plink, putty and pageant
-which you can <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank" rel="external">dowload here</a>. Once you have it copied to a directory, you
+which you can <a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank" rel="noopener">dowload here</a>. Once you have it copied to a directory, you
 need to do the following:</p>
 <ol>
 <li>Create an environment variable called <code>GIT_SSH</code> and copy the absolute path
@@ -1001,7 +1002,7 @@ push as much as you want, you won’t be pestered for your password anymore :)</
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cj8vm47px00ci1dmu23o97n87" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="cjgyxnmc3005nfmbgu8xodxri" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1042,7 +1043,7 @@ page with the connect link, enter the username and password and then submit the 
 I know just reading the above text makes me sleepy and it’s such a distraction.</p>
 <p>So, I wrote a small script which reconnects the router if it has disconnected.
 you can use it if you have the same problem ;)</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">"net/http"</span></div><div class="line"><span class="keyword">require</span> <span class="string">"uri"</span></div><div class="line"><span class="keyword">require</span> <span class="string">'base64'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(page, method = <span class="string">'get'</span>, form_data = <span class="literal">nil</span>)</span></span></div><div class="line">  uri = URI.parse(<span class="string">"http://router<span class="subst">#&#123;page&#125;</span>"</span>)</div><div class="line">  http = Net::HTTP.new(uri.host, uri.port)</div><div class="line">  request = method == <span class="string">'get'</span> ? Net::HTTP::Get.new(uri.request_uri) : Net::HTTP::Post.new(uri.request_uri)</div><div class="line">  request.set_form_data(form_data) <span class="keyword">if</span> form_data</div><div class="line">  request.basic_auth(<span class="string">"username"</span>, <span class="string">"password"</span>)</div><div class="line">  http.request(request)</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect</span></span></div><div class="line">  connect_url = <span class="string">'/webconfig/quick_start/connect.html/action_qstart_connect?qstart_pppIntf=pppoe_0_35&amp;qstart_pppUserName=username&amp;qstart_pppPassword=password&amp;submit_Connect=Connect'</span></div><div class="line">  res = request(<span class="string">'/webconfig/wan/wan.html'</span>)</div><div class="line">  <span class="keyword">unless</span> res.body.match <span class="string">"Disconnect"</span></div><div class="line">    puts <span class="string">'disconnected, connecting ....'</span></div><div class="line">    res = request(connect_url)</div><div class="line">  <span class="keyword">else</span></div><div class="line">    puts <span class="string">'connected'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">while</span>(<span class="literal">true</span>)</div><div class="line">  <span class="keyword">begin</span></div><div class="line">    connect</div><div class="line">  <span class="keyword">rescue</span></div><div class="line">    puts $!</div><div class="line">  <span class="keyword">end</span></div><div class="line">  sleep <span class="number">5</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">"net/http"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">"uri"</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'base64'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(page, method = <span class="string">'get'</span>, form_data = <span class="literal">nil</span>)</span></span></span><br><span class="line">  uri = URI.parse(<span class="string">"http://router<span class="subst">#&#123;page&#125;</span>"</span>)</span><br><span class="line">  http = Net::HTTP.new(uri.host, uri.port)</span><br><span class="line">  request = method == <span class="string">'get'</span> ? Net::HTTP::Get.new(uri.request_uri) : Net::HTTP::Post.new(uri.request_uri)</span><br><span class="line">  request.set_form_data(form_data) <span class="keyword">if</span> form_data</span><br><span class="line">  request.basic_auth(<span class="string">"username"</span>, <span class="string">"password"</span>)</span><br><span class="line">  http.request(request)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">connect</span></span></span><br><span class="line">  connect_url = <span class="string">'/webconfig/quick_start/connect.html/action_qstart_connect?qstart_pppIntf=pppoe_0_35&amp;qstart_pppUserName=username&amp;qstart_pppPassword=password&amp;submit_Connect=Connect'</span></span><br><span class="line">  res = request(<span class="string">'/webconfig/wan/wan.html'</span>)</span><br><span class="line">  <span class="keyword">unless</span> res.body.match <span class="string">"Disconnect"</span></span><br><span class="line">    puts <span class="string">'disconnected, connecting ....'</span></span><br><span class="line">    res = request(connect_url)</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    puts <span class="string">'connected'</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    connect</span><br><span class="line">  <span class="keyword">rescue</span></span><br><span class="line">    puts $!</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  sleep <span class="number">5</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -1052,7 +1053,7 @@ you can use it if you have the same problem ;)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cj8vm47ma00981dmuppgrchju" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="cjgyxnmay0047fmbgos1mv3dv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1097,8 +1098,8 @@ title, and the layout is the minimum, Here you are typing the title again.</li>
 </ul>
 <p>It’s not a big deal, but it’s still annoying. So, I came up with a small ruby
 script called new.rb, which basically automates this stuff.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"></div><div class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></div><div class="line"><span class="comment"># which is the title of the blog post</span></div><div class="line"><span class="comment"># e.g. command:</span></div><div class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></div><div class="line"></div><div class="line"><span class="comment"># Some constants</span></div><div class="line">TEMPLATE = <span class="string">"template.markdown"</span></div><div class="line">TARGET_DIR = <span class="string">"_posts"</span></div><div class="line"></div><div class="line"><span class="comment"># Get the title which was passed as an argument</span></div><div class="line">title = ARGV[<span class="number">0</span>]</div><div class="line"><span class="comment"># Get the filename</span></div><div class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</div><div class="line">filename = <span class="string">"<span class="subst">#&#123; Time.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </div><div class="line">filepath = File.join(TARGET_DIR, filename)</div><div class="line"></div><div class="line"><span class="comment"># Create a copy of the template with the title replaced</span></div><div class="line">new_post = File.read(TEMPLATE)</div><div class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</div><div class="line"></div><div class="line"><span class="comment"># Write out the file to the target directory</span></div><div class="line">new_post_file = File.open(filepath, <span class="string">'w'</span>)</div><div class="line">new_post_file.puts new_post</div><div class="line">new_post_file.close</div><div class="line"></div><div class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></div></pre></td></tr></table></figure>
-<p><a href="http://gist.github.com/604999#comments" target="_blank" rel="external">Download the gist</a></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></span><br><span class="line"><span class="comment"># which is the title of the blog post</span></span><br><span class="line"><span class="comment"># e.g. command:</span></span><br><span class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Some constants</span></span><br><span class="line">TEMPLATE = <span class="string">"template.markdown"</span></span><br><span class="line">TARGET_DIR = <span class="string">"_posts"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the title which was passed as an argument</span></span><br><span class="line">title = ARGV[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># Get the filename</span></span><br><span class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</span><br><span class="line">filename = <span class="string">"<span class="subst">#&#123; Time.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </span><br><span class="line">filepath = File.join(TARGET_DIR, filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a copy of the template with the title replaced</span></span><br><span class="line">new_post = File.read(TEMPLATE)</span><br><span class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write out the file to the target directory</span></span><br><span class="line">new_post_file = File.open(filepath, <span class="string">'w'</span>)</span><br><span class="line">new_post_file.puts new_post</span><br><span class="line">new_post_file.close</span><br><span class="line"></span><br><span class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://gist.github.com/604999#comments" target="_blank" rel="noopener">Download the gist</a></p>
 
         
       
@@ -1108,7 +1109,7 @@ script called new.rb, which basically automates this stuff.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cj8vm47jh00681dmuwq7pz4e1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="cjgyxnm9x002yfmbghh43vjwa" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1152,8 +1153,8 @@ across your projects a breeze, with the added benefits of seamless upgrades.
 Hopefully this blog post will teach you how to create a simple gem in a few
 steps.</p>
 <p>Gem creation is very easy if you use the right tools. If you go to
-<a href="http://ruby-toolbox.com/categories/gem_creation.html" target="_blank" rel="external">ruby-toolbox.com</a> you can see that there is more than one tool for gem
-creation and management. The top-most on this list is <a href="http://github.com/technicalpickles/jeweler" target="_blank" rel="external">Jeweler</a>, It is an
+<a href="http://ruby-toolbox.com/categories/gem_creation.html" target="_blank" rel="noopener">ruby-toolbox.com</a> you can see that there is more than one tool for gem
+creation and management. The top-most on this list is <a href="http://github.com/technicalpickles/jeweler" target="_blank" rel="noopener">Jeweler</a>, It is an
 awesome gem with a lot of nifty features which makes gem management a breeze.</p>
 <p>OK, <em>Enough talk let’s fight</em>. The first thing which you need to do
 is install jeweler with the command <code>[sudo] gem install jeweler</code></p>
@@ -1168,7 +1169,7 @@ of predefined tasks which you can use to manager your gems.</li>
 <li>The file where you need to put your ruby code is  <code>lib/fixnum_extensions.rb</code> 
 my file has the code below in it:</li>
 </ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#This is a contrived example but it's fine</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(number)</span></span></div><div class="line">    number + <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(number)</span></span></div><div class="line">    number - <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(number)</span></span></div><div class="line">    number * <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">div</span><span class="params">(number)</span></span></div><div class="line">    number / <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#This is a contrived example but it's fine</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(number)</span></span></span><br><span class="line">    number + <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(number)</span></span></span><br><span class="line">    number - <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(number)</span></span></span><br><span class="line">    number * <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">div</span><span class="params">(number)</span></span></span><br><span class="line">    number / <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>Now you need to open up the Rakefile and add a <em>description</em> and <em>summary</em>
 instead of the TODOs.</li>
@@ -1186,7 +1187,7 @@ gem file <code>fixnum_extensions-0.0.0.gem</code>.</li>
 code in a nice gem package. To install it, just run the command <code>gem install
 pkg/fixnum_extensions-0.0.0.gem</code></p>
 <p>To test it out open an irb session and run the following commands</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'fixnum_extensions'</span></div><div class="line"><span class="number">1</span>.add(<span class="number">2</span>).mul(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fixnum_extensions'</span></span><br><span class="line"><span class="number">1</span>.add(<span class="number">2</span>).mul(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 <p>  Jeweler adds a lot of nifty tasks which are great, to check them out just run
   <code>rake -T</code></p>
 
@@ -1198,7 +1199,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cj8vm47hs00431dmuckb6gl3q" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cjgyxnm92001yfmbggmfoe81t" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1233,8 +1234,8 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Before you read this blog entry please read <a href="http://tom.preston-werner.com/2009/05/19/the-git-parable.html" target="_blank" rel="external">The git parable</a>. It is a nice read to understand the need and reason for git.</p>
-<h2 id="basic-commands"><a href="#basic-commands" class="headerlink" title="basic commands"></a>basic commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#create the repository, first thing when creating a project</span></div><div class="line">git init </div><div class="line"></div><div class="line"><span class="comment">#shows you the current status of your repository</span></div><div class="line">git status </div><div class="line"></div><div class="line"><span class="comment">#adds files or directories to the staging area</span></div><div class="line">git add filename </div><div class="line"></div><div class="line"><span class="comment">#commits the changes from the staging area to the repository</span></div><div class="line">git commit -m <span class="string">'commit message'</span>  </div><div class="line"></div><div class="line"><span class="comment">#shows the repositories graph</span></div><div class="line">gitk --all </div><div class="line"></div><div class="line"><span class="comment"># to check the commits</span></div><div class="line">git <span class="built_in">log</span> </div><div class="line"></div><div class="line"><span class="comment"># get the last commit info</span></div><div class="line">git <span class="built_in">log</span> -1 </div><div class="line"></div><div class="line"><span class="comment"># file which stores the ignore file patterns</span></div><div class="line">.gitignore </div><div class="line"></div><div class="line"><span class="comment">#to checkout a commit</span></div><div class="line">git checkout SHA1ID </div><div class="line"></div><div class="line"><span class="comment">#to check the differences between working dir and latest commit</span></div><div class="line">git diff </div><div class="line"></div><div class="line"><span class="comment">#diff between those two commits</span></div><div class="line">git diff commit_id1 commit_id2 </div><div class="line"></div><div class="line"><span class="comment">#server #to push to a server</span></div><div class="line">git push </div><div class="line"></div><div class="line"><span class="comment">#to manager remotes</span></div><div class="line">git remote </div><div class="line"></div><div class="line"><span class="comment"># to get the latest commits</span></div><div class="line">git fetch</div></pre></td></tr></table></figure>
+        <p>Before you read this blog entry please read <a href="http://tom.preston-werner.com/2009/05/19/the-git-parable.html" target="_blank" rel="noopener">The git parable</a>. It is a nice read to understand the need and reason for git.</p>
+<h2 id="basic-commands"><a href="#basic-commands" class="headerlink" title="basic commands"></a>basic commands</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#create the repository, first thing when creating a project</span></span><br><span class="line">git init </span><br><span class="line"></span><br><span class="line"><span class="comment">#shows you the current status of your repository</span></span><br><span class="line">git status </span><br><span class="line"></span><br><span class="line"><span class="comment">#adds files or directories to the staging area</span></span><br><span class="line">git add filename </span><br><span class="line"></span><br><span class="line"><span class="comment">#commits the changes from the staging area to the repository</span></span><br><span class="line">git commit -m <span class="string">'commit message'</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment">#shows the repositories graph</span></span><br><span class="line">gitk --all </span><br><span class="line"></span><br><span class="line"><span class="comment"># to check the commits</span></span><br><span class="line">git <span class="built_in">log</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># get the last commit info</span></span><br><span class="line">git <span class="built_in">log</span> -1 </span><br><span class="line"></span><br><span class="line"><span class="comment"># file which stores the ignore file patterns</span></span><br><span class="line">.gitignore </span><br><span class="line"></span><br><span class="line"><span class="comment">#to checkout a commit</span></span><br><span class="line">git checkout SHA1ID </span><br><span class="line"></span><br><span class="line"><span class="comment">#to check the differences between working dir and latest commit</span></span><br><span class="line">git diff </span><br><span class="line"></span><br><span class="line"><span class="comment">#diff between those two commits</span></span><br><span class="line">git diff commit_id1 commit_id2 </span><br><span class="line"></span><br><span class="line"><span class="comment">#server #to push to a server</span></span><br><span class="line">git push </span><br><span class="line"></span><br><span class="line"><span class="comment">#to manager remotes</span></span><br><span class="line">git remote </span><br><span class="line"></span><br><span class="line"><span class="comment"># to get the latest commits</span></span><br><span class="line">git fetch</span><br></pre></td></tr></table></figure>
 <p><em>I’ll update this post with more examples as I get the time</em></p>
 
         
@@ -1245,7 +1246,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="cj8vm47iz005v1dmur933084e" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="cjgyxnm9r002rfmbgfa7csotr" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/29/git-basic-commands/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1285,7 +1286,7 @@ You can use the following file as a post-update hook to update your jekyll blog.
 <p>So, let’s say your git repository is named <em>example.com</em>, browse to /home/git/repositories/example.com/hooks and create
 a file with the name <em>post-update</em>, copy the content below to your <em>post-update</em> file. That’s it you are set, the next
 time you push to your git repo, your blog will be automatically published.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#post-update</span></div><div class="line"><span class="built_in">unset</span> GIT_DIR &amp;&amp; <span class="built_in">cd</span> /var/www/blogs/example.com &amp;&amp; git pull &amp;&amp; jekyll</div><div class="line"><span class="comment">#/var/www/blogs/example.com is where your blog's repo is cloned</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"finished deployment"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#post-update</span></span><br><span class="line"><span class="built_in">unset</span> GIT_DIR &amp;&amp; <span class="built_in">cd</span> /var/www/blogs/example.com &amp;&amp; git pull &amp;&amp; jekyll</span><br><span class="line"><span class="comment">#/var/www/blogs/example.com is where your blog's repo is cloned</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"finished deployment"</span></span><br></pre></td></tr></table></figure>
 <p>Below are a couple of problems I ran into and how I fixed them:</p>
 <ul>
 <li>File permissions issue <em>cannot write to .git/FETCH_HEAD</em>, you’ll get this error if the ‘git’ user doesn’t have write privileges to your blog’s cloned directory, you can fix it by giving write permissions to your git user to this directory</li>
@@ -1300,7 +1301,7 @@ time you push to your git repo, your blog will be automatically published.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="cj8vm47q500cs1dmuxoa02ub0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="cjgyxnmc7005sfmbg8mx9wqru" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1434,7 +1435,7 @@ time you push to your git repo, your blog will be automatically published.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

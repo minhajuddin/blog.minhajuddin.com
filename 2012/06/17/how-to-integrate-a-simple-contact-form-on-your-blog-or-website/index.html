@@ -6,13 +6,15 @@
   <title>How to integrate a simple contact form on your blog or website | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Here is a simple tool which I built, which allows you to setup a simple contact form in a jiffy. Well, you may ask: How is it different than the popular solutions like wufoo and google document forms?">
+<meta name="keywords" content="simpleform,utility,lego,form">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to integrate a simple contact form on your blog or website">
 <meta property="og:url" content="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/index.html">
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="Here is a simple tool which I built, which allows you to setup a simple contact form in a jiffy. Well, you may ask: How is it different than the popular solutions like wufoo and google document forms?">
+<meta property="og:locale" content="English">
 <meta property="og:image" content="https://substancehq.s3.amazonaws.com/static_asset/4fdda24d03b04d2a600007a0/elastigirl.jpg">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to integrate a simple contact form on your blog or website">
 <meta name="twitter:description" content="Here is a simple tool which I built, which allows you to setup a simple contact form in a jiffy. Well, you may ask: How is it different than the popular solutions like wufoo and google document forms?">
@@ -87,7 +89,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -122,11 +124,13 @@ ga('send', 'pageview');
 <p>It doesn’t force you to use styles from some generic templates, Using Simple Form you can hand craft your html form without the annoying iframes. Simple Form just needs the correct <em>form action</em> and <em>method</em>. The rest of the html is in your control.</p>
 <blockquote>
 <p>Simple Form allows you to setup forms with any kind of data (other than file uploads) in 2 easy steps:</p>
+</blockquote>
+<blockquote>
 <p>Setup your form using the following code:</p>
 </blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://getsimpleform.com/messages?form_api_token=&lt;form_api_token&gt;"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- the redirect_to is optional, the form will redirect to the referrer on submission --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'hidden'</span> <span class="attr">name</span>=<span class="string">'redirect_to'</span> <span class="attr">value</span>=<span class="string">'&lt;the complete return url e.g. http://fooey.com/thank-you.html&gt;'</span> /&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- all your input fields here.... --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">name</span>=<span class="string">'test'</span> /&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'submit'</span> <span class="attr">value</span>=<span class="string">'Test form'</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"http://getsimpleform.com/messages?form_api_token=&lt;form_api_token&gt;"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- the redirect_to is optional, the form will redirect to the referrer on submission --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'hidden'</span> <span class="attr">name</span>=<span class="string">'redirect_to'</span> <span class="attr">value</span>=<span class="string">'&lt;the complete return url e.g. http://fooey.com/thank-you.html&gt;'</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- all your input fields here.... --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">name</span>=<span class="string">'test'</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'submit'</span> <span class="attr">value</span>=<span class="string">'Test form'</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>Start tracking your form submissions from this url: <a href="http://getsimpleform.com/messages?api_token=&amp;lt" target="_blank" rel="external">http://getsimpleform.com/messages?api_token=&amp;lt</a>; api_token&gt; <em>You will also get an email whenever a new form entry is made</em></p>
+<p>Start tracking your form submissions from this url: <a href="http://getsimpleform.com/messages?api_token=" target="_blank" rel="noopener">http://getsimpleform.com/messages?api_token=</a>&lt; api_token&gt; <em>You will also get an email whenever a new form entry is made</em></p>
 </blockquote>
 <p>Here is an example form: <a href="http://minhajuddin.com/hire-me">http://minhajuddin.com/hire-me</a> ,Hope you find it useful</p>
 
@@ -145,7 +149,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="cj8vm47lh00851dmuohbhlg86" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="cjgyxnmam003rfmbgqc9jquq2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -301,7 +305,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

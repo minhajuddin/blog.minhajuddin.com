@@ -5,19 +5,18 @@
   
   <title>How to install Command T for vim using rvm on linux | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Use the vba package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following
-12345678910111213141516#download the codecd ~/.vim/bundlegit clone git://git.">
+  <meta name="description" content="Use the vba package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following 12345678910111213141516#download the codecd ~/.vim/bundlegit clone git://git.">
+<meta name="keywords" content="vim,command-t,rvm,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to install Command T for vim using rvm on linux">
 <meta property="og:url" content="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Use the vba package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following
-12345678910111213141516#download the codecd ~/.vim/bundlegit clone git://git.">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Use the vba package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following 12345678910111213141516#download the codecd ~/.vim/bundlegit clone git://git.">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to install Command T for vim using rvm on linux">
-<meta name="twitter:description" content="Use the vba package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following
-12345678910111213141516#download the codecd ~/.vim/bundlegit clone git://git.">
+<meta name="twitter:description" content="Use the vba package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following 12345678910111213141516#download the codecd ~/.vim/bundlegit clone git://git.">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -88,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -118,7 +117,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>Use the <code>vba</code> package or add the command-t git directory to your vim rtp using pathogen. I use pathogen, hence the following</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#download the code</span></div><div class="line"><span class="built_in">cd</span> ~/.vim/bundle</div><div class="line">git <span class="built_in">clone</span> git://git.wincent.com/<span class="built_in">command</span>-t.git bundle/<span class="built_in">command</span>-t</div><div class="line"><span class="comment"># or if you manage your dotfiles using git</span></div><div class="line"><span class="comment"># git submodule add git://git.wincent.com/command-t.git bundle/command-t</span></div><div class="line"></div><div class="line"><span class="comment"># unset your CFLAGS if you have any, may not be necessary, but just in case</span></div><div class="line"><span class="built_in">unset</span> CFLAGS</div><div class="line"><span class="comment"># change your ruby version to the version used by vim</span></div><div class="line"><span class="comment"># you can check the version with which vim was compiled using</span></div><div class="line"><span class="comment"># by running the following from the vim command prompt</span></div><div class="line"><span class="comment"># :ruby puts RUBY_VERSION</span></div><div class="line">rvm use ruby-1.8.7-p357</div><div class="line"><span class="built_in">cd</span> ~/.vim/ruby/<span class="built_in">command</span>-t</div><div class="line">ruby extconf.rb</div><div class="line">make</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#download the code</span></span><br><span class="line"><span class="built_in">cd</span> ~/.vim/bundle</span><br><span class="line">git <span class="built_in">clone</span> git://git.wincent.com/<span class="built_in">command</span>-t.git bundle/<span class="built_in">command</span>-t</span><br><span class="line"><span class="comment"># or if you manage your dotfiles using git</span></span><br><span class="line"><span class="comment"># git submodule add git://git.wincent.com/command-t.git bundle/command-t</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># unset your CFLAGS if you have any, may not be necessary, but just in case</span></span><br><span class="line"><span class="built_in">unset</span> CFLAGS</span><br><span class="line"><span class="comment"># change your ruby version to the version used by vim</span></span><br><span class="line"><span class="comment"># you can check the version with which vim was compiled using</span></span><br><span class="line"><span class="comment"># by running the following from the vim command prompt</span></span><br><span class="line"><span class="comment"># :ruby puts RUBY_VERSION</span></span><br><span class="line">rvm use ruby-1.8.7-p357</span><br><span class="line"><span class="built_in">cd</span> ~/.vim/ruby/<span class="built_in">command</span>-t</span><br><span class="line">ruby extconf.rb</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
 
         
       
@@ -135,7 +134,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cj8vm47ld007x1dmuhccue0yw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/" data-id="cjgyxnmaj003mfmbgs47mbn8h" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/09/how-to-install-command-t-for-vim-using-rvm-on-linux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -291,7 +290,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

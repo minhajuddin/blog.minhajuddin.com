@@ -5,22 +5,18 @@
   
   <title>How to run rails console as an authenticated devise user without knowing the password | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I maintain a few rails apps for my clients (running in production). And sometimes certain bugs occur only for specific users. There are two ways to debug these issues:
-
-Get the user to show you how th">
+  <meta name="description" content="I maintain a few rails apps for my clients (running in production). And sometimes certain bugs occur only for specific users. There are two ways to debug these issues:  Get the user to show you how th">
+<meta name="keywords" content="rails,devise,authenticate,production,console">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to run rails console as an authenticated devise user without knowing the password">
 <meta property="og:url" content="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I maintain a few rails apps for my clients (running in production). And sometimes certain bugs occur only for specific users. There are two ways to debug these issues:
-
-Get the user to show you how th">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="I maintain a few rails apps for my clients (running in production). And sometimes certain bugs occur only for specific users. There are two ways to debug these issues:  Get the user to show you how th">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to run rails console as an authenticated devise user without knowing the password">
-<meta name="twitter:description" content="I maintain a few rails apps for my clients (running in production). And sometimes certain bugs occur only for specific users. There are two ways to debug these issues:
-
-Get the user to show you how th">
+<meta name="twitter:description" content="I maintain a few rails apps for my clients (running in production). And sometimes certain bugs occur only for specific users. There are two ways to debug these issues:  Get the user to show you how th">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -126,9 +122,9 @@ ga('send', 'pageview');
 <li>Try it out by signing into the site as that user</li>
 </ol>
 <p>Now option 2 isn’t practical as your users don’t want to share their passwords with you. What I do to get around this fact is test the user interface through <code>rails console</code> in production. Now, we use devise for authentication so it wasn’t so hard to sign in as the desired user. All you need to run in your production rails console is:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">validate_password?</span><span class="params">(pwd)</span></span></div><div class="line">    <span class="literal">true</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>where <code>User</code> is your devise model. Now to signin as the desired user (foo@mailinator.com) from the console you run</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#to sign in</span></div><div class="line">app.post <span class="string">'/users/sign_in'</span>,  <span class="symbol">user:</span> &#123;<span class="symbol">email:</span> <span class="string">'foo@mailinator.com'</span>, <span class="symbol">password:</span> <span class="string">"&lt;doesn't matter&gt;"</span>&#125;</div><div class="line"><span class="comment">#to test it out</span></div><div class="line">app.get <span class="string">'/desired-url'</span></div><div class="line">puts app.response</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">validate_password?</span><span class="params">(pwd)</span></span></span><br><span class="line">    <span class="literal">true</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>where <code>User</code> is your devise model. Now to signin as the desired user (<a href="mailto:foo@mailinator.com" target="_blank" rel="noopener">foo@mailinator.com</a>) from the console you run</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#to sign in</span></span><br><span class="line">app.post <span class="string">'/users/sign_in'</span>,  <span class="symbol">user:</span> &#123;<span class="symbol">email:</span> <span class="string">'foo@mailinator.com'</span>, <span class="symbol">password:</span> <span class="string">"&lt;doesn't matter&gt;"</span>&#125;</span><br><span class="line"><span class="comment">#to test it out</span></span><br><span class="line">app.get <span class="string">'/desired-url'</span></span><br><span class="line">puts app.response</span><br></pre></td></tr></table></figure>
 <p>Hope that helps</p>
 
         
@@ -146,7 +142,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cj8vm47mc00991dmuw6qfw2om" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/" data-id="cjgyxnmat0042fmbg2tmkp0da" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/10/29/how-to-run-rails-console-as-an-authenticated-devise-user-without-knowing-the-password/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -302,7 +298,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

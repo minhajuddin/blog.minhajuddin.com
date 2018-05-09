@@ -5,22 +5,17 @@
   
   <title>create a simple gem using jeweler | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it
-across your projects. And you don’t want to copy/paste the files across
-different projects, cause that’s a pain a">
+  <meta name="description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it across your projects. And you don’t want to copy/paste the files across different projects, cause that’s a pain a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="create a simple gem using jeweler">
 <meta property="og:url" content="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it
-across your projects. And you don’t want to copy/paste the files across
-different projects, cause that’s a pain a">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it across your projects. And you don’t want to copy/paste the files across different projects, cause that’s a pain a">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="create a simple gem using jeweler">
-<meta name="twitter:description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it
-across your projects. And you don’t want to copy/paste the files across
-different projects, cause that’s a pain a">
+<meta name="twitter:description" content="So, you’ve come up with some awesome re-usable utility in ruby, and you want to use it across your projects. And you don’t want to copy/paste the files across different projects, cause that’s a pain a">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -129,8 +124,8 @@ across your projects a breeze, with the added benefits of seamless upgrades.
 Hopefully this blog post will teach you how to create a simple gem in a few
 steps.</p>
 <p>Gem creation is very easy if you use the right tools. If you go to
-<a href="http://ruby-toolbox.com/categories/gem_creation.html" target="_blank" rel="external">ruby-toolbox.com</a> you can see that there is more than one tool for gem
-creation and management. The top-most on this list is <a href="http://github.com/technicalpickles/jeweler" target="_blank" rel="external">Jeweler</a>, It is an
+<a href="http://ruby-toolbox.com/categories/gem_creation.html" target="_blank" rel="noopener">ruby-toolbox.com</a> you can see that there is more than one tool for gem
+creation and management. The top-most on this list is <a href="http://github.com/technicalpickles/jeweler" target="_blank" rel="noopener">Jeweler</a>, It is an
 awesome gem with a lot of nifty features which makes gem management a breeze.</p>
 <p>OK, <em>Enough talk let’s fight</em>. The first thing which you need to do
 is install jeweler with the command <code>[sudo] gem install jeweler</code></p>
@@ -145,7 +140,7 @@ of predefined tasks which you can use to manager your gems.</li>
 <li>The file where you need to put your ruby code is  <code>lib/fixnum_extensions.rb</code> 
 my file has the code below in it:</li>
 </ul>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#This is a contrived example but it's fine</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(number)</span></span></div><div class="line">    number + <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(number)</span></span></div><div class="line">    number - <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(number)</span></span></div><div class="line">    number * <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">div</span><span class="params">(number)</span></span></div><div class="line">    number / <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#This is a contrived example but it's fine</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fixnum</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(number)</span></span></span><br><span class="line">    number + <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sub</span><span class="params">(number)</span></span></span><br><span class="line">    number - <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(number)</span></span></span><br><span class="line">    number * <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">div</span><span class="params">(number)</span></span></span><br><span class="line">    number / <span class="keyword">self</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>Now you need to open up the Rakefile and add a <em>description</em> and <em>summary</em>
 instead of the TODOs.</li>
@@ -163,7 +158,7 @@ gem file <code>fixnum_extensions-0.0.0.gem</code>.</li>
 code in a nice gem package. To install it, just run the command <code>gem install
 pkg/fixnum_extensions-0.0.0.gem</code></p>
 <p>To test it out open an irb session and run the following commands</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'fixnum_extensions'</span></div><div class="line"><span class="number">1</span>.add(<span class="number">2</span>).mul(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'rubygems'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fixnum_extensions'</span></span><br><span class="line"><span class="number">1</span>.add(<span class="number">2</span>).mul(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
 <p>  Jeweler adds a lot of nifty tasks which are great, to check them out just run
   <code>rake -T</code></p>
 
@@ -182,7 +177,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cj8vm47hs00431dmuckb6gl3q" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="cjgyxnm92001yfmbggmfoe81t" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -336,7 +331,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

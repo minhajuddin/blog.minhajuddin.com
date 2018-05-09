@@ -5,22 +5,18 @@
   
   <title>Optimal order for adding lists in Elixir | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Lists are the bread and butter of a functional language and Elixir is no different.
-Elixir uses linked lists to represent lists. Which means, if a list is n elements long it will
-take n dereferences t">
+  <meta name="description" content="Lists are the bread and butter of a functional language and Elixir is no different. Elixir uses linked lists to represent lists. Which means, if a list is n elements long it will take n dereferences t">
+<meta name="keywords" content="Elixir,Lists,Order,Concatenate">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Optimal order for adding lists in Elixir">
 <meta property="og:url" content="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Lists are the bread and butter of a functional language and Elixir is no different.
-Elixir uses linked lists to represent lists. Which means, if a list is n elements long it will
-take n dereferences t">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Lists are the bread and butter of a functional language and Elixir is no different. Elixir uses linked lists to represent lists. Which means, if a list is n elements long it will take n dereferences t">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Optimal order for adding lists in Elixir">
-<meta name="twitter:description" content="Lists are the bread and butter of a functional language and Elixir is no different.
-Elixir uses linked lists to represent lists. Which means, if a list is n elements long it will
-take n dereferences t">
+<meta name="twitter:description" content="Lists are the bread and butter of a functional language and Elixir is no different. Elixir uses linked lists to represent lists. Which means, if a list is n elements long it will take n dereferences t">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -143,9 +139,9 @@ Because we end up copying the list and appending a new element.</p>
 <p>Now, with this understanding. Let us think of the most efficient way of combining two lists when the order of elements doesn’t matter.
 For instance, when you send http requests using <code>httpoison</code> the order of the headers doesn’t matter.
 So, when you have the following implementations available:</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># ...</span></div><div class="line"></div><div class="line"><span class="comment"># A: First list is small most of the time</span></div><div class="line"><span class="variable">@default_headers</span> [&#123;<span class="string">"content-type"</span>, <span class="string">"application/json"</span>&#125;, &#123;<span class="string">"authorization"</span>, <span class="string">"Bearer Foo"</span>&#125;, &#123;<span class="string">"accept"</span>, <span class="string">"application/json"</span>&#125;]</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span></span>(url, headers \\ []) <span class="keyword">do</span></div><div class="line">  headers ++ <span class="variable">@default_headers</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment"># B: Second list is small most of the time</span></div><div class="line"><span class="variable">@default_headers</span> [&#123;<span class="string">"content-type"</span>, <span class="string">"application/json"</span>&#125;, &#123;<span class="string">"authorization"</span>, <span class="string">"Bearer Foo"</span>&#125;, &#123;<span class="string">"accept"</span>, <span class="string">"application/json"</span>&#125;]</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span></span>(url, headers \\ []) <span class="keyword">do</span></div><div class="line">  <span class="variable">@default_headers</span> ++ headers</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment"># ...</span></div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># A: First list is small most of the time</span></span><br><span class="line"><span class="variable">@default_headers</span> [&#123;<span class="string">"content-type"</span>, <span class="string">"application/json"</span>&#125;, &#123;<span class="string">"authorization"</span>, <span class="string">"Bearer Foo"</span>&#125;, &#123;<span class="string">"accept"</span>, <span class="string">"application/json"</span>&#125;]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span></span>(url, headers \\ []) <span class="keyword">do</span></span><br><span class="line">  headers ++ <span class="variable">@default_headers</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># B: Second list is small most of the time</span></span><br><span class="line"><span class="variable">@default_headers</span> [&#123;<span class="string">"content-type"</span>, <span class="string">"application/json"</span>&#125;, &#123;<span class="string">"authorization"</span>, <span class="string">"Bearer Foo"</span>&#125;, &#123;<span class="string">"accept"</span>, <span class="string">"application/json"</span>&#125;]</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get</span></span>(url, headers \\ []) <span class="keyword">do</span></span><br><span class="line">  <span class="variable">@default_headers</span> ++ headers</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ...</span></span><br></pre></td></tr></table></figure>
 <p>Pick the one where the first list has lesser elements. In this example that would be the <strong>A</strong> implementation.</p>
-<p>I did a quick benchmark just for kicks (Full code available at <a href="https://github.com/minhajuddin/bench_list_cat" target="_blank" rel="external">https://github.com/minhajuddin/bench_list_cat</a>):</p>
+<p>I did a quick benchmark just for kicks (Full code available at <a href="https://github.com/minhajuddin/bench_list_cat)" target="_blank" rel="noopener">https://github.com/minhajuddin/bench_list_cat)</a>:</p>
 <h2 id="Benchmark"><a href="#Benchmark" class="headerlink" title="Benchmark"></a>Benchmark</h2><pre><code>Elixir 1.4.4
 Erlang 20.0-rc2
 Benchmark suite executing with the following configuration:
@@ -189,7 +185,7 @@ Benchee.run(%{
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/" data-id="cj8vm47ps00ca1dmubzm9wxea" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/" data-id="cjgyxnmc1005lfmbg80uvate2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -345,7 +341,7 @@ Benchee.run(%{
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

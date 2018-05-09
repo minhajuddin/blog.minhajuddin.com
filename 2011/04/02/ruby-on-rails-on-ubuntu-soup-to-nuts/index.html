@@ -5,22 +5,17 @@
   
   <title>ruby on rails soup to nuts | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ruby on Rails Soup to NutsThis is the first in a set of screencasts on ruby on rails. The purpose of these
-screencasts is to teach you ruby on rails from the ground up using an ubuntu dev
-environment.">
+  <meta name="description" content="Ruby on Rails Soup to NutsThis is the first in a set of screencasts on ruby on rails. The purpose of these screencasts is to teach you ruby on rails from the ground up using an ubuntu dev environment.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ruby on rails soup to nuts">
 <meta property="og:url" content="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Ruby on Rails Soup to NutsThis is the first in a set of screencasts on ruby on rails. The purpose of these
-screencasts is to teach you ruby on rails from the ground up using an ubuntu dev
-environment.">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Ruby on Rails Soup to NutsThis is the first in a set of screencasts on ruby on rails. The purpose of these screencasts is to teach you ruby on rails from the ground up using an ubuntu dev environment.">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ruby on rails soup to nuts">
-<meta name="twitter:description" content="Ruby on Rails Soup to NutsThis is the first in a set of screencasts on ruby on rails. The purpose of these
-screencasts is to teach you ruby on rails from the ground up using an ubuntu dev
-environment.">
+<meta name="twitter:description" content="Ruby on Rails Soup to NutsThis is the first in a set of screencasts on ruby on rails. The purpose of these screencasts is to teach you ruby on rails from the ground up using an ubuntu dev environment.">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -131,22 +126,22 @@ environment.</p>
 
 
 <h2 id="Notes-for-Session-1-Setup-an-ubuntu-machine-with-the-basic-software"><a href="#Notes-for-Session-1-Setup-an-ubuntu-machine-with-the-basic-software" class="headerlink" title="Notes for Session 1: Setup an ubuntu machine with the basic software"></a>Notes for Session 1: Setup an ubuntu machine with the basic software</h2><ol>
-<li><a href="http://www.ubuntu.com/desktop/get-ubuntu/download" target="_blank" rel="external">Download and install Ubuntu 10.10</a></li>
-<li><a href="https://github.com/joshfng/railsready" target="_blank" rel="external">Install Ruby and Rails via Rails Ready</a></li>
+<li><a href="http://www.ubuntu.com/desktop/get-ubuntu/download" target="_blank" rel="noopener">Download and install Ubuntu 10.10</a></li>
+<li><a href="https://github.com/joshfng/railsready" target="_blank" rel="noopener">Install Ruby and Rails via Rails Ready</a></li>
 <li>Setup gvim (which will be our primary editor)<ul>
 <li>Install through <em>software center</em></li>
 <li>While we are at it, let’s install gnome-do</li>
-<li>Finally let’s configure it: <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="external">https://github.com/minhajuddin/dotfiles</a></li>
+<li>Finally let’s configure it: <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="noopener">https://github.com/minhajuddin/dotfiles</a></li>
 </ul>
 </li>
-<li><a href="https://help.ubuntu.com/community/UsingTheTerminal" target="_blank" rel="external">Importance of the terminal https://help.ubuntu.com/community/UsingTheTerminal</a></li>
+<li><a href="https://help.ubuntu.com/community/UsingTheTerminal" target="_blank" rel="noopener">Importance of the terminal https://help.ubuntu.com/community/UsingTheTerminal</a></li>
 <li>Install rvm using railsready<pre><code>url:     https://github.com/joshfng/railsready
 command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/master/railsready.sh &amp;&amp; bash railsready.sh
 </code></pre></li>
 <li>Configure rvm and install ruby</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#replace the following which is usually found on line 6 of ~/.bashrc</span></div><div class="line">[ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></div><div class="line"><span class="comment"># with </span></div><div class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></div><div class="line"><span class="comment"># also put the following line at the end of the file</span></div><div class="line">[[ <span class="_">-s</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#replace the following which is usually found on line 6 of ~/.bashrc</span></span><br><span class="line">[ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></span><br><span class="line"><span class="comment"># with </span></span><br><span class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></span><br><span class="line"><span class="comment"># also put the following line at the end of the file</span></span><br><span class="line">[[ -s <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<ol start="7">
 <li>Install rails: gem install rails</li>
 </ol>
 <h2 id="Next-screencast"><a href="#Next-screencast" class="headerlink" title="Next screencast: "></a>Next screencast: </h2><p>How to build a simple rails application 
@@ -167,7 +162,7 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="cj8vm47r300du1dmu2brnnnil" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="cjgyxnmco006dfmbg9ggzxwyv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -178,19 +173,19 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
     
 <nav id="article-nav">
   
-    <a href="/2011/04/02/reminiscing-my-past/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2011/04/17/how-to-get-vanity-urls-in-rails/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          reminiscing my past
+          how to get vanity urls in rails
         
       </div>
     </a>
   
   
-    <a href="/2011/03/11/how-to-hookup-nginx-with-startssl/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2011/04/02/reminiscing-my-past/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">how to hookup nginx with startssl</div>
+      <div class="article-nav-title">reminiscing my past</div>
     </a>
   
 </nav>
@@ -321,7 +316,7 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

@@ -5,25 +5,18 @@
   
   <title>How to extract bits from a binary in elixir | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Erlang and by extension Elixir have powerful pattern matching constructs, which
-allow you to easily extract bits from a binary. Here is an example which takes
-a binary and returns their bits
-123456789">
+  <meta name="description" content="Erlang and by extension Elixir have powerful pattern matching constructs, which allow you to easily extract bits from a binary. Here is an example which takes a binary and returns their bits 123456789">
+<meta name="keywords" content="Elixir,Binary,Bits,Pattern matching">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to extract bits from a binary in elixir">
 <meta property="og:url" content="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Erlang and by extension Elixir have powerful pattern matching constructs, which
-allow you to easily extract bits from a binary. Here is an example which takes
-a binary and returns their bits
-123456789">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Erlang and by extension Elixir have powerful pattern matching constructs, which allow you to easily extract bits from a binary. Here is an example which takes a binary and returns their bits 123456789">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to extract bits from a binary in elixir">
-<meta name="twitter:description" content="Erlang and by extension Elixir have powerful pattern matching constructs, which
-allow you to easily extract bits from a binary. Here is an example which takes
-a binary and returns their bits
-123456789">
+<meta name="twitter:description" content="Erlang and by extension Elixir have powerful pattern matching constructs, which allow you to easily extract bits from a binary. Here is an example which takes a binary and returns their bits 123456789">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -94,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -126,7 +119,7 @@ ga('send', 'pageview');
         <p>Erlang and by extension Elixir have powerful pattern matching constructs, which
 allow you to easily extract bits from a binary. Here is an example which takes
 a binary and returns their bits</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Bits</span></span> <span class="keyword">do</span></div><div class="line">  <span class="comment"># this is the public api which allows you to pass any binary representation</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">extract</span></span>(str) <span class="keyword">when</span> is_binary(str) <span class="keyword">do</span></div><div class="line">    extract(str, [])</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment"># this function does the heavy lifting by matching the input binary to</span></div><div class="line">  <span class="comment"># a single bit and sends the rest of the bits recursively back to itself</span></div><div class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">extract</span></span>(&lt;&lt;b <span class="symbol">:</span>: size(<span class="number">1</span>), bits <span class="symbol">:</span>: bitstring&gt;&gt;, acc) <span class="keyword">when</span> is_bitstring(bits) <span class="keyword">do</span></div><div class="line">    extract(bits, [b | acc])</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment"># this is the terminal condition when we don't have anything more to extract</span></div><div class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">extract</span></span>(&lt;&lt;&gt;&gt;, acc), <span class="symbol">do:</span> acc |&gt; Enum.reverse</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">IO.inspect Bits.extract(<span class="string">"!!"</span>) <span class="comment"># =&gt; [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1]</span></div><div class="line">IO.inspect Bits.extract(&lt;&lt; <span class="number">99</span> &gt;&gt;) <span class="comment">#=&gt; [0, 1, 1, 0, 0, 0, 1, 1]</span></div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">Bits</span></span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># this is the public api which allows you to pass any binary representation</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">extract</span></span>(str) <span class="keyword">when</span> is_binary(str) <span class="keyword">do</span></span><br><span class="line">    extract(str, [])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># this function does the heavy lifting by matching the input binary to</span></span><br><span class="line">  <span class="comment"># a single bit and sends the rest of the bits recursively back to itself</span></span><br><span class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">extract</span></span>(&lt;&lt;b <span class="symbol">:</span>: size(<span class="number">1</span>), bits <span class="symbol">:</span>: bitstring&gt;&gt;, acc) <span class="keyword">when</span> is_bitstring(bits) <span class="keyword">do</span></span><br><span class="line">    extract(bits, [b | acc])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># this is the terminal condition when we don't have anything more to extract</span></span><br><span class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">extract</span></span>(&lt;&lt;&gt;&gt;, acc), <span class="symbol">do:</span> acc |&gt; Enum.reverse</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">IO.inspect Bits.extract(<span class="string">"!!"</span>) <span class="comment"># =&gt; [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1]</span></span><br><span class="line">IO.inspect Bits.extract(&lt;&lt; <span class="number">99</span> &gt;&gt;) <span class="comment">#=&gt; [0, 1, 1, 0, 0, 0, 1, 1]</span></span><br></pre></td></tr></table></figure>
 <p>The code is pretty self explanatory</p>
 
         
@@ -144,7 +137,7 @@ a binary and returns their bits</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/" data-id="cj8vm47kn00721dmujsc555xi" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/" data-id="cjgyxnma7003bfmbgbyyd7sd7" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -300,7 +293,7 @@ a binary and returns their bits</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

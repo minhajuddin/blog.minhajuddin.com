@@ -5,25 +5,17 @@
   
   <title>painless dotfiles synchronization and versioning using git | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Synchronization of dotfiles has been documented to death in many blogs. But, I 
-just wanted to show how I do it:
-
-Initialize (git init) a repository called dotfiles anywhere on your filesystem (I do i">
+  <meta name="description" content="Synchronization of dotfiles has been documented to death in many blogs. But, I  just wanted to show how I do it:  Initialize (git init) a repository called dotfiles anywhere on your filesystem (I do i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="painless dotfiles synchronization and versioning using git">
 <meta property="og:url" content="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Synchronization of dotfiles has been documented to death in many blogs. But, I 
-just wanted to show how I do it:
-
-Initialize (git init) a repository called dotfiles anywhere on your filesystem (I do i">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Synchronization of dotfiles has been documented to death in many blogs. But, I  just wanted to show how I do it:  Initialize (git init) a repository called dotfiles anywhere on your filesystem (I do i">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="painless dotfiles synchronization and versioning using git">
-<meta name="twitter:description" content="Synchronization of dotfiles has been documented to death in many blogs. But, I 
-just wanted to show how I do it:
-
-Initialize (git init) a repository called dotfiles anywhere on your filesystem (I do i">
+<meta name="twitter:description" content="Synchronization of dotfiles has been documented to death in many blogs. But, I  just wanted to show how I do it:  Initialize (git init) a repository called dotfiles anywhere on your filesystem (I do i">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -94,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -131,9 +123,9 @@ just wanted to show how I do it:</p>
 want and add them to your git repository.</li>
 <li>Now, tweak the line#2 in the following script to include your dotfiles or
 folders and run it. </li>
-<li>Now, to sync your dotfiles seamlessly between your machines. You just need a remote git server (It can be your own using <a href="http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way" target="_blank" rel="external"> gitosis </a>, or you can put it on <a href="https://github.com/" target="_blank" rel="external"> github </a>). I use github to store <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="external">my dotfiles</a>. Just push your dotfiles to your remote server clone it on another machine run the <code>setup.rb</code> and bam, you’re in business.</li>
+<li>Now, to sync your dotfiles seamlessly between your machines. You just need a remote git server (It can be your own using <a href="http://scie.nti.st/2007/11/14/hosting-git-repositories-the-easy-and-secure-way" target="_blank" rel="noopener"> gitosis </a>, or you can put it on <a href="https://github.com/" target="_blank" rel="noopener"> github </a>). I use github to store <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="noopener">my dotfiles</a>. Just push your dotfiles to your remote server clone it on another machine run the <code>setup.rb</code> and bam, you’re in business.</li>
 </ol>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/bin/env ruby</span></div><div class="line">dirs = <span class="string">%w(bash/.bash_aliases bash/.inputrc git/.gitconfig vim/.vim vim/.vimrc .gemrc)</span></div><div class="line">current_dir = File.expand_path(Dir.pwd)</div><div class="line">home_dir = File.expand_path(<span class="string">"~"</span>)</div><div class="line"></div><div class="line">dirs.each <span class="keyword">do</span> <span class="params">|dir|</span></div><div class="line">  dir = File.join(current_dir, dir)</div><div class="line">  symlink = File.join(home_dir, File.basename(dir))</div><div class="line">  <span class="string">`ln -ns <span class="subst">#&#123;dir&#125;</span> <span class="subst">#&#123;symlink&#125;</span>`</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/bin/env ruby</span></span><br><span class="line">dirs = <span class="string">%w(bash/.bash_aliases bash/.inputrc git/.gitconfig vim/.vim vim/.vimrc .gemrc)</span></span><br><span class="line">current_dir = File.expand_path(Dir.pwd)</span><br><span class="line">home_dir = File.expand_path(<span class="string">"~"</span>)</span><br><span class="line"></span><br><span class="line">dirs.each <span class="keyword">do</span> <span class="params">|dir|</span></span><br><span class="line">  dir = File.join(current_dir, dir)</span><br><span class="line">  symlink = File.join(home_dir, File.basename(dir))</span><br><span class="line">  <span class="string">`ln -ns <span class="subst">#&#123;dir&#125;</span> <span class="subst">#&#123;symlink&#125;</span>`</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>This way you don’t have to copy/paste the files when you make changes to them.
 Just change the file, commit and push, and pull it on the other machines.</p>
 
@@ -152,7 +144,7 @@ Just change the file, commit and push, and pull it on the other machines.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/" data-id="cj8vm47py00cj1dmus3ilsttj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/" data-id="cjgyxnmc4005ofmbg23zv8cow" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -306,7 +298,7 @@ Just change the file, commit and push, and pull it on the other machines.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

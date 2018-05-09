@@ -5,22 +5,17 @@
   
   <title>deploy asp net mvc applications using psexec and git | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacore
-tasks to compile the asp.net mvc application on the remote server and update the 
-database using fluent mig">
+  <meta name="description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacore tasks to compile the asp.net mvc application on the remote server and update the  database using fluent mig">
 <meta property="og:type" content="article">
 <meta property="og:title" content="deploy asp net mvc applications using psexec and git">
 <meta property="og:url" content="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacore
-tasks to compile the asp.net mvc application on the remote server and update the 
-database using fluent mig">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacore tasks to compile the asp.net mvc application on the remote server and update the  database using fluent mig">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="deploy asp net mvc applications using psexec and git">
-<meta name="twitter:description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacore
-tasks to compile the asp.net mvc application on the remote server and update the 
-database using fluent mig">
+<meta name="twitter:description" content="I’ve been managing a couple of asp.net mvc applications, and I have a bunch of rake/albacore tasks to compile the asp.net mvc application on the remote server and update the  database using fluent mig">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -120,9 +115,9 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="external">rake/albacore</a>
+        <p>I’ve been managing a couple of asp.net mvc applications, and I have a bunch of <a href="http://albacorebuild.net/" target="_blank" rel="noopener">rake/albacore</a>
 tasks to compile the asp.net mvc application on the remote server and update the 
-database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="external">fluent migrator</a>.</p>
+database using <a href="https://github.com/schambers/fluentmigrator/" target="_blank" rel="noopener">fluent migrator</a>.</p>
 <p>Whenever I need to deploy I do the following:  </p>
 <ol>
 <li>RDP into the remote server</li>
@@ -133,8 +128,8 @@ database using <a href="https://github.com/schambers/fluentmigrator/" target="_b
 to rdp and do this stuff. So, I came up with a couple of batch scripts to make
 this process even simpler. Now I have two batch files in the root directory of
 my git repo:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#deploy.bat</span></div><div class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> fetch &amp;&amp; </div><div class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> reset --hard HEAD &amp;&amp; </div><div class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> merge origin/master &amp;&amp; </div><div class="line">rake compile &amp;&amp; </div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#remote_deploy.bat</span></div><div class="line">psexec \\example.com -u userfoo -w <span class="string">"c:\repos\foobar"</span> <span class="string">"c:\repos\foobar\deploy.bat"</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#deploy.bat</span></span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> fetch &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> reset --hard HEAD &amp;&amp; </span><br><span class="line"><span class="string">"C:\Program Files (x86)\Git\cmd\git.cmd"</span> merge origin/master &amp;&amp; </span><br><span class="line">rake compile &amp;&amp; </span><br><span class="line">rake db:migrate</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#remote_deploy.bat</span></span><br><span class="line">psexec \\example.com -u userfoo -w <span class="string">"c:\repos\foobar"</span> <span class="string">"c:\repos\foobar\deploy.bat"</span></span><br></pre></td></tr></table></figure>
 <p>The code should be self explanatory. All we are doing is, instead of running the
 command manually automating them.</p>
 
@@ -153,7 +148,7 @@ command manually automating them.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cj8vm47hw00491dmudjut2mw2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="cjgyxnm970021fmbgpy9fewzq" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -307,7 +302,7 @@ command manually automating them.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

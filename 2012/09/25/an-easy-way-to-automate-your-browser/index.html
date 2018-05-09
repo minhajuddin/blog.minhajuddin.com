@@ -6,12 +6,14 @@
   <title>An easy way to automate your browser | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="I build web applications, and use the browser a lot. And there are a few things which I do all the time. For instance, all my web applications have a login page and while developing them, I have to lo">
+<meta name="keywords" content="hack,javascript,bookmarklet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="An easy way to automate your browser">
 <meta property="og:url" content="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/index.html">
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="I build web applications, and use the browser a lot. And there are a few things which I do all the time. For instance, all my web applications have a login page and while developing them, I have to lo">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="An easy way to automate your browser">
 <meta name="twitter:description" content="I build web applications, and use the browser a lot. And there are a few things which I do all the time. For instance, all my web applications have a login page and while developing them, I have to lo">
@@ -85,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -115,9 +117,9 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>I build web applications, and use the browser a lot. And there are a few things which I do all the time. For instance, all my web applications have a login page and while developing them, I have to login every time before I start testing them. To make this pain free, I’ve added a bookmarklet in my bookmark with the following code:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Devise login</span></div><div class="line">javascript: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"user_email"</span>).value = <span class="string">"user@mailinator.com"</span>;</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"user_password"</span>).value = <span class="string">"please"</span>;</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"new_user"</span>).submit();</div><div class="line">&#125;)()</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Devise login</span></span><br><span class="line">javascript: (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"user_email"</span>).value = <span class="string">"user@mailinator.com"</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"user_password"</span>).value = <span class="string">"please"</span>;</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"new_user"</span>).submit();</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
 <p>If you know javascript, you’ll know that all this code is doing is filling the username and password and posting the form. This saves me a lot of keystrokes. Another bookmarklet which I use is to remove NSFW videos from youtube’s recommendations list</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">javascript:<span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'watch-sidebar'</span>);</div><div class="line">e.parentNode.removeChild(e);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javascript:<span class="keyword">var</span> e = <span class="built_in">document</span>.getElementById(<span class="string">'watch-sidebar'</span>);</span><br><span class="line">e.parentNode.removeChild(e);</span><br></pre></td></tr></table></figure>
 <p>This code just removes the div containing the recommendation videos. These are just a few examples, if you know a little bit of javascript. You can easily create bookmarklets to make your repetitive jobs easy.</p>
 
         
@@ -135,7 +137,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cj8vm47gk002m1dmukw88jx8p" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="cjgyxnm8k001cfmbg8xdo0555" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -291,7 +293,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

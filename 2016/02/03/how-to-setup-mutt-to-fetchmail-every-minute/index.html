@@ -5,19 +5,18 @@
   
   <title>How to setup mutt to fetchmail every minute | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: http://www.andrews-corner.org/mutt.html
-However, I had to hit I to make mutt fetch the email, He">
+  <meta name="description" content="I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: http://www.andrews-corner.org/mutt.html However, I had to hit I to make mutt fetch the email, He">
+<meta name="keywords" content="mutt,How to">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to setup mutt to fetchmail every minute">
 <meta property="og:url" content="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: http://www.andrews-corner.org/mutt.html
-However, I had to hit I to make mutt fetch the email, He">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: http://www.andrews-corner.org/mutt.html However, I had to hit I to make mutt fetch the email, He">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to setup mutt to fetchmail every minute">
-<meta name="twitter:description" content="I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: http://www.andrews-corner.org/mutt.html
-However, I had to hit I to make mutt fetch the email, He">
+<meta name="twitter:description" content="I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: http://www.andrews-corner.org/mutt.html However, I had to hit I to make mutt fetch the email, He">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -88,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -117,9 +116,9 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: <a href="http://www.andrews-corner.org/mutt.html" target="_blank" rel="external">http://www.andrews-corner.org/mutt.html</a></p>
+        <p>I have recently started using mutt to access my gmail via POP3. I followed the awesome setup by Andrew: <a href="http://www.andrews-corner.org/mutt.html" target="_blank" rel="noopener">http://www.andrews-corner.org/mutt.html</a></p>
 <p>However, I had to hit <code>I</code> to make mutt fetch the email, Here is a crontab entry I setup to automatically retreive the email every minute.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* * * * * /bin/bash <span class="_">-l</span> -c <span class="string">'/usr/bin/fetchmail -v &gt;&gt; /home/minhajuddin/log/fetchmail.log 2&gt;&amp;1'</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* * * * * /bin/bash -l -c <span class="string">'/usr/bin/fetchmail -v &gt;&gt; /home/minhajuddin/log/fetchmail.log 2&gt;&amp;1'</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -136,7 +135,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/" data-id="cj8vm47m400921dmu3x67eo04" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/" data-id="cjgyxnmav0044fmbgqnj79gqs" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -292,7 +291,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

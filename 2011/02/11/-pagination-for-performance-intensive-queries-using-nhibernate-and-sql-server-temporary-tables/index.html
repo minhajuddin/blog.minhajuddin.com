@@ -5,22 +5,17 @@
   
   <title>pagination for performance intensive queries using nhibernate and sql server temporary tables | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa!
-The basic implementation is simple. To paginate a result set you run two
-almost identical queries, one which f">
+  <meta name="description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa! The basic implementation is simple. To paginate a result set you run two almost identical queries, one which f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pagination for performance intensive queries using nhibernate and sql server temporary tables">
 <meta property="og:url" content="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa!
-The basic implementation is simple. To paginate a result set you run two
-almost identical queries, one which f">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa! The basic implementation is simple. To paginate a result set you run two almost identical queries, one which f">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="pagination for performance intensive queries using nhibernate and sql server temporary tables">
-<meta name="twitter:description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa!
-The basic implementation is simple. To paginate a result set you run two
-almost identical queries, one which f">
+<meta name="twitter:description" content="Pagination is a solved problem. A simple google search shows up 11,200,000 results. Whoa! The basic implementation is simple. To paginate a result set you run two almost identical queries, one which f">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -127,11 +122,11 @@ other which <em>skips</em> and <em>takes</em> the desired slice from the result 
 <p>This is fine in most of the cases, But, when your query is very performance intensive, you
 just can’t afford to run the same query twice. I ran into a similar situation
 recently and was searching for a decent approach to solve this problem, and
-then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="external">Temporary tables in SQL Server</a>.
+then, I bumped into the <strong>awesome</strong> <a href="http://www.sqlteam.com/article/temporary-tables" target="_blank" rel="noopener">Temporary tables in SQL Server</a>.
 Once I knew about them the solution became very simple. It still needs execution
 of two queries but it doesn’t run the performance intesive query twice. See for
 yourself:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">-- first query</span></div><div class="line"><span class="keyword">SELECT</span> pi.*</div><div class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable</div><div class="line"><span class="keyword">FROM</span></div><div class="line">  .. a <span class="number">100</span> JOINS <span class="keyword">or</span> SPATIAL FUNCTIONS ...;</div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</div><div class="line"><span class="keyword">FROM</span> </div><div class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable;</div><div class="line"></div><div class="line"><span class="comment">-- end of first query</span></div><div class="line"></div><div class="line"><span class="comment">-- second query</span></div><div class="line"><span class="comment">-- :skip and :take are sql parameters for pagination</span></div><div class="line"><span class="keyword">SELECT</span> pr.* <span class="keyword">FROM</span> </div><div class="line">(<span class="keyword">SELECT</span> tp.*, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> tp.Id) <span class="keyword">AS</span> <span class="keyword">ROWNUM</span></div><div class="line">  <span class="keyword">FROM</span> #TempPerfIntensiveTable tp)pr</div><div class="line"><span class="keyword">WHERE</span> pr.ROWNUM <span class="keyword">BETWEEN</span> :<span class="keyword">skip</span> <span class="keyword">AND</span> :take + :<span class="keyword">skip</span>;</div><div class="line"><span class="comment">-- end of second query</span></div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- first query</span></span><br><span class="line"><span class="keyword">SELECT</span> pi.*</span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable</span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">  .. a <span class="number">100</span> JOINS <span class="keyword">or</span> SPATIAL FUNCTIONS ...;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line"><span class="keyword">INTO</span> #TempPerfIntensiveTable;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- end of first query</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- second query</span></span><br><span class="line"><span class="comment">-- :skip and :take are sql parameters for pagination</span></span><br><span class="line"><span class="keyword">SELECT</span> pr.* <span class="keyword">FROM</span> </span><br><span class="line">(<span class="keyword">SELECT</span> tp.*, ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">ORDER</span> <span class="keyword">BY</span> tp.Id) <span class="keyword">AS</span> <span class="keyword">ROWNUM</span></span><br><span class="line">  <span class="keyword">FROM</span> #TempPerfIntensiveTable tp)pr</span><br><span class="line"><span class="keyword">WHERE</span> pr.ROWNUM <span class="keyword">BETWEEN</span> :<span class="keyword">skip</span> <span class="keyword">AND</span> :take + :<span class="keyword">skip</span>;</span><br><span class="line"><span class="comment">-- end of second query</span></span><br></pre></td></tr></table></figure>
 <p>These queries need to be executed by calling <code>session.CreateSQLQuery(query).SetInt32.....</code> This stuff is not specific to 
 NHibernate, I just put it out there to help future searchers :)</p>
 
@@ -150,7 +145,7 @@ NHibernate, I just put it out there to help future searchers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cj8vm47f9000y1dmuvf53q6eg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="cjgyxnm81000ofmbgrlipduyp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -304,7 +299,7 @@ NHibernate, I just put it out there to help future searchers :)</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

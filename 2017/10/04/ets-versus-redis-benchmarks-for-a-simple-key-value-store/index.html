@@ -5,22 +5,18 @@
   
   <title>ets versus redis benchmarks for a simple key value store | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The project that I am currently working on has a huge data set of static lookup data.
-And, we have been using Redis to store this data since the beginning of the project.
-We figured, redis would be th">
+  <meta name="description" content="The project that I am currently working on has a huge data set of static lookup data. And, we have been using Redis to store this data since the beginning of the project. We figured, redis would be th">
+<meta name="keywords" content="Elixir,ets,Redis,Benchmark,Key-Value">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ets versus redis benchmarks for a simple key value store">
 <meta property="og:url" content="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="The project that I am currently working on has a huge data set of static lookup data.
-And, we have been using Redis to store this data since the beginning of the project.
-We figured, redis would be th">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="The project that I am currently working on has a huge data set of static lookup data. And, we have been using Redis to store this data since the beginning of the project. We figured, redis would be th">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ets versus redis benchmarks for a simple key value store">
-<meta name="twitter:description" content="The project that I am currently working on has a huge data set of static lookup data.
-And, we have been using Redis to store this data since the beginning of the project.
-We figured, redis would be th">
+<meta name="twitter:description" content="The project that I am currently working on has a huge data set of static lookup data. And, we have been using Redis to store this data since the beginning of the project. We figured, redis would be th">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -128,22 +124,22 @@ However, in our production use we have found redis to be the bottleneck.</p>
 Also, since redis runs on a single core, it isn’t able to use all the cores on our server. Add the network costs and the serialization costs to it and things add up very quickly.</p>
 <p>This led me to do some benchmarking of redis against ets with our actual production data and (un)surprisingly we found that ets beats Redis for simple key value data.
 So, if you are using redis as a key value store. Please do yourself a favor and use ets (If you are using Elixir or erlang).</p>
-<p>I created a simple <a href="https://github.com/minhajuddin/redis_vs_ets_showdown" target="_blank" rel="external">mix project which benchmarks ets and redis (https://github.com/minhajuddin/redis_vs_ets_showdown)</a></p>
+<p>I created a simple <a href="https://github.com/minhajuddin/redis_vs_ets_showdown" target="_blank" rel="noopener">mix project which benchmarks ets and redis (https://github.com/minhajuddin/redis_vs_ets_showdown)</a></p>
 <p>Go ahead and try it out by tweaking the count of records or the parallelism.</p>
 <p>We found that the ets to redis performance gap actually grows as the parallelism increases.</p>
-<p>Checkout the repository for the benchmark data: <a href="https://github.com/minhajuddin/redis_vs_ets_showdown" target="_blank" rel="external">https://github.com/minhajuddin/redis_vs_ets_showdown</a></p>
+<p>Checkout the repository for the benchmark data: <a href="https://github.com/minhajuddin/redis_vs_ets_showdown" target="_blank" rel="noopener">https://github.com/minhajuddin/redis_vs_ets_showdown</a></p>
 <p>You can also check the reports at:</p>
 <ol>
-<li><a href="https://minhajuddin.github.io/redis_vs_ets_showdown/reports/benchmark-1000.html" target="_blank" rel="external">https://minhajuddin.github.io/redis_vs_ets_showdown/reports/benchmark-1000.html</a></li>
-<li><a href="https://minhajuddin.github.io/redis_vs_ets_showdown/reports/benchmark-1000000.html" target="_blank" rel="external">https://minhajuddin.github.io/redis_vs_ets_showdown/reports/benchmark-1000000.html</a></li>
+<li><a href="https://minhajuddin.github.io/redis_vs_ets_showdown/reports/benchmark-1000.html" target="_blank" rel="noopener">https://minhajuddin.github.io/redis_vs_ets_showdown/reports/benchmark-1000.html</a></li>
+<li><a href="https://minhajuddin.github.io/redis_vs_ets_showdown/reports/benchmark-1000000.html" target="_blank" rel="noopener">https://minhajuddin.github.io/redis_vs_ets_showdown/reports/benchmark-1000000.html</a></li>
 </ol>
 <p>Here is the gist of the benchmark:</p>
 <h3 id="Quick-explanation-of-names"><a href="#Quick-explanation-of-names" class="headerlink" title="Quick explanation of names"></a>Quick explanation of names</h3><p><em>ets_get_1000</em>: does an ets lookup 1000 times</p>
 <p><em>redis_get_1000</em>: does a redis lookup 1000 times using <code>HGET</code></p>
 <p><em>ets_get_multi</em>: does an ets lookup 1000 times</p>
 <p><em>redis_get_multi</em>: does a single <code>HMGET</code> Redis lookup</p>
-<h3 id="Benchmark-for-1000-000-records"><a href="#Benchmark-for-1000-000-records" class="headerlink" title="Benchmark for 1000_000 records"></a>Benchmark for 1000_000 records</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Operating System: Linux</div><div class="line">CPU Information: Intel(R) Core(TM) i7-4700MQ CPU @ 2.40GHz</div><div class="line">Number of Available Cores: 8</div><div class="line">Available memory: 12.019272 GB</div><div class="line">Elixir 1.5.1</div><div class="line">Erlang 20.1</div><div class="line">Benchmark suite executing with the following configuration:</div><div class="line">warmup: 2.00 s</div><div class="line">time: 30.00 s</div><div class="line">parallel: 4</div><div class="line">inputs: none specified</div><div class="line">Estimated total run time: 2.13 min</div><div class="line"></div><div class="line"></div><div class="line">Name                      ips        average  deviation         median</div><div class="line">ets_get_multi          3.31 K        0.30 ms    ±20.60%        0.28 ms</div><div class="line">ets_get_1000           2.87 K        0.35 ms    ±75.38%        0.31 ms</div><div class="line">redis_get_multi        0.34 K        2.95 ms    ±17.46%        3.01 ms</div><div class="line">redis_get_1000       0.0122 K       82.15 ms    ±15.77%       77.68 ms</div><div class="line"></div><div class="line">Comparison:</div><div class="line">ets_get_multi          3.31 K</div><div class="line">ets_get_1000           2.87 K - 1.15x slower</div><div class="line">redis_get_multi        0.34 K - 9.76x slower</div><div class="line">redis_get_1000       0.0122 K - 271.91x slower</div></pre></td></tr></table></figure>
-<h3 id="Benchmark-for-1000-records"><a href="#Benchmark-for-1000-records" class="headerlink" title="Benchmark for 1000 records"></a>Benchmark for 1000 records</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Name                      ips        average  deviation         median</div><div class="line">ets_get_multi          4.06 K        0.25 ms    ±12.31%        0.24 ms</div><div class="line">ets_get_1000           3.96 K        0.25 ms    ±18.72%        0.23 ms</div><div class="line">redis_get_multi        0.34 K        2.90 ms    ±12.34%        2.99 ms</div><div class="line">redis_get_1000       0.0115 K       87.27 ms    ±17.31%       81.36 ms</div><div class="line"></div><div class="line">Comparison:</div><div class="line">ets_get_multi          4.06 K</div><div class="line">ets_get_1000           3.96 K - 1.02x slower</div><div class="line">redis_get_multi        0.34 K - 11.78x slower</div><div class="line">redis_get_1000       0.0115 K - 354.04x slower</div></pre></td></tr></table></figure>
+<h3 id="Benchmark-for-1000-000-records"><a href="#Benchmark-for-1000-000-records" class="headerlink" title="Benchmark for 1000_000 records"></a>Benchmark for 1000_000 records</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">Operating System: Linux</span><br><span class="line">CPU Information: Intel(R) Core(TM) i7-4700MQ CPU @ 2.40GHz</span><br><span class="line">Number of Available Cores: 8</span><br><span class="line">Available memory: 12.019272 GB</span><br><span class="line">Elixir 1.5.1</span><br><span class="line">Erlang 20.1</span><br><span class="line">Benchmark suite executing with the following configuration:</span><br><span class="line">warmup: 2.00 s</span><br><span class="line">time: 30.00 s</span><br><span class="line">parallel: 4</span><br><span class="line">inputs: none specified</span><br><span class="line">Estimated total run time: 2.13 min</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Name                      ips        average  deviation         median</span><br><span class="line">ets_get_multi          3.31 K        0.30 ms    ±20.60%        0.28 ms</span><br><span class="line">ets_get_1000           2.87 K        0.35 ms    ±75.38%        0.31 ms</span><br><span class="line">redis_get_multi        0.34 K        2.95 ms    ±17.46%        3.01 ms</span><br><span class="line">redis_get_1000       0.0122 K       82.15 ms    ±15.77%       77.68 ms</span><br><span class="line"></span><br><span class="line">Comparison:</span><br><span class="line">ets_get_multi          3.31 K</span><br><span class="line">ets_get_1000           2.87 K - 1.15x slower</span><br><span class="line">redis_get_multi        0.34 K - 9.76x slower</span><br><span class="line">redis_get_1000       0.0122 K - 271.91x slower</span><br></pre></td></tr></table></figure>
+<h3 id="Benchmark-for-1000-records"><a href="#Benchmark-for-1000-records" class="headerlink" title="Benchmark for 1000 records"></a>Benchmark for 1000 records</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Name                      ips        average  deviation         median</span><br><span class="line">ets_get_multi          4.06 K        0.25 ms    ±12.31%        0.24 ms</span><br><span class="line">ets_get_1000           3.96 K        0.25 ms    ±18.72%        0.23 ms</span><br><span class="line">redis_get_multi        0.34 K        2.90 ms    ±12.34%        2.99 ms</span><br><span class="line">redis_get_1000       0.0115 K       87.27 ms    ±17.31%       81.36 ms</span><br><span class="line"></span><br><span class="line">Comparison:</span><br><span class="line">ets_get_multi          4.06 K</span><br><span class="line">ets_get_1000           3.96 K - 1.02x slower</span><br><span class="line">redis_get_multi        0.34 K - 11.78x slower</span><br><span class="line">redis_get_1000       0.0115 K - 354.04x slower</span><br></pre></td></tr></table></figure>
 
         
       
@@ -160,7 +156,7 @@ So, if you are using redis as a key value store. Please do yourself a favor and 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/" data-id="cj8vm47ii00531dmuldnm230v" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/" data-id="cjgyxnm9j002gfmbg02m77gem" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -307,7 +303,7 @@ So, if you are using redis as a key value store. Please do yourself a favor and 
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

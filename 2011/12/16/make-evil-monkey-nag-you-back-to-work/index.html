@@ -5,26 +5,18 @@
   
   <title>make evil monkey nag you back to work | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="###Update: fixed the cron entry
-I’ve read a very interesting article about “Why programmers work at night”.
-One of the points the author talks about is “how we get engrossed in
-twitter/hacker news/red">
+  <meta name="description" content="###Update: fixed the cron entry I’ve read a very interesting article about “Why programmers work at night”. One of the points the author talks about is “how we get engrossed in twitter/hacker news/red">
 <meta property="og:type" content="article">
 <meta property="og:title" content="make evil monkey nag you back to work">
 <meta property="og:url" content="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="###Update: fixed the cron entry
-I’ve read a very interesting article about “Why programmers work at night”.
-One of the points the author talks about is “how we get engrossed in
-twitter/hacker news/red">
+<meta property="og:description" content="###Update: fixed the cron entry I’ve read a very interesting article about “Why programmers work at night”. One of the points the author talks about is “how we get engrossed in twitter/hacker news/red">
+<meta property="og:locale" content="English">
 <meta property="og:image" content="https://substancehq.s3.amazonaws.com/static_asset/4f99dd1003b04d2e0300003f/evil-monkey-nagger.png">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="make evil monkey nag you back to work">
-<meta name="twitter:description" content="###Update: fixed the cron entry
-I’ve read a very interesting article about “Why programmers work at night”.
-One of the points the author talks about is “how we get engrossed in
-twitter/hacker news/red">
+<meta name="twitter:description" content="###Update: fixed the cron entry I’ve read a very interesting article about “Why programmers work at night”. One of the points the author talks about is “how we get engrossed in twitter/hacker news/red">
 <meta name="twitter:image" content="https://substancehq.s3.amazonaws.com/static_asset/4f99dd1003b04d2e0300003f/evil-monkey-nagger.png">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
@@ -96,7 +88,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -126,19 +118,19 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>###Update: fixed the cron entry</p>
-<p>I’ve read a very interesting article about <a href="http://swizec.com/blog/why-programmers-work-at-night/swizec/3198" target="_blank" rel="external">“Why programmers work at night”</a>.
+<p>I’ve read a very interesting article about <a href="http://swizec.com/blog/why-programmers-work-at-night/swizec/3198" target="_blank" rel="noopener">“Why programmers work at night”</a>.
 One of the points the author talks about is “how we get engrossed in
 twitter/hacker news/reddit”. I’ve felt the same. I think one of the reasons why
 we(programmers/developers) spend a lot of our time on twitter/hacker news/reddit
 is, because, we don’t have any idea of the time. Time just flies by. So, I
 created a small ruby script which nags you to get back to work :)</p>
 <p>##~/.scripts/nagger</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"><span class="keyword">require</span> <span class="string">'time'</span></div><div class="line"></div><div class="line">exit <span class="keyword">if</span> File.exists?(<span class="string">"/tmp/stop-nagging"</span>)</div><div class="line"><span class="comment">#see what I did here ;)</span></div><div class="line"></div><div class="line"><span class="comment">#run the below command to find your display</span></div><div class="line"><span class="comment">#env | grep DISPLAY</span></div><div class="line">ENV[<span class="string">'DISPLAY'</span>] = <span class="string">':0.0'</span></div><div class="line"></div><div class="line">last_line = <span class="string">`tail -2 ~/.gtimelog/timelog.txt`</span>.lines.map&#123;<span class="params">|x|</span> x.chomp&#125;.reject&#123;<span class="params">|x|</span> x.empty?&#125;.reverse.first</div><div class="line">minutes = ((Time.now - Time.parse(last_line[<span class="number">11</span>, <span class="number">5</span>])) / <span class="number">60</span>).round</div><div class="line">evil_monkey = File.expand_path File.join(File.dirname(__FILE_<span class="number">_</span>), <span class="string">'evil-monkey.gif'</span>)</div><div class="line"></div><div class="line"><span class="keyword">if</span> minutes &gt; <span class="number">30</span></div><div class="line">  <span class="string">`notify-send -i '<span class="subst">#&#123;evil_monkey&#125;</span>' "It's been <span class="subst">#&#123;minutes&#125;</span> minutes since your last log"`</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'time'</span></span><br><span class="line"></span><br><span class="line">exit <span class="keyword">if</span> File.exists?(<span class="string">"/tmp/stop-nagging"</span>)</span><br><span class="line"><span class="comment">#see what I did here ;)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#run the below command to find your display</span></span><br><span class="line"><span class="comment">#env | grep DISPLAY</span></span><br><span class="line">ENV[<span class="string">'DISPLAY'</span>] = <span class="string">':0.0'</span></span><br><span class="line"></span><br><span class="line">last_line = <span class="string">`tail -2 ~/.gtimelog/timelog.txt`</span>.lines.map&#123;<span class="params">|x|</span> x.chomp&#125;.reject&#123;<span class="params">|x|</span> x.empty?&#125;.reverse.first</span><br><span class="line">minutes = ((Time.now - Time.parse(last_line[<span class="number">11</span>, <span class="number">5</span>])) / <span class="number">60</span>).round</span><br><span class="line">evil_monkey = File.expand_path File.join(File.dirname(__FILE_<span class="number">_</span>), <span class="string">'evil-monkey.gif'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> minutes &gt; <span class="number">30</span></span><br><span class="line">  <span class="string">`notify-send -i '<span class="subst">#&#123;evil_monkey&#125;</span>' "It's been <span class="subst">#&#123;minutes&#125;</span> minutes since your last log"`</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>##cron entry</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">0,5,10,15,20,25,30,35,40,45,50,55 * * * * /bin/bash <span class="_">-l</span> -c <span class="string">'/home/minhajuddin/.scripts/nagger'</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">0,5,10,15,20,25,30,35,40,45,50,55 * * * * /bin/bash -l -c <span class="string">'/home/minhajuddin/.scripts/nagger'</span></span><br></pre></td></tr></table></figure>
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/4f99dd1003b04d2e0300003f/evil-monkey-nagger.png" alt="Evil monkey nagging me to get back to work"></p>
 <p>Hope it helps you get back to work too :). By the way, I use the awesome
-<a href="http://mg.pov.lt/gtimelog/" target="_blank" rel="external">gtimelog</a> app to log my time.</p>
+<a href="http://mg.pov.lt/gtimelog/" target="_blank" rel="noopener">gtimelog</a> app to log my time.</p>
 
         
       
@@ -155,7 +147,7 @@ created a small ruby script which nags you to get back to work :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/" data-id="cj8vm47p500bk1dmu7ux50fzf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/" data-id="cjgyxnmbs0057fmbgsopyv72i" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -309,7 +301,7 @@ created a small ruby script which nags you to get back to work :)</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

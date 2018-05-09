@@ -5,22 +5,17 @@
   
   <title>how to setup solr and sunspot on a rails production server | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, setting
-it up can be a pain if you don’t find the right guide, or if you miss some small
-detail. So, here is my attempt to d">
+  <meta name="description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, setting it up can be a pain if you don’t find the right guide, or if you miss some small detail. So, here is my attempt to d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how to setup solr and sunspot on a rails production server">
 <meta property="og:url" content="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, setting
-it up can be a pain if you don’t find the right guide, or if you miss some small
-detail. So, here is my attempt to d">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, setting it up can be a pain if you don’t find the right guide, or if you miss some small detail. So, here is my attempt to d">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how to setup solr and sunspot on a rails production server">
-<meta name="twitter:description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, setting
-it up can be a pain if you don’t find the right guide, or if you miss some small
-detail. So, here is my attempt to d">
+<meta name="twitter:description" content="Solr is an awesome app built on top of Lucene for fulltext search. However, setting it up can be a pain if you don’t find the right guide, or if you miss some small detail. So, here is my attempt to d">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -131,23 +126,23 @@ even with openjdk.</p>
 <ol>
 <li>Install Sun JDK:</li>
 </ol>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#install and setup sun jdk</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"deb http://archive.canonical.com/ <span class="variable">$(lsb_release -cs)</span> partner"</span>| sudo tee <span class="_">-a</span> /etc/apt/sources.list &gt; /dev/null</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install sun-java6-jre sun-java6-bin sun-java6-jdk -y</div><div class="line">sudo update-alternatives --config java</div><div class="line"><span class="built_in">echo</span> <span class="string">'export JAVA_HOME=/usr/lib/jvm/java-6-sun/'</span> &gt;&gt; ~/.bashrc</div></pre></td></tr></table></figure>
-<ol>
-<li><p>Download and setup tomcat: you’ll need to setup tomcat version 6.0 for your production server. Download the latest V6 tomcat files from <a href="http://tomcat.apache.org/download-60.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-60.cgi</a>. Now, extract them into <code>~/apps</code>.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#install and setup sun jdk</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"deb http://archive.canonical.com/ <span class="variable">$(lsb_release -cs)</span> partner"</span>| sudo tee -a /etc/apt/sources.list &gt; /dev/null</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sun-java6-jre sun-java6-bin sun-java6-jdk -y</span><br><span class="line">sudo update-alternatives --config java</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export JAVA_HOME=/usr/lib/jvm/java-6-sun/'</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>Download and setup tomcat: you’ll need to setup tomcat version 6.0 for your production server. Download the latest V6 tomcat files from <a href="http://tomcat.apache.org/download-60.cgi" target="_blank" rel="noopener">http://tomcat.apache.org/download-60.cgi</a>. Now, extract them into <code>~/apps</code>.</p>
 </li>
-<li><p>Download or build the solr war files and copy them to <code>/apps/solr</code>. You can find the links at: <a href="http://lucene.apache.org/solr/" target="_blank" rel="external">http://lucene.apache.org/solr/</a> or <a href="http://www.apache.org/dyn/closer.cgi/lucene/solr/" target="_blank" rel="external">http://www.apache.org/dyn/closer.cgi/lucene/solr/</a>. The war file is usually in a folder called <code>dist</code> and has a filename like <code>apache-solr-3.4.0.war</code></p>
+<li><p>Download or build the solr war files and copy them to <code>/apps/solr</code>. You can find the links at: <a href="http://lucene.apache.org/solr/" target="_blank" rel="noopener">http://lucene.apache.org/solr/</a> or <a href="http://www.apache.org/dyn/closer.cgi/lucene/solr/" target="_blank" rel="noopener">http://www.apache.org/dyn/closer.cgi/lucene/solr/</a>. The war file is usually in a folder called <code>dist</code> and has a filename like <code>apache-solr-3.4.0.war</code></p>
 </li>
 <li><p>Create a file  ~/apps/tomcat/conf/Catalina/localhost/solr-appname.xml
 with the following content</p>
 </li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="comment">&lt;!-- I usually create this file in the rails app config/ directory and symlink</span></div><div class="line">it to the ~/tomcat/conf/Catalina/localhost/ directory--&gt;</div><div class="line"><span class="comment">&lt;!-- the docBase path should point to your solr.war file --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"/home/minhajuddin/apps/solr/solr.war"</span> <span class="attr">debug</span>=<span class="string">"0"</span> <span class="attr">crossContext</span>=<span class="string">"true"</span>&gt;</span></div><div class="line">  <span class="comment">&lt;!-- the value string should point to your apps solr directory --&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">Environment</span> <span class="attr">name</span>=<span class="string">"solr/home"</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"/home/minhajuddin/spikes/solr-blog/solr"</span> <span class="attr">override</span>=<span class="string">"true"</span>/&gt;</span></div><div class="line">  <span class="comment">&lt;!-- value= app-name/solr --&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="comment">&lt;!-- I usually create this file in the rails app config/ directory and symlink</span></span><br><span class="line"><span class="comment">it to the ~/tomcat/conf/Catalina/localhost/ directory--&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- the docBase path should point to your solr.war file --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"/home/minhajuddin/apps/solr/solr.war"</span> <span class="attr">debug</span>=<span class="string">"0"</span> <span class="attr">crossContext</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- the value string should point to your apps solr directory --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">Environment</span> <span class="attr">name</span>=<span class="string">"solr/home"</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">value</span>=<span class="string">"/home/minhajuddin/spikes/solr-blog/solr"</span> <span class="attr">override</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- value= app-name/solr --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p><em>Steps till this point are the same for any kind of solr installation, be it for a rails or any other app.</em></p>
-<ol>
+<ol start="5">
 <li>I use the sunspot_rails gem in my rails application, when using this, you can run <code>rails g sunspot_rails:install</code> to create a <code>config/sunspot.yml</code> file. Once you have the config file, change the production config values to point to the right port and path, e.g:</li>
 </ol>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">..</div><div class="line"><span class="attr">production:</span></div><div class="line"><span class="attr">  solr:</span></div><div class="line"><span class="attr">    hostname:</span> localhost</div><div class="line"><span class="attr">    port:</span> <span class="number">8080</span></div><div class="line"><span class="attr">    path:</span> <span class="string">'/solr-odir/'</span></div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="string">..</span></span><br><span class="line"><span class="attr">production:</span></span><br><span class="line"><span class="attr">  solr:</span></span><br><span class="line"><span class="attr">    hostname:</span> <span class="string">localhost</span></span><br><span class="line"><span class="attr">    port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">    path:</span> <span class="string">'/solr-odir/'</span></span><br></pre></td></tr></table></figure>
+<ol start="6">
 <li>Run the <code>bundle exec rake sunspot:solr:start</code> command once, on the development machine, to generate the solr configuration files. And push this code to the production server.</li>
 </ol>
 <p>That’s all. Setting solr is not very straightforward, but once you have it set
@@ -155,12 +150,12 @@ up, it’s very easy to setup additional apps with the same solr server.</p>
 <p>On a development machine, all you need to get solr working is: install java (check step 1) and setup sunspot (check step 5), and start the solr server with <code>bundle exec rake sunspot:solr:start</code></p>
 <p>###Resources###</p>
 <ul>
-<li><a href="https://help.ubuntu.com/community/Java" target="_blank" rel="external">https://help.ubuntu.com/community/Java</a></li>
-<li><a href="http://wiki.apache.org/solr/SolrInstall" target="_blank" rel="external">http://wiki.apache.org/solr/SolrInstall</a></li>
-<li><a href="http://www.tc.umn.edu/~brams006/solr_ubuntu.html" target="_blank" rel="external">http://www.tc.umn.edu/~brams006/solr_ubuntu.html</a></li>
-<li><a href="http://railscasts.com/episodes/278-search-with-sunspot" target="_blank" rel="external">http://railscasts.com/episodes/278-search-with-sunspot</a></li>
-<li><a href="https://github.com/outoftime/sunspot" target="_blank" rel="external">https://github.com/outoftime/sunspot</a></li>
-<li><a href="https://github.com/sunspot/sunspot/wiki" target="_blank" rel="external">https://github.com/sunspot/sunspot/wiki</a></li>
+<li><a href="https://help.ubuntu.com/community/Java" target="_blank" rel="noopener">https://help.ubuntu.com/community/Java</a></li>
+<li><a href="http://wiki.apache.org/solr/SolrInstall" target="_blank" rel="noopener">http://wiki.apache.org/solr/SolrInstall</a></li>
+<li><a href="http://www.tc.umn.edu/~brams006/solr_ubuntu.html" target="_blank" rel="noopener">http://www.tc.umn.edu/~brams006/solr_ubuntu.html</a></li>
+<li><a href="http://railscasts.com/episodes/278-search-with-sunspot" target="_blank" rel="noopener">http://railscasts.com/episodes/278-search-with-sunspot</a></li>
+<li><a href="https://github.com/outoftime/sunspot" target="_blank" rel="noopener">https://github.com/outoftime/sunspot</a></li>
+<li><a href="https://github.com/sunspot/sunspot/wiki" target="_blank" rel="noopener">https://github.com/sunspot/sunspot/wiki</a></li>
 </ul>
 
         
@@ -178,7 +173,7 @@ up, it’s very easy to setup additional apps with the same solr server.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" data-id="cj8vm47m800971dmuxrq70r9z" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" data-id="cjgyxnmaw0045fmbgl19uax1i" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -332,7 +327,7 @@ up, it’s very easy to setup additional apps with the same solr server.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

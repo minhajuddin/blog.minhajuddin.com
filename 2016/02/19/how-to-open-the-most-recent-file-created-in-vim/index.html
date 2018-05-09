@@ -5,22 +5,18 @@
   
   <title>How to open the most recent file created in Vim | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="When working with Static Site Blogs, you end up creating files with very long
-names for your blog posts. For example, this very post has a filename
-source/_posts/how-to-open-the-most-recent-file-creat">
+  <meta name="description" content="When working with Static Site Blogs, you end up creating files with very long names for your blog posts. For example, this very post has a filename source/_posts/how-to-open-the-most-recent-file-creat">
+<meta name="keywords" content="Vim,Tip,Static Sites,Rails Migrations">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to open the most recent file created in Vim">
 <meta property="og:url" content="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="When working with Static Site Blogs, you end up creating files with very long
-names for your blog posts. For example, this very post has a filename
-source/_posts/how-to-open-the-most-recent-file-creat">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="When working with Static Site Blogs, you end up creating files with very long names for your blog posts. For example, this very post has a filename source/_posts/how-to-open-the-most-recent-file-creat">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to open the most recent file created in Vim">
-<meta name="twitter:description" content="When working with Static Site Blogs, you end up creating files with very long
-names for your blog posts. For example, this very post has a filename
-source/_posts/how-to-open-the-most-recent-file-creat">
+<meta name="twitter:description" content="When working with Static Site Blogs, you end up creating files with very long names for your blog posts. For example, this very post has a filename source/_posts/how-to-open-the-most-recent-file-creat">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -126,7 +122,7 @@ names for your blog posts. For example, this very post has a filename
 <p>Now finding this exact file in hundreds of other files and opening them is a
 pain. Here is a small script which I wrote by piecing together stuff from the
 internet.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># takes 1 argument</span></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">latest</span></span>()&#123;</div><div class="line"><span class="comment"># finding latest file from the directory and ignoring hidden files</span></div><div class="line"><span class="built_in">echo</span> $(find <span class="variable">$1</span> -type f -printf <span class="string">"%T@|%p\n"</span> | sort -n | grep -Ev <span class="string">'^\.|/\.'</span> | tail -n 1 | cut <span class="_">-d</span> <span class="string">'|'</span> <span class="_">-f</span>2)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">openlatest</span></span>()&#123;</div><div class="line"><span class="variable">$&#123;EDITOR-vim&#125;</span> <span class="string">"<span class="variable">$(latest $1)</span>"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># takes 1 argument</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">latest</span></span>()&#123;</span><br><span class="line"><span class="comment"># finding latest file from the directory and ignoring hidden files</span></span><br><span class="line"><span class="built_in">echo</span> $(find <span class="variable">$1</span> -<span class="built_in">type</span> f -<span class="built_in">printf</span> <span class="string">"%T@|%p\n"</span> | sort -n | grep -Ev <span class="string">'^\.|/\.'</span> | tail -n 1 | cut -d <span class="string">'|'</span> -f2)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">openlatest</span></span>()&#123;</span><br><span class="line"><span class="variable">$&#123;EDITOR-vim&#125;</span> <span class="string">"<span class="variable">$(latest $1)</span>"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Now, I can just run <code>openlatest source</code> to open up the file
 <code>source/_posts/how-to-open-the-most-recent-file-created-in-vim.md</code> in vim and
 start writing.</p>
@@ -148,7 +144,7 @@ function finds a home in your <code>~/.bashrc</code> :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="cj8vm47lr008j1dmu84eetvc1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="cjgyxnmap003wfmbgshja74cu" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -304,7 +300,7 @@ function finds a home in your <code>~/.bashrc</code> :)</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

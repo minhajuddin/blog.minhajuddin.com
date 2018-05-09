@@ -5,22 +5,17 @@
   
   <title>a simple rake task to ping google, bing, and yahoo about a change in your sitemap | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="There is an easy way to notify google, bing and yahoo whenever you add content
-to your site or blog. All of them expose a url which when called with your
-sitemap’s url updates their indexes. This fact">
+  <meta name="description" content="There is an easy way to notify google, bing and yahoo whenever you add content to your site or blog. All of them expose a url which when called with your sitemap’s url updates their indexes. This fact">
 <meta property="og:type" content="article">
 <meta property="og:title" content="a simple rake task to ping google, bing, and yahoo about a change in your sitemap">
 <meta property="og:url" content="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="There is an easy way to notify google, bing and yahoo whenever you add content
-to your site or blog. All of them expose a url which when called with your
-sitemap’s url updates their indexes. This fact">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="There is an easy way to notify google, bing and yahoo whenever you add content to your site or blog. All of them expose a url which when called with your sitemap’s url updates their indexes. This fact">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="a simple rake task to ping google, bing, and yahoo about a change in your sitemap">
-<meta name="twitter:description" content="There is an easy way to notify google, bing and yahoo whenever you add content
-to your site or blog. All of them expose a url which when called with your
-sitemap’s url updates their indexes. This fact">
+<meta name="twitter:description" content="There is an easy way to notify google, bing and yahoo whenever you add content to your site or blog. All of them expose a url which when called with your sitemap’s url updates their indexes. This fact">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -127,7 +122,7 @@ just wanted to share a simple rake task, which automates this. I use it to ping 
 search engines whenever I write a new blog post.  </p>
 <p>All it’s doing is looping over all the search engines’ urls and using curl to
 ping them.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">Sitemap = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></div><div class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></div><div class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></div><div class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</div><div class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</div><div class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> <span class="params">|url|</span></div><div class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;Sitemap&#125;</span>`</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">Sitemap = <span class="string">"http://minhajuddin.com/sitemap.xml"</span></span><br><span class="line">desc <span class="string">"ping search engines about a change in sitemap"</span></span><br><span class="line">task <span class="symbol">:ping</span> <span class="keyword">do</span></span><br><span class="line">  [ <span class="string">"http://www.google.com/webmasters/sitemaps/ping?sitemap="</span>,</span><br><span class="line">    <span class="string">"http://www.bing.com/webmaster/ping.aspx?siteMap="</span> ,</span><br><span class="line">    <span class="string">"http://search.yahooapis.com/SiteExplorerService/V1/updateNotification?appid=YahooDemo&amp;url="</span> ].each <span class="keyword">do</span> <span class="params">|url|</span></span><br><span class="line">    puts <span class="string">`curl <span class="subst">#&#123;url&#125;</span><span class="subst">#&#123;Sitemap&#125;</span>`</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -144,7 +139,7 @@ ping them.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cj8vm47fu001n1dmuxok6xb3l" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="cjgyxnm89000yfmbgfp9niys0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -298,7 +293,7 @@ ping them.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

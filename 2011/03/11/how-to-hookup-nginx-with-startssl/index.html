@@ -5,19 +5,17 @@
   
   <title>how to hookup nginx with startssl | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="This is a note-to-self 
-StartSSL is a certification authority which gives away free SSL certificates valid for one year (after which you can renew it again for free). They are simply awesome. Anyway,">
+  <meta name="description" content="This is a note-to-self  StartSSL is a certification authority which gives away free SSL certificates valid for one year (after which you can renew it again for free). They are simply awesome. Anyway,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how to hookup nginx with startssl">
 <meta property="og:url" content="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="This is a note-to-self 
-StartSSL is a certification authority which gives away free SSL certificates valid for one year (after which you can renew it again for free). They are simply awesome. Anyway,">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="This is a note-to-self  StartSSL is a certification authority which gives away free SSL certificates valid for one year (after which you can renew it again for free). They are simply awesome. Anyway,">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how to hookup nginx with startssl">
-<meta name="twitter:description" content="This is a note-to-self 
-StartSSL is a certification authority which gives away free SSL certificates valid for one year (after which you can renew it again for free). They are simply awesome. Anyway,">
+<meta name="twitter:description" content="This is a note-to-self  StartSSL is a certification authority which gives away free SSL certificates valid for one year (after which you can renew it again for free). They are simply awesome. Anyway,">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -88,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -118,32 +116,32 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p><em>This is a note-to-self</em> </p>
-<p><a href="http://www.startssl.com" target="_blank" rel="external">StartSSL</a> is a certification authority which gives away <em>free</em> SSL certificates valid for one year (after which you can renew it again for <em>free</em>). They are simply awesome. Anyway, this blog post documents how you can setup an ssl cert on an nginx server using the start ssl free cert.</p>
+<p><a href="http://www.startssl.com" target="_blank" rel="noopener">StartSSL</a> is a certification authority which gives away <em>free</em> SSL certificates valid for one year (after which you can renew it again for <em>free</em>). They are simply awesome. Anyway, this blog post documents how you can setup an ssl cert on an nginx server using the start ssl free cert.</p>
 <ul>
-<li>Signup for a <a href="http://www.startssl.com" target="_blank" rel="external">StartSSL</a> account . StartSSL doesn’t give you a username and password, it gives you a client certificate instead (Use firefox to do signup). Make sure to <a href="https://www.startssl.com/?app=25#4" target="_blank" rel="external">back up</a> the client cert.</li>
+<li>Signup for a <a href="http://www.startssl.com" target="_blank" rel="noopener">StartSSL</a> account . StartSSL doesn’t give you a username and password, it gives you a client certificate instead (Use firefox to do signup). Make sure to <a href="https://www.startssl.com/?app=25#4" target="_blank" rel="noopener">back up</a> the client cert.</li>
 <li>SSH into your server and run the following commands:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">openssl genrsa -des3 -out server.key.secure 2048</div><div class="line">openssl rsa -in server.key.secure -out server.key</div><div class="line">openssl req -new -key server.key -out server.csr</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">openssl genrsa -des3 -out server.key.secure 2048</span><br><span class="line">openssl rsa -<span class="keyword">in</span> server.key.secure -out server.key</span><br><span class="line">openssl req -new -key server.key -out server.csr</span><br></pre></td></tr></table></figure>
 <ul>
 <li>On startssl browse to the <em>control panel</em> and then to the <em>validations wizard</em> and validate the domain for which you want to generate your ssl.</li>
 <li>Now go to the <em>certificates wizard</em> tab in the <em>control panel</em> and create a <em>web server ssl certificate</em>. Skip the first step and paste your <code>server.csr</code> file in the next step. Finish the rest of the steps of this wizard.</li>
 <li>Browse to the <em>tool box</em> in the <em>control panel</em> and click on <em>retrieve certificate</em>. Copy your certificate and paste it into a file called <code>server.crt</code> on the server.</li>
-<li>Download <a href="http://www.startssl.com/certs/sub.class1.server.ca.pem" target="_blank" rel="external">sub.class1.server.ca.pem</a> to your server.</li>
+<li>Download <a href="http://www.startssl.com/certs/sub.class1.server.ca.pem" target="_blank" rel="noopener">sub.class1.server.ca.pem</a> to your server.</li>
 <li>Now run <code>cat sub.class1.server.ca.pem &gt;&gt; server.crt</code> to append the intermediate certificate to your cert.</li>
 <li>Run the commands:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo cp server.crt /etc/ssl/example.com.crt</div><div class="line">sudo cp server.key /etc/ssl/example.com.key</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo cp server.crt /etc/ssl/example.com.crt</span><br><span class="line">sudo cp server.key /etc/ssl/example.com.key</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Change your nginx conf to:</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">server &#123;</div><div class="line">      .</div><div class="line">      .</div><div class="line">      listen 80;</div><div class="line">      listen 443 ssl;</div><div class="line">      ssl on;</div><div class="line">      ssl_certificate /etc/ssl/example.com.crt;</div><div class="line">      ssl_certificate_key /etc/ssl/example.com.key;</div><div class="line">      .</div><div class="line">      .</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">      .</span><br><span class="line">      .</span><br><span class="line">      listen 80;</span><br><span class="line">      listen 443 ssl;</span><br><span class="line">      ssl on;</span><br><span class="line">      ssl_certificate /etc/ssl/example.com.crt;</span><br><span class="line">      ssl_certificate_key /etc/ssl/example.com.key;</span><br><span class="line">      .</span><br><span class="line">      .</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Restart your nginx server</li>
 </ul>
 <p>###References###</p>
 <ul>
-<li><a href="http://stephen.mcquay.me/blog/detail/30/" target="_blank" rel="external">nginx and startssl</a></li>
-<li><a href="http://www.digicert.com/ssl-certificate-installation-nginx.htm" target="_blank" rel="external">SSL Certificate Installation - Nginx Server</a></li>
+<li><a href="http://stephen.mcquay.me/blog/detail/30/" target="_blank" rel="noopener">nginx and startssl</a></li>
+<li><a href="http://www.digicert.com/ssl-certificate-installation-nginx.htm" target="_blank" rel="noopener">SSL Certificate Installation - Nginx Server</a></li>
 </ul>
 
         
@@ -161,7 +159,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cj8vm47l8007v1dmupvdtfwox" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="cjgyxnmah003kfmbg5yie8jab" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -172,11 +170,11 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2011/04/02/reminiscing-my-past/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          ruby on rails soup to nuts
+          reminiscing my past
         
       </div>
     </a>
@@ -315,7 +313,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

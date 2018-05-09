@@ -5,22 +5,18 @@
   
   <title>How to control pianobar using global hotkeys using Tmux | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I love pianobar. However, until yesterday I hated pausing and moving to the next video
-using pianobar. I had a small terminal dedicated for pianobar and every time I had to
-change the song or pause, I">
+  <meta name="description" content="I love pianobar. However, until yesterday I hated pausing and moving to the next video using pianobar. I had a small terminal dedicated for pianobar and every time I had to change the song or pause, I">
+<meta name="keywords" content="Pianobar,Tmux,Hotkeys">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to control pianobar using global hotkeys using Tmux">
 <meta property="og:url" content="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I love pianobar. However, until yesterday I hated pausing and moving to the next video
-using pianobar. I had a small terminal dedicated for pianobar and every time I had to
-change the song or pause, I">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="I love pianobar. However, until yesterday I hated pausing and moving to the next video using pianobar. I had a small terminal dedicated for pianobar and every time I had to change the song or pause, I">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to control pianobar using global hotkeys using Tmux">
-<meta name="twitter:description" content="I love pianobar. However, until yesterday I hated pausing and moving to the next video
-using pianobar. I had a small terminal dedicated for pianobar and every time I had to
-change the song or pause, I">
+<meta name="twitter:description" content="I love pianobar. However, until yesterday I hated pausing and moving to the next video using pianobar. I had a small terminal dedicated for pianobar and every time I had to change the song or pause, I">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -129,7 +125,7 @@ right key sequences to pianobar running a tmux session. Here is how I did it.</p
 <p>I use xmonad, so I wired up <code>Windows + Shift + p</code> to <code>tmux send-keys -t scratch:1.0 p &amp;&gt; /tmp/null.log</code>
 So, now whenever I hit the right hotkey it types the letter ‘p’ in the tmux session <code>scratch</code> window 1 and pane 0, where I have pianobar running.</p>
 <p>I use xmonad, but you should be able to put these in a wrapper script and wire them up with any window manager or with unity.</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- relevant configuration</span></div><div class="line">, ((modMask .|. shiftMask, xK_p    ), spawn <span class="string">"tmux send-keys -t scratch:1.0 p &amp;&gt; /tmp/null.log"</span>)  <span class="comment">-- %! Pause pianobar</span></div><div class="line">, ((modMask .|. shiftMask, xK_v    ), spawn <span class="string">"tmux send-keys -t scratch:1.0 n &amp;&gt; /tmp/null.log"</span>) <span class="comment">-- %! next pianobar</span></div><div class="line"></div><div class="line">, ((modMask, xK_c     ), spawn <span class="string">"mpc toggle"</span>) <span class="comment">-- %! Pause mpd</span></div><div class="line">, ((modMask, xK_z     ), spawn <span class="string">"mpc prev"</span>) <span class="comment">-- %! previous in mpd</span></div><div class="line">, ((modMask, xK_v     ), spawn <span class="string">"mpc next"</span>) <span class="comment">-- %! next in mpd</span></div></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- relevant configuration</span></span><br><span class="line">, ((modMask .|. shiftMask, xK_p    ), spawn <span class="string">"tmux send-keys -t scratch:1.0 p &amp;&gt; /tmp/null.log"</span>)  <span class="comment">-- %! Pause pianobar</span></span><br><span class="line">, ((modMask .|. shiftMask, xK_v    ), spawn <span class="string">"tmux send-keys -t scratch:1.0 n &amp;&gt; /tmp/null.log"</span>) <span class="comment">-- %! next pianobar</span></span><br><span class="line"></span><br><span class="line">, ((modMask, xK_c     ), spawn <span class="string">"mpc toggle"</span>) <span class="comment">-- %! Pause mpd</span></span><br><span class="line">, ((modMask, xK_z     ), spawn <span class="string">"mpc prev"</span>) <span class="comment">-- %! previous in mpd</span></span><br><span class="line">, ((modMask, xK_v     ), spawn <span class="string">"mpc next"</span>) <span class="comment">-- %! next in mpd</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -146,7 +142,7 @@ So, now whenever I hit the right hotkey it types the letter ‘p’ in the tmux 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="cj8vm47jm006b1dmudrhbsrq2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="cjgyxnma10033fmbgpt2i3e7m" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -302,7 +298,7 @@ So, now whenever I hit the right hotkey it types the letter ‘p’ in the tmux 
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

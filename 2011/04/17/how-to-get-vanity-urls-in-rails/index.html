@@ -5,22 +5,17 @@
   
   <title>how to get vanity urls in rails | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allow
-your users to expose their Profiles through a facebook like url
-http://www.facebook.com/GreenDay. This is what you need">
+  <meta name="description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allow your users to expose their Profiles through a facebook like url http://www.facebook.com/GreenDay. This is what you need">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how to get vanity urls in rails">
 <meta property="og:url" content="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allow
-your users to expose their Profiles through a facebook like url
-http://www.facebook.com/GreenDay. This is what you need">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allow your users to expose their Profiles through a facebook like url http://www.facebook.com/GreenDay. This is what you need">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how to get vanity urls in rails">
-<meta name="twitter:description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allow
-your users to expose their Profiles through a facebook like url
-http://www.facebook.com/GreenDay. This is what you need">
+<meta name="twitter:description" content="Getting vanity urls to work in rails is very simple. Let’s say you want to allow your users to expose their Profiles through a facebook like url http://www.facebook.com/GreenDay. This is what you need">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -130,14 +125,14 @@ profile which will be used for all the profile <em>show</em> links automatically
 That’s it now your application has vanity urls, whenever someone clicks on a
 profile#show link they will be taken to /:slug. Obviously in this case the slug
 is assumed to be unique.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Funky::Application.routes.draw <span class="keyword">do</span></div><div class="line">  .</div><div class="line">  .</div><div class="line">  .</div><div class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</div><div class="line">  .</div><div class="line">  .</div><div class="line">  <span class="comment">#at the end of the routes file</span></div><div class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Funky::Application.routes.draw <span class="keyword">do</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  resources <span class="symbol">:profiles</span>, <span class="symbol">:except</span> =&gt; [<span class="symbol">:show</span>]</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="comment">#at the end of the routes file</span></span><br><span class="line">  get <span class="string">':slug'</span> =&gt; <span class="string">'profiles#show'</span>, <span class="symbol">:as</span> =&gt; <span class="string">'profile'</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>###Update###
 One of the readers emailed me asking what the controller code would look like. Here it is:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#app/models/profile.rb</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> &lt; ActiveRecord::Base</span></div><div class="line">  <span class="comment">#should have a column called "slug"</span></div><div class="line"><span class="keyword">end</span></div><div class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> &lt; ApplicationController</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></div><div class="line">    @profile = Profile.find_by_slug(params[<span class="symbol">:slug</span>])</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#app/models/profile.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Profile</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  <span class="comment">#should have a column called "slug"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">#app/controllers/profiles_controller.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProfilesController</span> &lt; ApplicationController</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></span><br><span class="line">    @profile = Profile.find_by_slug(params[<span class="symbol">:slug</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>###References###</p>
 <ul>
-<li><a href="http://guides.rubyonrails.org/routing.html#naming-routes" target="_blank" rel="external">http://guides.rubyonrails.org/routing.html#naming-routes</a></li>
-<li><a href="http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/" target="_blank" rel="external">http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/</a></li>
+<li><a href="http://guides.rubyonrails.org/routing.html#naming-routes" target="_blank" rel="noopener">http://guides.rubyonrails.org/routing.html#naming-routes</a></li>
+<li><a href="http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/" target="_blank" rel="noopener">http://kconrails.com/2010/01/25/vanity-urls-for-ruby-on-rails-routes/</a></li>
 </ul>
 
         
@@ -155,7 +150,7 @@ One of the readers emailed me asking what the controller code would look like. H
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="cj8vm47l5007u1dmuxbbnml0c" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="cjgyxnmag003ifmbgtm47p6zo" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -176,9 +171,9 @@ One of the readers emailed me asking what the controller code would look like. H
     </a>
   
   
-    <a href="/2011/04/02/reminiscing-my-past/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">reminiscing my past</div>
+      <div class="article-nav-title">ruby on rails soup to nuts</div>
     </a>
   
 </nav>
@@ -309,7 +304,7 @@ One of the readers emailed me asking what the controller code would look like. H
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

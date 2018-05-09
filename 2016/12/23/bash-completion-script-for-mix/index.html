@@ -5,19 +5,18 @@
   
   <title>Bash completion script for mix | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Bash completion is very handy for cli tools. You can set it up very easily for mix using the following script.
-1234567891011#!/bin/bash# `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of">
+  <meta name="description" content="Bash completion is very handy for cli tools. You can set it up very easily for mix using the following script. 1234567891011#!/bin/bash# `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of">
+<meta name="keywords" content="Elixir,Mix,Bash completion">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Bash completion script for mix">
 <meta property="og:url" content="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Bash completion is very handy for cli tools. You can set it up very easily for mix using the following script.
-1234567891011#!/bin/bash# `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Bash completion is very handy for cli tools. You can set it up very easily for mix using the following script. 1234567891011#!/bin/bash# `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Bash completion script for mix">
-<meta name="twitter:description" content="Bash completion is very handy for cli tools. You can set it up very easily for mix using the following script.
-1234567891011#!/bin/bash# `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of">
+<meta name="twitter:description" content="Bash completion is very handy for cli tools. You can set it up very easily for mix using the following script. 1234567891011#!/bin/bash# `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -88,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -118,7 +117,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>Bash completion is very handy for cli tools. You can set it up very easily for <code>mix</code> using the following script.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line"># `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of it</div><div class="line"># mix bash completion script</div><div class="line"></div><div class="line">complete_mix_command() &#123;</div><div class="line">  [ -f mix.exs ] || exit 0</div><div class="line">  mix help --search &quot;$2&quot;| cut -f1 -d&apos;#&apos; | cut -f2 -d&apos; &apos;</div><div class="line">  return $?</div><div class="line">&#125;</div><div class="line"></div><div class="line">complete -C complete_mix_command -o default mix</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># `sudo vim /etc/bash_completion.d/mix.sh` and put this inside of it</span><br><span class="line"># mix bash completion script</span><br><span class="line"></span><br><span class="line">complete_mix_command() &#123;</span><br><span class="line">  [ -f mix.exs ] || exit 0</span><br><span class="line">  mix help --search &quot;$2&quot;| cut -f1 -d&apos;#&apos; | cut -f2 -d&apos; &apos;</span><br><span class="line">  return $?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">complete -C complete_mix_command -o default mix</span><br></pre></td></tr></table></figure>
 
         
       
@@ -135,7 +134,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/" data-id="cj8vm47h5003b1dmuv9lh1bw8" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/" data-id="cjgyxnm8u001pfmbgk1x55ysm" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -291,7 +290,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

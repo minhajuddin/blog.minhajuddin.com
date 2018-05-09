@@ -11,6 +11,7 @@
 <meta property="og:url" content="http://minhajuddin.com/page/3/index.html">
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="Some thoughts on writing simple code and other random ramblings.">
+<meta property="og:locale" content="English">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Simplicity">
 <meta name="twitter:description" content="Some thoughts on writing simple code and other random ramblings.">
@@ -84,7 +85,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -125,7 +126,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/" data-id="cj8vm47m1008y1dmuojbfe82d" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/" data-id="cjgyxnmas0041fmbgqscumu5d" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/16/how-to-reverse-selected-lines-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -163,8 +164,8 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it.</p>
-<p>Take an example of the below API call, it is from a <a href="https://stripe.com/blog/accept-ach-payments" target="_blank" rel="external">stripe blog post demonstrating their use of ACH payments</a>. See how easy it is to read and understand the call? Why can’t all APIs be like this?</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">curl https://api.stripe.com/v1/charges \</div><div class="line">  -u sk_<span class="built_in">test</span>_BQokikJOvBiI2HlWgH4olfQ2: \</div><div class="line">  <span class="_">-d</span> amount=250000 \</div><div class="line">  <span class="_">-d</span> currency=usd \</div><div class="line">  <span class="_">-d</span> description=<span class="string">"Corp Site License 2016"</span> \</div><div class="line">  <span class="_">-d</span> customer=cus_7hyNnNEjxYuJOE \</div><div class="line">  <span class="_">-d</span> <span class="built_in">source</span>=ba_17SYQs2eZvKYlo2CcV8BfFGz</div></pre></td></tr></table></figure>
+<p>Take an example of the below API call, it is from a <a href="https://stripe.com/blog/accept-ach-payments" target="_blank" rel="noopener">stripe blog post demonstrating their use of ACH payments</a>. See how easy it is to read and understand the call? Why can’t all APIs be like this?</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.stripe.com/v1/charges \</span><br><span class="line">  -u sk_test_BQokikJOvBiI2HlWgH4olfQ2: \</span><br><span class="line">  -d amount=250000 \</span><br><span class="line">  -d currency=usd \</span><br><span class="line">  -d description=<span class="string">"Corp Site License 2016"</span> \</span><br><span class="line">  -d customer=cus_7hyNnNEjxYuJOE \</span><br><span class="line">  -d <span class="built_in">source</span>=ba_17SYQs2eZvKYlo2CcV8BfFGz</span><br></pre></td></tr></table></figure>
 <p><strong>Anyway, if you are trying to design an API, Please, for the love of all that is holy make it curlable</strong></p>
 
         
@@ -175,7 +176,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/" data-id="cj8vm47np00a61dmu2rtbslfd" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/" data-id="cjgyxnmb6004ifmbgjsm43j5p" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -213,7 +214,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>Here is a small script I wrote to get a git archive of your repository containing all the submodules with the root repository.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># Author Khaja Minhajuddin</span></div><div class="line"><span class="comment"># File name: git-archive-all</span></div><div class="line"><span class="comment"># cd root-git-repo; git-archive-all</span></div><div class="line"></div><div class="line"><span class="built_in">set</span> <span class="_">-e</span></div><div class="line"><span class="built_in">set</span> -C <span class="comment"># noclobber</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"&gt; creating root archive"</span></div><div class="line"><span class="built_in">export</span> ROOT_ARCHIVE_DIR=<span class="string">"<span class="variable">$(pwd)</span>"</span></div><div class="line"><span class="comment"># create root archive</span></div><div class="line">git archive --verbose --prefix <span class="string">"repo/"</span> --format <span class="string">"tar"</span> --output <span class="string">"<span class="variable">$ROOT_ARCHIVE_DIR</span>/repo-output.tar"</span> <span class="string">"master"</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"&gt; appending submodule archives"</span></div><div class="line"><span class="comment"># for each of git submodules append to the root archive</span></div><div class="line">git submodule foreach --recursive <span class="string">'git archive --verbose --prefix=repo/$path/ --format tar master --output $ROOT_ARCHIVE_DIR/repo-output-sub-$sha1.tar'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> [[ $(ls repo-output-sub*.tar | wc <span class="_">-l</span>) != 0  ]]; <span class="keyword">then</span></div><div class="line">  <span class="comment"># combine all archives into one tar</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"&gt; combining all tars"</span></div><div class="line">  tar --concatenate --file repo-output.tar repo-output-sub*.tar</div><div class="line"></div><div class="line">  <span class="comment"># remove sub tars</span></div><div class="line">  <span class="built_in">echo</span> <span class="string">"&gt; removing all sub tars"</span></div><div class="line">  rm -rf repo-output-sub*.tar</div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="comment"># gzip the tar</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"&gt; gzipping final tar"</span></div><div class="line">gzip --force --verbose repo-output.tar</div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"&gt; moving output file to <span class="variable">$OUTPUT_FILE</span>"</span></div><div class="line">mv repo-output.tar.gz <span class="variable">$OUTPUT_FILE</span></div><div class="line"></div><div class="line"><span class="built_in">echo</span> <span class="string">"&gt; git-archive-all done"</span></div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author Khaja Minhajuddin</span></span><br><span class="line"><span class="comment"># File name: git-archive-all</span></span><br><span class="line"><span class="comment"># cd root-git-repo; git-archive-all</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line"><span class="built_in">set</span> -C <span class="comment"># noclobber</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; creating root archive"</span></span><br><span class="line"><span class="built_in">export</span> ROOT_ARCHIVE_DIR=<span class="string">"<span class="variable">$(pwd)</span>"</span></span><br><span class="line"><span class="comment"># create root archive</span></span><br><span class="line">git archive --verbose --prefix <span class="string">"repo/"</span> --format <span class="string">"tar"</span> --output <span class="string">"<span class="variable">$ROOT_ARCHIVE_DIR</span>/repo-output.tar"</span> <span class="string">"master"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; appending submodule archives"</span></span><br><span class="line"><span class="comment"># for each of git submodules append to the root archive</span></span><br><span class="line">git submodule foreach --recursive <span class="string">'git archive --verbose --prefix=repo/$path/ --format tar master --output $ROOT_ARCHIVE_DIR/repo-output-sub-$sha1.tar'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ $(ls repo-output-sub*.tar | wc -l) != 0  ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="comment"># combine all archives into one tar</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"&gt; combining all tars"</span></span><br><span class="line">  tar --concatenate --file repo-output.tar repo-output-sub*.tar</span><br><span class="line"></span><br><span class="line">  <span class="comment"># remove sub tars</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"&gt; removing all sub tars"</span></span><br><span class="line">  rm -rf repo-output-sub*.tar</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># gzip the tar</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; gzipping final tar"</span></span><br><span class="line">gzip --force --verbose repo-output.tar</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; moving output file to <span class="variable">$OUTPUT_FILE</span>"</span></span><br><span class="line">mv repo-output.tar.gz <span class="variable">$OUTPUT_FILE</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"&gt; git-archive-all done"</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -223,7 +224,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/" data-id="cj8vm47l2007p1dmu587mbpkh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/" data-id="cjgyxnmae003hfmbg65sue1ao" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/10/how-to-get-a-git-archive-including-submodules/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -261,7 +262,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>Here is an example of an elastic object wrapper in ruby</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ElasticObject</span></span></div><div class="line"></div><div class="line">  <span class="keyword">attr_reader</span> <span class="symbol">:object</span></div><div class="line">  alias_method <span class="symbol">:value</span>, <span class="symbol">:object</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(object)</span></span></div><div class="line">    @object = object</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">method_missing</span><span class="params">(method, *args, &amp;block)</span></span></div><div class="line">    <span class="keyword">return</span> ElasticObject.new(object.send(method, *args, &amp;block)) <span class="keyword">if</span> object.respond_to?(method)</div><div class="line"></div><div class="line">    <span class="keyword">return</span> ElasticObject.new(<span class="literal">nil</span>) <span class="keyword">if</span> !object.is_a?(Hash)</div><div class="line"></div><div class="line">    result = [method] <span class="keyword">if</span> key?(method)</div><div class="line">    result = [method.to_s] <span class="keyword">if</span> key?(method.to_s)</div><div class="line">    <span class="keyword">return</span> ElasticObject.new(result)</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">emp = ElasticObject.new(&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"age"</span> =&gt; <span class="number">1</span>&#125;)</div><div class="line"></div><div class="line"></div><div class="line">puts emp.dob.month <span class="comment"># =&gt; nil</span></div><div class="line">puts emp.name <span class="comment"># =&gt; "Mujju"</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ElasticObject</span></span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">attr_reader</span> <span class="symbol">:object</span></span><br><span class="line">  alias_method <span class="symbol">:value</span>, <span class="symbol">:object</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(object)</span></span></span><br><span class="line">    @object = object</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">method_missing</span><span class="params">(method, *args, &amp;block)</span></span></span><br><span class="line">    <span class="keyword">return</span> ElasticObject.new(object.send(method, *args, &amp;block)) <span class="keyword">if</span> object.respond_to?(method)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ElasticObject.new(<span class="literal">nil</span>) <span class="keyword">if</span> !object.is_a?(Hash)</span><br><span class="line"></span><br><span class="line">    result = [method] <span class="keyword">if</span> key?(method)</span><br><span class="line">    result = [method.to_s] <span class="keyword">if</span> key?(method.to_s)</span><br><span class="line">    <span class="keyword">return</span> ElasticObject.new(result)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">emp = ElasticObject.new(&#123;<span class="string">"name"</span> =&gt; <span class="string">"Mujju"</span>, <span class="string">"age"</span> =&gt; <span class="number">1</span>&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">puts emp.dob.month <span class="comment"># =&gt; nil</span></span><br><span class="line">puts emp.name <span class="comment"># =&gt; "Mujju"</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -271,7 +272,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/" data-id="cj8vm47i4004h1dmupaf1mtvz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/" data-id="cjgyxnm9d002afmbgqtdgfnth" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2015/12/09/elastic-objects-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -309,7 +310,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>So, I had to convert a hash into an open struct to make accessing things easy. Here is the code.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'ostruct'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">DeepStruct</span></span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">to_ostruct</span></span></div><div class="line"></div><div class="line">    <span class="keyword">case</span> <span class="keyword">self</span></div><div class="line">    <span class="keyword">when</span> Hash</div><div class="line">      root = OpenStruct.new(<span class="keyword">self</span>)</div><div class="line">      <span class="keyword">self</span>.each_with_object(root) <span class="keyword">do</span> <span class="params">|(k,v), o|</span></div><div class="line">        o.send(<span class="string">"<span class="subst">#&#123;k&#125;</span>="</span>, v.to_ostruct)</div><div class="line">      <span class="keyword">end</span></div><div class="line">      root</div><div class="line">    <span class="keyword">when</span> Array</div><div class="line">      <span class="keyword">self</span>.map <span class="keyword">do</span> <span class="params">|v|</span></div><div class="line">        v.to_ostruct</div><div class="line">      <span class="keyword">end</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">      <span class="keyword">self</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">Object.send(<span class="symbol">:include</span>, DeepStruct)</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'ostruct'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">DeepStruct</span></span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">to_ostruct</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">self</span></span><br><span class="line">    <span class="keyword">when</span> Hash</span><br><span class="line">      root = OpenStruct.new(<span class="keyword">self</span>)</span><br><span class="line">      <span class="keyword">self</span>.each_with_object(root) <span class="keyword">do</span> <span class="params">|(k,v), o|</span></span><br><span class="line">        o.send(<span class="string">"<span class="subst">#&#123;k&#125;</span>="</span>, v.to_ostruct)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">      root</span><br><span class="line">    <span class="keyword">when</span> Array</span><br><span class="line">      <span class="keyword">self</span>.map <span class="keyword">do</span> <span class="params">|v|</span></span><br><span class="line">        v.to_ostruct</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="keyword">self</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">Object.send(<span class="symbol">:include</span>, DeepStruct)</span><br></pre></td></tr></table></figure>
 
         
       
@@ -319,7 +320,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/" data-id="cj8vm47qi00d31dmu9wnry3c9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/" data-id="cjgyxnmch0062fmbgryysiqcz" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2015/12/09/recursive-deep-open-struct-for-hashes-in-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -356,12 +357,12 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I just started playing with <a href="https://coreos.com" target="_blank" rel="external">Coreos</a> to run my docker containers.
+        <p>I just started playing with <a href="https://coreos.com" target="_blank" rel="noopener">Coreos</a> to run my docker containers.
 However, when I spun up an instance on Digital Ocean with my private key,
 I wasn’t able to login using the root account. It turns out that Digital Ocean sets up the private key
 for an account with the name <code>core</code>. So, the next time you are stuck doing this just try logging in with
   the <em>core</em> account.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh core@&lt;your-ip&gt;</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh core@&lt;your-ip&gt;</span><br></pre></td></tr></table></figure>
 
         
       
@@ -371,7 +372,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/" data-id="cj8vm47ht00441dmudj5w7s53" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/" data-id="cjgyxnm950020fmbg0be5taht" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2015/12/05/default-user-for-coreos-on-digital-ocean/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -410,11 +411,11 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
       
         <p>In the past I struggled with having a consistent strategy for showing error messages in javascript. In rails we usually put the error/success messages in the flash, However if the request is an ajax request the flash doesn’t get used and the message shows up on the next page load.</p>
 <p>The following code shows error/success messages using the flash properly</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#app/classes/ajax_flash.rb</span></div><div class="line"><span class="comment">#include this module in your Applicationcontroller</span></div><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">AjaxFlash</span></span></div><div class="line">  extend ActiveSupport::Concern</div><div class="line"></div><div class="line">  included <span class="keyword">do</span></div><div class="line">    after_filter <span class="symbol">:add_flash_to_header</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  private</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add_flash_to_header</span></span></div><div class="line">    <span class="comment"># only run this in case it's an Ajax request.</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">unless</span> request.xhr?</div><div class="line">    <span class="comment"># add flash to header</span></div><div class="line">    response.headers[<span class="string">'X-Flash'</span>] = flash.to_h.to_json</div><div class="line">    <span class="comment"># make sure flash does not appear on the next page</span></div><div class="line">    flash.discard</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#app/classes/ajax_flash.rb</span></span><br><span class="line"><span class="comment">#include this module in your Applicationcontroller</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">AjaxFlash</span></span></span><br><span class="line">  extend ActiveSupport::Concern</span><br><span class="line"></span><br><span class="line">  included <span class="keyword">do</span></span><br><span class="line">    after_filter <span class="symbol">:add_flash_to_header</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  private</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add_flash_to_header</span></span></span><br><span class="line">    <span class="comment"># only run this in case it's an Ajax request.</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">unless</span> request.xhr?</span><br><span class="line">    <span class="comment"># add flash to header</span></span><br><span class="line">    response.headers[<span class="string">'X-Flash'</span>] = flash.to_h.to_json</span><br><span class="line">    <span class="comment"># make sure flash does not appear on the next page</span></span><br><span class="line">    flash.discard</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>Include this javascript code</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="keyword">var</span> notifiers, showErrorsInResponse, showFlashMessages;</div><div class="line"></div><div class="line">notifiers = &#123;</div><div class="line">  notice: <span class="string">'success'</span>,</div><div class="line">  alert: <span class="string">'error'</span>,</div><div class="line">  info: <span class="string">'info'</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">showFlashMessages = <span class="function"><span class="keyword">function</span>(<span class="params">jqXHR</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> flash;</div><div class="line">  <span class="keyword">if</span> (!jqXHR || !jqXHR.getResponseHeader) <span class="keyword">return</span>;</div><div class="line">  flash = jqXHR.getResponseHeader(<span class="string">'X-Flash'</span>);</div><div class="line">  flash = <span class="built_in">JSON</span>.parse(flash);</div><div class="line">  <span class="keyword">return</span> _.each(flash, <span class="function"><span class="keyword">function</span>(<span class="params">message, key</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> toastr[notifiers[key]](message);</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">showErrorsInResponse = <span class="function"><span class="keyword">function</span>(<span class="params">jqXHR</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> error, response;</div><div class="line">  <span class="keyword">if</span> (!jqXHR || !jqXHR.responseJSON || !jqXHR.responseJSON.errors) <span class="keyword">return</span>;</div><div class="line">  response = jqXHR.responseJSON;</div><div class="line">  error = _.map(response.errors, <span class="function"><span class="keyword">function</span>(<span class="params">messages, property</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> _.map(messages, <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">""</span> + property + <span class="string">" "</span> + x;</div><div class="line">    &#125;).join(<span class="string">"&lt;br /&gt;"</span>);</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">return</span> toastr.error(error, <span class="string">"ERROR"</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> $(<span class="built_in">document</span>).ajaxComplete(<span class="function"><span class="keyword">function</span>(<span class="params">event, xhr, settings</span>) </span>&#123;</div><div class="line">    showFlashMessages(xhr);</div><div class="line">    showErrorsInResponse(xhr);</div><div class="line">    <span class="keyword">return</span> xhr.responseJSON.errors;</div><div class="line">  &#125;);</div><div class="line">&#125;);</div><div class="line">&#125;)(<span class="keyword">this</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> notifiers, showErrorsInResponse, showFlashMessages;</span><br><span class="line"></span><br><span class="line">notifiers = &#123;</span><br><span class="line">  notice: <span class="string">'success'</span>,</span><br><span class="line">  alert: <span class="string">'error'</span>,</span><br><span class="line">  info: <span class="string">'info'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">showFlashMessages = <span class="function"><span class="keyword">function</span>(<span class="params">jqXHR</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> flash;</span><br><span class="line">  <span class="keyword">if</span> (!jqXHR || !jqXHR.getResponseHeader) <span class="keyword">return</span>;</span><br><span class="line">  flash = jqXHR.getResponseHeader(<span class="string">'X-Flash'</span>);</span><br><span class="line">  flash = <span class="built_in">JSON</span>.parse(flash);</span><br><span class="line">  <span class="keyword">return</span> _.each(flash, <span class="function"><span class="keyword">function</span>(<span class="params">message, key</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> toastr[notifiers[key]](message);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">showErrorsInResponse = <span class="function"><span class="keyword">function</span>(<span class="params">jqXHR</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> error, response;</span><br><span class="line">  <span class="keyword">if</span> (!jqXHR || !jqXHR.responseJSON || !jqXHR.responseJSON.errors) <span class="keyword">return</span>;</span><br><span class="line">  response = jqXHR.responseJSON;</span><br><span class="line">  error = _.map(response.errors, <span class="function"><span class="keyword">function</span>(<span class="params">messages, property</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> _.map(messages, <span class="function"><span class="keyword">function</span>(<span class="params">x</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="string">""</span> + property + <span class="string">" "</span> + x;</span><br><span class="line">    &#125;).join(<span class="string">"&lt;br /&gt;"</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> toastr.error(error, <span class="string">"ERROR"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> $(<span class="built_in">document</span>).ajaxComplete(<span class="function"><span class="keyword">function</span>(<span class="params">event, xhr, settings</span>) </span>&#123;</span><br><span class="line">    showFlashMessages(xhr);</span><br><span class="line">    showErrorsInResponse(xhr);</span><br><span class="line">    <span class="keyword">return</span> xhr.responseJSON.errors;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;)(<span class="keyword">this</span>)</span><br></pre></td></tr></table></figure>
 <p>To use this you just need to use your normal code with respond_to</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span></span></div><div class="line">  @user = User.new(params[<span class="symbol">:user</span>])</div><div class="line">  flash[<span class="symbol">:notice</span>] = <span class="string">'User was successfully created.'</span> <span class="keyword">if</span> @user.save</div><div class="line">  respond_with(@user)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create</span></span></span><br><span class="line">  @user = User.new(params[<span class="symbol">:user</span>])</span><br><span class="line">  flash[<span class="symbol">:notice</span>] = <span class="string">'User was successfully created.'</span> <span class="keyword">if</span> @user.save</span><br><span class="line">  respond_with(@user)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -424,7 +425,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/" data-id="cj8vm47rt00er1dmugdore7fx" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/" data-id="cjgyxnmcx006qfmbg31awzbuy" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/03/12/show-rails-flash-messages-in-jquery-ajax-requests/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -461,7 +462,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Today I saw a submission on HN about formspree.com which allows you to setup a form on your site similar to google forms / wufoo but without an iframe, so you can tweak it as much as you like. A quick whois lookup shows that this domain was created on 17 Feb 2014 which is just a few days ago. I had launched a similar service called <a href="http://getsimpleform.com/" target="_blank" rel="external">http://getsimpleform.com/</a> almost 2 years ago. It differs with formspree in a few aspects though. When I was thinking about creating simpleform, I didn’t want to expose the users email to the public by putting it in a form as formspree does, it is just a design choice I made. getsimpleform also has spam prevention using akismet and allows you to create forms with file uploads. So, it is a bit more feature rich then formspree. </p>
+        <p>Today I saw a submission on HN about formspree.com which allows you to setup a form on your site similar to google forms / wufoo but without an iframe, so you can tweak it as much as you like. A quick whois lookup shows that this domain was created on 17 Feb 2014 which is just a few days ago. I had launched a similar service called <a href="http://getsimpleform.com/" target="_blank" rel="noopener">http://getsimpleform.com/</a> almost 2 years ago. It differs with formspree in a few aspects though. When I was thinking about creating simpleform, I didn’t want to expose the users email to the public by putting it in a form as formspree does, it is just a design choice I made. getsimpleform also has spam prevention using akismet and allows you to create forms with file uploads. So, it is a bit more feature rich then formspree. </p>
 <p>However, the point I am trying to make here is about the impact of a good looking visual design on how users perceive your product. Formspree has 209 upvotes (at the time of this post) and getsimpleform.com posts (5 submissions all of which were made by me) have a sum of 7 upvotes. Look at the difference in their screenshots.</p>
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/530deb968aef3a081d0081a6/Formspree___Functional_HTML_forms.png" alt="Formspree">
 <img src="https://substancehq.s3.amazonaws.com/static_asset/530deb968aef3a5e9d003197/Simple_Form___Build_simple_web_forms.png" alt="Simple Form"></p>
@@ -476,7 +477,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/" data-id="cj8vm47sm00fe1dmufg4dn5u1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/" data-id="cjgyxnmd70077fmbgw1irvhpb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/02/26/the-impact-of-shiny-looking-design-on-user-uptake/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -514,9 +515,9 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
     <div class="article-entry" itemprop="articleBody">
       
         <p>I have a big library of music with a lot of songs I don’t like anymore or songs which were a part of an album from which there was one song which I liked. And whenever my music player starts playing these songs, I hit a keyboard combo which goes to the next song. But these songs would be in my library just waiting to annoy me again. Here is a little ruby script which I wrote from an idea by my friend <a href="codingtales.com">Abdul Sattar</a>.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/home/minhajuddin/.rvm/rubies/ruby-1.9.3-p194/bin/ruby</span></div><div class="line"><span class="keyword">require</span> <span class="string">'uri'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'fileutils'</span></div><div class="line"></div><div class="line">song = <span class="string">`banshee --query-uri`</span>.chomp</div><div class="line">song = song.gsub(<span class="regexp">/uri:.*file:\/\//</span>,<span class="string">''</span>)</div><div class="line">song =  URI.decode(song)</div><div class="line"></div><div class="line">FileUtils.mv(song, <span class="string">'/home/minhajuddin/badmusic/'</span>)</div><div class="line">system(<span class="string">"/usr/bin/banshee --next"</span>)</div><div class="line">puts <span class="string">"Moved song '<span class="subst">#&#123;song&#125;</span>'"</span></div><div class="line"></div><div class="line"><span class="comment">#mv "$(ruby -e 'require "uri"; puts URI.decode(ARGV.join.gsub(/uri:file:\/\//,""))' $(banshee --query-uri))" /home/minhajuddin/badmusic/</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/home/minhajuddin/.rvm/rubies/ruby-1.9.3-p194/bin/ruby</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'uri'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'fileutils'</span></span><br><span class="line"></span><br><span class="line">song = <span class="string">`banshee --query-uri`</span>.chomp</span><br><span class="line">song = song.gsub(<span class="regexp">/uri:.*file:\/\//</span>,<span class="string">''</span>)</span><br><span class="line">song =  URI.decode(song)</span><br><span class="line"></span><br><span class="line">FileUtils.mv(song, <span class="string">'/home/minhajuddin/badmusic/'</span>)</span><br><span class="line">system(<span class="string">"/usr/bin/banshee --next"</span>)</span><br><span class="line">puts <span class="string">"Moved song '<span class="subst">#&#123;song&#125;</span>'"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#mv "$(ruby -e 'require "uri"; puts URI.decode(ARGV.join.gsub(/uri:file:\/\//,""))' $(banshee --query-uri))" /home/minhajuddin/badmusic/</span></span><br></pre></td></tr></table></figure>
 <p>I also have a keyboard shortcut bound to it which triggers it.</p>
-<figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">, ((modMask, xK_x     ), spawn <span class="string">"/home/minhajuddin/Dropbox/private/scripts/remove-current-song &amp;&gt; /tmp/log"</span>) <span class="comment">-- %! Remove music from library</span></div></pre></td></tr></table></figure>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">, ((modMask, xK_x     ), spawn <span class="string">"/home/minhajuddin/Dropbox/private/scripts/remove-current-song &amp;&gt; /tmp/log"</span>) <span class="comment">-- %! Remove music from library</span></span><br></pre></td></tr></table></figure>
 <p>Now whenever banshee plays a song which I don’t like I can remove it from my library forever by just hitting ‘Windowx+x’</p>
 
         
@@ -527,7 +528,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/" data-id="cj8vm47ri00ee1dmum5lvvvug" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/" data-id="cjgyxnmcu006mfmbgwjhhiy0j" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/01/27/script-to-cleanup-your-music-one-song-at-a-time/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -565,7 +566,7 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
     <div class="article-entry" itemprop="articleBody">
       
         <p>The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --no-acl --no-owner <span class="_">-d</span> localdb</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --no-acl --no-owner -d localdb</span><br></pre></td></tr></table></figure>
 
         
       
@@ -575,98 +576,12 @@ for an account with the name <code>core</code>. So, the next time you are stuck 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" data-id="cj8vm47pp00c51dmuvznbb098" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" data-id="cjgyxnmc0005jfmbgh2k53zro" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/import/">import</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">postgresql,</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-cloud-computing" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/05/19/cloud-computing/" class="article-date">
-  <time datetime="2013-05-19T00:00:00.000Z" itemprop="datePublished">2013-05-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/05/19/cloud-computing/">Cloud Computing / Virtualization</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Cloud computing is mostly a buzzword. In the old days when people wanted a
-server to put run their software on it (like a website), they used to order a
-dedicated (also called bare metal) server with a hosting company (like
-rackspace.com), these companies would setup a server with your configuration and
-then give you access to it so that you could put your software and use it anyway
-you want. This usually would take days and the server companies needed upfront
-payments for setup and monthly fees for server costs. So, if you wanted to put a
-website for a week for a small conference you would have to pay for the setup
-and the fee for the minimum rent duration (which would typically be a month).</p>
-<p>With this kind of setup it used to be hard for website developers/maintainers to
-scale their website. Scaling usually means adding more servers to your setup or
-adding more resources (CPUs/RAM etc,.) to your existing servers, to be able to
-handle an increase in traffic to your website or software.</p>
-<p>With the advancement of technologies, and with the inception of virtualization,
-hosting providers have become more flexible. Virtualization technologies allow
-you to have any number of ‘virtual servers’ running on any number of
-‘real/physical servers’. So, you can have one real computer running two ‘virtual servers’, one
-might be a linux operating system and another a windows operating system
-simultaneously. Virtualization is useful because not all servers run at their
-full capacity all the time. So, if there are two ‘virtual servers’ running on
-one physical server, they share their resources (CPU, RAM etc,.) and since they
-are not using all their resources all the time, the resources can be shared. The
-important thing about virtualization is that you can create as many virtual
-servers as you want (as long as your hardware can handle the load) very easily.
-So, this has allowed hosting providers to setup huge clusters of hardware
-running virtualized servers on top of them. So, now if you want a virtual
-server, it will be ready at the click of a button. You can even create a virtual
-server, increase its RAM size by running a simple command. This allows web
-developers and administrators to automatically increase the number of servers
-when their is an increase in traffic and shutdown servers when there is less
-traffic. And since you only pay for the amount of time your servers are running
-and not by months, you can have efficient setups without wasting your money. If
-you had a supermarket wouldn’t it be awesome if you had 100 checkout lanes when
-you had a huge amount of customers (on weekends) and only 1 when there are no
-customers? Virtualization/Cloud computing allows web administrators to do this.</p>
-<p>More information can be found here: </p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Cloud_computing" target="_blank" rel="external">https://en.wikipedia.org/wiki/Cloud_computing</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Virtualization" target="_blank" rel="external">https://en.wikipedia.org/wiki/Virtualization</a></li>
-</ul>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="cj8vm47hp003x1dmux2qzae84" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/05/19/cloud-computing/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cloud-computing/">cloud-computing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualization/">virtualization</a></li></ul>
 
     </footer>
   </div>
@@ -777,7 +692,7 @@ Connection: keep-alive
   information in the ‘Header’ (the package wrapping). This information is
   sometimes also called meta data. And, the actual document comes after an empty
   line after the header.</p>
-<p>You can read more about HTTP here: <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank" rel="external">https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol</a></p>
+<p>You can read more about HTTP here: <a href="https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol</a></p>
 
         
       
@@ -787,12 +702,98 @@ Connection: keep-alive
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="cj8vm47nl00a21dmu5n6sq8a5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/05/19/http/" data-id="cjgyxnmb5004hfmbg7dtiatku" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/05/19/http/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-cloud-computing" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/05/19/cloud-computing/" class="article-date">
+  <time datetime="2013-05-19T00:00:00.000Z" itemprop="datePublished">2013-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/05/19/cloud-computing/">Cloud Computing / Virtualization</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Cloud computing is mostly a buzzword. In the old days when people wanted a
+server to put run their software on it (like a website), they used to order a
+dedicated (also called bare metal) server with a hosting company (like
+rackspace.com), these companies would setup a server with your configuration and
+then give you access to it so that you could put your software and use it anyway
+you want. This usually would take days and the server companies needed upfront
+payments for setup and monthly fees for server costs. So, if you wanted to put a
+website for a week for a small conference you would have to pay for the setup
+and the fee for the minimum rent duration (which would typically be a month).</p>
+<p>With this kind of setup it used to be hard for website developers/maintainers to
+scale their website. Scaling usually means adding more servers to your setup or
+adding more resources (CPUs/RAM etc,.) to your existing servers, to be able to
+handle an increase in traffic to your website or software.</p>
+<p>With the advancement of technologies, and with the inception of virtualization,
+hosting providers have become more flexible. Virtualization technologies allow
+you to have any number of ‘virtual servers’ running on any number of
+‘real/physical servers’. So, you can have one real computer running two ‘virtual servers’, one
+might be a linux operating system and another a windows operating system
+simultaneously. Virtualization is useful because not all servers run at their
+full capacity all the time. So, if there are two ‘virtual servers’ running on
+one physical server, they share their resources (CPU, RAM etc,.) and since they
+are not using all their resources all the time, the resources can be shared. The
+important thing about virtualization is that you can create as many virtual
+servers as you want (as long as your hardware can handle the load) very easily.
+So, this has allowed hosting providers to setup huge clusters of hardware
+running virtualized servers on top of them. So, now if you want a virtual
+server, it will be ready at the click of a button. You can even create a virtual
+server, increase its RAM size by running a simple command. This allows web
+developers and administrators to automatically increase the number of servers
+when their is an increase in traffic and shutdown servers when there is less
+traffic. And since you only pay for the amount of time your servers are running
+and not by months, you can have efficient setups without wasting your money. If
+you had a supermarket wouldn’t it be awesome if you had 100 checkout lanes when
+you had a huge amount of customers (on weekends) and only 1 when there are no
+customers? Virtualization/Cloud computing allows web administrators to do this.</p>
+<p>More information can be found here: </p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Cloud_computing" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Cloud_computing</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Virtualization" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Virtualization</a></li>
+</ul>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/05/19/cloud-computing/" data-id="cjgyxnm90001xfmbgr8d22bsa" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/05/19/cloud-computing/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cloud-computing/">cloud-computing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for-sohel/">for-sohel</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/virtualization/">virtualization</a></li></ul>
 
     </footer>
   </div>
@@ -824,16 +825,16 @@ Connection: keep-alive
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Angularjs loads the templates used through the [ng-include] (<a href="http://docs.angularjs.org/api/ng.directive:ngInclude" target="_blank" rel="external">http://docs.angularjs.org/api/ng.directive:ngInclude</a>) directive on the fly. This might cause a lot of requests to be made to your server which is not a good thing.</p>
+        <p>Angularjs loads the templates used through the [ng-include] (<a href="http://docs.angularjs.org/api/ng.directive:ngInclude" target="_blank" rel="noopener">http://docs.angularjs.org/api/ng.directive:ngInclude</a>) directive on the fly. This might cause a lot of requests to be made to your server which is not a good thing.</p>
 <p>This solution allows you to load all your templates in one go and it will actually shove all your templates into your final application.js file.</p>
 <p><strong><s>GOTCHA: If you use this approach you will have to change this file whenever a template changes in development, if you don’t it won’t recompile this file which will cause your app to use old templates. This happens only in development and it’s a pain, I don’t know how to solve it yet. Anyone who knows can help me out here :)</s></strong></p>
 <p>Update:
-<a href="https://gist.github.com/stevenharman/8493700" target="_blank" rel="external">Steven Harman</a> has shared a solution which uses <code>depend_on</code>, I have amended my script to use it.</p>
-<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//app/assets/javascripts/ngapp/templates.js.erb</div><div class="line">  &lt;%<span class="ruby"> environment.context_class.instance_eval &#123; <span class="keyword">include</span> ActionView::Helpers::JavaScriptHelper &#125; </span>%&gt;</div><div class="line">angular.module('templates', []).run(function($templateCache) &#123;</div><div class="line">  &lt;%<span class="ruby"> Dir.glob(Rails.root.join(<span class="string">'app'</span>,<span class="string">'assets'</span>,<span class="string">'templates'</span>, <span class="string">'*.haml'</span>)).each <span class="keyword">do</span> <span class="params">|f|</span> </span>%&gt;</div><div class="line">    &lt;%<span class="ruby"> depend_on(f) </span>%&gt;</div><div class="line">    $templateCache.put("&lt;%=<span class="ruby"> File.basename(f).gsub(<span class="regexp">/\.haml$/</span>, <span class="string">''</span>)  </span>%&gt;", &lt;%=<span class="ruby"> Haml::Engine.new(File.read(f)).render.to_json </span>%&gt;);</div><div class="line">  &lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<a href="https://gist.github.com/stevenharman/8493700" target="_blank" rel="noopener">Steven Harman</a> has shared a solution which uses <code>depend_on</code>, I have amended my script to use it.</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//app/assets/javascripts/ngapp/templates.js.erb</span><br><span class="line">  &lt;%<span class="ruby"> environment.context_class.instance_eval &#123; <span class="keyword">include</span> ActionView::Helpers::JavaScriptHelper &#125; </span>%&gt;</span><br><span class="line">angular.module('templates', []).run(function($templateCache) &#123;</span><br><span class="line">  &lt;%<span class="ruby"> Dir.glob(Rails.root.join(<span class="string">'app'</span>,<span class="string">'assets'</span>,<span class="string">'templates'</span>, <span class="string">'*.haml'</span>)).each <span class="keyword">do</span> <span class="params">|f|</span> </span>%&gt;</span><br><span class="line">    &lt;%<span class="ruby"> depend_on(f) </span>%&gt;</span><br><span class="line">    $templateCache.put("&lt;%=<span class="ruby"> File.basename(f).gsub(<span class="regexp">/\.haml$/</span>, <span class="string">''</span>)  </span>%&gt;", &lt;%=<span class="ruby"> Haml::Engine.new(File.read(f)).render.to_json </span>%&gt;);</span><br><span class="line">  &lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>This loads all the templates from your <code>/app/assets/templates</code> directories which have an extension <code>.haml</code>. And you can use templates just using their filename without the haml extension. e.g. a template called <code>app/assets/templates/filter.html.haml</code> can be included using</p>
-<figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">%<span class="selector-tag">div</span>(ng-<span class="attr">include</span>=<span class="string">"'filter.html'"</span>)</span></div></pre></td></tr></table></figure>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">%<span class="selector-tag">div</span>(ng-<span class="attr">include</span>=<span class="string">"'filter.html'"</span>)</span></span><br></pre></td></tr></table></figure>
 <p>Make sure you have <code>//= require ./templates</code> in your <code>application.js</code> and that you include <code>&#39;templates&#39;</code> as a dependency in your angular module</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AA.root = angular.module(<span class="string">'root'</span>, [.., <span class="string">'templates'</span>,..])</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AA.root = angular.module(<span class="string">'root'</span>, [.., <span class="string">'templates'</span>,..])</span><br></pre></td></tr></table></figure>
 
         
       
@@ -843,12 +844,90 @@ Connection: keep-alive
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="cj8vm47gr002s1dmukckgbsw2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" data-id="cjgyxnm8m001efmbg3xb12yxu" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/04/28/angularjs-templates-and-rails-with-eager-loading/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eager-load/">eager-load</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">rails</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/templates/">templates</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-brute-force" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/02/19/brute-force/" class="article-date">
+  <time datetime="2013-02-19T00:00:00.000Z" itemprop="datePublished">2013-02-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/02/19/brute-force/">Brute force</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>I am planning to participate in the Google Code Jam this year.
+And I have been working on the <a href="https://code.google.com/codejam/contests.html" target="_blank" rel="noopener">practice problems</a>. 
+It’s been fun, It’s a great feeling when you are able to solve a challenging
+problem after spending time on it.</p>
+<p>My strategy for solving problems is simple: First I try the brute force
+approach, Once I have a solution, I start thinking of a more efficient way to do it. I have since realized that spending some time thinking  about the problem before butting your head against it is way more helpful. When I reached the <a href="https://code.google.com/codejam/contest/32016/dashboard" target="_blank" rel="noopener">Minimum Scalar Product</a> problem. </p>
+<blockquote>
+<p>You are given two vectors v1=(x1,x2,…,xn) and v2=(y1,y2,…,yn). The 
+scalar product of these vectors is a single number, calculated as x1y1+x2y2+…+xnyn.</p>
+</blockquote>
+<blockquote>
+<p>Suppose you are allowed to permute the coordinates of each vector as you wish.
+Choose two permutations such that the scalar product of your two new vectors is 
+the smallest possible, and output that minimum scalar product.</p>
+</blockquote>
+<p>I thought for a moment and came up with the idea that I needed all possible combinations
+of the first vector with a constant ordered second vector. This algorithm had an order
+of O(n!). I just jumped into coding and started solving it. Here is
+the ugly mess of code I came up with: </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinimumScalarProduct</span></span></span><br><span class="line">  <span class="comment">#naive solution O(n!)</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">distribute</span><span class="params">(x, y)</span></span></span><br><span class="line">    <span class="comment">#puts "DISTRIBUTING: #&#123;x.length&#125;, #&#123;y.length&#125;"</span></span><br><span class="line">    <span class="keyword">if</span> x.length == <span class="number">1</span></span><br><span class="line">      <span class="keyword">return</span> [</span><br><span class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]] ],</span><br><span class="line">      ]</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span> x.length == <span class="number">2</span></span><br><span class="line">      <span class="comment">#puts "TIME TO GO HOME"</span></span><br><span class="line">      <span class="keyword">return</span> [</span><br><span class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]],  [x[<span class="number">1</span>],y[<span class="number">1</span>]]],</span><br><span class="line">        [ [x[<span class="number">1</span>],y[<span class="number">0</span>]],  [x[<span class="number">0</span>],y[<span class="number">1</span>]]],</span><br><span class="line">      ]</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    cumulative_dist = []</span><br><span class="line">    <span class="comment">#puts "LEN: #&#123;x.length-1&#125;"</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..x.length-<span class="number">1</span>)</span><br><span class="line">      <span class="comment">#puts "LETS BREAK IT DOWN #&#123;i&#125;"</span></span><br><span class="line">      xi = x[i]</span><br><span class="line">      yi = y.first</span><br><span class="line">      newx = x.clone</span><br><span class="line">      newx.delete_at(i)</span><br><span class="line">      newy = y.clone</span><br><span class="line">      newy.delete_at(<span class="number">0</span>)</span><br><span class="line">      dist = distribute(newx, newy)</span><br><span class="line">      dist.each <span class="keyword">do</span><span class="params">|d|</span></span><br><span class="line">        d.unshift([xi,yi])</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">      cumulative_dist += dist</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">return</span> cumulative_dist</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">smallest_vector</span><span class="params">(x,y)</span></span></span><br><span class="line">    dist = distribute(x,y)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#dist.each do |d|</span></span><br><span class="line">      <span class="comment">#puts d.map&#123;|a| "#&#123;a[0]&#125;*#&#123;a[1]&#125;"&#125;.join(" + ")</span></span><br><span class="line">    <span class="comment">#end</span></span><br><span class="line">    <span class="comment">#puts '=================================================='</span></span><br><span class="line">    <span class="comment">#return</span></span><br><span class="line"></span><br><span class="line">    dist =  dist.map <span class="keyword">do</span> <span class="params">|d|</span></span><br><span class="line">      d.map&#123;<span class="params">|a|</span> a[<span class="number">0</span>]*a[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, el|</span> memo + el&#125;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="comment">#puts dist.join(";")</span></span><br><span class="line">    dist.sort.first</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">lines = File.readlines(ARGV.first).map(&amp;<span class="symbol">:chomp</span>)</span><br><span class="line">no_of_cases = lines.shift.to_i</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..no_of_cases-<span class="number">1</span>)</span><br><span class="line">  <span class="keyword">begin</span></span><br><span class="line">    n = lines.shift</span><br><span class="line">    xa = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </span><br><span class="line">    ya = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </span><br><span class="line">    <span class="comment">#MinimumScalarProduct.smallest_vector(xa, ya)</span></span><br><span class="line">    puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;MinimumScalarProduct.smallest_vector(xa, ya)&#125;</span>"</span></span><br><span class="line">  <span class="keyword">rescue</span> StandardError =&gt; ex</span><br><span class="line">    STDERR.puts <span class="string">"At i: <span class="subst">#&#123;i&#125;</span>"</span></span><br><span class="line">    STDERR.puts <span class="string">"n:<span class="subst">#&#123;n&#125;</span>, xa: <span class="subst">#&#123;xa.inspect&#125;</span>, ya: <span class="subst">#&#123;ya.inspect&#125;</span>"</span></span><br><span class="line">    STDERR.puts ex</span><br><span class="line">    STDERR.puts ex.backtrace</span><br><span class="line">    exit</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://substancehq.s3.amazonaws.com/static_asset/512393734c01e92c45000b78/A-small-practice.in.txt" target="_blank" rel="noopener">Here is an example test file</a> 
+if you want to try it.</p>
+<p>Then, I started actually thinking about the problem. After a few minutes it
+became clear to me that all I had to do, to get a minimum product, was order the 
+two vectors in opposing orders of magnitude. And with this
+understanding I could solve it much more easily and with an algorithm with an order of O(nlogn).</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">lines = File.readlines(ARGV.first <span class="params">||</span> <span class="string">'A-small-practice.in'</span>).map&#123;<span class="params">|x|</span> x.chomp&#125;</span><br><span class="line"></span><br><span class="line">t = lines.shift.to_i</span><br><span class="line"></span><br><span class="line">(<span class="number">0</span>..t-<span class="number">1</span>).each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  lines.shift</span><br><span class="line">  xa = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort <span class="comment">#O(n log(n))</span></span><br><span class="line">  ya = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort.reverse <span class="comment">#O(n log(n))</span></span><br><span class="line">  min =  xa.zip(ya).map&#123;<span class="params">|x|</span>  x[<span class="number">0</span>] * x[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, x|</span> memo + x&#125; <span class="comment">#O(n)</span></span><br><span class="line">  puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;min&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>In the past I have used brute force to solve problems where the time didn’t
+matter (I could always move it to a background process if the time mattered),
+but it’s a nice feeling to be able to be able to solve problems by simply
+thinking. Sometimes we(software developers) are so addicted to the quick
+feedback cycle of coding that we fail to spend time thinking of the problem/solution.</p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="cjgyxnm8y001tfmbgh8smulyw" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2013/02/19/brute-force/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brute-force/">brute-force</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solving/">solving</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
 
     </footer>
   </div>
@@ -908,7 +987,7 @@ as hers :)</p>
  {:start_time=&gt;&apos;2013-02-20 02:00:00&apos;, :end_time=&gt;&apos;2013-02-20 03:00:00&apos;},
  {:start_time=&gt;&apos;2013-02-20 09:00:00&apos;, :end_time=&gt;&apos;2013-02-20 10:00:00&apos;}]
 </code></pre><p><a href="#solution" onclick="document.getElementById("solution").className="";">Click here for the solution</a><div id="solution" class="hidden"></div></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">times_overlap?</span><span class="params">(times)</span></span></div><div class="line">  times.sort_by&#123;<span class="params">|x|</span> x[<span class="symbol">:start_time</span>]&#125;</div><div class="line">  times.each_cons(<span class="number">2</span>)&#123;<span class="params">|f,s|</span> <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> f[<span class="symbol">:end_time</span>] &gt; s[<span class="symbol">:start_time</span>]&#125;</div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">times_overlap?</span><span class="params">(times)</span></span></span><br><span class="line">  times.sort_by&#123;<span class="params">|x|</span> x[<span class="symbol">:start_time</span>]&#125;</span><br><span class="line">  times.each_cons(<span class="number">2</span>)&#123;<span class="params">|f,s|</span> <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> f[<span class="symbol">:end_time</span>] &gt; s[<span class="symbol">:start_time</span>]&#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p></p>
 
         
@@ -919,88 +998,12 @@ as hers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="cj8vm47is005j1dmuwtzo7d95" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="cjgyxnm9m002lfmbgj9geszz0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/time-overlap/">time-overlap</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-brute-force" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/19/brute-force/" class="article-date">
-  <time datetime="2013-02-19T00:00:00.000Z" itemprop="datePublished">2013-02-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/19/brute-force/">Brute force</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>I am planning to participate in the Google Code Jam this year.
-And I have been working on the <a href="https://code.google.com/codejam/contests.html" target="_blank" rel="external">practice problems</a>. 
-It’s been fun, It’s a great feeling when you are able to solve a challenging
-problem after spending time on it.</p>
-<p>My strategy for solving problems is simple: First I try the brute force
-approach, Once I have a solution, I start thinking of a more efficient way to do it. I have since realized that spending some time thinking  about the problem before butting your head against it is way more helpful. When I reached the <a href="https://code.google.com/codejam/contest/32016/dashboard" target="_blank" rel="external">Minimum Scalar Product</a> problem. </p>
-<blockquote>
-<p>You are given two vectors v1=(x1,x2,…,xn) and v2=(y1,y2,…,yn). The 
-scalar product of these vectors is a single number, calculated as x1y1+x2y2+…+xnyn.</p>
-<p>Suppose you are allowed to permute the coordinates of each vector as you wish.
-Choose two permutations such that the scalar product of your two new vectors is 
-the smallest possible, and output that minimum scalar product.</p>
-</blockquote>
-<p>I thought for a moment and came up with the idea that I needed all possible combinations
-of the first vector with a constant ordered second vector. This algorithm had an order
-of O(n!). I just jumped into coding and started solving it. Here is
-the ugly mess of code I came up with: </p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinimumScalarProduct</span></span></div><div class="line">  <span class="comment">#naive solution O(n!)</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">distribute</span><span class="params">(x, y)</span></span></div><div class="line">    <span class="comment">#puts "DISTRIBUTING: #&#123;x.length&#125;, #&#123;y.length&#125;"</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">1</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]] ],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">if</span> x.length == <span class="number">2</span></div><div class="line">      <span class="comment">#puts "TIME TO GO HOME"</span></div><div class="line">      <span class="keyword">return</span> [</div><div class="line">        [ [x[<span class="number">0</span>],y[<span class="number">0</span>]],  [x[<span class="number">1</span>],y[<span class="number">1</span>]]],</div><div class="line">        [ [x[<span class="number">1</span>],y[<span class="number">0</span>]],  [x[<span class="number">0</span>],y[<span class="number">1</span>]]],</div><div class="line">      ]</div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line">    cumulative_dist = []</div><div class="line">    <span class="comment">#puts "LEN: #&#123;x.length-1&#125;"</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..x.length-<span class="number">1</span>)</div><div class="line">      <span class="comment">#puts "LETS BREAK IT DOWN #&#123;i&#125;"</span></div><div class="line">      xi = x[i]</div><div class="line">      yi = y.first</div><div class="line">      newx = x.clone</div><div class="line">      newx.delete_at(i)</div><div class="line">      newy = y.clone</div><div class="line">      newy.delete_at(<span class="number">0</span>)</div><div class="line">      dist = distribute(newx, newy)</div><div class="line">      dist.each <span class="keyword">do</span><span class="params">|d|</span></div><div class="line">        d.unshift([xi,yi])</div><div class="line">      <span class="keyword">end</span></div><div class="line">      cumulative_dist += dist</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="keyword">return</span> cumulative_dist</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">smallest_vector</span><span class="params">(x,y)</span></span></div><div class="line">    dist = distribute(x,y)</div><div class="line"></div><div class="line">    <span class="comment">#dist.each do |d|</span></div><div class="line">      <span class="comment">#puts d.map&#123;|a| "#&#123;a[0]&#125;*#&#123;a[1]&#125;"&#125;.join(" + ")</span></div><div class="line">    <span class="comment">#end</span></div><div class="line">    <span class="comment">#puts '=================================================='</span></div><div class="line">    <span class="comment">#return</span></div><div class="line"></div><div class="line">    dist =  dist.map <span class="keyword">do</span> <span class="params">|d|</span></div><div class="line">      d.map&#123;<span class="params">|a|</span> a[<span class="number">0</span>]*a[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, el|</span> memo + el&#125;</div><div class="line">    <span class="keyword">end</span></div><div class="line">    <span class="comment">#puts dist.join(";")</span></div><div class="line">    dist.sort.first</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">lines = File.readlines(ARGV.first).map(&amp;<span class="symbol">:chomp</span>)</div><div class="line">no_of_cases = lines.shift.to_i</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> (<span class="number">0</span>..no_of_cases-<span class="number">1</span>)</div><div class="line">  <span class="keyword">begin</span></div><div class="line">    n = lines.shift</div><div class="line">    xa = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    ya = lines.shift.strip.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125; </div><div class="line">    <span class="comment">#MinimumScalarProduct.smallest_vector(xa, ya)</span></div><div class="line">    puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;MinimumScalarProduct.smallest_vector(xa, ya)&#125;</span>"</span></div><div class="line">  <span class="keyword">rescue</span> StandardError =&gt; ex</div><div class="line">    STDERR.puts <span class="string">"At i: <span class="subst">#&#123;i&#125;</span>"</span></div><div class="line">    STDERR.puts <span class="string">"n:<span class="subst">#&#123;n&#125;</span>, xa: <span class="subst">#&#123;xa.inspect&#125;</span>, ya: <span class="subst">#&#123;ya.inspect&#125;</span>"</span></div><div class="line">    STDERR.puts ex</div><div class="line">    STDERR.puts ex.backtrace</div><div class="line">    exit</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p><a href="https://substancehq.s3.amazonaws.com/static_asset/512393734c01e92c45000b78/A-small-practice.in.txt" target="_blank" rel="external">Here is an example test file</a> 
-if you want to try it.</p>
-<p>Then, I started actually thinking about the problem. After a few minutes it
-became clear to me that all I had to do, to get a minimum product, was order the 
-two vectors in opposing orders of magnitude. And with this
-understanding I could solve it much more easily and with an algorithm with an order of O(nlogn).</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">lines = File.readlines(ARGV.first <span class="params">||</span> <span class="string">'A-small-practice.in'</span>).map&#123;<span class="params">|x|</span> x.chomp&#125;</div><div class="line"></div><div class="line">t = lines.shift.to_i</div><div class="line"></div><div class="line">(<span class="number">0</span>..t-<span class="number">1</span>).each <span class="keyword">do</span> <span class="params">|i|</span></div><div class="line">  lines.shift</div><div class="line">  xa = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort <span class="comment">#O(n log(n))</span></div><div class="line">  ya = lines.shift.split(<span class="string">' '</span>).map&#123;<span class="params">|x|</span> x.to_i&#125;.sort.reverse <span class="comment">#O(n log(n))</span></div><div class="line">  min =  xa.zip(ya).map&#123;<span class="params">|x|</span>  x[<span class="number">0</span>] * x[<span class="number">1</span>]&#125;.inject&#123;<span class="params">|memo, x|</span> memo + x&#125; <span class="comment">#O(n)</span></div><div class="line">  puts <span class="string">"Case #<span class="subst">#&#123;i+<span class="number">1</span>&#125;</span>: <span class="subst">#&#123;min&#125;</span>"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>In the past I have used brute force to solve problems where the time didn’t
-matter (I could always move it to a background process if the time mattered),
-but it’s a nice feeling to be able to be able to solve problems by simply
-thinking. Sometimes we(software developers) are so addicted to the quick
-feedback cycle of coding that we fail to spend time thinking of the problem/solution.</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/brute-force/" data-id="cj8vm47hh003q1dmu3xe9gyd9" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2013/02/19/brute-force/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/brute-force/">brute-force</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/solving/">solving</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinking/">thinking</a></li></ul>
 
     </footer>
   </div>
@@ -1032,7 +1035,7 @@ feedback cycle of coding that we fail to spend time thinking of the problem/solu
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I have read <em><a href="http://www.amazon.com/gp/product/1439167346/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1439167346&amp;linkCode=as2&amp;tag=httpminhajuco-20" target="_blank" rel="external">How to Win Friends &amp; Influence People</a></em>
+        <p>I have read <em><a href="http://www.amazon.com/gp/product/1439167346/ref=as_li_qf_sp_asin_il_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=1439167346&amp;linkCode=as2&amp;tag=httpminhajuco-20" target="_blank" rel="noopener">How to Win Friends &amp; Influence People</a></em>
 a few years ago, It’s an amazing book filled with great advice on how to talk to people.
 However, I have ended up using it on the wrong people, I’ve found myself sugar coating a lot of stuff when I communicate.</p>
 <p><strong>Sugar coating stuff is great when you are talking to strangers or people whom you 
@@ -1064,7 +1067,7 @@ an unconscious player in a game of hide and seek with your words</strong></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="cj8vm47qc00cw1dmua7p8arx0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/" data-id="cjgyxnmcg0060fmbgklj4i1ha" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/09/raw-communication-and-sugar-coating/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1111,7 +1114,7 @@ an unconscious player in a game of hide and seek with your words</strong></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="cj8vm47qz00dp1dmu9ll9v7fk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/" data-id="cjgyxnmcn006cfmbgw7el20hy" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/09/review-of-the-books-ive-read/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1149,7 +1152,7 @@ an unconscious player in a game of hide and seek with your words</strong></p>
     <div class="article-entry" itemprop="articleBody">
       
         <p>As a programmer, you should always thinking about automating your grunt work. My family has a private google group where we share/discuss stuff (I know what you are thinking, sharing through email ugh.. but that’s how it is). Whenever I wanted to share I used to copy the link, hit Ctrl+D to get the bookmark save box, copy the title from that and then use that as a subject to send an email, so, here is a script I wrote to automate that.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">javascript:(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">window</span>.location.href = <span class="string">"mailto:fooxxxx@googlegroups.com?subject="</span>+<span class="built_in">document</span>.title+<span class="string">"&amp;body="</span>+<span class="built_in">window</span>.location.href;&#125;)()</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javascript:(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">window</span>.location.href = <span class="string">"mailto:fooxxxx@googlegroups.com?subject="</span>+<span class="built_in">document</span>.title+<span class="string">"&amp;body="</span>+<span class="built_in">window</span>.location.href;&#125;)()</span><br></pre></td></tr></table></figure>
 <p>Just change the email in the above script to be sent to the group you want and add it as a bookmarklet</p>
 
         
@@ -1160,7 +1163,7 @@ an unconscious player in a game of hide and seek with your words</strong></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" data-id="cj8vm47o200ap1dmuc2w7ft43" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/" data-id="cjgyxnmbd004qfmbgj9zqjvi1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/06/javascript-bookmarklet-to-share-a-webpage-with-someone/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1252,7 +1255,7 @@ possible.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="cj8vm47t400fx1dmutah6v7w7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/01/tossing-a-bottle/" data-id="cjgyxnmdf007hfmbg950eoz3i" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/01/tossing-a-bottle/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1289,9 +1292,9 @@ possible.</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="external">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="external">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#~/.bashrc</span></div><div class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></div></pre></td></tr></table></figure>
-<p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="external">excellent archlinux wiki</a></p>
+        <p>I have done my share of <a href="https://github.com/minhajuddin/dotfiles/tree/master/.scripts" target="_blank" rel="noopener">bash scripting</a>, but for the life of me I couldn’t get a color bash prompt working. I used to wire it with code like: <code>PS1=&quot;\e[0;31m[\u@\h \W]\$ \e[m &quot;</code> (I got it from sites like <a href="http://www.cyberciti.biz/faq/bash-shell-change-the-color-of-my-shell-prompt-under-linux-or-unix/" target="_blank" rel="noopener">cyberciti</a>. And these would never work, it would color the prompt alright, but it would screw up the cursor position. Today, I found that this syntax is actually used to set the cursor position. Anyway, I finally have a bash color prompt working without screwing up my cursor position here it is:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#~/.bashrc</span></span><br><span class="line">PS1=<span class="string">"\[\033[1;31m\]\h\[\033[00m\] \[\033[1;33m\]\W\[\033[00m\] \[\033[0;36m\]\$\[\033[00m\] "</span></span><br></pre></td></tr></table></figure>
+<p>Most of the code here is for coloring the prompt, you can read more about it at the <a href="https://wiki.archlinux.org/index.php/Color_Bash_Prompt" target="_blank" rel="noopener">excellent archlinux wiki</a></p>
 <p>Screenshot:
 <img src="https://substancehq.s3.amazonaws.com/static_asset/510bb12e03b04d32da00233b/Selection_047.jpeg" alt="Screenshot"></p>
 
@@ -1303,7 +1306,7 @@ possible.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="cj8vm47g900281dmuh2rlj136" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/" data-id="cjgyxnm8g0015fmbg3dcgv7yq" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/01/a-usable-bash-prompt/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1439,7 +1442,7 @@ possible.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

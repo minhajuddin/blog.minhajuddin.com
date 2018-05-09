@@ -5,22 +5,17 @@
   
   <title>elegance of functional programming | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Functional programming allows you to write concise and elegant code. Mainstream
-languages like Ruby and C# support a lot of functional programming paradigms,
-and learning them makes you a better progr">
+  <meta name="description" content="Functional programming allows you to write concise and elegant code. Mainstream languages like Ruby and C# support a lot of functional programming paradigms, and learning them makes you a better progr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="elegance of functional programming">
 <meta property="og:url" content="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Functional programming allows you to write concise and elegant code. Mainstream
-languages like Ruby and C# support a lot of functional programming paradigms,
-and learning them makes you a better progr">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Functional programming allows you to write concise and elegant code. Mainstream languages like Ruby and C# support a lot of functional programming paradigms, and learning them makes you a better progr">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="elegance of functional programming">
-<meta name="twitter:description" content="Functional programming allows you to write concise and elegant code. Mainstream
-languages like Ruby and C# support a lot of functional programming paradigms,
-and learning them makes you a better progr">
+<meta name="twitter:description" content="Functional programming allows you to write concise and elegant code. Mainstream languages like Ruby and C# support a lot of functional programming paradigms, and learning them makes you a better progr">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -124,7 +119,7 @@ ga('send', 'pageview');
 languages like Ruby and C# support a lot of functional programming paradigms,
 and learning them makes you a better programmer. Below is a small example which
 demonstrates that:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#6 lines of ugly code</span></div><div class="line">i = <span class="number">0</span></div><div class="line">tasks = list.tasks</div><div class="line"><span class="keyword">while</span>(i &lt; tasks.length - <span class="number">2</span>)</div><div class="line">  tasks[i].priority.should &gt;= tasks[i + <span class="number">1</span>].priority</div><div class="line">  i += <span class="number">1</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">#3 lines of elegant functional code</span></div><div class="line">list.tasks.each_cons(<span class="number">2</span>).each <span class="keyword">do</span> <span class="params">|t1, t2|</span></div><div class="line">  t1.priority.should &gt;= t2.priority</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#6 lines of ugly code</span></span><br><span class="line">i = <span class="number">0</span></span><br><span class="line">tasks = list.tasks</span><br><span class="line"><span class="keyword">while</span>(i &lt; tasks.length - <span class="number">2</span>)</span><br><span class="line">  tasks[i].priority.should &gt;= tasks[i + <span class="number">1</span>].priority</span><br><span class="line">  i += <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#3 lines of elegant functional code</span></span><br><span class="line">list.tasks.each_cons(<span class="number">2</span>).each <span class="keyword">do</span> <span class="params">|t1, t2|</span></span><br><span class="line">  t1.priority.should &gt;= t2.priority</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -141,7 +136,7 @@ demonstrates that:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/" data-id="cj8vm47i8004o1dmusg4og4vv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/" data-id="cjgyxnm9f002bfmbg487w312a" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -295,7 +290,7 @@ demonstrates that:</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

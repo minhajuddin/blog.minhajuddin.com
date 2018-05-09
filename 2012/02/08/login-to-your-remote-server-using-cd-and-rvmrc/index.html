@@ -5,25 +5,17 @@
   
   <title>login to your remote server using cd and rvmrc | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Here is a fun trick which you can use, to simulate that a remote server is on one of
-your directories.
-Create a folder call ~/m/example.com and in that folder create a file called
-.rvmrc with the foll">
+  <meta name="description" content="Here is a fun trick which you can use, to simulate that a remote server is on one of your directories. Create a folder call ~/m/example.com and in that folder create a file called .rvmrc with the foll">
 <meta property="og:type" content="article">
 <meta property="og:title" content="login to your remote server using cd and rvmrc">
 <meta property="og:url" content="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Here is a fun trick which you can use, to simulate that a remote server is on one of
-your directories.
-Create a folder call ~/m/example.com and in that folder create a file called
-.rvmrc with the foll">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Here is a fun trick which you can use, to simulate that a remote server is on one of your directories. Create a folder call ~/m/example.com and in that folder create a file called .rvmrc with the foll">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="login to your remote server using cd and rvmrc">
-<meta name="twitter:description" content="Here is a fun trick which you can use, to simulate that a remote server is on one of
-your directories.
-Create a folder call ~/m/example.com and in that folder create a file called
-.rvmrc with the foll">
+<meta name="twitter:description" content="Here is a fun trick which you can use, to simulate that a remote server is on one of your directories. Create a folder call ~/m/example.com and in that folder create a file called .rvmrc with the foll">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -94,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -127,7 +119,7 @@ ga('send', 'pageview');
 your directories.</p>
 <p>Create a folder call ~/m/example.com and in that folder create a file called
 .rvmrc with the following command</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ssh awesomeuser@example.com -p 2302 -i ~/.ssh/awesomekey_rsa</div><div class="line"><span class="comment">#or whatever ssh command you use</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ssh awesomeuser@example.com -p 2302 -i ~/.ssh/awesomekey_rsa</span><br><span class="line"><span class="comment">#or whatever ssh command you use</span></span><br></pre></td></tr></table></figure>
 <p>Now whenever you run <code>cd ~/m/example.com</code> you will automagically be logged into
 your remote computer.</p>
 <p>Obviously, this is a fun trick. All this can be done in a much nicer way using the <code>~/.ssh/config</code>
@@ -135,10 +127,10 @@ file.</p>
 <p>Here are a few resources to make your ssh config more useful, allowing you to
 login to servers using a command like <code>ssh myserver</code></p>
 <ul>
-<li><a href="http://linux.die.net/man/5/ssh_config" target="_blank" rel="external">http://linux.die.net/man/5/ssh_config</a></li>
-<li><a href="http://www.evilsoft.org/2009/10/23/stupid-ssh-config-tricks" target="_blank" rel="external">http://www.evilsoft.org/2009/10/23/stupid-ssh-config-tricks</a></li>
-<li><a href="http://www.linuxjournal.com/article/6602" target="_blank" rel="external">http://www.linuxjournal.com/article/6602</a></li>
-<li><a href="http://www.howtogeek.com/75007/stupid-geek-tricks-use-your-ssh-config-file-to-create-aliases-for-hosts/" target="_blank" rel="external">http://www.howtogeek.com/75007/stupid-geek-tricks-use-your-ssh-config-file-to-create-aliases-for-hosts/</a></li>
+<li><a href="http://linux.die.net/man/5/ssh_config" target="_blank" rel="noopener">http://linux.die.net/man/5/ssh_config</a></li>
+<li><a href="http://www.evilsoft.org/2009/10/23/stupid-ssh-config-tricks" target="_blank" rel="noopener">http://www.evilsoft.org/2009/10/23/stupid-ssh-config-tricks</a></li>
+<li><a href="http://www.linuxjournal.com/article/6602" target="_blank" rel="noopener">http://www.linuxjournal.com/article/6602</a></li>
+<li><a href="http://www.howtogeek.com/75007/stupid-geek-tricks-use-your-ssh-config-file-to-create-aliases-for-hosts/" target="_blank" rel="noopener">http://www.howtogeek.com/75007/stupid-geek-tricks-use-your-ssh-config-file-to-create-aliases-for-hosts/</a></li>
 </ul>
 <p>I wonder what other stuff could be done using rvmrc.</p>
 
@@ -157,7 +149,7 @@ login to servers using a command like <code>ssh myserver</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/" data-id="cj8vm47p300bj1dmuup5ekfno" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/" data-id="cjgyxnmbr0056fmbgxv6y0dg0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -311,7 +303,7 @@ login to servers using a command like <code>ssh myserver</code></p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

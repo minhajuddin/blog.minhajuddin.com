@@ -5,22 +5,18 @@
   
   <title>Automatically start a local godoc web server  | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Godoc is awesome, It allows you to browse all the documentation on your local machine by running the following command
-1godoc -http=:8090
-Once you do this you can happily browse through all the docume">
+  <meta name="description" content="Godoc is awesome, It allows you to browse all the documentation on your local machine by running the following command 1godoc -http=:8090 Once you do this you can happily browse through all the docume">
+<meta name="keywords" content="go,godoc,upstart">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Automatically start a local godoc web server ">
 <meta property="og:url" content="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Godoc is awesome, It allows you to browse all the documentation on your local machine by running the following command
-1godoc -http=:8090
-Once you do this you can happily browse through all the docume">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Godoc is awesome, It allows you to browse all the documentation on your local machine by running the following command 1godoc -http=:8090 Once you do this you can happily browse through all the docume">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Automatically start a local godoc web server ">
-<meta name="twitter:description" content="Godoc is awesome, It allows you to browse all the documentation on your local machine by running the following command
-1godoc -http=:8090
-Once you do this you can happily browse through all the docume">
+<meta name="twitter:description" content="Godoc is awesome, It allows you to browse all the documentation on your local machine by running the following command 1godoc -http=:8090 Once you do this you can happily browse through all the docume">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -121,12 +117,12 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>Godoc is awesome, It allows you to browse all the documentation on your local machine by running the following command</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">godoc -http=:8090</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">godoc -http=:8090</span><br></pre></td></tr></table></figure>
 <p>Once you do this you can happily browse through all the documentation offline. However, you can start this process as an upstart daemon and let it run in the background. All you have to do is create a file called <code>/etc/init/godoc.conf</code> with the following content</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#Upstart script to start godoc server</span></div><div class="line"><span class="comment">#Author: Khaja Minhajuddin</span></div><div class="line"><span class="comment">#*This obviously works on machines with upstart*</span></div><div class="line">start on runlevel [2345]</div><div class="line">stop on runlevel [06]</div><div class="line"></div><div class="line">script</div><div class="line">  <span class="built_in">export</span> HOME=/home/minhajuddin</div><div class="line">  <span class="built_in">export</span> GOROOT=<span class="variable">$HOME</span>/go</div><div class="line">  <span class="built_in">export</span> GOBIN=<span class="variable">$GOROOT</span>/bin</div><div class="line">  <span class="built_in">export</span> GOPATH=<span class="variable">$HOME</span>/gocode</div><div class="line">  <span class="variable">$GOBIN</span>/godoc -http=:8090 -index=<span class="literal">true</span></div><div class="line">end script</div></pre></td></tr></table></figure>
-<p>You just need to make sure that the env vars are adjusted to your setup. Also, using <code>-index=true</code> runs a full text search on all your documentation (which is simply awesome). Now, you will have your godoc server at <a href="http://localhost:8090/" target="_blank" rel="external">http://localhost:8090/</a> all the time.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Upstart script to start godoc server</span></span><br><span class="line"><span class="comment">#Author: Khaja Minhajuddin</span></span><br><span class="line"><span class="comment">#*This obviously works on machines with upstart*</span></span><br><span class="line">start on runlevel [2345]</span><br><span class="line">stop on runlevel [06]</span><br><span class="line"></span><br><span class="line">script</span><br><span class="line">  <span class="built_in">export</span> HOME=/home/minhajuddin</span><br><span class="line">  <span class="built_in">export</span> GOROOT=<span class="variable">$HOME</span>/go</span><br><span class="line">  <span class="built_in">export</span> GOBIN=<span class="variable">$GOROOT</span>/bin</span><br><span class="line">  <span class="built_in">export</span> GOPATH=<span class="variable">$HOME</span>/gocode</span><br><span class="line">  <span class="variable">$GOBIN</span>/godoc -http=:8090 -index=<span class="literal">true</span></span><br><span class="line">end script</span><br></pre></td></tr></table></figure>
+<p>You just need to make sure that the env vars are adjusted to your setup. Also, using <code>-index=true</code> runs a full text search on all your documentation (which is simply awesome). Now, you will have your godoc server at <a href="http://localhost:8090/" target="_blank" rel="noopener">http://localhost:8090/</a> all the time.</p>
 <p>On a related note, godoc can be used from the command line like:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#godoc &lt;pkg name&gt; Type/Func</span></div><div class="line">godoc net Listener</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#godoc &lt;pkg name&gt; Type/Func</span></span><br><span class="line">godoc net Listener</span><br></pre></td></tr></table></figure>
 
         
       
@@ -143,7 +139,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cj8vm47h000331dmuked6pog4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/" data-id="cjgyxnm8r001lfmbga16dwmec" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/11/30/automatically-start-a-local-godoc-web-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -156,19 +152,19 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2012/12/08/the-island-of-barefooters/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          The island of barefooters
+          Implementing a basic redis client in go - part 1
         
       </div>
     </a>
   
   
-    <a href="/2012/11/30/implementing-a-basic-redis-client-in-go-part-1/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2012/11/08/using-inotify-to-make-speedup-your-learning-and-experimenting/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Implementing a basic redis client in go - part 1</div>
+      <div class="article-nav-title">Using inotify to speedup your learning and experimenting</div>
     </a>
   
 </nav>
@@ -299,7 +295,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

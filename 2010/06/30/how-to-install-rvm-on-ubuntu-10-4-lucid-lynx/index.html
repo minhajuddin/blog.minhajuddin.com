@@ -5,22 +5,17 @@
   
   <title>rvm and how to install it on ubuntu 10.4 lucid lynx | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="RVM (Ruby Version Manger) is an awesome tool which allows 
-you to manage different versions of ruby on the same machine. I’ve worked in the
-.net world for quite some time. And coming into ruby I was v">
+  <meta name="description" content="RVM (Ruby Version Manger) is an awesome tool which allows  you to manage different versions of ruby on the same machine. I’ve worked in the .net world for quite some time. And coming into ruby I was v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="rvm and how to install it on ubuntu 10.4 lucid lynx">
 <meta property="og:url" content="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="RVM (Ruby Version Manger) is an awesome tool which allows 
-you to manage different versions of ruby on the same machine. I’ve worked in the
-.net world for quite some time. And coming into ruby I was v">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="RVM (Ruby Version Manger) is an awesome tool which allows  you to manage different versions of ruby on the same machine. I’ve worked in the .net world for quite some time. And coming into ruby I was v">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rvm and how to install it on ubuntu 10.4 lucid lynx">
-<meta name="twitter:description" content="RVM (Ruby Version Manger) is an awesome tool which allows 
-you to manage different versions of ruby on the same machine. I’ve worked in the
-.net world for quite some time. And coming into ruby I was v">
+<meta name="twitter:description" content="RVM (Ruby Version Manger) is an awesome tool which allows  you to manage different versions of ruby on the same machine. I’ve worked in the .net world for quite some time. And coming into ruby I was v">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -120,22 +115,22 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="external">RVM</a> (Ruby Version Manger) is an awesome tool which allows 
+        <p><a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="noopener">RVM</a> (Ruby Version Manger) is an awesome tool which allows 
 you to manage different versions of ruby on the same machine. I’ve worked in the
 .net world for quite some time. And coming into ruby I was very frustrated with
 the fact that I couldn’t have multiple versions of ruby or that of rails. This
 made playing around with edge stuff a PITA. In .net I would be able to install
 different versions of the framework side by side and not having that in ruby or
 rails was really frustrating. </p>
-<p>Enter <a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="external">RVM</a> a tool to manage different ruby installations, the ruby story
-gets better than the .net stuff :) With <a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="external">RVM</a> you can not only install different
+<p>Enter <a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="noopener">RVM</a> a tool to manage different ruby installations, the ruby story
+gets better than the .net stuff :) With <a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="noopener">RVM</a> you can not only install different
 versions of ruby but also different patch levels of ruby. So, now you can have
 ruby 1.8.7 patchlevel 249, and ruby 1.8.7 patchlevel 299 happily working off
 your computer.</p>
 <p>Alright, so you’ve decided to install rvm on your ubuntu (lucid lynx) box. There
-are a a lot of good tutorials on how to do this. <a href="http://rvm.beginrescueend.com/rvm/install/" title="Installing RVM" target="_blank" rel="external">Installing RVM</a> is the one
-on the rvm website, <a href="http://rvm.beginrescueend.com/rvm/install/" title="Installing RVM" target="_blank" rel="external">Setup Ruby and Rails</a> is a good one which actually tells 
-you how to install rails and stuff with <a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="external">RVM</a>. I did the following stuff to
+are a a lot of good tutorials on how to do this. <a href="http://rvm.beginrescueend.com/rvm/install/" title="Installing RVM" target="_blank" rel="noopener">Installing RVM</a> is the one
+on the rvm website, <a href="http://rvm.beginrescueend.com/rvm/install/" title="Installing RVM" target="_blank" rel="noopener">Setup Ruby and Rails</a> is a good one which actually tells 
+you how to install rails and stuff with <a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="noopener">RVM</a>. I did the following stuff to
 get it working on my machine.</p>
 <ol>
 <li><p>Do a fresh installation of ubuntu lucid lynx and install a basic version of
@@ -146,23 +141,23 @@ that’s the case you don’t need anything for the first step.</p>
 needed by rvm to compile ruby</p>
 </li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">sudo apt-get install curl git-core bison build-essential zlib1g-dev libssl-dev libreadline6-dev libxml2-dev autoconf libxslt1-dev libpq-dev postgresql</div></pre></td></tr></table></figure>
-<ol>
-<li>Install <a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="external">RVM</a> by running the following:</li>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get install curl git-core bison build-essential zlib1g-dev libssl-dev libreadline6-dev libxml2-dev autoconf libxslt1-dev libpq-dev postgresql</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>Install <a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="noopener">RVM</a> by running the following:</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">bash &lt; &lt;( curl http://rvm.beginrescueend.com/releases/rvm-install-head )</span><br></pre></td></tr></table></figure>
+<ol start="4">
 <li>Fix your <code>.bashrc</code>.</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"> <span class="comment">#replace the following which is usually found on line 6</span></div><div class="line"> [ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></div><div class="line"><span class="comment"># with </span></div><div class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></div><div class="line"><span class="comment"># also put the following line at the end of the file</span></div><div class="line">[[ <span class="_">-s</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> <span class="comment">#replace the following which is usually found on line 6</span></span><br><span class="line"> [ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></span><br><span class="line"><span class="comment"># with </span></span><br><span class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></span><br><span class="line"><span class="comment"># also put the following line at the end of the file</span></span><br><span class="line">[[ -s <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<ol start="5">
 <li>Finally change the ownership of “~/.gem” using <code>sudo chown minhajuddin
 /home/minhajuddin/.gems</code></li>
 </ol>
 <p>Now you should be able to install new versions of rvm using <code>rvm install
 ruby&lt;version&gt;</code> like <code>rvm install ruby-1.9.2</code> and change the rvm version using
 <code>rvm use ruby-1.9.2</code> </p>
-<p><a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="external">RVM</a> is a just the right amount of crazy which was needed in the ruby world
+<p><a href="http://rvm.beginrescueend.com/" title="Ruby Version Manager" target="_blank" rel="noopener">RVM</a> is a just the right amount of crazy which was needed in the ruby world
 at this point of time. And if you find it useful please donate some dough to the
 guys working on RVM, they are making the lives of a lot of guys like us more
 enjoyable.</p>
@@ -182,7 +177,7 @@ enjoyable.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/" data-id="cj8vm47lb007w1dmu9r42412v" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/" data-id="cjgyxnmak003pfmbg6km8sp4f" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -336,7 +331,7 @@ enjoyable.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

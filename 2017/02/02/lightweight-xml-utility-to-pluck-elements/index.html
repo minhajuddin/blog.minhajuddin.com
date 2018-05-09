@@ -5,19 +5,18 @@
   
   <title>Lightweight xml utility to pluck elements | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="jq is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml.
-The following is a short ruby script which does a tiny tiny (did I say tiny?) bit o">
+  <meta name="description" content="jq is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml. The following is a short ruby script which does a tiny tiny (did I say tiny?) bit o">
+<meta name="keywords" content="Ruby,Xml Pluck">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lightweight xml utility to pluck elements">
 <meta property="og:url" content="http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="jq is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml.
-The following is a short ruby script which does a tiny tiny (did I say tiny?) bit o">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="jq is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml. The following is a short ruby script which does a tiny tiny (did I say tiny?) bit o">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lightweight xml utility to pluck elements">
-<meta name="twitter:description" content="jq is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml.
-The following is a short ruby script which does a tiny tiny (did I say tiny?) bit o">
+<meta name="twitter:description" content="jq is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml. The following is a short ruby script which does a tiny tiny (did I say tiny?) bit o">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -88,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -117,9 +116,9 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://stedolan.github.io/jq/" target="_blank" rel="external">jq</a> is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml.
+        <p><a href="https://stedolan.github.io/jq/" target="_blank" rel="noopener">jq</a> is an awesome utility for parsing and transforming json via the command line. I wanted something similar for xml.
 The following is a short ruby script which does a tiny tiny (did I say tiny?) bit of what jq does for xml. Hope you find it useful.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env ruby</span></div><div class="line"><span class="comment"># Author: Khaja Minhajuddin</span></div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'nokogiri'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'parallel'</span></div><div class="line"><span class="keyword">require</span> <span class="string">'etc'</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> ARGV.count &lt; <span class="number">2</span></div><div class="line">  puts &lt;&lt;-EOS</div><div class="line">  <span class="symbol">Usage:</span></div><div class="line">    xml_pluck xpath file1.xml file2.xml</div><div class="line"></div><div class="line">  e.g.</div><div class="line">    xml_pluck <span class="string">"//children/name/text()"</span> &lt;(echo <span class="string">'&lt;?xml version="1.0"?&gt;&lt;children&gt;&lt;name&gt;Zainab&lt;/name&gt;&lt;name&gt;Mujju&lt;/name&gt;&lt;/children&gt;'</span>)</div><div class="line">    <span class="comment"># prints</span></div><div class="line">    Zainab</div><div class="line">    Mujju</div><div class="line">  EOS</div><div class="line">  exit -<span class="number">1</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">xpath = ARGV.shift</div><div class="line">Parallel.each(ARGV, <span class="symbol">in_processes:</span> Etc.nprocessors) <span class="keyword">do</span> <span class="params">|file|</span></div><div class="line">  doc = Nokogiri::XML(File.read(file))</div><div class="line">  puts doc.xpath(xpath)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"><span class="comment"># Author: Khaja Minhajuddin</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'nokogiri'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'parallel'</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">'etc'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ARGV.count &lt; <span class="number">2</span></span><br><span class="line">  puts <span class="string">&lt;&lt;-EOS</span></span><br><span class="line"><span class="string">  Usage:</span></span><br><span class="line"><span class="string">    xml_pluck xpath file1.xml file2.xml</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  e.g.</span></span><br><span class="line"><span class="string">    xml_pluck "//children/name/text()" &lt;(echo '&lt;?xml version="1.0"?&gt;&lt;children&gt;&lt;name&gt;Zainab&lt;/name&gt;&lt;name&gt;Mujju&lt;/name&gt;&lt;/children&gt;')</span></span><br><span class="line"><span class="string">    # prints</span></span><br><span class="line"><span class="string">    Zainab</span></span><br><span class="line">    Mujju</span><br><span class="line">  EOS</span><br><span class="line">  exit -<span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">xpath = ARGV.shift</span><br><span class="line">Parallel.each(ARGV, <span class="symbol">in_processes:</span> Etc.nprocessors) <span class="keyword">do</span> <span class="params">|file|</span></span><br><span class="line">  doc = Nokogiri::XML(File.read(file))</span><br><span class="line">  puts doc.xpath(xpath)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 
         
       
@@ -136,7 +135,7 @@ The following is a short ruby script which does a tiny tiny (did I say tiny?) bi
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/" data-id="cj8vm47oy00be1dmuxlt09ker" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/" data-id="cjgyxnmbo0053fmbgq4d1gznx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -292,7 +291,7 @@ The following is a short ruby script which does a tiny tiny (did I say tiny?) bi
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

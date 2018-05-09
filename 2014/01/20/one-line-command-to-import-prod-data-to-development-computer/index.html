@@ -5,19 +5,18 @@
   
   <title>One line command to import prod data to development computer | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally
-1ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --n">
+  <meta name="description" content="The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally 1ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --n">
+<meta name="keywords" content="postgresql,,import">
 <meta property="og:type" content="article">
 <meta property="og:title" content="One line command to import prod data to development computer">
 <meta property="og:url" content="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally
-1ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --n">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally 1ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --n">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="One line command to import prod data to development computer">
-<meta name="twitter:description" content="The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally
-1ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --n">
+<meta name="twitter:description" content="The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally 1ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --n">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -88,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -118,7 +117,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>The pg_dump command runs on your prod server streaming all the data into pg_restore which runs locally</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --no-acl --no-owner <span class="_">-d</span> localdb</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@remote.com pg_dump -Fc --no-acl --no-owner remote_db | pg_restore --verbose --clean --no-acl --no-owner -d localdb</span><br></pre></td></tr></table></figure>
 
         
       
@@ -135,7 +134,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" data-id="cj8vm47pp00c51dmuvznbb098" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/" data-id="cjgyxnmc0005jfmbgh2k53zro" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2014/01/20/one-line-command-to-import-prod-data-to-development-computer/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -158,9 +157,9 @@ ga('send', 'pageview');
     </a>
   
   
-    <a href="/2013/05/19/cloud-computing/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2013/05/19/http/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Cloud Computing / Virtualization</div>
+      <div class="article-nav-title">HTTP</div>
     </a>
   
 </nav>
@@ -291,7 +290,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

@@ -5,19 +5,18 @@
   
   <title>A bash script to replace gtimelog for the terminal | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I have been using this script to log my time for a long time, thought I would share it.
-123456789101112131415161718192021222324252627282930# Usage:# log time# $ gl browsing redding again# $ gl finishe">
+  <meta name="description" content="I have been using this script to log my time for a long time, thought I would share it. 123456789101112131415161718192021222324252627282930# Usage:# log time# $ gl browsing redding again# $ gl finishe">
+<meta name="keywords" content="bash,gtimelog,time">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A bash script to replace gtimelog for the terminal">
 <meta property="og:url" content="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I have been using this script to log my time for a long time, thought I would share it.
-123456789101112131415161718192021222324252627282930# Usage:# log time# $ gl browsing redding again# $ gl finishe">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="I have been using this script to log my time for a long time, thought I would share it. 123456789101112131415161718192021222324252627282930# Usage:# log time# $ gl browsing redding again# $ gl finishe">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.121Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A bash script to replace gtimelog for the terminal">
-<meta name="twitter:description" content="I have been using this script to log my time for a long time, thought I would share it.
-123456789101112131415161718192021222324252627282930# Usage:# log time# $ gl browsing redding again# $ gl finishe">
+<meta name="twitter:description" content="I have been using this script to log my time for a long time, thought I would share it. 123456789101112131415161718192021222324252627282930# Usage:# log time# $ gl browsing redding again# $ gl finishe">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -88,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -118,7 +117,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>I have been using this script to log my time for a long time, thought I would share it.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Usage:</span></div><div class="line"><span class="comment"># log time</span></div><div class="line"><span class="comment"># $ gl browsing redding again</span></div><div class="line"><span class="comment"># $ gl finished Hugo recipe for zammu.in</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># check log</span></div><div class="line"><span class="comment"># $ gl</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># check last 2 logs</span></div><div class="line"><span class="comment"># $ gl t -n2</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># edit the timelog file</span></div><div class="line"><span class="comment"># $ gl e</span></div><div class="line"></div><div class="line"><span class="keyword">function</span> <span class="function"><span class="title">gl</span></span>() &#123;</div><div class="line">gtimelog=~/timelog.txt</div><div class="line"></div><div class="line">[ <span class="variable">$#</span> <span class="_">-eq</span> 0 ]  &amp;&amp; tail <span class="variable">$gtimelog</span> <span class="variable">$2</span> &amp;&amp; <span class="built_in">return</span></div><div class="line"></div><div class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></div><div class="line">  t|c) tail <span class="variable">$gtimelog</span> <span class="variable">$2</span></div><div class="line">    ;;</div><div class="line">  a) <span class="built_in">echo</span> <span class="string">"<span class="variable">$(date "+%Y-%m-%d %H:%M")</span>: <span class="variable">$(tail -1 $gtimelog | sed -e 's/^[0-9 :-]*//g')</span>"</span>  &gt;&gt; <span class="variable">$gtimelog</span></div><div class="line">    ;;</div><div class="line">  e) vi <span class="variable">$gtimelog</span></div><div class="line">    ;;</div><div class="line">  *) <span class="built_in">echo</span> <span class="string">"<span class="variable">$(date "+%Y-%m-%d %H:%M")</span>: <span class="variable">$&#123;@/jj/**&#125;</span>"</span> &gt;&gt; <span class="variable">$gtimelog</span></div><div class="line">    ;;</div><div class="line"><span class="keyword">esac</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Usage:</span></span><br><span class="line"><span class="comment"># log time</span></span><br><span class="line"><span class="comment"># $ gl browsing redding again</span></span><br><span class="line"><span class="comment"># $ gl finished Hugo recipe for zammu.in</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># check log</span></span><br><span class="line"><span class="comment"># $ gl</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># check last 2 logs</span></span><br><span class="line"><span class="comment"># $ gl t -n2</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># edit the timelog file</span></span><br><span class="line"><span class="comment"># $ gl e</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">gl</span></span>() &#123;</span><br><span class="line">gtimelog=~/timelog.txt</span><br><span class="line"></span><br><span class="line">[ <span class="variable">$#</span> -eq 0 ]  &amp;&amp; tail <span class="variable">$gtimelog</span> <span class="variable">$2</span> &amp;&amp; <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$1</span> <span class="keyword">in</span></span><br><span class="line">  t|c) tail <span class="variable">$gtimelog</span> <span class="variable">$2</span></span><br><span class="line">    ;;</span><br><span class="line">  a) <span class="built_in">echo</span> <span class="string">"<span class="variable">$(date "+%Y-%m-%d %H:%M")</span>: <span class="variable">$(tail -1 $gtimelog | sed -e 's/^[0-9 :-]*//g')</span>"</span>  &gt;&gt; <span class="variable">$gtimelog</span></span><br><span class="line">    ;;</span><br><span class="line">  e) vi <span class="variable">$gtimelog</span></span><br><span class="line">    ;;</span><br><span class="line">  *) <span class="built_in">echo</span> <span class="string">"<span class="variable">$(date "+%Y-%m-%d %H:%M")</span>: <span class="variable">$&#123;@/jj/**&#125;</span>"</span> &gt;&gt; <span class="variable">$gtimelog</span></span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         
       
@@ -135,7 +134,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/" data-id="cj8vm47fg00141dmumxfhniot" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/" data-id="cjgyxnm85000rfmbgqoy90rne" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/20/a-bash-script-to-replace-gtimelog-for-the-terminal/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -291,7 +290,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

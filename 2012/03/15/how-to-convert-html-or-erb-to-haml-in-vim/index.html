@@ -5,25 +5,17 @@
   
   <title>how to convert html or erb to haml in vim | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I use HAML a lot, it’s a very nice templating language. And I copy a lot of
-html/erb snippets to my haml views. Here is how you can configure vim to convert
-your html to haml.
- 1) Install the html2ham">
+  <meta name="description" content="I use HAML a lot, it’s a very nice templating language. And I copy a lot of html/erb snippets to my haml views. Here is how you can configure vim to convert your html to haml.  1) Install the html2ham">
 <meta property="og:type" content="article">
 <meta property="og:title" content="how to convert html or erb to haml in vim">
 <meta property="og:url" content="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I use HAML a lot, it’s a very nice templating language. And I copy a lot of
-html/erb snippets to my haml views. Here is how you can configure vim to convert
-your html to haml.
- 1) Install the html2ham">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="I use HAML a lot, it’s a very nice templating language. And I copy a lot of html/erb snippets to my haml views. Here is how you can configure vim to convert your html to haml.  1) Install the html2ham">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="how to convert html or erb to haml in vim">
-<meta name="twitter:description" content="I use HAML a lot, it’s a very nice templating language. And I copy a lot of
-html/erb snippets to my haml views. Here is how you can configure vim to convert
-your html to haml.
- 1) Install the html2ham">
+<meta name="twitter:description" content="I use HAML a lot, it’s a very nice templating language. And I copy a lot of html/erb snippets to my haml views. Here is how you can configure vim to convert your html to haml.  1) Install the html2ham">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -94,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -128,13 +120,13 @@ html/erb snippets to my haml views. Here is how you can configure vim to convert
 your html to haml.</p>
 <p> 1) Install the html2haml gem. If you are using rvm, generate a wrapper using the
  code below.</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">rvm wrapper ruby-1.9.2-p290 vim html2haml</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">rvm wrapper ruby-1.9.2-p290 vim html2haml</span><br></pre></td></tr></table></figure>
 <p>   2) Add the following mapping to your <code>~/.vimrc</code></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">" html2haml</span></div><div class="line">:<span class="keyword">vmap</span> <span class="symbol">&lt;leader&gt;</span>h :!/home/minhajuddin/.rvm/bin/vim_html2haml<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">" html2haml</span></span><br><span class="line">:<span class="keyword">vmap</span> <span class="symbol">&lt;leader&gt;</span>h :!/home/minhajuddin/.rvm/bin/vim_html2haml<span class="symbol">&lt;cr&gt;</span></span><br></pre></td></tr></table></figure>
 <p> That’s it, now you can select a block of text and hit the <code>&lt;leader&gt;h</code> command
  to convert your html/erb to haml. You need to make sure that the paths and the
  rvm strings correspond to your machine settings to get this working, also
- html2haml needs a few more gems. Check <a href="http://haml-lang.com/docs/yardoc/Haml/Exec/HTML2Haml.html" target="_blank" rel="external">html2haml</a> for more info </p>
+ html2haml needs a few more gems. Check <a href="http://haml-lang.com/docs/yardoc/Haml/Exec/HTML2Haml.html" target="_blank" rel="noopener">html2haml</a> for more info </p>
 
         
       
@@ -151,7 +143,7 @@ your html to haml.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="cj8vm47jq006i1dmu2535wqsk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="cjgyxnma20035fmbgil4o8fjn" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -305,7 +297,7 @@ your html to haml.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

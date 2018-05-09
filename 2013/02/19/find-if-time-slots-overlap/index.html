@@ -5,22 +5,18 @@
   
   <title>Find if time slots overlap | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="I had to write some code to see if the input time slots on a given day overlapped.
-I gave this problem to my sister, to come up with an algorithm. She came up with
-a nice solution which hadn’t crossed">
+  <meta name="description" content="I had to write some code to see if the input time slots on a given day overlapped. I gave this problem to my sister, to come up with an algorithm. She came up with a nice solution which hadn’t crossed">
+<meta name="keywords" content="algorithm,time-overlap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Find if time slots overlap">
 <meta property="og:url" content="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="I had to write some code to see if the input time slots on a given day overlapped.
-I gave this problem to my sister, to come up with an algorithm. She came up with
-a nice solution which hadn’t crossed">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="I had to write some code to see if the input time slots on a given day overlapped. I gave this problem to my sister, to come up with an algorithm. She came up with a nice solution which hadn’t crossed">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Find if time slots overlap">
-<meta name="twitter:description" content="I had to write some code to see if the input time slots on a given day overlapped.
-I gave this problem to my sister, to come up with an algorithm. She came up with
-a nice solution which hadn’t crossed">
+<meta name="twitter:description" content="I had to write some code to see if the input time slots on a given day overlapped. I gave this problem to my sister, to come up with an algorithm. She came up with a nice solution which hadn’t crossed">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -148,7 +144,7 @@ as hers :)</p>
  {:start_time=&gt;&apos;2013-02-20 02:00:00&apos;, :end_time=&gt;&apos;2013-02-20 03:00:00&apos;},
  {:start_time=&gt;&apos;2013-02-20 09:00:00&apos;, :end_time=&gt;&apos;2013-02-20 10:00:00&apos;}]
 </code></pre><p><a href="#solution" onclick="document.getElementById("solution").className="";">Click here for the solution</a><div id="solution" class="hidden"></div></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">times_overlap?</span><span class="params">(times)</span></span></div><div class="line">  times.sort_by&#123;<span class="params">|x|</span> x[<span class="symbol">:start_time</span>]&#125;</div><div class="line">  times.each_cons(<span class="number">2</span>)&#123;<span class="params">|f,s|</span> <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> f[<span class="symbol">:end_time</span>] &gt; s[<span class="symbol">:start_time</span>]&#125;</div><div class="line">  <span class="keyword">return</span> <span class="literal">true</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">times_overlap?</span><span class="params">(times)</span></span></span><br><span class="line">  times.sort_by&#123;<span class="params">|x|</span> x[<span class="symbol">:start_time</span>]&#125;</span><br><span class="line">  times.each_cons(<span class="number">2</span>)&#123;<span class="params">|f,s|</span> <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> f[<span class="symbol">:end_time</span>] &gt; s[<span class="symbol">:start_time</span>]&#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p></p>
 
         
@@ -166,7 +162,7 @@ as hers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="cj8vm47is005j1dmuwtzo7d95" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/" data-id="cjgyxnm9m002lfmbgj9geszz0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/02/19/find-if-time-slots-overlap/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -179,19 +175,19 @@ as hers :)</p>
     
 <nav id="article-nav">
   
-    <a href="/2013/04/28/angularjs-templates-and-rails-with-eager-loading/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2013/02/19/brute-force/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Angularjs templates and rails with eager loading
+          Brute force
         
       </div>
     </a>
   
   
-    <a href="/2013/02/19/brute-force/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2013/02/09/raw-communication-and-sugar-coating/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Brute force</div>
+      <div class="article-nav-title">Raw communication and sugar coating</div>
     </a>
   
 </nav>
@@ -322,7 +318,7 @@ as hers :)</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

@@ -5,22 +5,17 @@
   
   <title>Put this in your code to debug anything | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Aaron Patterson wrote a very nice article on how he does deubgging.
-Here is some more code to make your debugging easier.
-12345678910111213141516class Object  def dbg    self.tap do |x|      puts &quot;&amp;gt">
+  <meta name="description" content="Aaron Patterson wrote a very nice article on how he does deubgging. Here is some more code to make your debugging easier. 12345678910111213141516class Object  def dbg    self.tap do |x|      puts &quot;&amp;gt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Put this in your code to debug anything">
 <meta property="og:url" content="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="Aaron Patterson wrote a very nice article on how he does deubgging.
-Here is some more code to make your debugging easier.
-12345678910111213141516class Object  def dbg    self.tap do |x|      puts &quot;&amp;gt">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="Aaron Patterson wrote a very nice article on how he does deubgging. Here is some more code to make your debugging easier. 12345678910111213141516class Object  def dbg    self.tap do |x|      puts &quot;&amp;gt">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Put this in your code to debug anything">
-<meta name="twitter:description" content="Aaron Patterson wrote a very nice article on how he does deubgging.
-Here is some more code to make your debugging easier.
-12345678910111213141516class Object  def dbg    self.tap do |x|      puts &quot;&amp;gt">
+<meta name="twitter:description" content="Aaron Patterson wrote a very nice article on how he does deubgging. Here is some more code to make your debugging easier. 12345678910111213141516class Object  def dbg    self.tap do |x|      puts &quot;&amp;gt">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -91,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -120,10 +115,10 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Aaron Patterson wrote <a href="https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html" target="_blank" rel="external">a very nice article on how he does deubgging</a>.</p>
+        <p>Aaron Patterson wrote <a href="https://tenderlovemaking.com/2016/02/05/i-am-a-puts-debuggerer.html" target="_blank" rel="noopener">a very nice article on how he does deubgging</a>.</p>
 <p>Here is some more code to make your debugging easier.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Object</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">dbg</span></span></div><div class="line">    <span class="keyword">self</span>.tap <span class="keyword">do</span> <span class="params">|x|</span></div><div class="line">      puts <span class="string">"&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;"</span></div><div class="line">      puts x</div><div class="line">      puts <span class="string">"&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;"</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="comment"># now you can turn the following:</span></div><div class="line">get_csv.find&#123;<span class="params">|x|</span> x[id_column] == row_id&#125;</div><div class="line"></div><div class="line"><span class="comment"># into =&gt;</span></div><div class="line">get_csv.dbg.find&#123;<span class="params">|x|</span> x[id_column.dbg] == row_id.dbg&#125;.dbg</div></pre></td></tr></table></figure>
-<h3 id="Update"><a href="#Update" class="headerlink" title="Update:"></a>Update:</h3><p><a href="http://joshcheek.com/" target="_blank" rel="external">Josh Cheek</a> has taken this to the 11th level here: <a href="https://gist.github.com/JoshCheek/55b53e2faa2776d6a054#file-ss-png" target="_blank" rel="external">https://gist.github.com/JoshCheek/55b53e2faa2776d6a054#file-ss-png</a> Awesome stuff :)</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Object</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">dbg</span></span></span><br><span class="line">    <span class="keyword">self</span>.tap <span class="keyword">do</span> <span class="params">|x|</span></span><br><span class="line">      puts <span class="string">"&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;"</span></span><br><span class="line">      puts x</span><br><span class="line">      puts <span class="string">"&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;"</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># now you can turn the following:</span></span><br><span class="line">get_csv.find&#123;<span class="params">|x|</span> x[id_column] == row_id&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># into =&gt;</span></span><br><span class="line">get_csv.dbg.find&#123;<span class="params">|x|</span> x[id_column.dbg] == row_id.dbg&#125;.dbg</span><br></pre></td></tr></table></figure>
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update:"></a>Update:</h3><p><a href="http://joshcheek.com/" target="_blank" rel="noopener">Josh Cheek</a> has taken this to the 11th level here: <a href="https://gist.github.com/JoshCheek/55b53e2faa2776d6a054#file-ss-png" target="_blank" rel="noopener">https://gist.github.com/JoshCheek/55b53e2faa2776d6a054#file-ss-png</a> Awesome stuff :)</p>
 
         
       
@@ -140,7 +135,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="cj8vm47q700ct1dmun2ec4jxu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="cjgyxnmcc005vfmbg6to3ryo4" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -294,7 +289,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

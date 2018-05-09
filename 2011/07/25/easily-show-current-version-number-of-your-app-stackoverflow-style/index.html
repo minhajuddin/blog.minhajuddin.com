@@ -5,25 +5,17 @@
   
   <title>easily show current version number of your app, stackoverflow style | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="When your app is deployed in multiple environments (staging, production),
-knowing the version number of your deployed app helps a lot, in debugging.
-Stackoverflow does a great job of showing a
-meaning">
+  <meta name="description" content="When your app is deployed in multiple environments (staging, production), knowing the version number of your deployed app helps a lot, in debugging. Stackoverflow does a great job of showing a meaning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="easily show current version number of your app, stackoverflow style">
 <meta property="og:url" content="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="When your app is deployed in multiple environments (staging, production),
-knowing the version number of your deployed app helps a lot, in debugging.
-Stackoverflow does a great job of showing a
-meaning">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="When your app is deployed in multiple environments (staging, production), knowing the version number of your deployed app helps a lot, in debugging. Stackoverflow does a great job of showing a meaning">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="easily show current version number of your app, stackoverflow style">
-<meta name="twitter:description" content="When your app is deployed in multiple environments (staging, production),
-knowing the version number of your deployed app helps a lot, in debugging.
-Stackoverflow does a great job of showing a
-meaning">
+<meta name="twitter:description" content="When your app is deployed in multiple environments (staging, production), knowing the version number of your deployed app helps a lot, in debugging. Stackoverflow does a great job of showing a meaning">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -94,7 +86,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -125,14 +117,14 @@ ga('send', 'pageview');
       
         <p>When your app is deployed in multiple environments (staging, production),
 knowing the version number of your deployed app helps a lot, in debugging.
-<a href="http://stackoverflow.com" target="_blank" rel="external">Stackoverflow</a> does a great job of showing a
+<a href="http://stackoverflow.com" target="_blank" rel="noopener">Stackoverflow</a> does a great job of showing a
 meaningful version in it’s footer. Currently it shows that it’s version number
 as <code>rev 2011.7.22.2</code>. This tells us that the code running stackoverflow was last 
 updated on 2011.7.22, and that it was updated twice on that same day.</p>
 <p>You can set up a similar thing pretty easily if you are using git and rails (rails in
 not really needed, but my example shows it using rails). All you need to do is
 add the following line to your <code>config/application.rb</code></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">#config/application.rb</span></div><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">Khalid</span></span></div><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> &lt; Rails::Application</span></div><div class="line">  .</div><div class="line">  .</div><div class="line">  .</div><div class="line">    <span class="comment">#cache the version as long as the app is alive</span></div><div class="line">    <span class="comment">#2011.07.25.4c76f53</span></div><div class="line">    VERSION =<span class="string">`git --git-dir="<span class="subst">#&#123;Rails.root.join(<span class="string">".git"</span>)&#125;</span>" --work-tree="<span class="subst">#&#123;Rails.root&#125;</span>" log -1 --date=short --format="%ad-%h"|sed 's/-/./g'`</span></div><div class="line">  .</div><div class="line">  .</div><div class="line">  .</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#config/application.rb</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Khalid</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> &lt; Rails::Application</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">    <span class="comment">#cache the version as long as the app is alive</span></span><br><span class="line">    <span class="comment">#2011.07.25.4c76f53</span></span><br><span class="line">    VERSION =<span class="string">`git --git-dir="<span class="subst">#&#123;Rails.root.join(<span class="string">".git"</span>)&#125;</span>" --work-tree="<span class="subst">#&#123;Rails.root&#125;</span>" log -1 --date=short --format="%ad-%h"|sed 's/-/./g'`</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>This gives you a constant called <code>Khalid::Application::VERSION</code> which will give you a nice version 
 number containing the commit sha id and the date like this: <code>2011.07.25.4c76f53</code></p>
 
@@ -151,7 +143,7 @@ number containing the commit sha id and the date like this: <code>2011.07.25.4c7
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/" data-id="cj8vm47i2004g1dmuhx7r7q9f" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/" data-id="cjgyxnm9c0027fmbgdyx7dmor" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -305,7 +297,7 @@ number containing the commit sha id and the date like this: <code>2011.07.25.4c7
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

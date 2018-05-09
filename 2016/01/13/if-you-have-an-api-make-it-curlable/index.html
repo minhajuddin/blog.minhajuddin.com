@@ -5,19 +5,18 @@
   
   <title>If you have an API make it curlable | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it.
-Take an example of the bel">
+  <meta name="description" content="These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it. Take an example of the bel">
+<meta name="keywords" content="api,design,curl">
 <meta property="og:type" content="article">
 <meta property="og:title" content="If you have an API make it curlable">
 <meta property="og:url" content="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it.
-Take an example of the bel">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it. Take an example of the bel">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="If you have an API make it curlable">
-<meta name="twitter:description" content="These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it.
-Take an example of the bel">
+<meta name="twitter:description" content="These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it. Take an example of the bel">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -88,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -118,8 +117,8 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>These days APIs are everythere which is a good thing. However, many APIs are very tedious. You can tell if your API is easy to use by looking at how simple it is to curl it.</p>
-<p>Take an example of the below API call, it is from a <a href="https://stripe.com/blog/accept-ach-payments" target="_blank" rel="external">stripe blog post demonstrating their use of ACH payments</a>. See how easy it is to read and understand the call? Why can’t all APIs be like this?</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">curl https://api.stripe.com/v1/charges \</div><div class="line">  -u sk_<span class="built_in">test</span>_BQokikJOvBiI2HlWgH4olfQ2: \</div><div class="line">  <span class="_">-d</span> amount=250000 \</div><div class="line">  <span class="_">-d</span> currency=usd \</div><div class="line">  <span class="_">-d</span> description=<span class="string">"Corp Site License 2016"</span> \</div><div class="line">  <span class="_">-d</span> customer=cus_7hyNnNEjxYuJOE \</div><div class="line">  <span class="_">-d</span> <span class="built_in">source</span>=ba_17SYQs2eZvKYlo2CcV8BfFGz</div></pre></td></tr></table></figure>
+<p>Take an example of the below API call, it is from a <a href="https://stripe.com/blog/accept-ach-payments" target="_blank" rel="noopener">stripe blog post demonstrating their use of ACH payments</a>. See how easy it is to read and understand the call? Why can’t all APIs be like this?</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl https://api.stripe.com/v1/charges \</span><br><span class="line">  -u sk_test_BQokikJOvBiI2HlWgH4olfQ2: \</span><br><span class="line">  -d amount=250000 \</span><br><span class="line">  -d currency=usd \</span><br><span class="line">  -d description=<span class="string">"Corp Site License 2016"</span> \</span><br><span class="line">  -d customer=cus_7hyNnNEjxYuJOE \</span><br><span class="line">  -d <span class="built_in">source</span>=ba_17SYQs2eZvKYlo2CcV8BfFGz</span><br></pre></td></tr></table></figure>
 <p><strong>Anyway, if you are trying to design an API, Please, for the love of all that is holy make it curlable</strong></p>
 
         
@@ -137,7 +136,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/" data-id="cj8vm47np00a61dmu2rtbslfd" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/" data-id="cjgyxnmb6004ifmbgjsm43j5p" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/01/13/if-you-have-an-api-make-it-curlable/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -293,7 +292,7 @@ ga('send', 'pageview');
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

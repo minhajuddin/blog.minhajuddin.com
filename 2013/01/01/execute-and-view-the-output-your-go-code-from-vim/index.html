@@ -6,13 +6,15 @@
   <title>Execute and view the output of your go code from vim | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Here is a small script which I created while trying to make my feedback process faster. It runs the current go file using go run &amp;lt;current filename&amp;gt; and appends its output as a bunch of comments">
+<meta name="keywords" content="go,vim,learn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Execute and view the output of your go code from vim">
 <meta property="og:url" content="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/index.html">
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="Here is a small script which I created while trying to make my feedback process faster. It runs the current go file using go run &amp;lt;current filename&amp;gt; and appends its output as a bunch of comments">
+<meta property="og:locale" content="English">
 <meta property="og:image" content="https://substancehq.s3.amazonaws.com/static_asset/50e3354203b04d3567000398/vim-shot.png">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Execute and view the output of your go code from vim">
 <meta name="twitter:description" content="Here is a small script which I created while trying to make my feedback process faster. It runs the current go file using go run &amp;lt;current filename&amp;gt; and appends its output as a bunch of comments">
@@ -87,7 +89,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -117,7 +119,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <p>Here is a small script which I created while trying to make my feedback process faster. It runs the current go file using <code>go run &lt;current filename&gt;</code> and appends its output as a bunch of comments at the bottom of the file whenever you hit <code>&lt;Ctrl&gt;d</code></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>! <span class="title">RunHandler</span><span class="params">()</span></span></div><div class="line">  <span class="comment">" to save the cursor position</span></div><div class="line">  <span class="keyword">let</span> <span class="variable">l:winview</span> = <span class="built_in">winsaveview</span>()</div><div class="line">  <span class="keyword">if</span> &amp;ft == <span class="string">"go"</span></div><div class="line">    :silent!$r!go run % <span class="number">2</span>&gt;&amp;<span class="number">1</span> | sed <span class="string">'s/^/\/\//g'</span></div><div class="line">    redraw!</div><div class="line">    <span class="keyword">echo</span> <span class="string">"triggered go run "</span> <span class="built_in">expand</span>(<span class="string">"%"</span>)</div><div class="line">  <span class="keyword">endif</span></div><div class="line">  <span class="keyword">call</span> <span class="built_in">winrestview</span>(<span class="variable">l:winview</span>)</div><div class="line"><span class="keyword">endfunction</span></div><div class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-d&gt;</span> :<span class="keyword">call</span> RunHandler()<span class="symbol">&lt;cr&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>! <span class="title">RunHandler</span><span class="params">()</span></span></span><br><span class="line">  <span class="comment">" to save the cursor position</span></span><br><span class="line">  <span class="keyword">let</span> <span class="variable">l:winview</span> = <span class="built_in">winsaveview</span>()</span><br><span class="line">  <span class="keyword">if</span> &amp;ft == <span class="string">"go"</span></span><br><span class="line">    :silent!$r!go run % <span class="number">2</span>&gt;&amp;<span class="number">1</span> | sed <span class="string">'s/^/\/\//g'</span></span><br><span class="line">    redraw!</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"triggered go run "</span> <span class="built_in">expand</span>(<span class="string">"%"</span>)</span><br><span class="line">  <span class="keyword">endif</span></span><br><span class="line">  <span class="keyword">call</span> <span class="built_in">winrestview</span>(<span class="variable">l:winview</span>)</span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;C-d&gt;</span> :<span class="keyword">call</span> RunHandler()<span class="symbol">&lt;cr&gt;</span></span><br></pre></td></tr></table></figure>
 <p>You can use this with slight changes with other file types. Here is a screenshot:</p>
 <p><img src="https://substancehq.s3.amazonaws.com/static_asset/50e3354203b04d3567000398/vim-shot.png" alt="vim screenshot"></p>
 <p>###TODO
@@ -138,7 +140,7 @@ Make it overwrite the old output or insert before the previous output</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cj8vm47in005d1dmu6c4l2ix6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/" data-id="cjgyxnm9k002ifmbgiuffohoi" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2013/01/01/execute-and-view-the-output-your-go-code-from-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -294,7 +296,7 @@ Make it overwrite the old output or insert before the previous output</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>

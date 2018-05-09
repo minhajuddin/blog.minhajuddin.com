@@ -5,25 +5,18 @@
   
   <title>Elixir IO.inspect to debug pipelines | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="While writing multiple pipelines, you may want to debug the intermediate values.
-Just insert |&amp;gt; IO.inspect between your pipelines.
-e.g. in the expression below:
-1234:crypto.strong_rand_bytes(32)  |">
+  <meta name="description" content="While writing multiple pipelines, you may want to debug the intermediate values. Just insert |&amp;gt; IO.inspect between your pipelines. e.g. in the expression below: 1234:crypto.strong_rand_bytes(32)  |">
+<meta name="keywords" content="Elixir,Pipelines,Debug">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Elixir IO.inspect to debug pipelines">
 <meta property="og:url" content="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="While writing multiple pipelines, you may want to debug the intermediate values.
-Just insert |&amp;gt; IO.inspect between your pipelines.
-e.g. in the expression below:
-1234:crypto.strong_rand_bytes(32)  |">
-<meta property="og:updated_time" content="2017-10-04T11:24:52.000Z">
+<meta property="og:description" content="While writing multiple pipelines, you may want to debug the intermediate values. Just insert |&amp;gt; IO.inspect between your pipelines. e.g. in the expression below: 1234:crypto.strong_rand_bytes(32)  |">
+<meta property="og:locale" content="English">
+<meta property="og:updated_time" content="2018-05-09T09:59:52.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elixir IO.inspect to debug pipelines">
-<meta name="twitter:description" content="While writing multiple pipelines, you may want to debug the intermediate values.
-Just insert |&amp;gt; IO.inspect between your pipelines.
-e.g. in the expression below:
-1234:crypto.strong_rand_bytes(32)  |">
+<meta name="twitter:description" content="While writing multiple pipelines, you may want to debug the intermediate values. Just insert |&amp;gt; IO.inspect between your pipelines. e.g. in the expression below: 1234:crypto.strong_rand_bytes(32)  |">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -94,7 +87,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://minhajuddin.com"></form>
       </div>
     </div>
   </div>
@@ -126,9 +119,9 @@ ga('send', 'pageview');
         <p>While writing multiple pipelines, you may want to debug the intermediate values.
 Just insert <code>|&gt; IO.inspect</code> between your pipelines.</p>
 <p>e.g. in the expression below:</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">:crypto</span>.strong_rand_bytes(<span class="number">32</span>)</div><div class="line">  |&gt; <span class="symbol">:base64</span>.encode_to_string</div><div class="line">  |&gt; <span class="symbol">:base64</span>.decode</div><div class="line">  |&gt; <span class="symbol">:base64</span>.encode</div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:crypto</span>.strong_rand_bytes(<span class="number">32</span>)</span><br><span class="line">  |&gt; <span class="symbol">:base64</span>.encode_to_string</span><br><span class="line">  |&gt; <span class="symbol">:base64</span>.decode</span><br><span class="line">  |&gt; <span class="symbol">:base64</span>.encode</span><br></pre></td></tr></table></figure>
 <p>If we want to check intermediate values we just need to add a <code>|&gt; IO.inspect</code></p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">:crypto</span>.strong_rand_bytes(<span class="number">32</span>)</div><div class="line">  |&gt; IO.inspect</div><div class="line">  |&gt; <span class="symbol">:base64</span>.encode_to_string</div><div class="line">  |&gt; IO.inspect</div><div class="line">  |&gt; <span class="symbol">:base64</span>.decode</div><div class="line">  |&gt; IO.inspect</div><div class="line">  |&gt; <span class="symbol">:base64</span>.encode</div><div class="line">  |&gt; IO.inspect</div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:crypto</span>.strong_rand_bytes(<span class="number">32</span>)</span><br><span class="line">  |&gt; IO.inspect</span><br><span class="line">  |&gt; <span class="symbol">:base64</span>.encode_to_string</span><br><span class="line">  |&gt; IO.inspect</span><br><span class="line">  |&gt; <span class="symbol">:base64</span>.decode</span><br><span class="line">  |&gt; IO.inspect</span><br><span class="line">  |&gt; <span class="symbol">:base64</span>.encode</span><br><span class="line">  |&gt; IO.inspect</span><br></pre></td></tr></table></figure>
 <p>This will print all the intermediate values to the STDOUT. IO.inspect is a function which prints the input and returns it.</p>
 
         
@@ -146,7 +139,7 @@ Just insert <code>|&gt; IO.inspect</code> between your pipelines.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="cj8vm47i9004p1dmuv2x95pwn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="cjgyxnm9g002dfmbgzaflgid1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -302,7 +295,7 @@ Just insert <code>|&gt; IO.inspect</code> between your pipelines.</p>
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Khaja Minhajuddin<br>
+      &copy; 2018 Khaja Minhajuddin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> |
       Built by <a href="https://zammu.in/hexo" title="Hexo Automatic Deployments, for sites built with Hexo on Github Pages" target="_blank">https://zammu.in</a>
     </div>
