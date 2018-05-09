@@ -43,6 +43,7 @@ after_success:
 - git clone --depth 1 --branch gh-pages --single-branch $DEPLOY_REPO . || (git init && git remote add -t gh-pages origin $DEPLOY_REPO)
 - rm -rf ./*                      # Clear old verion
 - cp -r ../public/* .             # Copy over files for new version
+- echo 'minhajuddin.com' > CNAME  # setup custom domain
 - git add -A .
 - git commit -m 'Site updated'    # Make a new commit for new version
 - git branch -m gh-pages
