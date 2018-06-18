@@ -8,9 +8,6 @@ Here is a list of the interesting ones.
 ## [statictrain](http://www.statictrain.com)
 This project is still under development. It makes static site generators more accessible to the general public.
 
-## [zammu](https://zammu.in)
-I am still building [zammu.in](https://zammu.in), It is a service which allows you to setup [Automatic Deployments for your static sites](https://zammu.in). It supports many static site generators (e.g. [Hugo](https://zammu.in/hugo), [Hexo](https://zammu.in/hexo)). It pulls code from Github, Builds the static site and pushes it to Github Pages.
-
 ## [websrvr](http://www.websrvr.in)
 [websrvr](http://www.websrvr.in) allows you to manage your site through Dropbox. You can create and manage your websites without ever opening the websrvr app. You just edit them on your local computer and they are automatically updated on our webservers via Dropbox.
 
