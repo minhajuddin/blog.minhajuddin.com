@@ -54,7 +54,7 @@ end
 ```
 
 When using packages, I try to take a peek at the source code and
-understand how things work. And, I was *schocked* when I saw just 10 lines of
+understand how things work. And, I was *shocked* when I saw just 10 lines of
 code in the `lib` folder! See for yourself:
 
 ```elixir
