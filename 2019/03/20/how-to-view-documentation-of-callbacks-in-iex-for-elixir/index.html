@@ -5,18 +5,18 @@
   
   <title>How to view documentation of callbacks in IEx for Elixir | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="The other day, I was playing around with GenServers when I needed to see the documentation for the handle_call hook for a GenServer. I knew that this wasn’t a function defined on the GenServer so I co">
+  <meta name="description" content="The other day, I was playing around with GenServers and I needed to see the documentation for the handle_call hook. I knew that this wasn’t a function defined on the GenServer, So I couldn’t just do a">
 <meta name="keywords" content="GenServer,TIL,Documentation,Callbacks">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to view documentation of callbacks in IEx for Elixir">
 <meta property="og:url" content="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/index.html">
 <meta property="og:site_name" content="Simplicity">
-<meta property="og:description" content="The other day, I was playing around with GenServers when I needed to see the documentation for the handle_call hook for a GenServer. I knew that this wasn’t a function defined on the GenServer so I co">
+<meta property="og:description" content="The other day, I was playing around with GenServers and I needed to see the documentation for the handle_call hook. I knew that this wasn’t a function defined on the GenServer, So I couldn’t just do a">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2019-03-20T14:39:16.205Z">
+<meta property="og:updated_time" content="2019-03-20T15:03:40.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to view documentation of callbacks in IEx for Elixir">
-<meta name="twitter:description" content="The other day, I was playing around with GenServers when I needed to see the documentation for the handle_call hook for a GenServer. I knew that this wasn’t a function defined on the GenServer so I co">
+<meta name="twitter:description" content="The other day, I was playing around with GenServers and I needed to see the documentation for the handle_call hook. I knew that this wasn’t a function defined on the GenServer, So I couldn’t just do a">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
   
@@ -116,17 +116,17 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The other day, I was playing around with GenServers when I needed to see the
-documentation for the <code>handle_call</code> hook for a GenServer. I knew that this
-wasn’t a function defined on the <code>GenServer</code> so I couldn’t just do a <code>h
-GenServer.callback</code>. I thought to myself that there must be a way to get
-callback documentation using <code>h</code>, so I typed <code>h h</code> in IEx.</p>
+        <p>The other day, I was playing around with GenServers and I needed to see the
+documentation for the <code>handle_call</code> hook. I knew that this wasn’t a function
+defined on the <code>GenServer</code>, So I couldn’t just do a <code>h GenServer.callback</code>. I
+thought to myself that there must be a way to get callback documentation using
+<code>h</code>, so I typed <code>h h</code> in IEx.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">iex(9)&gt; h h</span><br><span class="line"></span><br><span class="line">                                    def h()</span><br><span class="line"></span><br><span class="line">Prints the documentation for IEx.Helpers.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                                defmacro h(term)</span><br><span class="line"></span><br><span class="line">Prints the documentation for the given module or for the given function/arity</span><br><span class="line">pair.</span><br><span class="line"></span><br><span class="line">## Examples</span><br><span class="line"></span><br><span class="line">    iex&gt; h(Enum)</span><br><span class="line"></span><br><span class="line">It also accepts functions in the format fun/arity and module.fun/arity, for</span><br><span class="line">example:</span><br><span class="line"></span><br><span class="line">    iex&gt; h(receive/1)</span><br><span class="line">    iex&gt; h(Enum.all?/2)</span><br><span class="line">    iex&gt; h(Enum.all?)</span><br><span class="line"></span><br><span class="line">iex(10)&gt;</span><br></pre></td></tr></table></figure>
 <p>No luck with that! Nothing that references getting callback documentation, I
 still wanted to do the naive thing and just see what <code>h GenServer.callback</code>
-returned, to my surprise it ended up returning something useful:</p>
+returned. And, to my surprise it ended up returning something useful:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iex(10)&gt; h GenServer.handle_call</span><br><span class="line">No documentation for function GenServer.handle_call was found, but there is a callback with the same name.</span><br><span class="line">You can view callback documentation with the b/1 helper.</span><br><span class="line"></span><br><span class="line">iex(11)&gt;</span><br></pre></td></tr></table></figure>
-<p>Aha! I’ve been using Elixir for the past 3 years and I didn’t know about <code>b</code>!
+<p>Aha! These are the little things which make me love Elixir so much :’)
 So, the next time you want to look up documentation about callbacks just use the
 <code>b</code> helper in IEx, hope that saves you some time :) It even accepts a module and
 shows you all the callbacks that a module defines!</p>
@@ -152,7 +152,7 @@ beginner do this?</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/" data-id="cjthbc2bg007ncdxuzaxb7776" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/" data-id="cjthc7hjh004se0sz7yx3sny9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       

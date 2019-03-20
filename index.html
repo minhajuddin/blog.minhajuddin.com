@@ -116,17 +116,17 @@ ga('send', 'pageview');
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The other day, I was playing around with GenServers when I needed to see the
-documentation for the <code>handle_call</code> hook for a GenServer. I knew that this
-wasn’t a function defined on the <code>GenServer</code> so I couldn’t just do a <code>h
-GenServer.callback</code>. I thought to myself that there must be a way to get
-callback documentation using <code>h</code>, so I typed <code>h h</code> in IEx.</p>
+        <p>The other day, I was playing around with GenServers and I needed to see the
+documentation for the <code>handle_call</code> hook. I knew that this wasn’t a function
+defined on the <code>GenServer</code>, So I couldn’t just do a <code>h GenServer.callback</code>. I
+thought to myself that there must be a way to get callback documentation using
+<code>h</code>, so I typed <code>h h</code> in IEx.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">iex(9)&gt; h h</span><br><span class="line"></span><br><span class="line">                                    def h()</span><br><span class="line"></span><br><span class="line">Prints the documentation for IEx.Helpers.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">                                defmacro h(term)</span><br><span class="line"></span><br><span class="line">Prints the documentation for the given module or for the given function/arity</span><br><span class="line">pair.</span><br><span class="line"></span><br><span class="line">## Examples</span><br><span class="line"></span><br><span class="line">    iex&gt; h(Enum)</span><br><span class="line"></span><br><span class="line">It also accepts functions in the format fun/arity and module.fun/arity, for</span><br><span class="line">example:</span><br><span class="line"></span><br><span class="line">    iex&gt; h(receive/1)</span><br><span class="line">    iex&gt; h(Enum.all?/2)</span><br><span class="line">    iex&gt; h(Enum.all?)</span><br><span class="line"></span><br><span class="line">iex(10)&gt;</span><br></pre></td></tr></table></figure>
 <p>No luck with that! Nothing that references getting callback documentation, I
 still wanted to do the naive thing and just see what <code>h GenServer.callback</code>
-returned, to my surprise it ended up returning something useful:</p>
+returned. And, to my surprise it ended up returning something useful:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">iex(10)&gt; h GenServer.handle_call</span><br><span class="line">No documentation for function GenServer.handle_call was found, but there is a callback with the same name.</span><br><span class="line">You can view callback documentation with the b/1 helper.</span><br><span class="line"></span><br><span class="line">iex(11)&gt;</span><br></pre></td></tr></table></figure>
-<p>Aha! I’ve been using Elixir for the past 3 years and I didn’t know about <code>b</code>!
+<p>Aha! These are the little things which make me love Elixir so much :’)
 So, the next time you want to look up documentation about callbacks just use the
 <code>b</code> helper in IEx, hope that saves you some time :) It even accepts a module and
 shows you all the callbacks that a module defines!</p>
@@ -146,7 +146,7 @@ beginner do this?</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/" data-id="cjthbc2bg007ncdxuzaxb7776" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/" data-id="cjthc7hjh004se0sz7yx3sny9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -264,7 +264,7 @@ the same arguments.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/02/01/pearls-of-elixir-interesting-patterns-from-popular-elixir-packages/" data-id="cjthbc2cg0093cdxubxq3mm3t" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/02/01/pearls-of-elixir-interesting-patterns-from-popular-elixir-packages/" data-id="cjthc7hki0066e0szbklwevog" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/02/01/pearls-of-elixir-interesting-patterns-from-popular-elixir-packages/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -311,7 +311,7 @@ the same arguments.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-5-in-elixir/" data-id="cjthbc2dg00alcdxuj7i39ke6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-5-in-elixir/" data-id="cjthc7hle007le0szew1b1aef" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-5-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -358,7 +358,7 @@ the same arguments.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-4-in-elixir/" data-id="cjthbc2df00ajcdxuxg61og65" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-4-in-elixir/" data-id="cjthc7hlc007ie0szaq0lttpo" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-4-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -408,7 +408,7 @@ to just the ruby files and finally adding the magic string to all the files.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/05/easy-way-to-add-frozen-string-literal-magic-string-to-your-ruby-files/" data-id="cjthbc29h0054cdxu5mj6v8sg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/05/easy-way-to-add-frozen-string-literal-magic-string-to-your-ruby-files/" data-id="cjthc7hhj002de0sz1tdd3hin" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/05/easy-way-to-add-frozen-string-literal-magic-string-to-your-ruby-files/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -457,7 +457,7 @@ do these kind of exercises, Nevertheless it was fun!</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/04/solution-to-advent-of-code-2018-day-3-in-elixir/" data-id="cjthbc2de00ahcdxug8c0ly3s" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/04/solution-to-advent-of-code-2018-day-3-in-elixir/" data-id="cjthc7hlc007ge0szxriylo1j" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/04/solution-to-advent-of-code-2018-day-3-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -506,7 +506,7 @@ how I tackled it:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/02/solutions-to-advent-of-code-2018-day-2-in-elixir/" data-id="cjthbc2dk00aqcdxusrn9ba5u" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/02/solutions-to-advent-of-code-2018-day-2-in-elixir/" data-id="cjthc7hlg007qe0szesbi2vxd" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/02/solutions-to-advent-of-code-2018-day-2-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -569,7 +569,7 @@ whereas maps really shine in these scenarios.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/01/solutions-to-advent-of-code-2018-day-1-in-elixir-ruby-rust-and-bash/" data-id="cjthbc2dh00ancdxu80ppc06k" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/01/solutions-to-advent-of-code-2018-day-1-in-elixir-ruby-rust-and-bash/" data-id="cjthc7hlf007ne0szdjbhnbqm" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/01/solutions-to-advent-of-code-2018-day-1-in-elixir-ruby-rust-and-bash/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -650,7 +650,7 @@ requests.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/11/22/how-to-get-an-md5-hash-of-your-request-using-a-plug-and-phoenix/" data-id="cjthbc2an006icdxume0wegqe" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/11/22/how-to-get-an-md5-hash-of-your-request-using-a-plug-and-phoenix/" data-id="cjthc7hik003qe0szi6izeuqk" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/11/22/how-to-get-an-md5-hash-of-your-request-using-a-plug-and-phoenix/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -717,7 +717,7 @@ and the implementation using cond are the more readable versions.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/07/06/7-ways-of-doing-fizz-buzz-in-elixir-and-other-clickbaity-stuff/" data-id="cjthbc26t000qcdxuia9c70zm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/07/06/7-ways-of-doing-fizz-buzz-in-elixir-and-other-clickbaity-stuff/" data-id="cjthc7hgi000te0sz2dbp2cvy" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/07/06/7-ways-of-doing-fizz-buzz-in-elixir-and-other-clickbaity-stuff/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -802,7 +802,7 @@ the large body keys from the response using the following command:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/" data-id="cjthbc2ay006xcdxux1wuy3zs" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/" data-id="cjthc7hit0043e0szhtwob1yr" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -864,7 +864,7 @@ as global bucket to shove stuff into. Here is my solution:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/" data-id="cjthbc2e800bjcdxuofw7ir5j" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/" data-id="cjthc7hm6008je0szzlzusq5d" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -916,7 +916,7 @@ Well, there is no point. This was just a fun little exercise :D</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/" data-id="cjthbc2ar006pcdxueqsf2kks" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/" data-id="cjthc7hin003we0szml4yxpnm" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -971,7 +971,7 @@ I use it for a few of my other projects.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/" data-id="cjthbc2ba007ecdxujzotdz1c" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/" data-id="cjthc7hj8004ke0sze5e5jh3z" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1041,7 +1041,7 @@ So, if you are using redis as a key value store. Please do yourself a favor and 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/" data-id="cjthbc29q005ecdxuwq4ep3bs" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/" data-id="cjthc7hhq002me0szdmrkhogh" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1106,7 +1106,7 @@ So, the second best performance for which is <code>pattern_match</code> is 6x be
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/06/19/performance-variations-of-string-substitution-in-elixir/" data-id="cjthbc2ci0095cdxu634z8lf3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/06/19/performance-variations-of-string-substitution-in-elixir/" data-id="cjthc7hkj0068e0szvrbitxe3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/06/19/performance-variations-of-string-substitution-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1205,7 +1205,7 @@ Benchee.run(%{
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/" data-id="cjthbc2ca008ycdxutvni6x22" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/" data-id="cjthc7hkf005ze0szwizlyepf" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1260,7 +1260,7 @@ However, this makes it very difficult to read and modify the SQL. This is when b
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/" data-id="cjthbc2b00072cdxupp7mtfx9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/" data-id="cjthc7hiy0047e0sz6v6ltdja" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1314,7 +1314,7 @@ This should show you a pane with a <strong>Frames</strong> tab. This <strong>Fra
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/03/12/how-to-debug-view-phoenix-channel-network-traffic-in-google-chrome/" data-id="cjthbc2ad0064cdxuzauu6t1f" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/03/12/how-to-debug-view-phoenix-channel-network-traffic-in-google-chrome/" data-id="cjthc7hi9003de0szzcarf8oz" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/03/12/how-to-debug-view-phoenix-channel-network-traffic-in-google-chrome/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1376,7 +1376,7 @@ The next time you want to build a startup, think about these skills. Without one
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/03/11/3-things-that-are-needed-to-make-a-successful-product/" data-id="cjthbc26s000ocdxurd4zii1v" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/03/11/3-things-that-are-needed-to-make-a-successful-product/" data-id="cjthc7hgh000re0szs7smz1k1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/03/11/3-things-that-are-needed-to-make-a-successful-product/#disqus_thread" class="article-comment-link">Comments</a>
       
