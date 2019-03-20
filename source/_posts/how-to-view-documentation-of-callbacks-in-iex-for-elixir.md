@@ -7,11 +7,11 @@ tags:
 - Callbacks
 ---
 
-The other day, I was playing around with GenServers when I needed to see the
-documentation for the `handle_call` hook for a GenServer. I knew that this
-wasn't a function defined on the `GenServer` so I couldn't just do a `h
-GenServer.callback`. I thought to myself that there must be a way to get
-callback documentation using `h`, so I typed `h h` in IEx.
+The other day, I was playing around with GenServers and I needed to see the
+documentation for the `handle_call` hook. I knew that this wasn't a function
+defined on the `GenServer`, So I couldn't just do a `h GenServer.callback`. I
+thought to myself that there must be a way to get callback documentation using
+`h`, so I typed `h h` in IEx.
 
 ```
 iex(9)> h h
@@ -42,7 +42,7 @@ iex(10)>
 
 No luck with that! Nothing that references getting callback documentation, I
 still wanted to do the naive thing and just see what `h GenServer.callback`
-returned, to my surprise it ended up returning something useful:
+returned. And, to my surprise it ended up returning something useful:
 
 ```
 iex(10)> h GenServer.handle_call
@@ -52,7 +52,8 @@ You can view callback documentation with the b/1 helper.
 iex(11)>
 ```
 
-Aha! I've been using Elixir for the past 3 years and I didn't know about `b`!
+
+Aha! These are the little things which make me love Elixir so much :')
 So, the next time you want to look up documentation about callbacks just use the
 `b` helper in IEx, hope that saves you some time :) It even accepts a module and
 shows you all the callbacks that a module defines!
