@@ -275,6 +275,7 @@ just needs changes to our context and our view like so:</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">ProductTagsDemo</span></span>.Core <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">alias</span> Ecto.Multi</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">create_product</span></span>(attrs \\ %&#123;&#125;) <span class="keyword">do</span></span><br><span class="line">    multi_result =</span><br><span class="line">      Multi.new()</span><br><span class="line">      <span class="comment"># use multi to insert all the tags, so the tags are rolled back when there</span></span><br><span class="line">      <span class="comment"># is an error in product creation</span></span><br><span class="line">      |&gt; ensure_tags(attrs)</span><br><span class="line">      |&gt; Multi.insert(<span class="symbol">:product</span>, <span class="keyword">fn</span> %&#123;<span class="symbol">tags:</span> tags&#125; -&gt;</span><br><span class="line">        <span class="comment"># This chunk of code remains the same, the only difference is we let</span></span><br><span class="line">        <span class="comment"># Ecto.Multi handle insertion of the product</span></span><br><span class="line">        %Product&#123;&#125;</span><br><span class="line">        |&gt; Product.changeset(attrs)</span><br><span class="line">        |&gt; Ecto.Changeset.put_assoc(<span class="symbol">:tags</span>, tags)</span><br><span class="line">      <span class="keyword">end</span>)</span><br><span class="line">      <span class="comment"># Finally, we run all of this in a single transaction</span></span><br><span class="line">      |&gt; Repo.transaction()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># a multi result can be an :ok tagged tuple with the data from all steps</span></span><br><span class="line">    <span class="comment"># or an error tagged tuple with the failure step's atom and relevant data</span></span><br><span class="line">    <span class="comment"># in this case we only expect failures in Product insertion</span></span><br><span class="line">    <span class="keyword">case</span> multi_result <span class="keyword">do</span></span><br><span class="line">      &#123;<span class="symbol">:ok</span>, %&#123;<span class="symbol">product:</span> product&#125;&#125; -&gt; &#123;<span class="symbol">:ok</span>, product&#125;</span><br><span class="line">      &#123;<span class="symbol">:error</span>, <span class="symbol">:product</span>, changeset, <span class="number">_</span>&#125; -&gt; &#123;<span class="symbol">:error</span>, changeset&#125;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># This is identical to `create_product`</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">update_product</span></span>(%Product&#123;&#125; = product, attrs) <span class="keyword">do</span></span><br><span class="line">    multi_result =</span><br><span class="line">      Multi.new()</span><br><span class="line">      |&gt; ensure_tags(attrs)</span><br><span class="line">      |&gt; Multi.update(<span class="symbol">:product</span>, <span class="keyword">fn</span> %&#123;<span class="symbol">tags:</span> tags&#125; -&gt;</span><br><span class="line">        product</span><br><span class="line">        |&gt; Product.changeset(attrs)</span><br><span class="line">        |&gt; Ecto.Changeset.put_assoc(<span class="symbol">:tags</span>, tags)</span><br><span class="line">      <span class="keyword">end</span>)</span><br><span class="line">      |&gt; Repo.transaction()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">case</span> multi_result <span class="keyword">do</span></span><br><span class="line">      &#123;<span class="symbol">:ok</span>, %&#123;<span class="symbol">product:</span> product&#125;&#125; -&gt; &#123;<span class="symbol">:ok</span>, product&#125;</span><br><span class="line">      &#123;<span class="symbol">:error</span>, <span class="symbol">:product</span>, changeset, <span class="number">_</span>&#125; -&gt; &#123;<span class="symbol">:error</span>, changeset&#125;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># parse_tags is unchanged</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># We have created an ensure tags to use the multi struct passed along and the</span></span><br><span class="line">  <span class="comment"># repo associated with it to allow rolling back tag inserts</span></span><br><span class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">ensure_tags</span></span>(multi, attrs) <span class="keyword">do</span></span><br><span class="line">    tags = parse_tags(attrs[<span class="string">"tags"</span>])</span><br><span class="line"></span><br><span class="line">    multi</span><br><span class="line">    |&gt; Multi.insert_all(<span class="symbol">:insert_tags</span>, Tag, tags, <span class="symbol">on_conflict:</span> <span class="symbol">:nothing</span>)</span><br><span class="line">    |&gt; Multi.run(<span class="symbol">:tags</span>, <span class="keyword">fn</span> repo, _changes -&gt;</span><br><span class="line">      tag_names = <span class="keyword">for</span> t &lt;- tags, <span class="symbol">do:</span> t.name</span><br><span class="line">      &#123;<span class="symbol">:ok</span>, repo.all(from t <span class="keyword">in</span> Tag, <span class="symbol">where:</span> t.name <span class="keyword">in</span> ^tag_names)&#125;</span><br><span class="line">    <span class="keyword">end</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">ProductTagsDemoWeb</span></span>.ProductView <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">use</span> ProductTagsDemoWeb, <span class="symbol">:view</span></span><br><span class="line">  import Phoenix.HTML.Form</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">tag_input</span></span>(form, field, opts \\ []) <span class="keyword">do</span></span><br><span class="line">    text_input(form, field, <span class="symbol">value:</span> tag_value(form.source, form, field))</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># if there is an error, pass the input params along</span></span><br><span class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">tag_value</span></span>(%Ecto.Changeset&#123;<span class="symbol">valid?:</span> <span class="keyword">false</span>&#125;, form, field) <span class="keyword">do</span></span><br><span class="line">    form.params[to_string(field)]</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">tag_value</span></span>(_source, form, field) <span class="keyword">do</span></span><br><span class="line">    form</span><br><span class="line">    |&gt; input_value(field)</span><br><span class="line">    |&gt; tags_to_text</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">defp</span> <span class="title">tags_to_text</span></span>(tags) <span class="keyword">do</span></span><br><span class="line">    tags</span><br><span class="line">    |&gt; Enum.map(<span class="keyword">fn</span> t -&gt; t.name <span class="keyword">end</span>)</span><br><span class="line">    |&gt; Enum.join(<span class="string">", "</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>Whew, that was long, but hopefully, this gives you a comprehensive understanding
 of how to handle <code>many_to_many</code> relationships in Ecto and Phoenix.</p>
+<p>The source code associated with this blog post can be found at <a href="https://github.com/minhajuddin/product_tags_demo" target="_blank" rel="noopener">https://github.com/minhajuddin/product_tags_demo</a></p>
 <p>P.S. There is a lot of duplication in our final <code>create_product</code> and
 <code>update_product</code> functions, try removing the duplication in an elegant way! I’ll
 share my take on it in the next post!</p>
@@ -287,7 +288,7 @@ share my take on it in the next post!</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/" data-id="ck9s66l2r0064yfupecyqy3zo" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/" data-id="ck9s6c34b006gzyopm6ebgtvu" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -363,7 +364,7 @@ local environment. Hope you find it useful.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/11/30/how-to-dump-a-partial-sample-table-1000-rows-in-postgres-using-pg-dump/" data-id="ck9s66l1a003hyfupuh6xy28r" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/11/30/how-to-dump-a-partial-sample-table-1000-rows-in-postgres-using-pg-dump/" data-id="ck9s6c32w0040zyoppxoj48z2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/11/30/how-to-dump-a-partial-sample-table-1000-rows-in-postgres-using-pg-dump/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -441,69 +442,12 @@ its’ stdin. Hope this makes your development a little more pleasant :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/06/03/how-to-copy-output-of-a-function-to-your-clipboard-in-elixir-or-ruby/" data-id="ck9s66l18003gyfup7r1ogmwk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/06/03/how-to-copy-output-of-a-function-to-your-clipboard-in-elixir-or-ruby/" data-id="ck9s6c32s003szyop4ukglfgy" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/06/03/how-to-copy-output-of-a-function-to-your-clipboard-in-elixir-or-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elixir/">Elixir</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iex/">IEx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/irb/">IRB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pry/">Pry</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">Ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/copy/">copy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pbcopy/">pbcopy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xclip/">xclip</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/" class="article-date">
-  <time datetime="2019-04-14T10:59:55.000Z" itemprop="datePublished">2019-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/">How to store username or email with case insensitive search using Ecto - Part 2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>In a previous blog post I was trying to <a href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/">store username/email in a case
-insensitive way in
-postgres</a>.
-A few folks commented that the <code>citext</code> postgres extension actually did this in
-a very easy and straightforward way. So, I went back to my code and ripped out
-the unnecessary complexity and here is what I ended up with:</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">SF</span></span>.Repo.Migrations.EnableCitextExtension <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">use</span> Ecto.Migration</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">change</span></span> <span class="keyword">do</span></span><br><span class="line">    execute <span class="string">"CREATE EXTENSION citext"</span>, <span class="string">"DROP EXTENSION citext"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"> SF.Repo.Migrations.CreateUsers <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">use</span> Ecto.Migration</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">change</span></span> <span class="keyword">do</span></span><br><span class="line">    create table(<span class="symbol">:users</span>, <span class="symbol">primary_key:</span> <span class="keyword">false</span>) <span class="keyword">do</span></span><br><span class="line">      add <span class="symbol">:id</span>, <span class="symbol">:binary_id</span>, <span class="symbol">primary_key:</span> <span class="keyword">true</span></span><br><span class="line">      add <span class="symbol">:email</span>, <span class="symbol">:citext</span>, <span class="symbol">null:</span> <span class="keyword">false</span></span><br><span class="line">      add <span class="symbol">:magic_token</span>, <span class="symbol">:uuid</span></span><br><span class="line">      add <span class="symbol">:magic_token_created_at</span>, <span class="symbol">:naive_datetime</span></span><br><span class="line">      add <span class="symbol">:confirmation_token</span>, <span class="symbol">:uuid</span></span><br><span class="line">      add <span class="symbol">:confirmed_at</span>, <span class="symbol">:naive_datetime</span></span><br><span class="line"></span><br><span class="line">      timestamps()</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    create index(<span class="symbol">:users</span>, [<span class="symbol">:email</span>], <span class="symbol">unique:</span> <span class="keyword">true</span>)</span><br><span class="line">    create index(<span class="symbol">:users</span>, [<span class="symbol">:magic_token</span>], <span class="symbol">unique:</span> <span class="keyword">true</span>)</span><br><span class="line">    create index(<span class="symbol">:users</span>, [<span class="symbol">:confirmation_token</span>], <span class="symbol">unique:</span> <span class="keyword">true</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">SF</span></span>.User <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">use</span> Ecto.Schema</span><br><span class="line">  import Ecto.Changeset</span><br><span class="line"></span><br><span class="line">  <span class="variable">@primary_key</span> &#123;<span class="symbol">:id</span>, <span class="symbol">:binary_id</span>, <span class="symbol">autogenerate:</span> <span class="keyword">true</span>&#125;</span><br><span class="line">  <span class="variable">@foreign_key_type</span> <span class="symbol">:binary_id</span></span><br><span class="line">  schema <span class="string">"users"</span> <span class="keyword">do</span></span><br><span class="line">    field <span class="symbol">:email</span>, <span class="symbol">:string</span></span><br><span class="line">    field <span class="symbol">:magic_token</span>, Ecto.Base64UUID</span><br><span class="line">    field <span class="symbol">:confirmation_token</span>, Ecto.Base64UUID</span><br><span class="line">    field <span class="symbol">:confirmed_at</span>, <span class="symbol">:naive_datetime</span></span><br><span class="line"></span><br><span class="line">    timestamps()</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="variable">@doc</span> <span class="keyword">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">changeset</span></span>(user, attrs) <span class="keyword">do</span></span><br><span class="line">    user</span><br><span class="line">    |&gt; cast(attrs, [<span class="symbol">:email</span>, <span class="symbol">:confirmation_token</span>])</span><br><span class="line">    |&gt; validate_required([<span class="symbol">:email</span>])</span><br><span class="line">    |&gt; unique_constraint(<span class="symbol">:email</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">SF</span></span>.UserService <span class="keyword">do</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">find_by_email</span></span>(email) <span class="keyword">do</span></span><br><span class="line">    Repo.one(from u <span class="keyword">in</span> User, <span class="symbol">where:</span> u.email == ^email)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>So, the way <a href="https://www.postgresql.org/docs/11/citext.html" target="_blank" rel="noopener">citext</a> works is
-similar to our previous approach. If you want to get into all the gory details
-about how citext is implemented you can check out the code on GitHub at:
-<a href="https://github.com/postgres/postgres/blob/6dd86c269d5b9a176f6c9f67ea61cc17fef9d860/contrib/citext/citext.c" target="_blank" rel="noopener">https://github.com/postgres/postgres/blob/6dd86c269d5b9a176f6c9f67ea61cc17fef9d860/contrib/citext/citext.c</a></p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/" data-id="ck9s66l27004uyfupog4w7wcf" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ecto/">Ecto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elixir/">Elixir</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/email/">Email</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/index/">Index</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">Postgresql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/username/">Username</a></li></ul>
 
     </footer>
   </div>
@@ -572,9 +516,66 @@ in sql using the <code>lower</code> function like so:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/" data-id="ck9s66l29004zyfup1qwc6qrw" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/" data-id="ck9s6c33t005bzyop2s74aeu0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ecto/">Ecto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elixir/">Elixir</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/email/">Email</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/index/">Index</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">Postgresql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/username/">Username</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/" class="article-date">
+  <time datetime="2019-04-14T10:59:55.000Z" itemprop="datePublished">2019-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/">How to store username or email with case insensitive search using Ecto - Part 2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>In a previous blog post I was trying to <a href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/">store username/email in a case
+insensitive way in
+postgres</a>.
+A few folks commented that the <code>citext</code> postgres extension actually did this in
+a very easy and straightforward way. So, I went back to my code and ripped out
+the unnecessary complexity and here is what I ended up with:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">SF</span></span>.Repo.Migrations.EnableCitextExtension <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">use</span> Ecto.Migration</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">change</span></span> <span class="keyword">do</span></span><br><span class="line">    execute <span class="string">"CREATE EXTENSION citext"</span>, <span class="string">"DROP EXTENSION citext"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"> SF.Repo.Migrations.CreateUsers <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">use</span> Ecto.Migration</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">change</span></span> <span class="keyword">do</span></span><br><span class="line">    create table(<span class="symbol">:users</span>, <span class="symbol">primary_key:</span> <span class="keyword">false</span>) <span class="keyword">do</span></span><br><span class="line">      add <span class="symbol">:id</span>, <span class="symbol">:binary_id</span>, <span class="symbol">primary_key:</span> <span class="keyword">true</span></span><br><span class="line">      add <span class="symbol">:email</span>, <span class="symbol">:citext</span>, <span class="symbol">null:</span> <span class="keyword">false</span></span><br><span class="line">      add <span class="symbol">:magic_token</span>, <span class="symbol">:uuid</span></span><br><span class="line">      add <span class="symbol">:magic_token_created_at</span>, <span class="symbol">:naive_datetime</span></span><br><span class="line">      add <span class="symbol">:confirmation_token</span>, <span class="symbol">:uuid</span></span><br><span class="line">      add <span class="symbol">:confirmed_at</span>, <span class="symbol">:naive_datetime</span></span><br><span class="line"></span><br><span class="line">      timestamps()</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    create index(<span class="symbol">:users</span>, [<span class="symbol">:email</span>], <span class="symbol">unique:</span> <span class="keyword">true</span>)</span><br><span class="line">    create index(<span class="symbol">:users</span>, [<span class="symbol">:magic_token</span>], <span class="symbol">unique:</span> <span class="keyword">true</span>)</span><br><span class="line">    create index(<span class="symbol">:users</span>, [<span class="symbol">:confirmation_token</span>], <span class="symbol">unique:</span> <span class="keyword">true</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">SF</span></span>.User <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">use</span> Ecto.Schema</span><br><span class="line">  import Ecto.Changeset</span><br><span class="line"></span><br><span class="line">  <span class="variable">@primary_key</span> &#123;<span class="symbol">:id</span>, <span class="symbol">:binary_id</span>, <span class="symbol">autogenerate:</span> <span class="keyword">true</span>&#125;</span><br><span class="line">  <span class="variable">@foreign_key_type</span> <span class="symbol">:binary_id</span></span><br><span class="line">  schema <span class="string">"users"</span> <span class="keyword">do</span></span><br><span class="line">    field <span class="symbol">:email</span>, <span class="symbol">:string</span></span><br><span class="line">    field <span class="symbol">:magic_token</span>, Ecto.Base64UUID</span><br><span class="line">    field <span class="symbol">:confirmation_token</span>, Ecto.Base64UUID</span><br><span class="line">    field <span class="symbol">:confirmed_at</span>, <span class="symbol">:naive_datetime</span></span><br><span class="line"></span><br><span class="line">    timestamps()</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="variable">@doc</span> <span class="keyword">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">changeset</span></span>(user, attrs) <span class="keyword">do</span></span><br><span class="line">    user</span><br><span class="line">    |&gt; cast(attrs, [<span class="symbol">:email</span>, <span class="symbol">:confirmation_token</span>])</span><br><span class="line">    |&gt; validate_required([<span class="symbol">:email</span>])</span><br><span class="line">    |&gt; unique_constraint(<span class="symbol">:email</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">SF</span></span>.UserService <span class="keyword">do</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">find_by_email</span></span>(email) <span class="keyword">do</span></span><br><span class="line">    Repo.one(from u <span class="keyword">in</span> User, <span class="symbol">where:</span> u.email == ^email)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>So, the way <a href="https://www.postgresql.org/docs/11/citext.html" target="_blank" rel="noopener">citext</a> works is
+similar to our previous approach. If you want to get into all the gory details
+about how citext is implemented you can check out the code on GitHub at:
+<a href="https://github.com/postgres/postgres/blob/6dd86c269d5b9a176f6c9f67ea61cc17fef9d860/contrib/citext/citext.c" target="_blank" rel="noopener">https://github.com/postgres/postgres/blob/6dd86c269d5b9a176f6c9f67ea61cc17fef9d860/contrib/citext/citext.c</a></p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/" data-id="ck9s6c33r005azyopnvcv8u6g" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ecto/">Ecto</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elixir/">Elixir</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/email/">Email</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/index/">Index</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/">Postgresql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/username/">Username</a></li></ul>
@@ -639,7 +640,7 @@ beginner do this?</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/" data-id="ck9s66l2a0052yfupdiag7ey2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/" data-id="ck9s6c33w005gzyopz96471st" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -757,7 +758,7 @@ the same arguments.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/02/01/pearls-of-elixir-interesting-patterns-from-popular-elixir-packages/" data-id="ck9s66l2y006iyfupqmnfiz2m" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/02/01/pearls-of-elixir-interesting-patterns-from-popular-elixir-packages/" data-id="ck9s6c34j0070zyopncz897u8" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/02/01/pearls-of-elixir-interesting-patterns-from-popular-elixir-packages/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -804,7 +805,7 @@ the same arguments.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-5-in-elixir/" data-id="ck9s66l3s007wyfupq8xxluag" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-5-in-elixir/" data-id="ck9s6c35l008hzyoph28y2ibf" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-5-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -851,7 +852,7 @@ the same arguments.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-4-in-elixir/" data-id="ck9s66l3v0080yfupfw5ir3md" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-4-in-elixir/" data-id="ck9s6c35k008fzyop3l0hovnl" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-4-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -901,7 +902,7 @@ to just the ruby files and finally adding the magic string to all the files.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/05/easy-way-to-add-frozen-string-literal-magic-string-to-your-ruby-files/" data-id="ck9s66l0n002byfup4zscsgre" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/05/easy-way-to-add-frozen-string-literal-magic-string-to-your-ruby-files/" data-id="ck9s6c327002tzyop3kh0ulje" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/05/easy-way-to-add-frozen-string-literal-magic-string-to-your-ruby-files/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -950,7 +951,7 @@ do these kind of exercises, Nevertheless it was fun!</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/04/solution-to-advent-of-code-2018-day-3-in-elixir/" data-id="ck9s66l3r007uyfupvefzqg8c" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/04/solution-to-advent-of-code-2018-day-3-in-elixir/" data-id="ck9s6c35i008dzyop66ip058h" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/04/solution-to-advent-of-code-2018-day-3-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -999,7 +1000,7 @@ how I tackled it:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/02/solutions-to-advent-of-code-2018-day-2-in-elixir/" data-id="ck9s66l3x0082yfupe6ci89u0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/02/solutions-to-advent-of-code-2018-day-2-in-elixir/" data-id="ck9s6c35o008lzyop4p73jw3j" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/02/solutions-to-advent-of-code-2018-day-2-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1062,7 +1063,7 @@ whereas maps really shine in these scenarios.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/01/solutions-to-advent-of-code-2018-day-1-in-elixir-ruby-rust-and-bash/" data-id="ck9s66l3u007zyfuplvqjwxpp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/01/solutions-to-advent-of-code-2018-day-1-in-elixir-ruby-rust-and-bash/" data-id="ck9s6c35n008kzyopcd2lhlp0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/01/solutions-to-advent-of-code-2018-day-1-in-elixir-ruby-rust-and-bash/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1143,7 +1144,7 @@ requests.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/11/22/how-to-get-an-md5-hash-of-your-request-using-a-plug-and-phoenix/" data-id="ck9s66l1m003ryfupdis4ggvn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/11/22/how-to-get-an-md5-hash-of-your-request-using-a-plug-and-phoenix/" data-id="ck9s6c335004bzyopayb0f3xh" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/11/22/how-to-get-an-md5-hash-of-your-request-using-a-plug-and-phoenix/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1210,7 +1211,7 @@ and the implementation using cond are the more readable versions.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/07/06/7-ways-of-doing-fizz-buzz-in-elixir-and-other-clickbaity-stuff/" data-id="ck9s66kzv000tyfupwfyg8ke4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/07/06/7-ways-of-doing-fizz-buzz-in-elixir-and-other-clickbaity-stuff/" data-id="ck9s6c310001dzyop9i70xv1d" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/07/06/7-ways-of-doing-fizz-buzz-in-elixir-and-other-clickbaity-stuff/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1295,7 +1296,7 @@ the large body keys from the response using the following command:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/" data-id="ck9s66l1w004ayfuppz8t80g2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/" data-id="ck9s6c33c004rzyop9obzgty0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1357,7 +1358,7 @@ as global bucket to shove stuff into. Here is my solution:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/" data-id="ck9s66l4h008syfuppjo1pvob" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/" data-id="ck9s6c365009ezyopre8oxho3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1409,7 +1410,7 @@ Well, there is no point. This was just a fun little exercise :D</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/" data-id="ck9s66l1q003yyfupnxe3imhq" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/" data-id="ck9s6c337004izyopy1ensdrf" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1464,7 +1465,7 @@ I use it for a few of my other projects.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/" data-id="ck9s66l24004nyfupnd0mp7r1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/" data-id="ck9s6c33j0054zyopk802rrab" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1534,7 +1535,7 @@ So, if you are using redis as a key value store. Please do yourself a favor and 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/" data-id="ck9s66l0s002myfups7sea9jy" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/" data-id="ck9s6c32f0032zyop11a67j0h" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1620,11 +1621,11 @@ So, if you are using redis as a key value store. Please do yourself a favor and 
           </li>
         
           <li>
-            <a href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/">How to store username or email with case insensitive search using Ecto - Part 2</a>
+            <a href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/">How to store username or email with case insensitive search using Ecto</a>
           </li>
         
           <li>
-            <a href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/">How to store username or email with case insensitive search using Ecto</a>
+            <a href="/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/">How to store username or email with case insensitive search using Ecto - Part 2</a>
           </li>
         
       </ul>
