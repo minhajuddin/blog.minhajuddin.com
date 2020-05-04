@@ -11,34 +11,35 @@ tags:
 
 The other day I was helping a friend set up a phoenix app which required the use
 of tags on products, we all have used tags in our day to day to add information
-about notes, images, and other stuff. Tags, are just names which are used to
-associate with an entity like a product, blog post, image etc,. This blog post
-has a few tags too (Ecto, Elixir, Phoenix etc,.). Tags help us organize
-information in a loose fashion by annotating entities with useful fragments of
+about notes, images, and other stuff. Tags are just labels/chunks-of-text which
+are used to associated with an entity like a product, blog post, image, etc.
+This blog post has a few tags too (Ecto, Elixir, Phoenix, etc.). Tags help us
+organize information by annotating records with useful fragments of
 information. And modeling these in a database is pretty straightforward, it is
-usually implemented in the following design.
+usually implemented like the following design.
 
-~photo of the ERD
+{%asset_img erd-small.jpg Products and Tags ERD%}
 
-As you can see, we have a many to many relation between the products and tags
-via a products_tags table which has just 2 columns the product_id and the tag_id
-and it has a composite primary key (while also having an index on the tag_id to
-make lookups faster). The use of a join table is required, however, you want
-this to be invisible in your app as you don't want to deal with a ProductTag
-model, it doesn't serve any purpose other than helping you bridge the object
-model with the relational model. Anyway, here is how we ended up building the
-many to many relationship in Phoenix and Ecto.
+As you can see, we have a many-to-many relation between the products and tags
+tables via a products_tags table which has just 2 columns the `product_id` and
+the `tag_id` and it has a composite primary key (while also having an index on
+the `tag_id` to make lookups faster). The use of a join table is required,
+however, you usually want the join table to be invisible in your domain, as you
+don't want to deal with a ProductTag model, it doesn't serve any purpose other
+than helping you bridge the object model with the relational model. Anyway, here
+is how we ended up building the many-to-many relationship in Phoenix and Ecto.
 
-# Scaffolding the models
+## Scaffolding the models
 
-We use a nondescript Core context for our products by running the following
-scaffold code:
+We use a nondescript `Core` context for our `Product` model by running the
+following scaffold code:
 
 ```
 mix phx.gen.html Core Product products name:string description:text
 ```
 
-This generates the following migration (I've omitted the boilerplate):
+This generates the following migration (I've omitted the boilerplate to make
+reading the relevant code easier):
 
 ```
 create table(:products) do
@@ -55,14 +56,14 @@ Don't forget to add the following to your `router.ex`
 resources "/products", ProductController
 ```
 
-Then, we add the `Tag` in the same context for convenience by running the
-following scaffold generator:
+Then, we add the `Tag` in the same context by running the following scaffold
+generator:
 
 ```
 mix phx.gen.html Core Tag tags name:string:unique
 ```
 
-This generates the following migration, note the unique index on name, as we
+This generates the following migration, note the unique index on `name`, as we
 don't want tags with duplicate names, you might have separate tags per user in
 which case you would have a unique index on `[:user_id, :name]`.
 
@@ -76,9 +77,9 @@ end
 create unique_index(:tags, [:name])
 ```
 
-Finally we generate the migration for the join table `products_tags`, by
+Finally, we generate the migration for the join table `products_tags`(by
 convention it uses the pluralized names of both entities joined by an underscore
-so `products` and `tags` joined by an `_` gives us the name `products_tags`.
+so `products` and `tags` joined by an `_` gives us the name `products_tags`).
 
 ```
 mix phx.gen.schema Core.ProductTag products_tags product_id:references:products tag_id:references:tags
@@ -99,12 +100,17 @@ create index(:products_tags, [:tag_id])
 
 Note the following:
   1. We added a `primary_key: false` declaration to the `table()` function call
-  2. We got rid of the `timestamps()` declaration
+     to avoid creating a wasted `id` column.
+  2. We got rid of the `timestamps()` declaration as we don't want to track
+     `inserts` and `updates` on the joins. You might want to track inserts if
+     you want to know when a product was tagged with a specific tag which makes
+     things a little more complex, so, we'll avoid it for now.
   3. We added a `, primary_key: true` to the `:product_id` and `:tag_id` lines
      to make `[:product_id, :tag_id]` a composite primary key
 
-Now our database is set up nicely for our many to many relationship. Here is how
-your tables look in the database:
+
+Now our database is set up nicely for our many-to-many relationship. Here is how
+our tables look in the database:
 
 ```
 product_tags_demo_dev=# \d products
@@ -158,6 +164,8 @@ Foreign-key constraints:
     "products_tags_tag_id_fkey" FOREIGN KEY (tag_id) REFERENCES tags(id)
 ```
 
+## Getting tags to work!
+
 Now comes the fun part, modifying our controllers and contexts to get our tags
 working!
 
@@ -173,10 +181,14 @@ The first thing we need to do is add a many_to_many relationship on the `Product
   end
 ```
 
-Now, we need to modify our `Product` form to show an input for tags, the easy
-way to do this is to ask the users to provide a comma separated list of tags in
-an input textbox. A nicer way is to use a javascript library like *select2*(https://select2.org/getting-started/basic-usage#multi-select-boxes-pillbox)
-For us a text boxy with comma separated tags will suffice.
+(Note, that we don't need to add this relationship on the other side, i.e., `Tag`
+to get this working)
+
+Now, we need to modify our `Product` form to show an input mechanism for tags,
+the easy way to do this is to ask the users to provide a comma-separated list of
+tags in an input textbox. A nicer way is to use a javascript library like
+[*select2*](https://select2.org/getting-started/basic-usage#multi-select-boxes-pillbox).
+For us, a text box with comma-separated tags will suffice.
 
 The easiest way to do this is to add a text field like so:
 ```html
@@ -190,11 +202,11 @@ page like below:
 ```
 protocol Phoenix.HTML.Safe not implemented for #Ecto.Association.NotLoaded<association :tags is not loaded> of type Ecto.Association.NotLoaded (a struct).
 ```
-This is telling us that the `to_string` function can't convert an `Ecto.Association.NotLoaded` struct
-into a string, When you have a relation like a `belongs_to` or `has_one` or
-`many_to_many` that isn't loaded on an entity it has this default value. This is
-coming from our controller, we can remedy this by changing our action to the
-following:
+This is telling us that the `to_string` function can't convert an
+`Ecto.Association.NotLoaded` struct into a string, When you have a relation like
+a `belongs_to` or `has_one` or `many_to_many` that isn't loaded on a struct, it
+has this default value. This is coming from our controller, we can remedy this
+by changing our action to the following:
 
 ```elixir
 def new(conn, _params) do
@@ -207,33 +219,35 @@ collection so that it renders properly in the form.
 
 Now that we have fixed our form, we can try submitting some tags through this
 form, However, when you enter any tags and hit `Save` it doesn't do anything
-which is not surprising because we haven't set up handling of these tags on the
-backend.
+which is not surprising because we haven't set up the handling of these tags on
+the backend yet.
 
-Now, we know that the tags field has comma separated tags, so we need to do the
+We know that the `tags` field has comma-separated tags, so we need to do the
 following to be able to save a product.
 
-Parse the tags by splitting them on a comma, stripping them of whitespace, and
-downcasing them to get them to be homogeneous. If you want your tag names to be
-persisted using the input casing and still treat the upcased version the same as
-the downcased or capitalized version, you can use `:citext` (short for case
-insensitive text) you can read more about how to set up `:citext` columns in my
-blog post about [storing username/email in a case insensitive
-fashion](https://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/)
+  1. Split tags on a comma.
+  2. Strip them of whitespace.
+  3. Lowercase them to get them to be homogeneous (If you want your tag names to
+     be persisted using the input casing and still treat the uppercased version
+     the same as the lowercased or capitalized versions, you can use `:citext`
+     (short for case insensitive text) read more about how to set up `:citext`
+     columns in my blog post about [storing username/email in a case insensitive
+     fashion](https://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/)).
+  4. Once we have all the tag `names` we can insert any new tags and then fetch
+     the existing tags, combine them, and use `put_assoc` to put them on the
+     product.
 
-Once we have all the tag `names` we can insert the any new tags and then fetch
-the existing tags, combine them and use `put_assoc` to put them on the product.
-This usually creates a race condition in your code which can happen when 2
-requests try to create the tags with the same name. An easy way to work around
-this is to treat all the tags as new and do an upsert using `Repo.insert_all`
-with a `on_conflict: :nothing` option which adds the fragment `ON CONFLICT DO
-NOTHING` to your sql which makes your query run successfully even if there are
-tags with the same name, it just doesn't insert new tags. Also note that this
-function inserts all the tags in a single query doing a bulk insert of all the
-input tags. Once you `upsert` all the tags, you can then find them and use a
-`put_assoc` to create an association.
+Step #4 creates a race condition in your code which can happen when 2 requests
+try to create tags with the same name at the same time. An easy way to work
+around this is to treat all the tags as new and do an upsert using
+`Repo.insert_all` with an `on_conflict: :nothing` option which adds the fragment
+`ON CONFLICT DO NOTHING` to your SQL making your query run successfully even if
+there are tags with the same name in the database, it just doesn't insert new
+tags. Also, note that this function inserts all the tags in a single query doing
+a bulk insert of all the input tags. Once you `upsert` all the tags, you can
+then find them and use a `put_assoc` to create an association.
 
-This is what ended up as the final `Core.create_product` function
+This is what ended up as the final `Core.create_product` function:
 
 ```elixir
   def create_product(attrs \\ %{}) do
@@ -312,8 +326,8 @@ protocol Phoenix.HTML.Safe not implemented for #Ecto.Association.NotLoaded<assoc
 ```
 
 Hmmm, we have seen this before when we rendered a new Product without tags,
-However in this case our product does have tags but they haven't been
-loaded/preloaded. We can remedy that easily by tweaking our action code to the
+However, in this case, our product does have tags but they haven't been
+loaded/preloaded. We can remedy that easily by tweaking our `edit` action to the
 following:
 
 ```elixir
@@ -332,7 +346,7 @@ lists in Phoenix.HTML and templates may only contain integers representing bytes
 
 This is because we are using a `text_input` for a collection of tags and when
 phoenix tries to convert the list of tags into a string it fails. This is a good
-place to add a custom input:
+place to add a custom input function:
 
 ```elixir
 defmodule ProductTagsDemoWeb.ProductView do
@@ -365,7 +379,7 @@ Note that the `text_input` has been changed to `tag_input`.
 Now, when we go to edit a product, it should render the form with the tags
 separated by commas. However, updating the product by changing tags still
 doesn't work because we haven't updated our backend code to handle this. To
-complete this we need to tweak the controller and the `Core` context like so:
+complete this, we need to tweak the controller and the `Core` context like so:
 
 ```elixir
 defmodule ProductTagsDemoWeb.ProductController do
@@ -385,15 +399,15 @@ end
 ```
 
 Note that in the controller we are using `get_product_with_tags!` and in the
-context we inserted a line to `put_assoc` similar to the `create_product`
+context, we inserted a line to `put_assoc` similar to the `create_product`
 function which does the same things as `create_product`.
 
 Astute readers will observe that our create and update product implementation
-doesn't rollback newly created tags in the case a product insertion or updation
-fails. Let us add this and wrap our post!
+doesn't rollback newly created tags, when `create_product` or `update_product`
+fails. Let us handle this case and wrap our post!
 
-Ecto provides `Ecto.Multi` to allow easy transaction handling. This just needs
-changes to our context and our view like so:
+Ecto provides `Ecto.Multi` to allow easy database transaction handling. This
+just needs changes to our context and our view like so:
 
 ```elixir
 defmodule ProductTagsDemo.Core do
@@ -402,20 +416,29 @@ defmodule ProductTagsDemo.Core do
   def create_product(attrs \\ %{}) do
     multi_result =
       Multi.new()
+      # use multi to insert all the tags, so the tags are rolled back when there
+      # is an error in product creation
       |> ensure_tags(attrs)
       |> Multi.insert(:product, fn %{tags: tags} ->
+        # This chunk of code remains the same, the only difference is we let
+        # Ecto.Multi handle insertion of the product
         %Product{}
         |> Product.changeset(attrs)
         |> Ecto.Changeset.put_assoc(:tags, tags)
       end)
+      # Finally, we run all of this in a single transaction
       |> Repo.transaction()
 
+    # a multi result can be an :ok tagged tuple with the data from all steps
+    # or an error tagged tuple with the failure step's atom and relevant data
+    # in this case we only expect failures in Product insertion
     case multi_result do
       {:ok, %{product: product}} -> {:ok, product}
       {:error, :product, changeset, _} -> {:error, changeset}
     end
   end
 
+  # This is identical to `create_product`
   def update_product(%Product{} = product, attrs) do
     multi_result =
       Multi.new()
@@ -435,6 +458,8 @@ defmodule ProductTagsDemo.Core do
 
   # parse_tags is unchanged
 
+  # We have created an ensure tags to use the multi struct passed along and the
+  # repo associated with it to allow rolling back tag inserts
   defp ensure_tags(multi, attrs) do
     tags = parse_tags(attrs["tags"])
 
@@ -446,11 +471,37 @@ defmodule ProductTagsDemo.Core do
     end)
   end
 end
+
+defmodule ProductTagsDemoWeb.ProductView do
+  use ProductTagsDemoWeb, :view
+  import Phoenix.HTML.Form
+
+  def tag_input(form, field, opts \\ []) do
+    text_input(form, field, value: tag_value(form.source, form, field))
+  end
+
+  # if there is an error, pass the input params along
+  defp tag_value(%Ecto.Changeset{valid?: false}, form, field) do
+    form.params[to_string(field)]
+  end
+
+  defp tag_value(_source, form, field) do
+    form
+    |> input_value(field)
+    |> tags_to_text
+  end
+
+  defp tags_to_text(tags) do
+    tags
+    |> Enum.map(fn t -> t.name end)
+    |> Enum.join(", ")
+  end
+end
 ```
 
-Whew, that was long, but hopefully this gives you a comprehensive understanding
-of how to handle many_to_many relationships in Ecto and Phoenix.
+Whew, that was long, but hopefully, this gives you a comprehensive understanding
+of how to handle `many_to_many` relationships in Ecto and Phoenix.
 
-P.S There is a lot of duplication in our final `create_product` and
-`update_product` try removing the duplication in an elegant way! I'll share my
-take on it in the next post!
+P.S. There is a lot of duplication in our final `create_product` and
+`update_product` functions, try removing the duplication in an elegant way! I'll
+share my take on it in the next post!
