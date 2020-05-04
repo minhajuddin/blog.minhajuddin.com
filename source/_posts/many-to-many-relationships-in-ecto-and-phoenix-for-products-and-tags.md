@@ -502,6 +502,8 @@ end
 Whew, that was long, but hopefully, this gives you a comprehensive understanding
 of how to handle `many_to_many` relationships in Ecto and Phoenix.
 
+The source code associated with this blog post can be found at https://github.com/minhajuddin/product_tags_demo
+
 P.S. There is a lot of duplication in our final `create_product` and
 `update_product` functions, try removing the duplication in an elegant way! I'll
 share my take on it in the next post!
