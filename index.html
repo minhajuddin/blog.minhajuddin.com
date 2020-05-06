@@ -124,7 +124,7 @@ savings. Here are the required Terraform files to get this working.</p>
 <p>Set up the <code>bastion.tf</code> file like so:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"># get a reference to aws_ami.id using a data resource by finding the right AMI</span><br><span class="line">data &quot;aws_ami&quot; &quot;ubuntu&quot; &#123;</span><br><span class="line">  # pick the most recent version of the AMI</span><br><span class="line">  most_recent = true</span><br><span class="line"></span><br><span class="line">  # Find the 20.04 image</span><br><span class="line">  filter &#123;</span><br><span class="line">    name   = &quot;name&quot;</span><br><span class="line">    values = [&quot;ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*&quot;]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  # With the right virtualization type</span><br><span class="line">  filter &#123;</span><br><span class="line">    name   = &quot;virtualization-type&quot;</span><br><span class="line">    values = [&quot;hvm&quot;]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  # And the image should be published by Canonical (which is a trusted source)</span><br><span class="line">  owners = [&quot;099720109477&quot;] # Canonical&apos;s owner_id don&apos;t change this</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># Configuration for your bastion EC2 instance</span><br><span class="line">resource &quot;aws_instance&quot; &quot;bastion&quot; &#123;</span><br><span class="line">  # Use the AMI from the above step</span><br><span class="line">  ami = data.aws_ami.ubuntu.id</span><br><span class="line"></span><br><span class="line">  # We don&apos;t need a heavy duty server, t2.micro should suffice</span><br><span class="line">  instance_type = &quot;t2.micro&quot;</span><br><span class="line"></span><br><span class="line">  # We use a variable which can be set to true or false in the terraform.tfvars</span><br><span class="line">  # file to control creating or destroying the bastion resource on demand.</span><br><span class="line">  count = var.bastion_enabled ? 1 : 0</span><br><span class="line"></span><br><span class="line">  # The ssh key name</span><br><span class="line">  key_name = var.ssh_key_name</span><br><span class="line"></span><br><span class="line">  # This should refer to the subnet in which you want to spin up the Bastion host</span><br><span class="line">  # You can even hardcode this ID by getting a subnet id from the AWS console</span><br><span class="line">  subnet_id = aws_subnet.subnet[0].id</span><br><span class="line"></span><br><span class="line">  # The 2 security groups here have 2 important rules</span><br><span class="line">  # 1. hn_bastion_sg: opens up Port 22 for just my IP address</span><br><span class="line">  # 2. default: sets up an open network within the security group</span><br><span class="line">  vpc_security_group_ids = [aws_security_group.hn_bastion_sg.id, aws_default_security_group.default.id]</span><br><span class="line"></span><br><span class="line">  # Since we want to access this via internet, we need a public IP</span><br><span class="line">  associate_public_ip_address = true</span><br><span class="line"></span><br><span class="line">  # Some useful tags</span><br><span class="line">  tags = &#123;</span><br><span class="line">    Name = &quot;Bastion&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># We want to output the public_dns name of the bastion host when it spins up</span><br><span class="line">output &quot;bastion-public-dns&quot; &#123;</span><br><span class="line">  value = var.bastion_enabled ? aws_instance.bastion[0].public_dns : &quot;No-bastion&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>Set up the <code>terraform.tfvars</code> file like so:
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Set this to `true` and do a `terraform apply` to spin up a bastion host</span><br><span class="line"># and when you are done, set it to `false` and do another `terraform apply`</span><br><span class="line">bastion_enabled = false</span><br><span class="line"></span><br><span class="line"># My SSH keyname (without the .pem extension)</span><br><span class="line">ssh_key_name = &quot;hyperngn_aws_ohio&quot;</span><br><span class="line"></span><br><span class="line"># The IP of my computer. Do a `curl -sq icanhazip.com` to get it</span><br><span class="line">myip = [&quot;247.39.103.23/32&quot;]</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># Set this to `true` and do a `terraform apply` to spin up a bastion host</span><br><span class="line"># and when you are done, set it to `false` and do another `terraform apply`</span><br><span class="line">bastion_enabled = false</span><br><span class="line"></span><br><span class="line"># My SSH keyname (without the .pem extension)</span><br><span class="line">ssh_key_name = &quot;hyperngn_aws_ohio&quot;</span><br><span class="line"></span><br><span class="line"># The IP of my computer. Do a `curl -sq icanhazip.com` to get it</span><br><span class="line"># Look for the **ProTip** down below to automate this!</span><br><span class="line">myip = [&quot;247.39.103.23/32&quot;]</span><br></pre></td></tr></table></figure></p>
 <p>Set up the <code>vars.tf</code> file like so:
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">variable &quot;ssh_key_name&quot; &#123;</span><br><span class="line">  description = &quot;Name of AWS key pair&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;myip&quot; &#123;</span><br><span class="line">  type        = list(string)</span><br><span class="line">  description = &quot;My IP to allow SSH access into the bastion server&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;bastion_enabled&quot; &#123;</span><br><span class="line">  description = &quot;Spins up a bastion host if enabled&quot;</span><br><span class="line">  type        = bool</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>Relevant sections from my <code>vpc.tf</code>, you could just hardcode these values in the
@@ -137,6 +137,10 @@ host like so:</p>
 <p>Once you are done, you can just login by running the following command and it
 should run seamlessly:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh ecs1</span><br></pre></td></tr></table></figure>
+<p><strong>Pro-Tip</strong> Put the following in your terraform folder’s .envrc, so that you
+don’t have to manually copy paste your IP every time you bring your bastion host
+up (You also need to have <a href="https://direnv.net/" target="_blank" rel="noopener">direnv</a> for this to work).
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat .envrc</span><br><span class="line">export TF_VAR_myip=&quot;[\&quot;$(curl -sq icanhazip.com)/32\&quot;]&quot;</span><br></pre></td></tr></table></figure></p>
 <h2 id="Gotchas"><a href="#Gotchas" class="headerlink" title="Gotchas"></a>Gotchas</h2><ol>
 <li>If you run into any issues use the <code>ssh -vv ecs1</code> command to get copious
 logs and read through all of them to figure out what might be wrong.</li>
@@ -166,7 +170,7 @@ bastion instance when you don’t need it.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/" data-id="ck9vl2tsy003vzfwowj5ud3ya" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/" data-id="ck9vm7tlu003d31rq8xdbnnif" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -375,7 +379,7 @@ share my take on it in the next post!</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/" data-id="ck9vl2tue006izfwoekccuzk8" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/" data-id="ck9vm7tp900cd31rql35xgszn" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -451,7 +455,7 @@ local environment. Hope you find it useful.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/11/30/how-to-dump-a-partial-sample-table-1000-rows-in-postgres-using-pg-dump/" data-id="ck9vl2tt30042zfwoend7ufqb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/11/30/how-to-dump-a-partial-sample-table-1000-rows-in-postgres-using-pg-dump/" data-id="ck9vm7tlz003h31rqqzbdhc9z" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/11/30/how-to-dump-a-partial-sample-table-1000-rows-in-postgres-using-pg-dump/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -529,7 +533,7 @@ its’ stdin. Hope this makes your development a little more pleasant :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/06/03/how-to-copy-output-of-a-function-to-your-clipboard-in-elixir-or-ruby/" data-id="ck9vl2tsw003szfwoemgp1td3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/06/03/how-to-copy-output-of-a-function-to-your-clipboard-in-elixir-or-ruby/" data-id="ck9vm7tlr003a31rq6zmmtwda" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/06/03/how-to-copy-output-of-a-function-to-your-clipboard-in-elixir-or-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -586,7 +590,7 @@ about how citext is implemented you can check out the code on GitHub at:
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/" data-id="ck9vl2ttt005bzfwopg90047t" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/" data-id="ck9vm7tog00b731rqfyovfzp2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto-part2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -660,7 +664,7 @@ in sql using the <code>lower</code> function like so:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/" data-id="ck9vl2ttu005ezfwoqvlnrsb9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/" data-id="ck9vm7toi00b931rqmlxvitu1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/04/14/how-to-store-username-or-email-with-case-insensitive-search-using-ecto/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -727,7 +731,7 @@ beginner do this?</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/" data-id="ck9vl2ttz005jzfwot0tptfq4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/" data-id="ck9vm7tol00bd31rq82e6x48a" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/03/20/how-to-view-documentation-of-callbacks-in-iex-for-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -845,7 +849,7 @@ the same arguments.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/02/01/pearls-of-elixir-interesting-patterns-from-popular-elixir-packages/" data-id="ck9vl2tun0072zfwokhn03zr0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/02/01/pearls-of-elixir-interesting-patterns-from-popular-elixir-packages/" data-id="ck9vm7tpn00cv31rqcv3vo8u3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/02/01/pearls-of-elixir-interesting-patterns-from-popular-elixir-packages/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -892,7 +896,7 @@ the same arguments.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-5-in-elixir/" data-id="ck9vl2tvj008kzfwou249d1pk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-5-in-elixir/" data-id="ck9vm7tqs00ed31rqvfj48at9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-5-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -939,7 +943,7 @@ the same arguments.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-4-in-elixir/" data-id="ck9vl2tvh008hzfwo41hjgrhu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-4-in-elixir/" data-id="ck9vm7tqr00ec31rqfure49ap" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/14/solution-to-advent-of-code-2018-day-4-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -989,7 +993,7 @@ to just the ruby files and finally adding the magic string to all the files.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/05/easy-way-to-add-frozen-string-literal-magic-string-to-your-ruby-files/" data-id="ck9vl2ts8002tzfwowhqxi9dd" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/05/easy-way-to-add-frozen-string-literal-magic-string-to-your-ruby-files/" data-id="ck9vm7tl6002a31rqsyy0esl8" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/05/easy-way-to-add-frozen-string-literal-magic-string-to-your-ruby-files/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1038,7 +1042,7 @@ do these kind of exercises, Nevertheless it was fun!</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/04/solution-to-advent-of-code-2018-day-3-in-elixir/" data-id="ck9vl2tvg008fzfwouffzx2je" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/04/solution-to-advent-of-code-2018-day-3-in-elixir/" data-id="ck9vm7tqq00e931rq2sfj7jce" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/04/solution-to-advent-of-code-2018-day-3-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1087,7 +1091,7 @@ how I tackled it:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/02/solutions-to-advent-of-code-2018-day-2-in-elixir/" data-id="ck9vl2tvl008nzfwoiuc05eyc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/02/solutions-to-advent-of-code-2018-day-2-in-elixir/" data-id="ck9vm7tqu00eg31rq6y5rwc6k" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/02/solutions-to-advent-of-code-2018-day-2-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1150,7 +1154,7 @@ whereas maps really shine in these scenarios.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/12/01/solutions-to-advent-of-code-2018-day-1-in-elixir-ruby-rust-and-bash/" data-id="ck9vl2tvk008lzfwoktj0fu6t" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/12/01/solutions-to-advent-of-code-2018-day-1-in-elixir-ruby-rust-and-bash/" data-id="ck9vm7tqt00ef31rq0k6bgix5" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/12/01/solutions-to-advent-of-code-2018-day-1-in-elixir-ruby-rust-and-bash/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1231,7 +1235,7 @@ requests.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/11/22/how-to-get-an-md5-hash-of-your-request-using-a-plug-and-phoenix/" data-id="ck9vl2ttc004ezfwo0uk63xtz" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/11/22/how-to-get-an-md5-hash-of-your-request-using-a-plug-and-phoenix/" data-id="ck9vm7tm8003t31rq8mbjc8qi" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/11/22/how-to-get-an-md5-hash-of-your-request-using-a-plug-and-phoenix/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1298,7 +1302,7 @@ and the implementation using cond are the more readable versions.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/07/06/7-ways-of-doing-fizz-buzz-in-elixir-and-other-clickbaity-stuff/" data-id="ck9vl2trf001dzfwod3ggrmf9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/07/06/7-ways-of-doing-fizz-buzz-in-elixir-and-other-clickbaity-stuff/" data-id="ck9vm7tjz000q31rqvbrox5kt" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/07/06/7-ways-of-doing-fizz-buzz-in-elixir-and-other-clickbaity-stuff/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1383,7 +1387,7 @@ the large body keys from the response using the following command:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/" data-id="ck9vl2ttk004tzfwoiy0170rr" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/" data-id="ck9vm7to400am31rqhda7npgv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1445,7 +1449,7 @@ as global bucket to shove stuff into. Here is my solution:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/" data-id="ck9vl2tw0009hzfwonzkx06fx" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/" data-id="ck9vm7trb00fb31rq2hcp0rmf" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1497,7 +1501,7 @@ Well, there is no point. This was just a fun little exercise :D</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/" data-id="ck9vl2ttf004jzfwo5j8j2fjf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/" data-id="ck9vm7tnw00ac31rqk0owljq1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1552,7 +1556,7 @@ I use it for a few of my other projects.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/" data-id="ck9vl2ttq0056zfwop4t1tlyh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/" data-id="ck9vm7toc00ay31rqezkj62o9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/#disqus_thread" class="article-comment-link">Comments</a>
       
