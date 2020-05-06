@@ -88,6 +88,7 @@ bastion_enabled = false
 ssh_key_name = "hyperngn_aws_ohio"
 
 # The IP of my computer. Do a `curl -sq icanhazip.com` to get it
+# Look for the **ProTip** down below to automate this!
 myip = ["247.39.103.23/32"]
 
 ```
@@ -195,6 +196,14 @@ should run seamlessly:
 ssh ecs1
 ```
 
+**Pro-Tip** Put the following in your terraform folder's .envrc, so that you
+don't have to manually copy paste your IP every time you bring your bastion host
+up (You also need to have [direnv](https://direnv.net/) for this to work).
+~~~
+$ cat .envrc
+export TF_VAR_myip="[\"$(curl -sq icanhazip.com)/32\"]"
+~~~
+
 ## Gotchas
  1. If you run into any issues use the `ssh -vv ecs1` command to get copious
     logs and read through all of them to figure out what might be wrong.
@@ -215,3 +224,5 @@ don't allow any SSH access (and in my case aren't even public and are fronted by
 ALBs). And your bastion host is not up all the time, and even when it is up, it
 only allows traffic from your single IP. It also saves cost by tearing down the
 bastion instance when you don't need it.
+
+
