@@ -94,6 +94,57 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-xclip-in-a-few-lines-of-ruby" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2012/09/27/xclip-in-a-few-lines-of-ruby/" class="article-date">
+  <time datetime="2012-09-27T00:00:00.000Z" itemprop="datePublished">2012-09-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/09/27/xclip-in-a-few-lines-of-ruby/">xclip in a few lines of ruby</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Update</strong>: I happened to check the source code of the ‘clipboard’ gem and it turns out that it depends on <strong>xclip</strong>. So the code below is just nonsense.</p>
+<p>An xclip in a few lines of ruby</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">'clipboard'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ARGV.empty?</span><br><span class="line">  Clipboard.copy ARGF.readlines.join(<span class="string">"\n"</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  Clipboard.copy ARGV.join(<span class="string">' '</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>###Use cases</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#copy the html source of cosmicvent.com to clipboard</span></span><br><span class="line">curl -s http://cosmicvent.com | xc </span><br><span class="line"></span><br><span class="line"><span class="comment">#copy date to clipboard</span></span><br><span class="line">xc $(date)</span><br></pre></td></tr></table></figure>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/" data-id="ckabll3xv0094ysugoypngrun" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2012/09/27/xclip-in-a-few-lines-of-ruby/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/utility/">utility</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xclip/">xclip</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-an-easy-way-to-automate-your-browser" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2012/09/25/an-easy-way-to-automate-your-browser/" class="article-date">
@@ -130,7 +181,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="ckaam8yww001gz9vesbxfykdl" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/" data-id="ckabll3te001gysugndc6o232" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/25/an-easy-way-to-automate-your-browser/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -177,7 +228,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="ckaam8yws0017z9venrti2ptu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/" data-id="ckabll3t90019ysugmce2lzp7" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/21/a-small-hack-to-know-how-long-its-been/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -224,7 +275,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="ckaam8z16008yz9ve75pqmvem" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/" data-id="ckabll3xu0093ysugdc6sq5fd" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/09/17/why-todo-lists-on-paper-work/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -272,7 +323,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/07/03/my-substance-template/" data-id="ckaam8yzu006dz9ve1w0ssdon" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/07/03/my-substance-template/" data-id="ckabll3wf006gysugpxvi85iu" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/07/03/my-substance-template/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -333,7 +384,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="ckaam8yyl0045z9ve9zid91sx" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/" data-id="ckabll3v10048ysughe9zx2s7" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/06/17/how-to-integrate-a-simple-contact-form-on-your-blog-or-website/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -383,7 +434,7 @@ ga('send', 'pageview');
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/" data-id="ckaam8yzr0068z9vepr25qfk6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/" data-id="ckabll3wc0068ysug7xiexdrv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/03/16/markdown-viewer-script-for-your-markdown-documents/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -441,7 +492,7 @@ your html to haml.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="ckaam8yxv003bz9vejr9a1wwy" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/" data-id="ckabll3ui003cysuguzxxgh7p" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/03/15/how-to-convert-html-or-erb-to-haml-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -503,7 +554,7 @@ login to servers using a command like <code>ssh myserver</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/" data-id="ckaam8yzm005xz9vezp0v19ll" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/" data-id="ckabll3w7005zysugn4ri1ggc" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/02/08/login-to-your-remote-server-using-cd-and-rvmrc/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -550,7 +601,7 @@ of site rendering.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/" data-id="ckaam8z0z008oz9vem3gtcxny" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/" data-id="ckabll3xp008rysug1vfz9rzn" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2012/01/06/throttle-or-de-duplicate-beanstalk-tasks/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -608,7 +659,7 @@ created a small ruby script which nags you to get back to work :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/" data-id="ckaam8yzo005zz9ve72frf8lh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/" data-id="ckabll3w80061ysug21pwdd11" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/16/make-evil-monkey-nag-you-back-to-work/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -659,7 +710,7 @@ on terminal and it will do a global search and replace of all the files in the r
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/" data-id="ckaam8z0f007nz9vevfz2kj8k" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/" data-id="ckabll3x2007sysugolnebtkx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/13/script-to-do-a-global-search-and-replace-in-a-git-repository/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -708,7 +759,7 @@ demonstrates that:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/" data-id="ckaam8yxf002iz9veiimdzc92" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/" data-id="ckabll3u1002gysugozy34286" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/12/elegance-of-functional-programming/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -764,7 +815,7 @@ perform the above step for your <em>git user</em>.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/" data-id="ckaam8yxk002sz9veignu6m60" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/" data-id="ckabll3u7002sysugs1tn3ken" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/12/09/gc-your-git-repositories-automatically-with-a-cron-task/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -819,7 +870,7 @@ remote server. Hope it helps you too :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/11/22/automatically-push-your-git-repo-to-a-server-on-shutdown/" data-id="ckaam8yx0001mz9vevc2hm0d4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/11/22/automatically-push-your-git-repo-to-a-server-on-shutdown/" data-id="ckabll3th001mysugl75fkltv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/11/22/automatically-push-your-git-repo-to-a-server-on-shutdown/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -905,7 +956,7 @@ up, it’s very easy to setup additional apps with the same solr server.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" data-id="ckaam8yyt004nz9ve0gszdu2n" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/" data-id="ckabll3vb004nysug8qdec6au" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/11/10/how-to-setup-solr-and-sunspot-on-a-rails-production-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -969,7 +1020,7 @@ instantly. If you have any improvements you can <a href="https://gist.github.com
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/11/08/simple-log-management-and-viewing-for-your-servers/" data-id="ckaam8z0k007wz9ver3d1x6dj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/11/08/simple-log-management-and-viewing-for-your-servers/" data-id="ckabll3x90080ysugy9u0anf9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/11/08/simple-log-management-and-viewing-for-your-servers/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1016,7 +1067,7 @@ instantly. If you have any improvements you can <a href="https://gist.github.com
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/10/24/how-to-change-the-rails-root-url-based-on-the-user-or-role/" data-id="ckaam8yxr0038z9vetzfqw4ek" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/10/24/how-to-change-the-rails-root-url-based-on-the-user-or-role/" data-id="ckabll3ug0039ysugpd947p4c" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/10/24/how-to-change-the-rails-root-url-based-on-the-user-or-role/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1076,7 +1127,7 @@ tasks in my status bar.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/10/03/mind-stack-a-stack-of-your-thoughts-and-tasks/" data-id="ckaam8yzt006bz9vew7yzuti4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/10/03/mind-stack-a-stack-of-your-thoughts-and-tasks/" data-id="ckabll3we006dysugrocfllvy" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/10/03/mind-stack-a-stack-of-your-thoughts-and-tasks/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1124,65 +1175,9 @@ tasks in my status bar.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/08/02/backup-mongodb-databases-to-s3/" data-id="ckaam8yx2001oz9vevisqtj4x" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/08/02/backup-mongodb-databases-to-s3/" data-id="ckabll3tj001rysugdmigzsu2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/08/02/backup-mongodb-databases-to-s3/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-easily-show-current-version-number-of-your-app-stackoverflow-style" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/" class="article-date">
-  <time datetime="2011-07-25T00:00:00.000Z" itemprop="datePublished">2011-07-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/">easily show current version number of your app, stackoverflow style</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>When your app is deployed in multiple environments (staging, production),
-knowing the version number of your deployed app helps a lot, in debugging.
-<a href="http://stackoverflow.com" target="_blank" rel="noopener">Stackoverflow</a> does a great job of showing a
-meaningful version in it’s footer. Currently it shows that it’s version number
-as <code>rev 2011.7.22.2</code>. This tells us that the code running stackoverflow was last 
-updated on 2011.7.22, and that it was updated twice on that same day.</p>
-<p>You can set up a similar thing pretty easily if you are using git and rails (rails in
-not really needed, but my example shows it using rails). All you need to do is
-add the following line to your <code>config/application.rb</code></p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#config/application.rb</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Khalid</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> &lt; Rails::Application</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">    <span class="comment">#cache the version as long as the app is alive</span></span><br><span class="line">    <span class="comment">#2011.07.25.4c76f53</span></span><br><span class="line">    VERSION =<span class="string">`git --git-dir="<span class="subst">#&#123;Rails.root.join(<span class="string">".git"</span>)&#125;</span>" --work-tree="<span class="subst">#&#123;Rails.root&#125;</span>" log -1 --date=short --format="%ad-%h"|sed 's/-/./g'`</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>This gives you a constant called <code>Khalid::Application::VERSION</code> which will give you a nice version 
-number containing the commit sha id and the date like this: <code>2011.07.25.4c76f53</code></p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/" data-id="ckaam8yxc002bz9ve4m072hdt" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -1252,6 +1247,10 @@ number containing the commit sha id and the date like this: <code>2011.07.25.4c7
       <ul>
         
           <li>
+            <a href="/2020/05/17/my-first-svg-creation/">My first SVG creation</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/17/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-2/">many_to_many relationships in Ecto and Phoenix - Screencast - Part 2</a>
           </li>
         
@@ -1265,10 +1264,6 @@ number containing the commit sha id and the date like this: <code>2011.07.25.4c7
         
           <li>
             <a href="/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/">How to create temporary bastion EC2 instances using Terraform</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/">many_to_many relationships in Ecto and Phoenix for Products and Tags</a>
           </li>
         
       </ul>
@@ -1291,7 +1286,7 @@ number containing the commit sha id and the date like this: <code>2011.07.25.4c7
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

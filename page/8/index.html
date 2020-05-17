@@ -94,6 +94,62 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-helper-script-to-create-new-posts-using-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" class="article-date">
+  <time datetime="2010-10-01T00:00:00.000Z" itemprop="datePublished">2010-10-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2010/10/01/helper-script-to-create-new-posts-using-jekyll/">helper script to create new posts using jekyll</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
+and painful stuff. To create a blog post, you’ll have to do the following:</p>
+<ul>
+<li>Create a filename called 2010-10-01-helper-script-to-create-new-posts-using-jekyll.markdown
+which has a timestamp, hyphens and a title which is kind of a pain to type.</li>
+<li>And once you have this file you’ll have to put up some yaml front matter: the
+title, and the layout is the minimum, Here you are typing the title again.</li>
+</ul>
+<p>It’s not a big deal, but it’s still annoying. So, I came up with a small ruby
+script called new.rb, which basically automates this stuff.</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></span><br><span class="line"><span class="comment"># which is the title of the blog post</span></span><br><span class="line"><span class="comment"># e.g. command:</span></span><br><span class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Some constants</span></span><br><span class="line">TEMPLATE = <span class="string">"template.markdown"</span></span><br><span class="line">TARGET_DIR = <span class="string">"_posts"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the title which was passed as an argument</span></span><br><span class="line">title = ARGV[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># Get the filename</span></span><br><span class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</span><br><span class="line">filename = <span class="string">"<span class="subst">#&#123; Time.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </span><br><span class="line">filepath = File.join(TARGET_DIR, filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a copy of the template with the title replaced</span></span><br><span class="line">new_post = File.read(TEMPLATE)</span><br><span class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write out the file to the target directory</span></span><br><span class="line">new_post_file = File.open(filepath, <span class="string">'w'</span>)</span><br><span class="line">new_post_file.puts new_post</span><br><span class="line">new_post_file.close</span><br><span class="line"></span><br><span class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></span><br></pre></td></tr></table></figure>
+<p><a href="http://gist.github.com/604999#comments" target="_blank" rel="noopener">Download the gist</a></p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="ckabll3ud0034ysugtc204es5" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-create-a-simple-gem-using-jeweler" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2010/09/30/create-a-simple-gem-using-jeweler/" class="article-date">
@@ -171,7 +227,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="ckaam8yx80022z9ves6xqbzrk" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/" data-id="ckabll3tr0023ysugc6wjygo2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/30/create-a-simple-gem-using-jeweler/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -218,7 +274,7 @@ pkg/fixnum_extensions-0.0.0.gem</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="ckaam8yxm002wz9ve0j8wz45f" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/29/git-basic-commands/" data-id="ckabll3u9002wysugglxxnpj2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/29/git-basic-commands/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -273,7 +329,7 @@ time you push to your git repo, your blog will be automatically published.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="ckaam8z02006tz9veu8evvu83" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/" data-id="ckabll3wm006vysugjsh58zb8" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/09/28/post-update-hook-for-gitosis-to-publish-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -327,7 +383,7 @@ direcotry.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/" data-id="ckaam8yzb005ez9ve94klr2do" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/" data-id="ckabll3vx005fysugxy79fv58" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/07/22/install-a-ruby-version-with-rvm-when-offline/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -417,7 +473,7 @@ enjoyable.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/" data-id="ckaam8yyl0043z9vean8lk7cs" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/" data-id="ckabll3v00045ysugzqnn188a" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/06/30/how-to-install-rvm-on-ubuntu-10-4-lucid-lynx/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -490,7 +546,7 @@ wordpress :) ).</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/06/28/jekyll-the-programmers-blog-engine/" data-id="ckaam8yzd005hz9veyajy06lb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/28/jekyll-the-programmers-blog-engine/" data-id="ckabll3vz005iysug4jvvnlvk" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/06/28/jekyll-the-programmers-blog-engine/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -549,7 +605,7 @@ http://github.com/minhajuddin/redirector</a>. Below, is a part of my config.yaml
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/06/06/redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze/" data-id="ckaam8z070074z9velyuabktq" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/06/06/redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze/" data-id="ckabll3wr0076ysugxolq008j" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/06/06/redirector-a-simple-rack-application-which-makes-redirection-of-multiple-domains-a-breeze/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -618,7 +674,7 @@ http://github.com/minhajuddin/redirector</a>. Below, is a part of my config.yaml
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/12/12/asp-net-mvc-with-mono/" data-id="ckaam8ywy001kz9vear6j9ilj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/12/12/asp-net-mvc-with-mono/" data-id="ckabll3tg001kysuglfzywzk0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2009/12/12/asp-net-mvc-with-mono/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -674,7 +730,7 @@ This code creates a simple list of urls and it appends any html attributes passe
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/09/20/sitemaplite-adding-html-helpers/" data-id="ckaam8z0l007zz9ve591dqf17" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/09/20/sitemaplite-adding-html-helpers/" data-id="ckabll3xa0082ysug6m43g2x0" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2009/09/20/sitemaplite-adding-html-helpers/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -753,7 +809,7 @@ In a future blog post, I’ll create a few HtmlHelpers to render a basic navigat
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/" data-id="ckaam8yx4001tz9ve5f6sehjg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/" data-id="ckabll3tl001vysugli5v3qnj" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2009/09/18/birth-of-sitemaplite-aspnetmvc-sitemap-provider/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -816,7 +872,7 @@ Once I group them it’s just a matter of getting all the nodes, formatting them
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/09/08/json-sitemap-provider-for-asp-net-mvc/" data-id="ckaam8yzf005mz9ve6yj6mc2i" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/09/08/json-sitemap-provider-for-asp-net-mvc/" data-id="ckabll3w1005nysug0vt8s8t8" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2009/09/08/json-sitemap-provider-for-asp-net-mvc/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -888,7 +944,7 @@ You just have to be careful about a couple of things:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/09/01/easily-get-an-asp-net-website-offline/" data-id="ckaam8yxb002az9ve5ezzvsqg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/09/01/easily-get-an-asp-net-website-offline/" data-id="ckabll3tx002bysug43i3jen9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2009/09/01/easily-get-an-asp-net-website-offline/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -948,7 +1004,7 @@ I’ll try to stick to the following stack:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/08/31/mblog-a-light-weight-blogging-engine-created-in-asp-net-mvc/" data-id="ckaam8yzs006az9ve5oyy68vl" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/08/31/mblog-a-light-weight-blogging-engine-created-in-asp-net-mvc/" data-id="ckabll3wd006bysugm7uycsjp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2009/08/31/mblog-a-light-weight-blogging-engine-created-in-asp-net-mvc/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1077,7 +1133,7 @@ all time.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/08/30/traits-of-great-bloggers/" data-id="ckaam8z12008sz9vesjiyv5r5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/08/30/traits-of-great-bloggers/" data-id="ckabll3xs008wysuge6darqzd" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2009/08/30/traits-of-great-bloggers/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1134,7 +1190,7 @@ I am hopeful that I will be able to post more often. But, anyway, that’s Tip #
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/07/25/tip-1-to-become-a-good-blogger/" data-id="ckaam8z10008pz9vee03skyvu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/07/25/tip-1-to-become-a-good-blogger/" data-id="ckabll3xq008sysugzrm4fnd6" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2009/07/25/tip-1-to-become-a-good-blogger/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1184,7 +1240,7 @@ You aren’t supposed to put in a lot of code in your “Hello, World!” code, 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2009/04/21/hello-world/" data-id="ckaam8yxp0031z9vevz1n9qbm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2009/04/21/hello-world/" data-id="ckabll3uc0032ysugriignu2v" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2009/04/21/hello-world/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1256,6 +1312,10 @@ You aren’t supposed to put in a lot of code in your “Hello, World!” code, 
       <ul>
         
           <li>
+            <a href="/2020/05/17/my-first-svg-creation/">My first SVG creation</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/17/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-2/">many_to_many relationships in Ecto and Phoenix - Screencast - Part 2</a>
           </li>
         
@@ -1269,10 +1329,6 @@ You aren’t supposed to put in a lot of code in your “Hello, World!” code, 
         
           <li>
             <a href="/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/">How to create temporary bastion EC2 instances using Terraform</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/">many_to_many relationships in Ecto and Phoenix for Products and Tags</a>
           </li>
         
       </ul>
@@ -1295,7 +1351,7 @@ You aren’t supposed to put in a lot of code in your “Hello, World!” code, 
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

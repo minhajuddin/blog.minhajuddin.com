@@ -94,6 +94,86 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" class="article-date">
+  <time datetime="2016-11-13T16:09:14.000Z" itemprop="datePublished">2016-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/">How to deploy a simple phoenix app on a single server using distillery</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at"><a href="#If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at" class="headerlink" title="If you find issues or can improve this guide, please create a pull request at:"></a>If you find issues or can improve this guide, please create a pull request at:</h3><h2 id="2-Setup-the-server"><a href="#2-Setup-the-server" class="headerlink" title="2. Setup the server"></a>2. Setup the server</h2><p>We’ll be running our server under the user called <code>slugex</code>. So, we first need
+to create that user.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on our server</span></span><br><span class="line">APP_USER=slugex</span><br><span class="line"></span><br><span class="line"><span class="comment"># create prent dir for our home</span></span><br><span class="line">sudo mkdir -p /opt/www</span><br><span class="line"><span class="comment"># create the user</span></span><br><span class="line">sudo useradd --home <span class="string">"/opt/www/<span class="variable">$APP_USER</span>"</span> --create-home --shell /bin/bash <span class="variable">$APP_USER</span></span><br><span class="line"><span class="comment"># create the postgresql role for our user</span></span><br><span class="line">sudo -u postgres createuser --<span class="built_in">echo</span> --no-createrole --no-superuser --createdb <span class="variable">$APP_USER</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-Install-the-git-deploy-rubygem-on-our-local-computer"><a href="#3-Install-the-git-deploy-rubygem-on-our-local-computer" class="headerlink" title="3. Install the git-deploy rubygem on our local computer"></a>3. Install the git-deploy rubygem on our local computer</h2><p>We’ll be using the <a href="https://github.com/mislav/git-deploy" target="_blank" rel="noopener">git-deploy</a> rubygem to
+do deploys. This allows deploys similar to Heroku. You just need to push to your
+  production git repository to start a deployment.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on our local computer</span></span><br><span class="line"><span class="comment"># install the gem</span></span><br><span class="line"><span class="comment"># you need ruby installed on your computer for this</span></span><br><span class="line">gem install git-deploy</span><br></pre></td></tr></table></figure>
+<h2 id="4-Setup-distillery-in-our-phoenix-app-on-local-computer"><a href="#4-Setup-distillery-in-our-phoenix-app-on-local-computer" class="headerlink" title="4. Setup distillery in our phoenix app (on local computer)"></a>4. Setup distillery in our phoenix app (on local computer)</h2><p>We’ll be using <a href="https://github.com/bitwalker/distillery" target="_blank" rel="noopener">distillery</a> to manage our releases.</p>
+<p>Add the distillery dependency to our <code>mix.exs</code></p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">defp</span> <span class="title">deps</span></span> <span class="keyword">do</span></span><br><span class="line">  [&#123;<span class="symbol">:distillery</span>, <span class="string">"~&gt; 0.10"</span>&#125;]</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Init the distillery config
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get dependencies</span></span><br><span class="line">mix deps.get</span><br><span class="line"><span class="comment"># init distillery</span></span><br><span class="line">mix release.init</span><br></pre></td></tr></table></figure></p>
+<p>Change <code>rel/config.ex</code> to look like below</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">environment <span class="symbol">:prod</span> <span class="keyword">do</span></span><br><span class="line">  set <span class="symbol">include_erts:</span> <span class="keyword">false</span></span><br><span class="line">  set <span class="symbol">include_src:</span> <span class="keyword">false</span></span><br><span class="line">  <span class="comment"># cookie info ...</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h2 id="5-Setup-git-deploy-local-computer"><a href="#5-Setup-git-deploy-local-computer" class="headerlink" title="5. Setup git deploy (local computer)"></a>5. Setup git deploy (local computer)</h2><p>Let us setup the remote and the deploy hooks</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on our local computer</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># setup the git remote pointing to our prod server</span></span><br><span class="line">git remote add prod slugex@slugex.com:/opt/www/slugex</span><br><span class="line"></span><br><span class="line"><span class="comment"># init</span></span><br><span class="line">git deploy setup -r <span class="string">"prod"</span></span><br><span class="line"><span class="comment"># create the deploy files</span></span><br><span class="line">git deploy init</span><br><span class="line"><span class="comment"># push to production</span></span><br><span class="line">git push prod master</span><br></pre></td></tr></table></figure>
+<h2 id="TODO-release-this-as-a-book"><a href="#TODO-release-this-as-a-book" class="headerlink" title="TODO: release this as a book"></a>TODO: release this as a book</h2><h2 id="6-Setup-postgresql-access"><a href="#6-Setup-postgresql-access" class="headerlink" title="6. Setup postgresql access"></a>6. Setup postgresql access</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on the server as the slugex user</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># create the database</span></span><br><span class="line">createdb slugex_prod</span><br><span class="line"></span><br><span class="line"><span class="comment"># set the password for the slugex user</span></span><br><span class="line">psql slugex_prod</span><br><span class="line">&gt; slugex_prod=&gt; \password slugex</span><br><span class="line">&gt; Enter new password: enter the password</span><br><span class="line">&gt; Enter it again: repeat the password</span><br></pre></td></tr></table></figure>
+<h2 id="6-Setup-the-prod-secret-exs"><a href="#6-Setup-the-prod-secret-exs" class="headerlink" title="6. Setup the prod.secret.exs"></a>6. Setup the prod.secret.exs</h2><p>Copy the config/prod.secret.exs file from your local computer to /opt/www/slugex/config/prod.secret.exs</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## on local computer from our phoenix app directory</span></span><br><span class="line">scp config/prod.secret.exs slugex@slugex.com:config/</span><br></pre></td></tr></table></figure>
+<p>create a new secret on your local computer using <code>mix phoenix.gen.secret</code> and
+paste it in the server’s config/prod.secret.exs secret</p>
+<p>It should look something like below:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># on the server</span></span><br><span class="line"><span class="comment"># /opt/www/slugex/config/prod.secret.exs</span></span><br><span class="line"><span class="keyword">use</span> Mix.Config</span><br><span class="line"></span><br><span class="line">config <span class="symbol">:simple</span>, Simple.Endpoint,</span><br><span class="line">  <span class="symbol">secret_key_base:</span> <span class="string">"RgeM4Dt8kl3yyf47K1DXWr8mgANzOL9TNOOiCknZM8LLDeSdS1ia5Vc2HkmKhy68"</span></span><br><span class="line">  <span class="symbol">http:</span> [<span class="symbol">port:</span> <span class="number">4010</span>],</span><br><span class="line">  <span class="symbol">server:</span> <span class="keyword">true</span>, <span class="comment"># &lt;=== this is very important</span></span><br><span class="line">  <span class="symbol">root:</span> <span class="string">"/opt/www/slugex"</span>,</span><br><span class="line">  <span class="symbol">url:</span> [<span class="symbol">host:</span> <span class="string">"slugex.com"</span>, <span class="symbol">port:</span> <span class="number">443</span>],</span><br><span class="line">  <span class="symbol">cache_static_manifest:</span> <span class="string">"priv/static/manifest.json"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Do not print debug messages in production</span></span><br><span class="line">config <span class="symbol">:logger</span>, <span class="symbol">level:</span> <span class="symbol">:info</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure your database</span></span><br><span class="line">config <span class="symbol">:simple</span>, Simple.Repo,</span><br><span class="line">  <span class="symbol">adapter:</span> Ecto.Adapters.Postgres,</span><br><span class="line">  <span class="symbol">username:</span> <span class="string">"slugex"</span>,</span><br><span class="line">  <span class="symbol">password:</span> <span class="string">"another brick in the wall"</span>,</span><br><span class="line">  <span class="symbol">database:</span> <span class="string">"slugex_prod"</span>,</span><br><span class="line">  <span class="symbol">pool_size:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
+<h2 id="6-Tweak-the-deploy-scripts"><a href="#6-Tweak-the-deploy-scripts" class="headerlink" title="6. Tweak the deploy scripts"></a>6. Tweak the deploy scripts</h2><h2 id="7-One-time-setup-on-the-server"><a href="#7-One-time-setup-on-the-server" class="headerlink" title="7. One time setup on the server"></a>7. One time setup on the server</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on server as slugex</span></span><br><span class="line">MIX_ENV=prod mix <span class="keyword">do</span> compile, ecto.create</span><br><span class="line">MIX_ENV=prod ./deploy/after_push</span><br></pre></td></tr></table></figure>
+<h2 id="Logger"><a href="#Logger" class="headerlink" title="Logger"></a>Logger</h2><h2 id="Exception-notifications"><a href="#Exception-notifications" class="headerlink" title="Exception notifications"></a>Exception notifications</h2><h2 id="Setup-systemd"><a href="#Setup-systemd" class="headerlink" title="Setup systemd"></a>Setup systemd</h2><h2 id="6-One-time-setup-on-server-on-server-as-slugex-user"><a href="#6-One-time-setup-on-server-on-server-as-slugex-user" class="headerlink" title="6. One time setup on server (on server as slugex user)"></a>6. One time setup on server (on server as slugex user)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be run on the server as the slugex user</span></span><br><span class="line"><span class="built_in">cd</span> /opt/www/slugex</span><br><span class="line"></span><br><span class="line"><span class="comment"># create the secrets config</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'use Mix.Config'</span> &gt; config/prod.secrets.exs</span><br><span class="line"><span class="comment"># add your configuration to this file</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># update hex</span></span><br><span class="line"><span class="built_in">export</span> MIX_ENV=prod</span><br><span class="line">mix local.hex --force</span><br><span class="line">mix deps.get</span><br><span class="line">mix ecto.create</span><br></pre></td></tr></table></figure>
+<h2 id="6-Nginx-configuration"><a href="#6-Nginx-configuration" class="headerlink" title="6. Nginx configuration"></a>6. Nginx configuration</h2><h2 id="7-Letsencrypt-setup-and-configuration"><a href="#7-Letsencrypt-setup-and-configuration" class="headerlink" title="7. Letsencrypt setup and configuration"></a>7. Letsencrypt setup and configuration</h2><h2 id="9-TODO-Configuration-using-conform"><a href="#9-TODO-Configuration-using-conform" class="headerlink" title="9. TODO: Configuration using conform"></a>9. TODO: Configuration using conform</h2><h2 id="10-TODO-database-backups-to-S3"><a href="#10-TODO-database-backups-to-S3" class="headerlink" title="10. TODO: database backups to S3"></a>10. TODO: database backups to S3</h2><h2 id="10-TODO-uptime-monitoring-of-websites-using-uptime-monitor"><a href="#10-TODO-uptime-monitoring-of-websites-using-uptime-monitor" class="headerlink" title="10. TODO: uptime monitoring of websites using uptime monitor"></a>10. TODO: uptime monitoring of websites using uptime monitor</h2><h2 id="10-TODO-email-via-SES"><a href="#10-TODO-email-via-SES" class="headerlink" title="10. TODO: email via SES"></a>10. TODO: email via SES</h2><h2 id="10-TODO-db-seeds"><a href="#10-TODO-db-seeds" class="headerlink" title="10. TODO: db seeds"></a>10. TODO: db seeds</h2><h2 id="10-TODO-nginx-caching-basics-static-assets-large-expirations"><a href="#10-TODO-nginx-caching-basics-static-assets-large-expirations" class="headerlink" title="10. TODO: nginx caching basics, static assets large expirations"></a>10. TODO: nginx caching basics, static assets large expirations</h2><h2 id="10-TODO-remote-console-for-debugging"><a href="#10-TODO-remote-console-for-debugging" class="headerlink" title="10. TODO: remote console for debugging"></a>10. TODO: remote console for debugging</h2><p>sudo letsencrypt certonly –webroot -w /opt/www/webmonitor/public/ -d webmonitorhq.com  –webroot -w /opt/www/webmonitor/public/ -d <a href="http://www.webmonitorhq.com" target="_blank" rel="noopener">www.webmonitorhq.com</a></p>
+<h2 id="11-Check-SSL-certificate-https-www-sslshopper-com-ssl-checker-html"><a href="#11-Check-SSL-certificate-https-www-sslshopper-com-ssl-checker-html" class="headerlink" title="11. Check SSL certificate: https://www.sslshopper.com/ssl-checker.html"></a>11. Check SSL certificate: <a href="https://www.sslshopper.com/ssl-checker.html" target="_blank" rel="noopener">https://www.sslshopper.com/ssl-checker.html</a></h2><h3 id="Common-mistakes-errors"><a href="#Common-mistakes-errors" class="headerlink" title="Common mistakes/errors"></a>Common mistakes/errors</h3><ol>
+<li>SSH errors</li>
+</ol>
+<h3 id="Improvements"><a href="#Improvements" class="headerlink" title="Improvements"></a>Improvements</h3><ol>
+<li>Automate all of these using a hex package?</li>
+<li>Remove dependencies on <code>git-deploy</code> if possible</li>
+<li>Hot upgrades</li>
+</ol>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" data-id="ckabll3un003jysuguajxqb2f" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deploy/">Deploy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distillery/">Distillery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elixir/">Elixir</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/heroku/">Heroku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phoenix/">Phoenix</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-how-to-extract-bits-from-a-binary-in-elixir" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/" class="article-date">
@@ -130,7 +210,7 @@ a binary and returns their bits</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/" data-id="ckaam8yy7003mz9vea0x8vq18" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/" data-id="ckabll3uq003nysugx1216196" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/11/01/how-to-extract-bits-from-a-binary-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -216,7 +296,7 @@ Task.await is blocking, this is expected.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ckaam8yxh002lz9ve3j2f33hm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/" data-id="ckabll3u3002lysugrqvkjo1n" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/31/elixir-process-timeout-pitfall/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -272,7 +352,7 @@ So, now whenever I hit the right hotkey it types the letter ‘p’ in the tmux 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="ckaam8yxs0039z9vefenrh397" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/" data-id="ckabll3uh003aysug9yd2ific" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/28/how-to-control-pianobar-using-global-hotkeys-using-tmux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -327,7 +407,7 @@ I got around this by proxying over socks5. Here is how you can do it.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/" data-id="ckaam8yz20053z9veo1r6qecp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/" data-id="ckabll3vm0054ysugv670qn40" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/27/how-to-use-pianobar-with-a-socks5-proxy-to-play-pandora/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -387,7 +467,7 @@ some code for every interval of <code>time</code>. However, the code below doesn
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/" data-id="ckaam8ywr0013z9vef2yw00k2" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/" data-id="ckabll3t70015ysugvyesmo4p" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/27/a-simple-ticker-to-receive-tick-events-for-every-interval-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -441,7 +521,7 @@ some code for every interval of <code>time</code>. However, the code below doesn
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ckaam8yzj005tz9vewbx4iyug" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/" data-id="ckabll3w4005sysugmy5aur3l" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/10/13/lets-encrypt-auto-renewal-for-ubuntu-and-nginx/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -530,7 +610,7 @@ Downtime = 1 + 5</li>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="ckaam8ywv001ez9vedu29xc7i" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/" data-id="ckabll3td001fysuge4hjn63l" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/07/05/algorithm-to-compute-downtime-of-a-service-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -583,7 +663,7 @@ Just insert <code>|&gt; IO.inspect</code> between your pipelines.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="ckaam8yxg002jz9ve6lka861b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/" data-id="ckabll3u2002jysugz8nys7r2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/05/20/elixir-io-inspect-to-debug-pipelines/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -639,7 +719,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="ckaam8yyx004uz9ve4q2bhv6t" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/" data-id="ckabll3vh004wysugd3vpl8b6" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/11/how-to-store-temporary-data-and-share-it-with-your-background-processor/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -690,7 +770,7 @@ If yours is different you could change that piece of code.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="ckaam8z0t008ez9vet32idr5t" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/" data-id="ckabll3xl008hysug6tumi3c4" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/09/subdomains-to-restrict-from-your-saas-app/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -739,7 +819,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="ckaam8z0e007iz9veehtf0wgi" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/" data-id="ckabll3x0007pysugl6a770zv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/08/script-to-cleanup-old-directories-on-a-linux-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -789,7 +869,7 @@ It is useful for freeing up space by removing temporary directories on your serv
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="ckaam8z03006wz9ved1t4i78u" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/" data-id="ckabll3wn006xysugyonfbutb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/03/03/put-this-in-your-code-to-debug-anything/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -845,7 +925,7 @@ function finds a home in your <code>~/.bashrc</code> :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="ckaam8yyo004cz9vetjcjutr8" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/" data-id="ckabll3v4004fysugrfep199q" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/19/how-to-open-the-most-recent-file-created-in-vim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -925,7 +1005,7 @@ Do yourself a favor and use tmux.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="ckaam8z0g007pz9vex6ecc1ma" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/" data-id="ckabll3x4007uysugnqqj7uun" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/17/script-your-tmux-to-maximize-awesome/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -979,7 +1059,7 @@ Do yourself a favor and use tmux.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/" data-id="ckaam8yy9003oz9veat540ony" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/" data-id="ckabll3us003pysug7yky6oc9" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/16/how-to-extract-images-from-a-pdf-and-reduce-their-size/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1034,7 +1114,7 @@ snippet of code which does most of what you want.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/" data-id="ckaam8ywu001cz9ve5llaq53d" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/" data-id="ckabll3tb001dysugz6530vja" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/10/a-very-simple-environment-loader-for-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1087,7 +1167,7 @@ should be good.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/" data-id="ckaam8yye003tz9ve40ri5y11" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/" data-id="ckabll3ut003sysugdrboadwr" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/06/how-to-fix-guard-crashing-your-tmux-server/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1136,7 +1216,7 @@ should be good.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/" data-id="ckaam8yys004mz9ve5fmtccre" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/" data-id="ckabll3va004lysug469ch4yy" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/03/how-to-setup-mutt-to-fetchmail-every-minute/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1191,66 +1271,12 @@ for static content. Heck, it even supports building of websites automatically us
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/" data-id="ckaam8z0s008cz9vepe3vtgee" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/" data-id="ckabll3xk008fysug4t9jt1on" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/02/01/stop-using-heroku-to-host-static-sites/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/heroku/">Heroku</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-removing-duplication-in-erb-views-using-content-for" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/01/30/removing-duplication-in-erb-views-using-content-for/" class="article-date">
-  <time datetime="2016-01-30T18:56:35.000Z" itemprop="datePublished">2016-01-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/30/removing-duplication-in-erb-views-using-content-for/">Removing duplication in ERB views using content_for</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>While writing code to show themes in Zammu, I had to show the same button in two places on the same page.
-The easy way is to duplicate the code. But that causes problems with maintainability.</p>
-<p>e.g.</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">content_for</span> <span class="attr">:secondary_nav</span> <span class="attr">do</span> %&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; FIRST COPY --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">form_tag</span>("/") <span class="attr">do</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">'btn btn-lg btn-primary push-top-10'</span>&gt;</span>Looks good, let's clone this<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"thumbnail"</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span>....<span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; SECOND COPY --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">form_tag</span>("/") <span class="attr">do</span> %&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">'btn btn-lg btn-primary push-top-10'</span>&gt;</span>Looks good, let's clone this<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>To remove duplication I just used a <code>content_for</code> and captured the code that had to be duplicated and used <code>yield</code> to spit it out in the two places.
-The changed code is:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">content_for</span> <span class="attr">:clone_btn</span> <span class="attr">do</span> %&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">form_tag</span>("/") <span class="attr">do</span> %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">'btn btn-lg btn-primary push-top-10'</span>&gt;</span>Looks good, let's clone this<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%=</span> <span class="attr">content_for</span> <span class="attr">:secondary_nav</span> <span class="attr">do</span> %&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; FIRST COPY --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%=</span> <span class="attr">yield</span>(<span class="attr">:clone_btn</span>) %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">end</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-4"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"thumbnail"</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span>....<span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt; SECOND COPY --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%=</span> <span class="attr">yield</span>(<span class="attr">:clone_btn</span>) %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Now if I have to change the button, I have to do it only in one place. Our code is DRY as a bone :)</p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/" data-id="ckaam8z090079z9vecf8yhsez" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2016/01/30/removing-duplication-in-erb-views-using-content-for/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dry/">DRY</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/duplication/">Duplication</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/erb/">ERB</a></li></ul>
 
     </footer>
   </div>
@@ -1319,6 +1345,10 @@ The changed code is:</p>
       <ul>
         
           <li>
+            <a href="/2020/05/17/my-first-svg-creation/">My first SVG creation</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/17/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-2/">many_to_many relationships in Ecto and Phoenix - Screencast - Part 2</a>
           </li>
         
@@ -1332,10 +1362,6 @@ The changed code is:</p>
         
           <li>
             <a href="/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/">How to create temporary bastion EC2 instances using Terraform</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/">many_to_many relationships in Ecto and Phoenix for Products and Tags</a>
           </li>
         
       </ul>
@@ -1358,7 +1384,7 @@ The changed code is:</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

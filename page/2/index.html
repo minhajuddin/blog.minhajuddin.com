@@ -94,6 +94,91 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-how-to-manage-ginormous-exvcr-cassettes" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/" class="article-date">
+  <time datetime="2018-06-18T08:39:08.000Z" itemprop="datePublished">2018-06-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/">How to manage ginormous ExVCR cassettes</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://github.com/parroty/exvcr" target="_blank" rel="noopener">ExVCR</a> is an awesome elixir package which
+helps you create repeatable integration tests. It works by saving the requests
+and responses you make to external services, in json files called cassettes. These
+cassettes are created the first time you run the tests. Here is an example from
+one of my projects:</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">defmodule</span> <span class="title">X</span></span>.AuthControllerTest <span class="keyword">do</span></span><br><span class="line">  <span class="keyword">use</span> X.ConnCase</span><br><span class="line">  <span class="keyword">use</span> ExVCR.Mock, <span class="symbol">adapter:</span> ExVCR.Adapter.Hackney</span><br><span class="line"></span><br><span class="line">  test <span class="string">"google redirect creates the user"</span>, %&#123;<span class="symbol">conn:</span> conn&#125; <span class="keyword">do</span></span><br><span class="line">    conn =</span><br><span class="line">      use_cassette <span class="string">"google_oauth_challenge"</span> <span class="keyword">do</span></span><br><span class="line">        conn</span><br><span class="line">        |&gt; get(</span><br><span class="line">          <span class="string">"/auth/google/callback?code=....................."</span></span><br><span class="line">        )</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    assert ...</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>The first time I run this test it creates a file at <code>fixture/vcr_cassettes/google_oauth_challenge.json</code>.
+This contains the request and response data from this test. Now, whenever you rerun
+this test it just loads this request and response data and replays the response if the request
+matches the saved request. So, your tests will pass even when you don’t have network connectivity!</p>
+<p>This is all nice as long as you have small responses. However, when you need to do this
+for responses whose size is in MBs you run into a few issues:</p>
+<ol>
+<li>Your tests become slower.</li>
+<li>You don’t want to haul around MBs of fixtures in your source control (you must check in the cassettes i.e. the <code>fixture/</code> directory).</li>
+</ol>
+<p>I recently ran into this situation with one of my projects where I was downloading
+a gzipped csv file which was ~50MB. The way I fixed it is:</p>
+<ol>
+<li>Let ExVCR record the cassettes with all the large data.</li>
+<li>Download the same response from outside using curl.</li>
+<li>Take a tiny sample of the response data</li>
+<li>Replace the <code>response.body</code> in the cassette with my sample response data</li>
+</ol>
+<p>This fixes the slow tests and also reduces the size of cassettes.</p>
+<p>Another thing to remember is if your response is binary and not a valid string, ExVCR stores it differently.
+Its <a href="https://github.com/parroty/exvcr/blob/master/lib/exvcr/json.ex#L22" target="_blank" rel="noopener">json serializer</a> runs binary
+data through the following functions</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response.body</span><br><span class="line">|&gt; <span class="symbol">:erlang</span>.term_to_binary()</span><br><span class="line">|&gt; Base.encode64()</span><br></pre></td></tr></table></figure>
+<p>So, if you have gzipped (or any other binary) data, load it into IEx from step <em>2</em> above and run it through
+the same functions as above and use this data to replace the <code>response.body</code>. You can also skip <em>2</em>
+and use the data from your large cassette before trimming it down by running it through:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cassette = File.read!(&quot;fixture/vcr_cassettes/cassette.json&quot;) |&gt; Poison.decode! |&gt; hd</span><br><span class="line">cassette[&quot;response&quot;][&quot;body&quot;]</span><br><span class="line">|&gt; Base.decode64!</span><br><span class="line">|&gt; :erlang.binary_to_term # you&apos;ll have the raw response binary data at this point</span><br><span class="line">|&gt; :zlib.gunzip # if your response is gzipped you&apos;ll need this to extract the actual data</span><br></pre></td></tr></table></figure>
+<p>P.S
+My editor froze while trying to edit such a large cassette, so I used jq to remove
+the large body keys from the response using the following command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jq &apos;walk(if type == &quot;object&quot; and has(&quot;body&quot;) then del(.body) else . end)&apos; mycassette.json  &gt; cassette_without_body.json</span><br></pre></td></tr></table></figure>
+<p>To get the above working you need jq &gt; 1.5 and the following in your <code>~/.jq</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># Apply f to composite entities recursively, and to atoms</span><br><span class="line">def walk(f):</span><br><span class="line">  . as $in</span><br><span class="line">  | if type == &quot;object&quot; then</span><br><span class="line">      reduce keys_unsorted[] as $key</span><br><span class="line">        ( &#123;&#125;; . + &#123; ($key):  ($in[$key] | walk(f)) &#125; ) | f</span><br><span class="line">  elif type == &quot;array&quot; then map( walk(f) ) | f</span><br><span class="line">  else f</span><br><span class="line">  end;</span><br></pre></td></tr></table></figure>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/" data-id="ckabll3v3004dysugw8pp1ai3" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2018/06/18/how-to-manage-ginormous-exvcr-cassettes/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cassette/">Cassette</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/exvcr/">ExVCR</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/large/">Large</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-your-elixir-bucket-for-debugging" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/05/17/your-elixir-bucket-for-debugging/" class="article-date">
@@ -141,7 +226,7 @@ as global bucket to shove stuff into. Here is my solution:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/" data-id="ckaam8z180092z9ve6zfziwuh" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/" data-id="ckabll3xw0095ysugn05u6kki" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/17/your-elixir-bucket-for-debugging/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -193,7 +278,7 @@ Well, there is no point. This was just a fun little exercise :D</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/" data-id="ckaam8yyj0040z9velrasbrl5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/" data-id="ckabll3uy0040ysug20zm1phq" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/11/how-to-implement-your-own-timer-sleep-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -248,7 +333,7 @@ I use it for a few of my other projects.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/" data-id="ckaam8yyu004pz9ve191a1g05" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/" data-id="ckabll3vd004qysug42t3f1hx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2018/05/09/how-to-setup-your-hexo-blog-to-be-automatically-published-using-travis-ci/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -318,7 +403,7 @@ So, if you are using redis as a key value store. Please do yourself a favor and 
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/" data-id="ckaam8yxi002mz9vef4ifwdot" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/" data-id="ckabll3u4002oysugu7zfk12r" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/10/04/ets-versus-redis-benchmarks-for-a-simple-key-value-store/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -383,7 +468,7 @@ So, the second best performance for which is <code>pattern_match</code> is 6x be
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/06/19/performance-variations-of-string-substitution-in-elixir/" data-id="ckaam8z01006rz9vep86wmizo" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/06/19/performance-variations-of-string-substitution-in-elixir/" data-id="ckabll3wl006tysugomw4ea6o" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/06/19/performance-variations-of-string-substitution-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -482,7 +567,7 @@ Benchee.run(%{
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/" data-id="ckaam8yzy006kz9vejgf6wjg0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/" data-id="ckabll3wi006mysugew41qjkp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/06/08/optimal-order-for-adding-lists-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -537,7 +622,7 @@ However, this makes it very difficult to read and modify the SQL. This is when b
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/" data-id="ckaam8yyp004fz9veqlmxkjdu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/" data-id="ckabll3v5004gysugqji3xev2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/05/18/how-to-pass-a-multi-line-copy-sql-to-psql/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -591,7 +676,7 @@ This should show you a pane with a <strong>Frames</strong> tab. This <strong>Fra
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/03/12/how-to-debug-view-phoenix-channel-network-traffic-in-google-chrome/" data-id="ckaam8yy2003hz9vel3ll6byj" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/03/12/how-to-debug-view-phoenix-channel-network-traffic-in-google-chrome/" data-id="ckabll3um003hysugtp5w89qo" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/03/12/how-to-debug-view-phoenix-channel-network-traffic-in-google-chrome/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -653,7 +738,7 @@ The next time you want to build a startup, think about these skills. Without one
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/03/11/3-things-that-are-needed-to-make-a-successful-product/" data-id="ckaam8ywk000rz9ve5cjvfpvn" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/03/11/3-things-that-are-needed-to-make-a-successful-product/" data-id="ckabll3t1000rysug2jlu8p49" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/03/11/3-things-that-are-needed-to-make-a-successful-product/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -711,7 +796,7 @@ The audience was very interactive and the food was great. Shout out to <a href="
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/02/13/getting-started-with-elm/" data-id="ckaam8yxl002vz9ve8dvhg8u5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/02/13/getting-started-with-elm/" data-id="ckabll3u8002uysug7ewz6r5r" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/02/13/getting-started-with-elm/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -767,7 +852,7 @@ By restricting it to run 1 migration at a time you won’t run into this issue.<
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/02/09/how-to-fix-ecto-duplicate-name-migrations-error/" data-id="ckaam8yyd003qz9vewhmxfmpg" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/02/09/how-to-fix-ecto-duplicate-name-migrations-error/" data-id="ckabll3us003qysuggjglibhb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/02/09/how-to-fix-ecto-duplicate-name-migrations-error/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -816,7 +901,7 @@ The following is a short ruby script which does a tiny tiny (did I say tiny?) bi
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/" data-id="ckaam8yzk005uz9ve5p55ht1e" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/" data-id="ckabll3w6005uysug8o37tl5l" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/02/02/lightweight-xml-utility-to-pluck-elements/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -867,7 +952,7 @@ However a proper map lookup doesn’t iterate over the keys but uses a hashing a
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/24/key-transformation-after-decoding-json-in-elixir/" data-id="ckaam8yzg005oz9vebuqvmsyo" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/24/key-transformation-after-decoding-json-in-elixir/" data-id="ckabll3w2005pysugp1nkdi21" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/24/key-transformation-after-decoding-json-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -954,7 +1039,7 @@ However, if you are planning on learning vim, don’t go there. Start with the f
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/19/how-to-learn-vim-properly/" data-id="ckaam8yym0047z9venqcra45g" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/19/how-to-learn-vim-properly/" data-id="ckabll3v2004aysug260931c8" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/19/how-to-learn-vim-properly/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1028,7 +1113,7 @@ Now, you have a nice way of automatically managing versions. The patch version i
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/" data-id="ckaam8yws0015z9vecvpppptb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/" data-id="ckabll3t80017ysugqwkd4zhx" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/18/a-simpler-way-to-generate-an-incrementing-version-for-elixir-apps/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1080,7 +1165,7 @@ There is an issue on the <a href="https://github.com/devinus/poison/issues/44" t
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/" data-id="ckaam8yx6001yz9veft4d6x2v" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/" data-id="ckabll3to001zysugd87od1e4" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/11/case-insensitive-key-retrieval-from-maps-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1135,7 +1220,7 @@ Here is a script I created which prints all the possible nodes in the input file
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/" data-id="ckaam8z0d007gz9veqir40s5g" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/" data-id="ckabll3wy007mysugaxadtyvk" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2017/01/05/script-to-analyze-the-structure-of-an-xml-document/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1183,7 +1268,7 @@ Here is a script I created which prints all the possible nodes in the input file
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/" data-id="ckaam8yx3001rz9vep99tykg5" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/" data-id="ckabll3tk001uysugnx3f8fy6" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/12/23/bash-completion-script-for-mix/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1245,92 +1330,12 @@ I wanted to show my blog’s content on the home page, It is pretty straightforw
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/" data-id="ckaam8yyw004sz9ve4pletwmp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/" data-id="ckabll3vf004vysug97cx5eol" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2016/12/22/how-to-show-your-blog-content-in-your-rails-application/#disqus_thread" class="article-comment-link">Comments</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/atom/">Atom</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">Blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rails/">Rails</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" class="article-date">
-  <time datetime="2016-11-13T16:09:14.000Z" itemprop="datePublished">2016-11-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/">How to deploy a simple phoenix app on a single server using distillery</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at"><a href="#If-you-find-issues-or-can-improve-this-guide-please-create-a-pull-request-at" class="headerlink" title="If you find issues or can improve this guide, please create a pull request at:"></a>If you find issues or can improve this guide, please create a pull request at:</h3><h2 id="2-Setup-the-server"><a href="#2-Setup-the-server" class="headerlink" title="2. Setup the server"></a>2. Setup the server</h2><p>We’ll be running our server under the user called <code>slugex</code>. So, we first need
-to create that user.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on our server</span></span><br><span class="line">APP_USER=slugex</span><br><span class="line"></span><br><span class="line"><span class="comment"># create prent dir for our home</span></span><br><span class="line">sudo mkdir -p /opt/www</span><br><span class="line"><span class="comment"># create the user</span></span><br><span class="line">sudo useradd --home <span class="string">"/opt/www/<span class="variable">$APP_USER</span>"</span> --create-home --shell /bin/bash <span class="variable">$APP_USER</span></span><br><span class="line"><span class="comment"># create the postgresql role for our user</span></span><br><span class="line">sudo -u postgres createuser --<span class="built_in">echo</span> --no-createrole --no-superuser --createdb <span class="variable">$APP_USER</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-Install-the-git-deploy-rubygem-on-our-local-computer"><a href="#3-Install-the-git-deploy-rubygem-on-our-local-computer" class="headerlink" title="3. Install the git-deploy rubygem on our local computer"></a>3. Install the git-deploy rubygem on our local computer</h2><p>We’ll be using the <a href="https://github.com/mislav/git-deploy" target="_blank" rel="noopener">git-deploy</a> rubygem to
-do deploys. This allows deploys similar to Heroku. You just need to push to your
-  production git repository to start a deployment.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on our local computer</span></span><br><span class="line"><span class="comment"># install the gem</span></span><br><span class="line"><span class="comment"># you need ruby installed on your computer for this</span></span><br><span class="line">gem install git-deploy</span><br></pre></td></tr></table></figure>
-<h2 id="4-Setup-distillery-in-our-phoenix-app-on-local-computer"><a href="#4-Setup-distillery-in-our-phoenix-app-on-local-computer" class="headerlink" title="4. Setup distillery in our phoenix app (on local computer)"></a>4. Setup distillery in our phoenix app (on local computer)</h2><p>We’ll be using <a href="https://github.com/bitwalker/distillery" target="_blank" rel="noopener">distillery</a> to manage our releases.</p>
-<p>Add the distillery dependency to our <code>mix.exs</code></p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">defp</span> <span class="title">deps</span></span> <span class="keyword">do</span></span><br><span class="line">  [&#123;<span class="symbol">:distillery</span>, <span class="string">"~&gt; 0.10"</span>&#125;]</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>Init the distillery config
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get dependencies</span></span><br><span class="line">mix deps.get</span><br><span class="line"><span class="comment"># init distillery</span></span><br><span class="line">mix release.init</span><br></pre></td></tr></table></figure></p>
-<p>Change <code>rel/config.ex</code> to look like below</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">environment <span class="symbol">:prod</span> <span class="keyword">do</span></span><br><span class="line">  set <span class="symbol">include_erts:</span> <span class="keyword">false</span></span><br><span class="line">  set <span class="symbol">include_src:</span> <span class="keyword">false</span></span><br><span class="line">  <span class="comment"># cookie info ...</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<h2 id="5-Setup-git-deploy-local-computer"><a href="#5-Setup-git-deploy-local-computer" class="headerlink" title="5. Setup git deploy (local computer)"></a>5. Setup git deploy (local computer)</h2><p>Let us setup the remote and the deploy hooks</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on our local computer</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># setup the git remote pointing to our prod server</span></span><br><span class="line">git remote add prod slugex@slugex.com:/opt/www/slugex</span><br><span class="line"></span><br><span class="line"><span class="comment"># init</span></span><br><span class="line">git deploy setup -r <span class="string">"prod"</span></span><br><span class="line"><span class="comment"># create the deploy files</span></span><br><span class="line">git deploy init</span><br><span class="line"><span class="comment"># push to production</span></span><br><span class="line">git push prod master</span><br></pre></td></tr></table></figure>
-<h2 id="TODO-release-this-as-a-book"><a href="#TODO-release-this-as-a-book" class="headerlink" title="TODO: release this as a book"></a>TODO: release this as a book</h2><h2 id="6-Setup-postgresql-access"><a href="#6-Setup-postgresql-access" class="headerlink" title="6. Setup postgresql access"></a>6. Setup postgresql access</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on the server as the slugex user</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># create the database</span></span><br><span class="line">createdb slugex_prod</span><br><span class="line"></span><br><span class="line"><span class="comment"># set the password for the slugex user</span></span><br><span class="line">psql slugex_prod</span><br><span class="line">&gt; slugex_prod=&gt; \password slugex</span><br><span class="line">&gt; Enter new password: enter the password</span><br><span class="line">&gt; Enter it again: repeat the password</span><br></pre></td></tr></table></figure>
-<h2 id="6-Setup-the-prod-secret-exs"><a href="#6-Setup-the-prod-secret-exs" class="headerlink" title="6. Setup the prod.secret.exs"></a>6. Setup the prod.secret.exs</h2><p>Copy the config/prod.secret.exs file from your local computer to /opt/www/slugex/config/prod.secret.exs</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## on local computer from our phoenix app directory</span></span><br><span class="line">scp config/prod.secret.exs slugex@slugex.com:config/</span><br></pre></td></tr></table></figure>
-<p>create a new secret on your local computer using <code>mix phoenix.gen.secret</code> and
-paste it in the server’s config/prod.secret.exs secret</p>
-<p>It should look something like below:</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># on the server</span></span><br><span class="line"><span class="comment"># /opt/www/slugex/config/prod.secret.exs</span></span><br><span class="line"><span class="keyword">use</span> Mix.Config</span><br><span class="line"></span><br><span class="line">config <span class="symbol">:simple</span>, Simple.Endpoint,</span><br><span class="line">  <span class="symbol">secret_key_base:</span> <span class="string">"RgeM4Dt8kl3yyf47K1DXWr8mgANzOL9TNOOiCknZM8LLDeSdS1ia5Vc2HkmKhy68"</span></span><br><span class="line">  <span class="symbol">http:</span> [<span class="symbol">port:</span> <span class="number">4010</span>],</span><br><span class="line">  <span class="symbol">server:</span> <span class="keyword">true</span>, <span class="comment"># &lt;=== this is very important</span></span><br><span class="line">  <span class="symbol">root:</span> <span class="string">"/opt/www/slugex"</span>,</span><br><span class="line">  <span class="symbol">url:</span> [<span class="symbol">host:</span> <span class="string">"slugex.com"</span>, <span class="symbol">port:</span> <span class="number">443</span>],</span><br><span class="line">  <span class="symbol">cache_static_manifest:</span> <span class="string">"priv/static/manifest.json"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Do not print debug messages in production</span></span><br><span class="line">config <span class="symbol">:logger</span>, <span class="symbol">level:</span> <span class="symbol">:info</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure your database</span></span><br><span class="line">config <span class="symbol">:simple</span>, Simple.Repo,</span><br><span class="line">  <span class="symbol">adapter:</span> Ecto.Adapters.Postgres,</span><br><span class="line">  <span class="symbol">username:</span> <span class="string">"slugex"</span>,</span><br><span class="line">  <span class="symbol">password:</span> <span class="string">"another brick in the wall"</span>,</span><br><span class="line">  <span class="symbol">database:</span> <span class="string">"slugex_prod"</span>,</span><br><span class="line">  <span class="symbol">pool_size:</span> <span class="number">20</span></span><br></pre></td></tr></table></figure>
-<h2 id="6-Tweak-the-deploy-scripts"><a href="#6-Tweak-the-deploy-scripts" class="headerlink" title="6. Tweak the deploy scripts"></a>6. Tweak the deploy scripts</h2><h2 id="7-One-time-setup-on-the-server"><a href="#7-One-time-setup-on-the-server" class="headerlink" title="7. One time setup on the server"></a>7. One time setup on the server</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be executed on server as slugex</span></span><br><span class="line">MIX_ENV=prod mix <span class="keyword">do</span> compile, ecto.create</span><br><span class="line">MIX_ENV=prod ./deploy/after_push</span><br></pre></td></tr></table></figure>
-<h2 id="Logger"><a href="#Logger" class="headerlink" title="Logger"></a>Logger</h2><h2 id="Exception-notifications"><a href="#Exception-notifications" class="headerlink" title="Exception notifications"></a>Exception notifications</h2><h2 id="Setup-systemd"><a href="#Setup-systemd" class="headerlink" title="Setup systemd"></a>Setup systemd</h2><h2 id="6-One-time-setup-on-server-on-server-as-slugex-user"><a href="#6-One-time-setup-on-server-on-server-as-slugex-user" class="headerlink" title="6. One time setup on server (on server as slugex user)"></a>6. One time setup on server (on server as slugex user)</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## commands to be run on the server as the slugex user</span></span><br><span class="line"><span class="built_in">cd</span> /opt/www/slugex</span><br><span class="line"></span><br><span class="line"><span class="comment"># create the secrets config</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'use Mix.Config'</span> &gt; config/prod.secrets.exs</span><br><span class="line"><span class="comment"># add your configuration to this file</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># update hex</span></span><br><span class="line"><span class="built_in">export</span> MIX_ENV=prod</span><br><span class="line">mix local.hex --force</span><br><span class="line">mix deps.get</span><br><span class="line">mix ecto.create</span><br></pre></td></tr></table></figure>
-<h2 id="6-Nginx-configuration"><a href="#6-Nginx-configuration" class="headerlink" title="6. Nginx configuration"></a>6. Nginx configuration</h2><h2 id="7-Letsencrypt-setup-and-configuration"><a href="#7-Letsencrypt-setup-and-configuration" class="headerlink" title="7. Letsencrypt setup and configuration"></a>7. Letsencrypt setup and configuration</h2><h2 id="9-TODO-Configuration-using-conform"><a href="#9-TODO-Configuration-using-conform" class="headerlink" title="9. TODO: Configuration using conform"></a>9. TODO: Configuration using conform</h2><h2 id="10-TODO-database-backups-to-S3"><a href="#10-TODO-database-backups-to-S3" class="headerlink" title="10. TODO: database backups to S3"></a>10. TODO: database backups to S3</h2><h2 id="10-TODO-uptime-monitoring-of-websites-using-uptime-monitor"><a href="#10-TODO-uptime-monitoring-of-websites-using-uptime-monitor" class="headerlink" title="10. TODO: uptime monitoring of websites using uptime monitor"></a>10. TODO: uptime monitoring of websites using uptime monitor</h2><h2 id="10-TODO-email-via-SES"><a href="#10-TODO-email-via-SES" class="headerlink" title="10. TODO: email via SES"></a>10. TODO: email via SES</h2><h2 id="10-TODO-db-seeds"><a href="#10-TODO-db-seeds" class="headerlink" title="10. TODO: db seeds"></a>10. TODO: db seeds</h2><h2 id="10-TODO-nginx-caching-basics-static-assets-large-expirations"><a href="#10-TODO-nginx-caching-basics-static-assets-large-expirations" class="headerlink" title="10. TODO: nginx caching basics, static assets large expirations"></a>10. TODO: nginx caching basics, static assets large expirations</h2><h2 id="10-TODO-remote-console-for-debugging"><a href="#10-TODO-remote-console-for-debugging" class="headerlink" title="10. TODO: remote console for debugging"></a>10. TODO: remote console for debugging</h2><p>sudo letsencrypt certonly –webroot -w /opt/www/webmonitor/public/ -d webmonitorhq.com  –webroot -w /opt/www/webmonitor/public/ -d <a href="http://www.webmonitorhq.com" target="_blank" rel="noopener">www.webmonitorhq.com</a></p>
-<h2 id="11-Check-SSL-certificate-https-www-sslshopper-com-ssl-checker-html"><a href="#11-Check-SSL-certificate-https-www-sslshopper-com-ssl-checker-html" class="headerlink" title="11. Check SSL certificate: https://www.sslshopper.com/ssl-checker.html"></a>11. Check SSL certificate: <a href="https://www.sslshopper.com/ssl-checker.html" target="_blank" rel="noopener">https://www.sslshopper.com/ssl-checker.html</a></h2><h3 id="Common-mistakes-errors"><a href="#Common-mistakes-errors" class="headerlink" title="Common mistakes/errors"></a>Common mistakes/errors</h3><ol>
-<li>SSH errors</li>
-</ol>
-<h3 id="Improvements"><a href="#Improvements" class="headerlink" title="Improvements"></a>Improvements</h3><ol>
-<li>Automate all of these using a hex package?</li>
-<li>Remove dependencies on <code>git-deploy</code> if possible</li>
-<li>Hot upgrades</li>
-</ol>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/" data-id="ckaam8yy4003jz9vec7rptxcl" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2016/11/13/how-to-deploy-a-simple-phoenix-app-on-a-single-server-using-distillery/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deploy/">Deploy</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/distillery/">Distillery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elixir/">Elixir</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/heroku/">Heroku</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phoenix/">Phoenix</a></li></ul>
 
     </footer>
   </div>
@@ -1399,6 +1404,10 @@ paste it in the server’s config/prod.secret.exs secret</p>
       <ul>
         
           <li>
+            <a href="/2020/05/17/my-first-svg-creation/">My first SVG creation</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/17/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-2/">many_to_many relationships in Ecto and Phoenix - Screencast - Part 2</a>
           </li>
         
@@ -1412,10 +1421,6 @@ paste it in the server’s config/prod.secret.exs secret</p>
         
           <li>
             <a href="/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/">How to create temporary bastion EC2 instances using Terraform</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/">many_to_many relationships in Ecto and Phoenix for Products and Tags</a>
           </li>
         
       </ul>
@@ -1438,7 +1443,7 @@ paste it in the server’s config/prod.secret.exs secret</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 

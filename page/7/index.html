@@ -94,6 +94,62 @@ ga('send', 'pageview');
         <section id="main">
           
   
+    <article id="post-easily-show-current-version-number-of-your-app-stackoverflow-style" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/" class="article-date">
+  <time datetime="2011-07-25T00:00:00.000Z" itemprop="datePublished">2011-07-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/">easily show current version number of your app, stackoverflow style</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>When your app is deployed in multiple environments (staging, production),
+knowing the version number of your deployed app helps a lot, in debugging.
+<a href="http://stackoverflow.com" target="_blank" rel="noopener">Stackoverflow</a> does a great job of showing a
+meaningful version in it’s footer. Currently it shows that it’s version number
+as <code>rev 2011.7.22.2</code>. This tells us that the code running stackoverflow was last 
+updated on 2011.7.22, and that it was updated twice on that same day.</p>
+<p>You can set up a similar thing pretty easily if you are using git and rails (rails in
+not really needed, but my example shows it using rails). All you need to do is
+add the following line to your <code>config/application.rb</code></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#config/application.rb</span></span><br><span class="line"><span class="class"><span class="keyword">module</span> <span class="title">Khalid</span></span></span><br><span class="line">  <span class="class"><span class="keyword">class</span> <span class="title">Application</span> &lt; Rails::Application</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">    <span class="comment">#cache the version as long as the app is alive</span></span><br><span class="line">    <span class="comment">#2011.07.25.4c76f53</span></span><br><span class="line">    VERSION =<span class="string">`git --git-dir="<span class="subst">#&#123;Rails.root.join(<span class="string">".git"</span>)&#125;</span>" --work-tree="<span class="subst">#&#123;Rails.root&#125;</span>" log -1 --date=short --format="%ad-%h"|sed 's/-/./g'`</span></span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  .</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>This gives you a constant called <code>Khalid::Application::VERSION</code> which will give you a nice version 
+number containing the commit sha id and the date like this: <code>2011.07.25.4c76f53</code></p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/" data-id="ckabll3ty002cysugra4zq2mu" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/07/25/easily-show-current-version-number-of-your-app-stackoverflow-style/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-joy-of-using-linux" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2011/06/09/joy-of-using-linux/" class="article-date">
@@ -171,7 +227,7 @@ uploader, this seemed like a long process which would atleast take a few hours.<
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/06/09/joy-of-using-linux/" data-id="ckaam8yze005jz9veym7nac8u" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/06/09/joy-of-using-linux/" data-id="ckabll3w0005lysugizcu05fd" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/06/09/joy-of-using-linux/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -219,7 +275,7 @@ hightlight blocks in my blog. I came up with this command:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/05/03/linux-awesomeness/" data-id="ckaam8yzm005wz9ve4gwozni7" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/05/03/linux-awesomeness/" data-id="ckabll3w7005xysughzikt9he" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/05/03/linux-awesomeness/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -276,7 +332,7 @@ Just change the file, commit and push, and pull it on the other machines.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/" data-id="ckaam8z00006nz9vecypw2ibm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/" data-id="ckabll3wj006qysug7jc3q5j2" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/05/03/painless-dotfiles-synchronization-and-versioning-using-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -339,9 +395,84 @@ One of the readers emailed me asking what the controller code would look like. H
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="ckaam8yyh003xz9ve4xqpv2ag" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/" data-id="ckabll3uw003wysugshpa9r5y" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/04/17/how-to-get-vanity-urls-in-rails/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-ruby-on-rails-on-ubuntu-soup-to-nuts" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" class="article-date">
+  <time datetime="2011-04-02T00:00:00.000Z" itemprop="datePublished">2011-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/">ruby on rails soup to nuts</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Ruby-on-Rails-Soup-to-Nuts"><a href="#Ruby-on-Rails-Soup-to-Nuts" class="headerlink" title="Ruby on Rails Soup to Nuts"></a>Ruby on Rails Soup to Nuts</h1><p>This is the first in a set of screencasts on ruby on rails. The purpose of these
+screencasts is to teach you ruby on rails from the ground up using an ubuntu dev
+environment.</p>
+<p>Here is the first one:</p>
+<div>
+  <iframe title="YouTube video player" width="630" height="503" src="http://www.youtube.com/embed/71UbXZ0WrCc?rel=0" frameborder="0">
+  </iframe>
+</div>
+
+
+<h2 id="Notes-for-Session-1-Setup-an-ubuntu-machine-with-the-basic-software"><a href="#Notes-for-Session-1-Setup-an-ubuntu-machine-with-the-basic-software" class="headerlink" title="Notes for Session 1: Setup an ubuntu machine with the basic software"></a>Notes for Session 1: Setup an ubuntu machine with the basic software</h2><ol>
+<li><a href="http://www.ubuntu.com/desktop/get-ubuntu/download" target="_blank" rel="noopener">Download and install Ubuntu 10.10</a></li>
+<li><a href="https://github.com/joshfng/railsready" target="_blank" rel="noopener">Install Ruby and Rails via Rails Ready</a></li>
+<li>Setup gvim (which will be our primary editor)<ul>
+<li>Install through <em>software center</em></li>
+<li>While we are at it, let’s install gnome-do</li>
+<li>Finally let’s configure it: <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="noopener">https://github.com/minhajuddin/dotfiles</a></li>
+</ul>
+</li>
+<li><a href="https://help.ubuntu.com/community/UsingTheTerminal" target="_blank" rel="noopener">Importance of the terminal https://help.ubuntu.com/community/UsingTheTerminal</a></li>
+<li>Install rvm using railsready<pre><code>url:     https://github.com/joshfng/railsready
+command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/master/railsready.sh &amp;&amp; bash railsready.sh
+</code></pre></li>
+<li>Configure rvm and install ruby</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#replace the following which is usually found on line 6 of ~/.bashrc</span></span><br><span class="line">[ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></span><br><span class="line"><span class="comment"># with </span></span><br><span class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></span><br><span class="line"><span class="comment"># also put the following line at the end of the file</span></span><br><span class="line">[[ -s <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<ol start="7">
+<li>Install rails: gem install rails</li>
+</ol>
+<h2 id="Next-screencast"><a href="#Next-screencast" class="headerlink" title="Next screencast: "></a>Next screencast: </h2><p>How to build a simple rails application 
+<em>Things that will make it easy for you to follow the next session: html, http, basics of ruby programming, basics of css</em></p>
+
+        
+      
+
+
+      
+
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="ckabll3ww007iysug4k2du51i" class="article-share-link">Share</a>
+      
+        <a href="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -418,84 +549,9 @@ I’ll try and post atleast one video every week.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="ckaam8z080077z9vetbb7lc9e" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/04/02/reminiscing-my-past/" data-id="ckabll3ws0078ysugtsbqv6d5" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/04/02/reminiscing-my-past/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-ruby-on-rails-on-ubuntu-soup-to-nuts" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" class="article-date">
-  <time datetime="2011-04-02T00:00:00.000Z" itemprop="datePublished">2011-04-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/">ruby on rails soup to nuts</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Ruby-on-Rails-Soup-to-Nuts"><a href="#Ruby-on-Rails-Soup-to-Nuts" class="headerlink" title="Ruby on Rails Soup to Nuts"></a>Ruby on Rails Soup to Nuts</h1><p>This is the first in a set of screencasts on ruby on rails. The purpose of these
-screencasts is to teach you ruby on rails from the ground up using an ubuntu dev
-environment.</p>
-<p>Here is the first one:</p>
-<div>
-  <iframe title="YouTube video player" width="630" height="503" src="http://www.youtube.com/embed/71UbXZ0WrCc?rel=0" frameborder="0">
-  </iframe>
-</div>
-
-
-<h2 id="Notes-for-Session-1-Setup-an-ubuntu-machine-with-the-basic-software"><a href="#Notes-for-Session-1-Setup-an-ubuntu-machine-with-the-basic-software" class="headerlink" title="Notes for Session 1: Setup an ubuntu machine with the basic software"></a>Notes for Session 1: Setup an ubuntu machine with the basic software</h2><ol>
-<li><a href="http://www.ubuntu.com/desktop/get-ubuntu/download" target="_blank" rel="noopener">Download and install Ubuntu 10.10</a></li>
-<li><a href="https://github.com/joshfng/railsready" target="_blank" rel="noopener">Install Ruby and Rails via Rails Ready</a></li>
-<li>Setup gvim (which will be our primary editor)<ul>
-<li>Install through <em>software center</em></li>
-<li>While we are at it, let’s install gnome-do</li>
-<li>Finally let’s configure it: <a href="https://github.com/minhajuddin/dotfiles" target="_blank" rel="noopener">https://github.com/minhajuddin/dotfiles</a></li>
-</ul>
-</li>
-<li><a href="https://help.ubuntu.com/community/UsingTheTerminal" target="_blank" rel="noopener">Importance of the terminal https://help.ubuntu.com/community/UsingTheTerminal</a></li>
-<li>Install rvm using railsready<pre><code>url:     https://github.com/joshfng/railsready
-command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/master/railsready.sh &amp;&amp; bash railsready.sh
-</code></pre></li>
-<li>Configure rvm and install ruby</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#replace the following which is usually found on line 6 of ~/.bashrc</span></span><br><span class="line">[ -z <span class="string">"<span class="variable">$PS1</span>"</span> ] &amp;&amp; <span class="built_in">return</span></span><br><span class="line"><span class="comment"># with </span></span><br><span class="line"><span class="keyword">if</span> [[ ! -z <span class="string">"<span class="variable">$PS1</span>"</span> ]] ; <span class="keyword">then</span></span><br><span class="line"><span class="comment"># also put the following line at the end of the file</span></span><br><span class="line">[[ -s <span class="variable">$HOME</span>/.rvm/scripts/rvm ]] &amp;&amp; <span class="built_in">source</span> <span class="variable">$HOME</span>/.rvm/scripts/rvm</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<ol start="7">
-<li>Install rails: gem install rails</li>
-</ol>
-<h2 id="Next-screencast"><a href="#Next-screencast" class="headerlink" title="Next screencast: "></a>Next screencast: </h2><p>How to build a simple rails application 
-<em>Things that will make it easy for you to follow the next session: html, http, basics of ruby programming, basics of css</em></p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/" data-id="ckaam8z0b007dz9vea75zsr99" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2011/04/02/ruby-on-rails-on-ubuntu-soup-to-nuts/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -565,7 +621,7 @@ command: wget --no-check-certificate https://github.com/joshfng/railsready/raw/m
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="ckaam8yyi003zz9ve8n79gbay" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/" data-id="ckabll3ux003yysugnje2yh44" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/03/11/how-to-hookup-nginx-with-startssl/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -623,7 +679,7 @@ NHibernate, I just put it out there to help future searchers :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="ckaam8ywi000pz9vei6bw4k1t" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/" data-id="ckabll3sz000pysugsz4magre" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/02/11/-pagination-for-performance-intensive-queries-using-nhibernate-and-sql-server-temporary-tables/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -684,7 +740,7 @@ command manually automating them.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="ckaam8yxa0026z9vek0h391kf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/" data-id="ckabll3tu0026ysugj2rw5sgv" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/02/04/deploy-asp-net-mvc-applications-using-psexec-and-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -736,7 +792,7 @@ ping them.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="ckaam8ywq0011z9veqdxs2vib" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/" data-id="ckabll3t60013ysugdlfxkov4" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/01/21/a-simple-rake-task-to-ping-google-bing-and-yahoo-about-a-change-in-your-sitemap/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -796,7 +852,7 @@ rockstars</em>.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="ckaam8z0l0080z9vetf3a1yuu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/" data-id="ckabll3xc0084ysug54uxk0ic" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2011/01/21/software-developer-s-obsession-with-ninjas-and-rockstars/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -850,7 +906,7 @@ install malcolmx</code> you can check for multiple domain names like this:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="ckaam8z14008uz9vezddweu6p" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/" data-id="ckabll3xt008zysugdhez0n7m" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/25/use-malcolmx-to-search-for-domain-names-from-the-command-line/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -904,7 +960,7 @@ Or think about asking a guy to help you with “Yet Another Something”, Why wo
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="ckaam8z0y008lz9veei13bveu" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/" data-id="ckabll3xo008oysugsp2awdhj" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/23/the-problem-with-yet-another-x/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -961,7 +1017,7 @@ should <a href="http://synergy-foss.org/pm/projects/synergy/tabs/download#Linux"
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="ckaam8z0v008gz9vedgos0vw9" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/" data-id="ckabll3xm008iysugvs8eg304" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/17/synergy-server-debugging-tips/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1015,7 +1071,7 @@ use it with care! :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="ckaam8z04006zz9ve7eqef6pv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/" data-id="ckabll3wo0072ysugie5kf1gb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/09/rake-task-to-delete-untracked-files-in-git/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1077,7 +1133,7 @@ checkout <a href="http://www.mattcutts.com/blog/how-to-configure-synergy-in-six-
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="ckaam8yxq0035z9ve7kq4kxzm" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/" data-id="ckabll3uf0036ysug6gpvx4lr" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/12/04/hookup-hotkeys-to-swap-active-machine--in-synergy/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1131,7 +1187,7 @@ clone the repo and start banging out code :)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="ckaam8z04006xz9veol3nkv3n" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/" data-id="ckabll3wn0070ysugb0w2cpyz" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/11/r3t-a-rails3-template-with-devise-mongoid-rspec-cucumber-and-more/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1197,7 +1253,7 @@ push as much as you want, you won’t be pestered for your password anymore :)</
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="ckaam8yzz006mz9vedettvjf3" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/" data-id="ckabll3wi006pysug3so32oho" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/08/pageant-and-plink-for-the-windows-git-user/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1248,65 +1304,9 @@ you can use it if you have the same problem ;)</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="ckaam8yyv004qz9veown1nd4r" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/" data-id="ckabll3ve004sysugmlo990o7" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2010/11/07/how-to-setup-your-router-to-automatically-reconnect/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-helper-script-to-create-new-posts-using-jekyll" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" class="article-date">
-  <time datetime="2010-10-01T00:00:00.000Z" itemprop="datePublished">2010-10-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/10/01/helper-script-to-create-new-posts-using-jekyll/">helper script to create new posts using jekyll</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Alright, so, whenever I try to write up a blog post Jekyll wants me to do a lot of redundant 
-and painful stuff. To create a blog post, you’ll have to do the following:</p>
-<ul>
-<li>Create a filename called 2010-10-01-helper-script-to-create-new-posts-using-jekyll.markdown
-which has a timestamp, hyphens and a title which is kind of a pain to type.</li>
-<li>And once you have this file you’ll have to put up some yaml front matter: the
-title, and the layout is the minimum, Here you are typing the title again.</li>
-</ul>
-<p>It’s not a big deal, but it’s still annoying. So, I came up with a small ruby
-script called new.rb, which basically automates this stuff.</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#!/usr/bin/env ruby</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Script to create a blog post using a template. It takes one input parameter</span></span><br><span class="line"><span class="comment"># which is the title of the blog post</span></span><br><span class="line"><span class="comment"># e.g. command:</span></span><br><span class="line"><span class="comment"># $ ./new.rb "helper script to create new posts using jekyll"</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Author:Khaja Minhajuddin (http://minhajuddin.com)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Some constants</span></span><br><span class="line">TEMPLATE = <span class="string">"template.markdown"</span></span><br><span class="line">TARGET_DIR = <span class="string">"_posts"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Get the title which was passed as an argument</span></span><br><span class="line">title = ARGV[<span class="number">0</span>]</span><br><span class="line"><span class="comment"># Get the filename</span></span><br><span class="line">filename = title.gsub(<span class="string">' '</span>,<span class="string">'-'</span>)</span><br><span class="line">filename = <span class="string">"<span class="subst">#&#123; Time.now.strftime(<span class="string">'%Y-%m-%d'</span>) &#125;</span>-<span class="subst">#&#123;filename&#125;</span>.markdown"</span> </span><br><span class="line">filepath = File.join(TARGET_DIR, filename)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a copy of the template with the title replaced</span></span><br><span class="line">new_post = File.read(TEMPLATE)</span><br><span class="line">new_post.gsub!(<span class="string">'TITLE'</span>, title);</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write out the file to the target directory</span></span><br><span class="line">new_post_file = File.open(filepath, <span class="string">'w'</span>)</span><br><span class="line">new_post_file.puts new_post</span><br><span class="line">new_post_file.close</span><br><span class="line"></span><br><span class="line">puts <span class="string">"created =&gt; <span class="subst">#&#123;filepath&#125;</span>"</span></span><br></pre></td></tr></table></figure>
-<p><a href="http://gist.github.com/604999#comments" target="_blank" rel="noopener">Download the gist</a></p>
-
-        
-      
-
-
-      
-
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/" data-id="ckaam8yxq0033z9veq1wxtb1f" class="article-share-link">Share</a>
-      
-        <a href="http://minhajuddin.com/2010/10/01/helper-script-to-create-new-posts-using-jekyll/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -1376,6 +1376,10 @@ script called new.rb, which basically automates this stuff.</p>
       <ul>
         
           <li>
+            <a href="/2020/05/17/my-first-svg-creation/">My first SVG creation</a>
+          </li>
+        
+          <li>
             <a href="/2020/05/17/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-2/">many_to_many relationships in Ecto and Phoenix - Screencast - Part 2</a>
           </li>
         
@@ -1389,10 +1393,6 @@ script called new.rb, which basically automates this stuff.</p>
         
           <li>
             <a href="/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/">How to create temporary bastion EC2 instances using Terraform</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/">many_to_many relationships in Ecto and Phoenix for Products and Tags</a>
           </li>
         
       </ul>
@@ -1415,7 +1415,7 @@ script called new.rb, which basically automates this stuff.</p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/05/">May 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">January 2013</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">December 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11/">November 2012</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/09/">September 2012</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/07/">July 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/06/">June 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">November 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/06/">June 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/04/">April 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/02/">February 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/12/">December 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">November 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10/">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">September 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07/">July 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">June 2010</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">December 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/09/">September 2009</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">August 2009</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/07/">July 2009</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/04/">April 2009</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
