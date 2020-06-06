@@ -68,4 +68,16 @@ defmodule Hello do
 end
 ```
 
+And, here is a quick test to assert that it works!
+```
+defmodule HelloTest do
+  use ExUnit.Case
+
+  test "returns hello world" do
+    assert {:ok, {{'HTTP/1.1', 200, 'OK'}, _headers, '<!doctype html><h1>Hello, Cowboy!</h1>'}} =
+             :httpc.request('http://localhost:4001/')
+  end
+end
+```
+
 [Full code on GitHub](https://github.com/hyperngn/cowboy-examples/tree/master/hello)
