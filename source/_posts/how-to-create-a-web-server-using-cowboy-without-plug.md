@@ -69,7 +69,8 @@ end
 ```
 
 And, here is a quick test to assert that it works!
-```
+
+```elixir
 defmodule HelloTest do
   use ExUnit.Case
 
