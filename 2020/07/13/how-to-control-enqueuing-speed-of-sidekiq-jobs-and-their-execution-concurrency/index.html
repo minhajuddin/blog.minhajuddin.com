@@ -3,19 +3,19 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>How to control enqueuing speed of Sidekiq jobs and their concurrency | Simplicity</title>
+  <title>How to control the enqueuing speed of Sidekiq jobs and their concurrency | Simplicity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="At my work, we use ruby heavily and sidekiq is an essential part of our stack. Sometimes, I long for the concurrency primitives from Elixir, but that’s not what today’s post is about. A few days ago,">
 <meta name="keywords" content="Redis,Sidekiq,Concurrency,Ruby,Enqueue,Backpressure">
 <meta property="og:type" content="article">
-<meta property="og:title" content="How to control enqueuing speed of Sidekiq jobs and their concurrency">
+<meta property="og:title" content="How to control the enqueuing speed of Sidekiq jobs and their concurrency">
 <meta property="og:url" content="http://minhajuddin.com/2020/07/13/how-to-control-enqueuing-speed-of-sidekiq-jobs-and-their-execution-concurrency/index.html">
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="At my work, we use ruby heavily and sidekiq is an essential part of our stack. Sometimes, I long for the concurrency primitives from Elixir, but that’s not what today’s post is about. A few days ago,">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2020-07-14T00:34:51.127Z">
+<meta property="og:updated_time" content="2020-07-14T00:46:17.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="How to control enqueuing speed of Sidekiq jobs and their concurrency">
+<meta name="twitter:title" content="How to control the enqueuing speed of Sidekiq jobs and their concurrency">
 <meta name="twitter:description" content="At my work, we use ruby heavily and sidekiq is an essential part of our stack. Sometimes, I long for the concurrency primitives from Elixir, but that’s not what today’s post is about. A few days ago,">
 <meta name="twitter:creator" content="@minhajuddin">
 <link rel="publisher" href="+KhajaMinhajuddin">
@@ -108,7 +108,7 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      How to control enqueuing speed of Sidekiq jobs and their concurrency
+      How to control the enqueuing speed of Sidekiq jobs and their concurrency
     </h1>
   
 
@@ -126,13 +126,13 @@ Sidekiq, and Sidekiq started executing them immediately. We have 50 worker
 instances and run Sidekiq with a concurrency of 20. So, essentially we had 400
 worker threads ready to start crunching these jobs. Coincidentally we have 400
 database connections available and my batch background job ended up consuming
-all the connections for a period of 5 minutes during which the other parts of
+all the connections for 5 minutes during which the other parts of
 the application were connection starved and started throwing errors 😬.</p>
 <p>That was a dumb mistake. Whenever you find yourself making a dumb mistake,
 make sure that no one else can repeat that mistake. To fix that, we could set up
 our database with multiple users in such a way that the web app would connect
 with a user which could only open a maximum of 100 connections, the background
-worker with a user with its own limits and so on. This would stop these kind of
+worker with a user with its own limits and, so on. This would stop these kinds of
 problems from happening again. However, we’ll get there when we get there, as
 this would require infrastructure changes.</p>
 <p>I had another batch job lined up which had to process millions of rows in a
@@ -155,12 +155,12 @@ elements, Sidekiq would execute only 2 jobs at any point in time, regardless
 of the number of worker instances/concurrency of sidekiq workers.</li>
 <li>The way this is enforced is by the enqueue function using a <code>BLPOP</code> before it
 enqueues, so, as soon as the enqueuer starts, it pops the first 2 elements from
-the redis list and enqueues 2 jobs. At this point the enqueuer is stuck till we
+the redis list and enqueues 2 jobs. At this point, the enqueuer is stuck till we
 add more elements to the list.</li>
 <li>That’s where the background jobs come into play, at the end of each
 background job, we add one element back to the list using <code>LPUSH</code> and as soon
 as an element is added the enqueuer which is blocked at <code>BLPOP</code> pops this
-elemnent and enqueues another job. This goes on till all your background jobs
+element and enqueues another job. This goes on till all your background jobs
 are enqueued, all the while making sure that there are never more than 2 jobs
 at any given time.</li>
 </ol>
@@ -183,7 +183,7 @@ at any given time.</li>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/07/13/how-to-control-enqueuing-speed-of-sidekiq-jobs-and-their-execution-concurrency/" data-id="ckcl7epcj003922wxn9fsjgu0" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/07/13/how-to-control-enqueuing-speed-of-sidekiq-jobs-and-their-execution-concurrency/" data-id="ckcl7tfqg0039zow18qpjz9vb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/07/13/how-to-control-enqueuing-speed-of-sidekiq-jobs-and-their-execution-concurrency/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -268,7 +268,7 @@ at any given time.</li>
       <ul>
         
           <li>
-            <a href="/2020/07/13/how-to-control-enqueuing-speed-of-sidekiq-jobs-and-their-execution-concurrency/">How to control enqueuing speed of Sidekiq jobs and their concurrency</a>
+            <a href="/2020/07/13/how-to-control-enqueuing-speed-of-sidekiq-jobs-and-their-execution-concurrency/">How to control the enqueuing speed of Sidekiq jobs and their concurrency</a>
           </li>
         
           <li>
