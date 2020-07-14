@@ -1,4 +1,4 @@
-title: How to control enqueuing speed of Sidekiq jobs and their concurrency
+title: How to control the enqueuing speed of Sidekiq jobs and their concurrency
 date: 2020-07-13 18:55:04
 tags:
 - Sidekiq
@@ -20,14 +20,14 @@ Sidekiq, and Sidekiq started executing them immediately. We have 50 worker
 instances and run Sidekiq with a concurrency of 20. So, essentially we had 400
 worker threads ready to start crunching these jobs. Coincidentally we have 400
 database connections available and my batch background job ended up consuming
-all the connections for a period of 5 minutes during which the other parts of
+all the connections for 5 minutes during which the other parts of
 the application were connection starved and started throwing errors 😬.
 
 That was a dumb mistake. Whenever you find yourself making a dumb mistake,
 make sure that no one else can repeat that mistake. To fix that, we could set up
 our database with multiple users in such a way that the web app would connect
 with a user which could only open a maximum of 100 connections, the background
-worker with a user with its own limits and so on. This would stop these kind of
+worker with a user with its own limits and, so on. This would stop these kinds of
 problems from happening again. However, we'll get there when we get there, as
 this would require infrastructure changes.
 
@@ -53,12 +53,12 @@ idea is simple.
    of the number of worker instances/concurrency of sidekiq workers.
 2. The way this is enforced is by the enqueue function using a `BLPOP` before it
    enqueues, so, as soon as the enqueuer starts, it pops the first 2 elements from
-   the redis list and enqueues 2 jobs. At this point the enqueuer is stuck till we
+   the redis list and enqueues 2 jobs. At this point, the enqueuer is stuck till we
    add more elements to the list.
 3. That's where the background jobs come into play, at the end of each
    background job, we add one element back to the list using `LPUSH` and as soon
    as an element is added the enqueuer which is blocked at `BLPOP` pops this
-   elemnent and enqueues another job. This goes on till all your background jobs
+   element and enqueues another job. This goes on till all your background jobs
    are enqueued, all the while making sure that there are never more than 2 jobs
    at any given time.
 
