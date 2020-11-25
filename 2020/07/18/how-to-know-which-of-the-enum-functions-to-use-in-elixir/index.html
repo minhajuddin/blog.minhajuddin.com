@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="Simplicity">
 <meta property="og:description" content="When you are writing functional code, it is sometimes difficult to figure out which of the Enum functions you want to use. Here are a few common use cases. Use Enum.mapYou can use Enum.map when you wa">
 <meta property="og:locale" content="English">
-<meta property="og:updated_time" content="2020-10-18T13:43:54.197Z">
+<meta property="og:updated_time" content="2020-11-25T01:02:12.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to know which of the Enum functions to use in Elixir">
 <meta name="twitter:description" content="When you are writing functional code, it is sometimes difficult to figure out which of the Enum functions you want to use. Here are a few common use cases. Use Enum.mapYou can use Enum.map when you wa">
@@ -146,7 +146,7 @@ one of the most powerful functions. You can use <code>Enum.reduce</code> when yo
 change the shape of the input list into something else, for instance a <code>map</code> or a
 <code>number</code>.</p>
 <h3 id="Examples-2"><a href="#Examples-2" class="headerlink" title="Examples"></a>Examples</h3><p>Change a list of elements into a number by computing its product or sum</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">iex&gt; Enum.reduce(</span><br><span class="line">  _input_enumberable = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">  _start_value_of_acc = <span class="number">1</span>,</span><br><span class="line">  <span class="keyword">fn</span> x, acc -&gt; x * acc <span class="keyword">end</span>)</span><br><span class="line"><span class="number">24</span></span><br><span class="line"></span><br><span class="line">iex&gt; Enum.reduce(</span><br><span class="line">  _input_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">  _start_value_of_acc = <span class="number">0</span>,</span><br><span class="line">  <span class="keyword">fn</span> x, acc -&gt; x + acc <span class="keyword">end</span>)</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">iex&gt; Enum.reduce(</span><br><span class="line">  _input_enumberable = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">  _start_value_of_acc = <span class="number">1</span>,</span><br><span class="line">  <span class="keyword">fn</span> x, acc -&gt; x * acc <span class="keyword">end</span>)</span><br><span class="line"><span class="number">24</span></span><br><span class="line"></span><br><span class="line">iex&gt; Enum.reduce(</span><br><span class="line">  _input_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">  _start_value_of_acc = 0,</span><br><span class="line">  <span class="keyword">fn</span> x, acc -&gt; x + acc <span class="keyword">end</span>)</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
 <p><code>Enum.reduce</code> takes three arguments, the first is the input enumerable, which is
 usually a list or map, the second is the starting value of the accumulator and
 the third is a function which is applied for each element
@@ -172,7 +172,7 @@ containing an employee id and their name.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/07/18/how-to-know-which-of-the-enum-functions-to-use-in-elixir/" data-id="ckgf5v9rd004fyovcgscjcgit" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/07/18/how-to-know-which-of-the-enum-functions-to-use-in-elixir/" data-id="ckhwpe3aq004fyamqg9k3n75y" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/07/18/how-to-know-which-of-the-enum-functions-to-use-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
