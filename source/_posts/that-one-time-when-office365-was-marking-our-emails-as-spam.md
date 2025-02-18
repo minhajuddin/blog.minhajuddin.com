@@ -30,16 +30,18 @@ download the full message to see if there was anything weird going on. I didn't
 find anything strange.
 
 Then, I figured, I could use another library to send out emails. I knew ruby,
-so I used https://github.com/benprew/pony to send out email from the same SMTP
-server. And, NOW the emails were not marked as spam. Bingo, I knew there was
-something wrong with our elixir library. I dumped out a few emails from both
-the ruby and elixir libraries and compared them side by side using a diff tool.
-The only difference between the emails was the multi part delimiter. And, I
-also found that the elixir library had a hard-coded it. And, for some reason
-this was causing the emails to be marked as spam by office365. (Office 365 was
-probably using this as a signal to mark the email as spam).
+so I used https://github.com/benprew/pony to send out a test email from the
+same SMTP server. And, NOW the emails were not marked as spam. Bingo, I knew
+then, that there was something wrong with our elixir library. I dumped out a
+few emails from both the ruby and elixir libraries and compared them side by
+side using a diff tool. The only difference between the emails was a multi part
+delimiter. And, I also found that the elixir library had a hard-coded
+delimiter. And, for some reason this was causing the emails to be marked as
+spam by office365. (Office 365 was probably using this as a signal to mark the
+email as spam).
 
-Once I knew the problem, the fix was easy. I just had to change the delimiter,
-which was a short PR:  https://github.com/fewlinesco/bamboo_smtp/pull/39/files
+Once I knew the problem, the fix was easy. I just had to change the delimiter
+to be a random string, which was a short PR:
+https://github.com/fewlinesco/bamboo_smtp/pull/39/files
 
 And, that was it. Our emails were no longer marked as spam by office365. 🎉
