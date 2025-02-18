@@ -134,16 +134,18 @@ library.</p>
 download the full message to see if there was anything weird going on. I didn’t
 find anything strange.</p>
 <p>Then, I figured, I could use another library to send out emails. I knew ruby,
-so I used <a target="_blank" rel="noopener" href="https://github.com/benprew/pony">https://github.com/benprew/pony</a> to send out email from the same SMTP
-server. And, NOW the emails were not marked as spam. Bingo, I knew there was
-something wrong with our elixir library. I dumped out a few emails from both
-the ruby and elixir libraries and compared them side by side using a diff tool.
-The only difference between the emails was the multi part delimiter. And, I
-also found that the elixir library had a hard-coded it. And, for some reason
-this was causing the emails to be marked as spam by office365. (Office 365 was
-probably using this as a signal to mark the email as spam).</p>
-<p>Once I knew the problem, the fix was easy. I just had to change the delimiter,
-which was a short PR:  <a target="_blank" rel="noopener" href="https://github.com/fewlinesco/bamboo_smtp/pull/39/files">https://github.com/fewlinesco/bamboo_smtp/pull/39/files</a></p>
+so I used <a target="_blank" rel="noopener" href="https://github.com/benprew/pony">https://github.com/benprew/pony</a> to send out a test email from the
+same SMTP server. And, NOW the emails were not marked as spam. Bingo, I knew
+then, that there was something wrong with our elixir library. I dumped out a
+few emails from both the ruby and elixir libraries and compared them side by
+side using a diff tool. The only difference between the emails was a multi part
+delimiter. And, I also found that the elixir library had a hard-coded
+delimiter. And, for some reason this was causing the emails to be marked as
+spam by office365. (Office 365 was probably using this as a signal to mark the
+email as spam).</p>
+<p>Once I knew the problem, the fix was easy. I just had to change the delimiter
+to be a random string, which was a short PR:
+<a target="_blank" rel="noopener" href="https://github.com/fewlinesco/bamboo_smtp/pull/39/files">https://github.com/fewlinesco/bamboo_smtp/pull/39/files</a></p>
 <p>And, that was it. Our emails were no longer marked as spam by office365. 🎉</p>
 
         
@@ -154,7 +156,7 @@ which was a short PR:  <a target="_blank" rel="noopener" href="https://github.co
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2025/02/17/that-one-time-when-office365-was-marking-our-emails-as-spam/" data-id="cm79x09sk0091hgq99cqbdrgs" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2025/02/17/that-one-time-when-office365-was-marking-our-emails-as-spam/" data-id="cm79x8y2j0091gyqa1xswg3i4" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2025/02/17/that-one-time-when-office365-was-marking-our-emails-as-spam/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -222,7 +224,7 @@ want the jwt token to be stored in local storage because of the security implica
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2025/02/17/how-to-fix-cookies-not-persisting-in-cors/" data-id="cm79x09qr0041hgq9c05c1ei6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2025/02/17/how-to-fix-cookies-not-persisting-in-cors/" data-id="cm79x8y0s0045gyqa9bu45bnh" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2025/02/17/how-to-fix-cookies-not-persisting-in-cors/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -335,7 +337,7 @@ your performance.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2021/10/31/memory-cached-tables-for-building-faster-web-applications/" data-id="cm79x09rp006shgq99k568m0b" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2021/10/31/memory-cached-tables-for-building-faster-web-applications/" data-id="cm79x8y1p006rgyqadfti19ar" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2021/10/31/memory-cached-tables-for-building-faster-web-applications/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -401,7 +403,7 @@ hours which amounts to about 3.5K messages per second which is impressive:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2021/04/20/a-baton-server-to-test-your-erlang-elixir-cluster/" data-id="cm79x09pm000zhgq96fvn8vkq" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2021/04/20/a-baton-server-to-test-your-erlang-elixir-cluster/" data-id="cm79x8xzi000zgyqa7nacc01d" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2021/04/20/a-baton-server-to-test-your-erlang-elixir-cluster/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -467,7 +469,7 @@ need to restart your datadog agent for it to start sending these metrics.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2021/04/15/how-to-show-raspberry-pi-temperatures-in-your-datadog-dashboard/" data-id="cm79x09r60054hgq9evef9wiv" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2021/04/15/how-to-show-raspberry-pi-temperatures-in-your-datadog-dashboard/" data-id="cm79x8y160054gyqa5jiv8o5x" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2021/04/15/how-to-show-raspberry-pi-temperatures-in-your-datadog-dashboard/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -527,7 +529,7 @@ get it working.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2021/03/14/how-to-rename-table-using-pg-dump-or-pg-restore/" data-id="cm79x09r2004uhgq927aw3lw6" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2021/03/14/how-to-rename-table-using-pg-dump-or-pg-restore/" data-id="cm79x8y13004xgyqaa7ec4fdw" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2021/03/14/how-to-rename-table-using-pg-dump-or-pg-restore/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -587,7 +589,7 @@ Phoenix/Ecto migrations like you would in a normal phoenix app.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2021/03/07/moving-a-rails-managed-database-to-phoenix/" data-id="cm79x09rr006whgq9c47zbyvt" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2021/03/07/moving-a-rails-managed-database-to-phoenix/" data-id="cm79x8y1s006vgyqa8j1caikp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2021/03/07/moving-a-rails-managed-database-to-phoenix/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -677,7 +679,7 @@ values. Here is how I do it in my Elixir apps:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2021/03/07/a-simple-way-to-store-secrets-using-parameter-store-for-your-ecs-applications/" data-id="cm79x09pq0018hgq92qq32wfp" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2021/03/07/a-simple-way-to-store-secrets-using-parameter-store-for-your-ecs-applications/" data-id="cm79x8xzm0018gyqa0kx30hrn" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2021/03/07/a-simple-way-to-store-secrets-using-parameter-store-for-your-ecs-applications/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -762,7 +764,7 @@ any deadlocks or statement timeouts.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/10/17/how-to-do-batch-updates-in-postgresql/" data-id="cm79x09qo003rhgq96hkyf2x4" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/10/17/how-to-do-batch-updates-in-postgresql/" data-id="cm79x8y0n003rgyqafbf9cdrf" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/10/17/how-to-do-batch-updates-in-postgresql/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -840,7 +842,7 @@ call to <code>#.lazy</code> before we map and we are all set!</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/07/29/lazy-functional-ruby/" data-id="cm79x09rh0067hgq990ciaowd" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/07/29/lazy-functional-ruby/" data-id="cm79x8y1j0067gyqa8ffa2tqz" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/07/29/lazy-functional-ruby/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -927,7 +929,7 @@ containing an employee id and their name.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/07/18/how-to-know-which-of-the-enum-functions-to-use-in-elixir/" data-id="cm79x09qz004mhgq9b6qf68xq" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/07/18/how-to-know-which-of-the-enum-functions-to-use-in-elixir/" data-id="cm79x8y0z004mgyqa3c64bku1" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/07/18/how-to-know-which-of-the-enum-functions-to-use-in-elixir/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1025,7 +1027,7 @@ at any given time.</li>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/07/13/how-to-control-enqueuing-speed-of-sidekiq-jobs-and-their-execution-concurrency/" data-id="cm79x09qj003ahgq9dndg1gkf" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/07/13/how-to-control-enqueuing-speed-of-sidekiq-jobs-and-their-execution-concurrency/" data-id="cm79x8y0i003agyqa5ordfaoe" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/07/13/how-to-control-enqueuing-speed-of-sidekiq-jobs-and-their-execution-concurrency/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1091,7 +1093,7 @@ message. Here is the required code for that:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/06/05/how-to-create-a-web-server-using-cowboy-without-plug/" data-id="cm79x09ql003hhgq99k77anjb" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/06/05/how-to-create-a-web-server-using-cowboy-without-plug/" data-id="cm79x8y0l003hgyqa3ktm5ejh" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/06/05/how-to-create-a-web-server-using-cowboy-without-plug/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1161,7 +1163,7 @@ message. Here is the required code for that:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/05/17/my-first-svg-creation/" data-id="cm79x09rs006zhgq90r2o0tqc" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/05/17/my-first-svg-creation/" data-id="cm79x8y1t006xgyqafw9r9v9p" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/05/17/my-first-svg-creation/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1206,7 +1208,7 @@ message. Here is the required code for that:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/05/17/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-2/" data-id="cm79x09rn006nhgq9eyxg0xz1" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/05/17/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-2/" data-id="cm79x8y1n006lgyqaa0hxfx1s" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/05/17/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1253,7 +1255,7 @@ message. Here is the required code for that:</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/05/11/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-1/" data-id="cm79x09rm006lhgq9ffh6269y" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/05/11/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-1/" data-id="cm79x8y1n006ngyqa5nk9e4zb" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/05/11/many-to-many-relationships-in-ecto-and-phoenix-screencast-part-1/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1373,7 +1375,7 @@ postgresql_role.liveform_db_role</code></p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/05/09/how-to-use-a-single-aurora-cluster-for-multiple-databases-each-with-its-own-restricted-user/" data-id="cm79x09r9005fhgq9g5nfg3ra" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/05/09/how-to-use-a-single-aurora-cluster-for-multiple-databases-each-with-its-own-restricted-user/" data-id="cm79x8y19005fgyqa5tn5exwo" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/05/09/how-to-use-a-single-aurora-cluster-for-multiple-databases-each-with-its-own-restricted-user/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1464,7 +1466,7 @@ bastion instance when you don’t need it.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/" data-id="cm79x09qm003khgq98s6hg7as" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/" data-id="cm79x8y0l003kgyqaeb7f1c4t" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/05/06/how-to-create-temporary-bastion-ec2-instances-using-terraform/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1673,7 +1675,7 @@ share my take on it in the next post!</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/" data-id="cm79x09vx00rghgq99v647uft" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/" data-id="cm79x8y5t00r9gyqa01ce3tv3" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2020/05/03/many-to-many-relationships-in-ecto-and-phoenix-for-products-and-tags/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -1742,7 +1744,7 @@ local environment. Hope you find it useful.</p>
 
     </div>
     <footer class="article-footer">
-      <a data-url="http://minhajuddin.com/2019/11/30/how-to-dump-a-partial-sample-table-1000-rows-in-postgres-using-pg-dump/" data-id="cm79x09qp003thgq9dmlf5i50" class="article-share-link">Share</a>
+      <a data-url="http://minhajuddin.com/2019/11/30/how-to-dump-a-partial-sample-table-1000-rows-in-postgres-using-pg-dump/" data-id="cm79x8y0o003tgyqa7ai80odp" class="article-share-link">Share</a>
       
         <a href="http://minhajuddin.com/2019/11/30/how-to-dump-a-partial-sample-table-1000-rows-in-postgres-using-pg-dump/#disqus_thread" class="article-comment-link">Comments</a>
       
